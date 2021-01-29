@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/vikash452/Coding-Monitor/issues"
   },
-  "homepage": "https://github.com/vikash452/Coding-Monitor#readme"
+  "homepage": "https://github.com/vikash452/Coding-Monitor#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.14"
+  }
 }
