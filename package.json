@@ -1,0 +1,19 @@
+{
+  "name": "coding-monitor",
+  "version": "1.0.0",
+  "description": "A website to monitor your coding statistics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikash452/Coding-Monitor.git"
+  },
+  "author": "vikash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikash452/Coding-Monitor/issues"
+  },
+  "homepage": "https://github.com/vikash452/Coding-Monitor#readme"
+}
