@@ -1,4 +1,4 @@
-#**Coding Monitor**
+**<Clash-of-Codes>**
 
 A website to view your competitive coding performance and stastics for multiple competitive coding websites. 
 
