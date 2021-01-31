@@ -1,8 +1,17 @@
 const express = require('express')
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const mongoose  = require('mongoose');
 const app=express();
 require('dotenv').config();
 const PORT = 3000 || process.env.PORT;
+
+mongoose.connect('mongodb://localhost:27017/ClashOfCodes',{useNewUrlParser:true,useUnifiedTopology:true} );
+mongoose.connection.on('connected',()=>{
+    console.log('connected to database')
+})
+mongoose.connection.on('error',()=>{
+    console.log('failed to connect to database')
+})
 
 app.use(express.static('public'))
 
