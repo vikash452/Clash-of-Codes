@@ -3,9 +3,29 @@ const router=express.Router();
 // import {User} from '../database models/userModel'
 const User=require('../database models/userModel')
 const bcrypt=require('bcrypt')
+const jwt=require('jsonwebtoken')
+const jwtStrategy=require('passport-jwt').Strategy;
+const extractStrategy=require('passport-jwt').ExtractJwt;
+const passport=require('passport')
 
-router.get('/test',(req,res)=>{
+var options={
+    jwtFromRequest:extractStrategy.fromAuthHeaderAsBearerToken(),
+    secretOrKey:"secret"
+}
+
+passport.use(new jwtStrategy(options,(jwt_payload,done)=>{
+    User.findOne({email:jwt_payload.email})
+    .then((foundUser)=>{
+        return done(null,foundUser)
+    })
+    .catch((err)=>{
+        return done(err,false)
+    })
+}))
+
+router.get('/test',passport.authenticate('jwt',{session:false}),(req,res)=>{
     console.log('test')
+    console.log(req)
 })
 
 router.post('/signup',(req,res)=>{
@@ -60,8 +80,9 @@ router.post('/signin',(req,res)=>{
             {
                 return res.status(400).json({error:"incorrect password"})
             }
-
-            return res.status(200).json({message:"welcome"})
+            
+            const token=jwt.sign({email:foundUser.email},'secret');
+            return res.status(200).json({message:token})
 
         })
 
