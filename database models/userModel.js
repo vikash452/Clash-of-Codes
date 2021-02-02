@@ -10,13 +10,13 @@ const UserSchema=new mongoose.Schema({
     password:{
         type:String
     },
-    codeforcesHandle:{
+    codeforces:{
         type:String
     },
-    codechefHandle:{
+    codechef:{
         type:String
     },
-    leetCodeHandle:{
+    leetCode:{
         type:String
     }
 },{timestamps:true})

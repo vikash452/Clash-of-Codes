@@ -3,6 +3,10 @@ const bodyParser = require('body-parser');
 const mongoose  = require('mongoose');
 const app=express();
 require('dotenv').config();
+const jwtStrategy=require('passport-jwt').Strategy;
+const extractStrategy=require('passport-jwt').ExtractJwt;
+const passport=require('passport')
+// const User=require('../database models/userModel')
 const PORT = 3000 || process.env.PORT;
 
 mongoose.connect('mongodb://localhost:27017/ClashOfCodes',{useNewUrlParser:true,useUnifiedTopology:true} );
@@ -13,8 +17,24 @@ mongoose.connection.on('error',()=>{
     console.log('failed to connect to database')
 })
 
+// var options={
+//     jwtFromRequest:extractStrategy.fromAuthHeaderAsBearerToken(),
+//     secretOrKey:"secret"
+// }
+
+// passport.use(new jwtStrategy(options,(jwt_payload,done)=>{
+//     User.findOne({email:jwt_payload.email})
+//     .then((foundUser)=>{
+//         return done(null,foundUser)
+//     })
+//     .catch((err)=>{
+//         return done(err,false)
+//     })
+// }))
+
 app.use(bodyParser.json())
 app.use(require('./routes/authentication'))
+app.use(require('./routes/platformHandles'))
 
 app.use(express.static('public'))
 
