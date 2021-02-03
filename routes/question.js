@@ -34,5 +34,32 @@ router.post('/question/add',passport.authenticate('jwt',{session:false}),(req,re
     })
 })
 
+router.get('/getQuestion',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    const topic=req.query.topic;
+    const difficulty=req.query.difficulty;
+    console.log(typeof(difficulty))
+
+    if(difficulty === undefined)
+    {
+        Question.find({topic:topic})
+        .then((foundQuestion)=>{
+            // console.log(foundQuestion)
+            return res.status(200).json(foundQuestion)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+    
+    Question.find({$and:[{topic:topic},{difficulty:difficulty}]})
+    .then((foundQuestion)=>{
+        // console.log(foundQuestion)
+        return res.status(200).json(foundQuestion)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+
+})
 
 module.exports=router;
