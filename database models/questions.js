@@ -1,8 +1,8 @@
 const mongoose=require('mongoose')
 const {ObjectId}=mongoose.Schema.Types
 const questionSchema=new mongoose.Schema({
-    questionNumber:{
-        type:Number
+    questionName:{
+        type:String
     },
     difficulty:{
         type:String

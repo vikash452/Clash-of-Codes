@@ -35,6 +35,7 @@ mongoose.connection.on('error',()=>{
 app.use(bodyParser.json())
 app.use(require('./routes/authentication'))
 app.use(require('./routes/platformHandles'))
+app.use(require('./routes/question'))
 
 app.use(express.static('public'))
 

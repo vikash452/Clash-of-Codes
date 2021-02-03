@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const {Question}=require('./questions')
 const {ObjectId} = mongoose.Schema.Types
 const UserSchema=new mongoose.Schema({
     name:{
@@ -18,7 +19,13 @@ const UserSchema=new mongoose.Schema({
     },
     leetCode:{
         type:String
-    }
+    },
+    dsaQuestion:[
+        {
+            type:ObjectId,
+            ref:Question
+        }
+    ]
 },{timestamps:true})
 
 const User=mongoose.model('User',UserSchema)
