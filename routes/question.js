@@ -62,4 +62,20 @@ router.get('/getQuestion',passport.authenticate('jwt',{session:false}),(req,res)
 
 })
 
+router.post('/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    console.log(req.user.dsaQuestion)
+    Question.findById(req.body.id)
+    .then((questionToPush)=>{
+        if(!questionToPush)
+        {
+            return res.status(400).json({error:"invalid question id"})
+        }
+        req.user.dsaQuestion.push(questionToPush)
+        return res.status(200).json(req.user.dsaQuestion)
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+
 module.exports=router;
