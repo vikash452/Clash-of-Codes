@@ -79,7 +79,31 @@ router.post('/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)
 })
 
 router.get('/solvedQuestions',passport.authenticate('jwt',{session:false}),(req,res)=>{
-    
+    const email=req.user.email;
+    User.findOne({email})
+    .then((foundUser)=>{
+        if(!foundUser)
+        {
+            return res.status(400).json({error:"no such user exists"})
+        }
+
+        var solvedQuestionList=[]
+        foundUser.forEach(questionId => {
+            Question.findById({questionId})
+            .then((foundQuestion)=>{
+                if(!foundQuestion)
+                {
+                    return res.status(400).json({error:"illegal question id"});
+                }
+                solvedQuestionList.push(foundQuestion)
+            })
+        });
+
+        return res.status(200).json(solvedQuestionList);
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 })
 
 module.exports=router;
