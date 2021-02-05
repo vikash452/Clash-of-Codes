@@ -78,4 +78,8 @@ router.post('/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)
     })
 })
 
+router.get('/solvedQuestions',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    
+})
+
 module.exports=router;
