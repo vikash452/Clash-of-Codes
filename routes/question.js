@@ -2,6 +2,7 @@ const express=require('express');
 const passport = require('passport');
 const router=express.Router();
 const Question=require('../database models/questions')
+const User=require('../database models/userModel')
 
 router.get('/question/test',passport.authenticate('jwt',{session:false}),(req,res)=>{
     console.log('test passed')
@@ -63,19 +64,21 @@ router.get('/getQuestion',passport.authenticate('jwt',{session:false}),(req,res)
 })
 
 router.post('/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)=>{
-    console.log(req.user.dsaQuestion)
-    Question.findById(req.body.id)
-    .then((questionToPush)=>{
-        if(!questionToPush)
-        {
-            return res.status(400).json({error:"invalid question id"})
-        }
-        req.user.dsaQuestion.push(questionToPush)
-        return res.status(200).json(req.user.dsaQuestion)
+    User.findByIdAndUpdate(req.user.id,{
+        $push:{dsaQuestion:req.body.id}
+    },{
+        new:true
     })
-    .catch((err)=>{
-        console.log(err);
+    .populate({
+        path:'dsaQuestion',
+        model:'Question',
+        select:'questionName'
     })
+    .then((updatedUser)=>{
+        console.log(updatedUser)
+        res.json(updatedUser)
+    })
+
 })
 
 router.get('/solvedQuestions',passport.authenticate('jwt',{session:false}),(req,res)=>{
@@ -88,7 +91,7 @@ router.get('/solvedQuestions',passport.authenticate('jwt',{session:false}),(req,
         }
 
         var solvedQuestionList=[]
-        foundUser.forEach(questionId => {
+        foundUser.dsaQuestion.forEach(questionId => {
             Question.findById({questionId})
             .then((foundQuestion)=>{
                 if(!foundQuestion)
