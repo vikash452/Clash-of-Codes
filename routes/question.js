@@ -64,6 +64,10 @@ router.get('/getQuestion',passport.authenticate('jwt',{session:false}),(req,res)
 })
 
 router.post('/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    if(req.user.dsaQuestion.includes(req.body.id))
+    {
+        return res.status(400).json({error:"question already marked as done"});
+    }
     User.findByIdAndUpdate(req.user.id,{
         $push:{dsaQuestion:req.body.id}
     },{
@@ -72,10 +76,10 @@ router.post('/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)
     .populate({
         path:'dsaQuestion',
         model:'Question',
-        select:'questionName'
+        select:'questionName difficulty url topic'
     })
     .then((updatedUser)=>{
-        console.log(updatedUser)
+        // console.log(updatedUser)
         res.json(updatedUser)
     })
 
