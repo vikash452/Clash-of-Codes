@@ -23,7 +23,13 @@ const UserSchema=new mongoose.Schema({
     dsaQuestion:[
         {
             type:ObjectId,
-            ref:Question
+            ref:"Question"
+        }
+    ],
+    friends:[
+        {
+            type:ObjectId,
+            ref:"User"
         }
     ]
 },{timestamps:true})

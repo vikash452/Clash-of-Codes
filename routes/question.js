@@ -35,7 +35,7 @@ router.post('/question/add',passport.authenticate('jwt',{session:false}),(req,re
     })
 })
 
-router.get('/getQuestion',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.get('/question/getQuestion',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const topic=req.query.topic;
     const difficulty=req.query.difficulty;
     console.log(typeof(difficulty))
@@ -63,7 +63,7 @@ router.get('/getQuestion',passport.authenticate('jwt',{session:false}),(req,res)
 
 })
 
-router.post('/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.post('/question/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)=>{
     if(req.user.dsaQuestion.includes(req.body.id))
     {
         return res.status(400).json({error:"question already marked as done"});
@@ -85,28 +85,20 @@ router.post('/markAsDone',passport.authenticate('jwt',{session:false}),(req,res)
 
 })
 
-router.get('/solvedQuestions',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.get('/question/solvedQuestions',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const email=req.user.email;
     User.findOne({email})
+    .populate({
+        path:'dsaQuestion',
+        model:'Question',
+        select:'questionName difficulty url topic'
+    })
     .then((foundUser)=>{
         if(!foundUser)
         {
             return res.status(400).json({error:"no such user exists"})
         }
-
-        var solvedQuestionList=[]
-        foundUser.dsaQuestion.forEach(questionId => {
-            Question.findById({questionId})
-            .then((foundQuestion)=>{
-                if(!foundQuestion)
-                {
-                    return res.status(400).json({error:"illegal question id"});
-                }
-                solvedQuestionList.push(foundQuestion)
-            })
-        });
-
-        return res.status(200).json(solvedQuestionList);
+        return res.status(200).json(foundUser.dsaQuestion);
     })
     .catch((err)=>{
         console.log(err)

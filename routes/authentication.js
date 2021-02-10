@@ -23,12 +23,12 @@ passport.use(new jwtStrategy(options,(jwt_payload,done)=>{
     })
 }))
 
-router.get('/test',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.get('/user/test',passport.authenticate('jwt',{session:false}),(req,res)=>{
     console.log('test')
     console.log(req)
 })
 
-router.post('/signup',(req,res)=>{
+router.post('/user/signup',(req,res)=>{
     const {name,email,password}=req.body;
     if(!name || !email || !password)
     {
@@ -65,14 +65,19 @@ router.post('/signup',(req,res)=>{
     })
 })
 
-router.post('/signin',(req,res)=>{
+router.post('/user/signin',(req,res)=>{
+    console.log(req.body)
     const {email,password}=req.body;
     User.findOne({email:email})
     .then((foundUser)=>{
+        // foundUser null nhi hoga
         if(!foundUser)
         {
             return res.status(400).json({error:"no such user exists"})
         }
+
+        // abc
+        // 4gvgshfr67sug
 
         bcrypt.compare(password,foundUser.password,(err,same)=>{
             // console.log(same)
@@ -87,6 +92,11 @@ router.post('/signin',(req,res)=>{
         })
 
     })
+})
+
+router.get('/user/logout',(req,res)=>{
+    req.logOut();
+    res.json({message:"logged out successfully"});
 })
 
 // export default router;
