@@ -4,9 +4,9 @@ const router=express.Router();
 const Question=require('../database models/questions')
 const User=require('../database models/userModel')
 
-router.get('/question/test',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.get('/question/test',(req,res)=>{
     console.log('test passed')
-    res.json({message:"test passed"})
+    return res.json({message:"test passed"})
 })
 
 router.post('/question/add',passport.authenticate('jwt',{session:false}),(req,res)=>{

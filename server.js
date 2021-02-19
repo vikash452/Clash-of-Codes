@@ -7,7 +7,7 @@ const jwtStrategy=require('passport-jwt').Strategy;
 const extractStrategy=require('passport-jwt').ExtractJwt;
 const passport=require('passport')
 // const User=require('../database models/userModel')
-const PORT = 3000 || process.env.PORT;
+const PORT = 5000 || process.env.PORT;
 
 mongoose.connect('mongodb://localhost:27017/ClashOfCodes',{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} );
 mongoose.connection.on('connected',()=>{
@@ -45,5 +45,5 @@ app.get('/',(req,res)=>{
 })
 
 app.listen(PORT,()=>{
-    console.log('server started on port 3000')
+    console.log('server started on port 5000')
 })

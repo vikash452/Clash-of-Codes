@@ -31,7 +31,14 @@ const UserSchema=new mongoose.Schema({
             type:ObjectId,
             ref:"User"
         }
-    ]
+    ],
+    vCode:{
+        type:"String"
+    },
+    verified:{
+        type:Boolean,
+        default:false
+    }
 },{timestamps:true})
 
 const User=mongoose.model('User',UserSchema)

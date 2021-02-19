@@ -7,6 +7,7 @@ const jwt=require('jsonwebtoken')
 const jwtStrategy=require('passport-jwt').Strategy;
 const extractStrategy=require('passport-jwt').ExtractJwt;
 const passport=require('passport')
+const nodemailer = require('nodemailer')
 
 var options={
     jwtFromRequest:extractStrategy.fromAuthHeaderAsBearerToken(),
@@ -28,6 +29,12 @@ router.get('/user/test',passport.authenticate('jwt',{session:false}),(req,res)=>
     console.log(req)
 })
 
+// router.post('/user/verifyCode',(req,res)=>{
+//     const code='abcd';
+//     const email=req.body.email;
+
+// })
+
 router.post('/user/signup',(req,res)=>{
     const {name,email,password}=req.body;
     if(!name || !email || !password)
@@ -39,7 +46,10 @@ router.post('/user/signup',(req,res)=>{
     .then((savedUser)=>{
         if(savedUser)
         {
-            return res.status(400).json({error:"user already exists"})
+            // if(savedUser.verified === true)
+                return res.status(400).json({error:"user already exists"})
+
+            // User.findOneAndDelete({email:savedUser.email})
         }
 
         const newUser=new User({
@@ -87,7 +97,11 @@ router.post('/user/signin',(req,res)=>{
             }
             
             const token=jwt.sign({email:foundUser.email},'secret');
-            return res.status(200).json({message:token})
+            const userDetails={
+                token:token,
+                foundUser,
+            }
+            return res.status(200).json(userDetails)
 
         })
 
