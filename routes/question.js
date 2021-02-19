@@ -6,6 +6,7 @@ const User=require('../database models/userModel')
 
 router.get('/question/test',passport.authenticate('jwt',{session:false}),(req,res)=>{
     console.log('test passed')
+    res.json({message:"test passed"})
 })
 
 router.post('/question/add',passport.authenticate('jwt',{session:false}),(req,res)=>{

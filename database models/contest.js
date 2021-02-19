@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 const {ObjectId}=mongoose.Schema.Types
 
 const contestSchema=new mongoose.Schema({
-    id:{
+    roomId:{
         type: String
     },
     type:{
