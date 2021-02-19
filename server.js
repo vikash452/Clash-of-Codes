@@ -10,6 +10,7 @@ const passport=require('passport')
 const PORT = 5000 || process.env.PORT;
 
 mongoose.connect('mongodb://localhost:27017/ClashOfCodes',{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} );
+// mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} )
 mongoose.connection.on('connected',()=>{
     console.log('connected to database')
 })
