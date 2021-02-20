@@ -27,7 +27,7 @@ passport.use(new jwtStrategy(options,(jwt_payload,done)=>{
 
 router.get('/user/test',passport.authenticate('jwt',{session:false}),(req,res)=>{
     console.log('test')
-    console.log(req)
+    // console.log(req)
 })
 
 router.post('/user/verifyCode',(req,res)=>{
@@ -112,7 +112,7 @@ router.post('/user/signup',(req,res)=>{
             newUser.save()
         }
 
-        
+           
         var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
@@ -140,7 +140,7 @@ router.post('/user/signup',(req,res)=>{
             return res.json({message:"verification code sent to your email"})
             }
         });
-
+        // return res.json({message:"verification code sent to your email"})
         // bcrypt.genSalt(5,(err,salt)=>{
         //     // console.log(salt)
         //     bcrypt.hash(newUser.password,salt,(err,hash)=>{
