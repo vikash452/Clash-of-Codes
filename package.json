@@ -2,9 +2,10 @@
   "name": "coding-monitor",
   "version": "1.0.0",
   "description": "A website to monitor your coding statistics",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start":"node server.js",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",

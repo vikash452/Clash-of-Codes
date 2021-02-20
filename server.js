@@ -9,8 +9,8 @@ const passport=require('passport')
 // const User=require('../database models/userModel')
 const PORT = 5000 || process.env.PORT;
 
-mongoose.connect('mongodb://localhost:27017/ClashOfCodes',{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} );
-// mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} )
+// mongoose.connect('mongodb://localhost:27017/ClashOfCodes',{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} );
+mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} )
 mongoose.connection.on('connected',()=>{
     console.log('connected to database')
 })
@@ -39,7 +39,15 @@ app.use(require('./routes/platformHandles'))
 app.use(require('./routes/question'))
 app.use(require('./routes/contest'))
 
-app.use(express.static('public'))
+if(process.env.NODE_ENV=='production')
+{
+    app.use(express.static('client/build'))
+    app.get('*',(req,res)=>{
+        res.sendFile(__dirname + '/client/build/index.html')
+    })
+}
+
+
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/public/index.html')
