@@ -10,7 +10,6 @@ function Home()
     var [gotCode,setGotCode]=useState(false)
 
     useEffect(()=>{
-        console.log('triggered')
         fetch('/question/test',{
             method:'GET',
             headers:{
@@ -19,7 +18,8 @@ function Home()
         })
         .then(res=>res.json())
         .then((data)=>{
-            console.log(data)
+            // alert('hello')
+            // console.log(data)
         })
     },[])    
 
@@ -39,7 +39,16 @@ function Home()
         })
         .then(res=>res.json())
         .then((data)=>{
-            console.log(data)
+            // console.log(data)
+            // alert(data)
+            if(data.error)
+            {
+                alert(data.error)
+            }
+            else
+            {
+                alert('you are successfully registered')
+            }
         })
     }
 
@@ -58,7 +67,15 @@ function Home()
         })
         .then(res=>res.json())
         .then((data)=>{
-            console.log(data)
+            // console.log(data)
+            if(data.error)
+            {
+                alert(data.error)
+            }
+            else{
+                alert(data.message)
+            }
+            
         })
     }
 
@@ -76,7 +93,7 @@ function Home()
         })
         .then(res=>res.json())
         .then((data)=>{
-            console.log(data)
+            // console.log(data)
             localStorage.setItem('jwt',data.token)
             localStorage.setItem('user',JSON.stringify(data.foundUser))
         })
@@ -84,7 +101,10 @@ function Home()
 
     return(
         <div>
-            <h1>Hello</h1>
+            
+            <h3>First enter your name and valid email id, then click on signup</h3>
+            <h3>Enter the verification code and click verify</h3>
+            <h3>.........wooaahhhh..........</h3>
 
             <input type='text' placeholder='name'
             

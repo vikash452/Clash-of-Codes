@@ -1,13 +1,11 @@
 import './App.css';
 import Home from './screens/Home.js'
-import Practice from './screens/Practice'
 
 function App() {
   return (
     <div className="App">
-      <h2>in app umag</h2>
+      <h1>WELCOME TO CLASH OF CODES</h1>
       <Home/>
-      <Practice/>
     </div>
   );
 }

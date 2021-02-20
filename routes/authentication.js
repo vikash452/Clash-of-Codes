@@ -42,7 +42,7 @@ router.post('/user/verifyCode',(req,res)=>{
     .then((savedUser)=>{
         if(!savedUser)
         {
-            return res.status(400).json({message:'verification code not generated'})
+            return res.status(400).json({error:'verification code not generated'})
         }
 
         if(savedUser.verified === true)
@@ -74,6 +74,12 @@ router.post('/user/verifyCode',(req,res)=>{
 
 router.post('/user/signup',(req,res)=>{
     const {name,email}=req.body;
+    
+    if(!email.endsWith('@gmail.com') && !email.endsWith('@dtu.ac.in'))
+    {
+        return res.status(400).json({error:"invalid email id"})
+    }
+
     if(!name || !email)
     {
         return res.status(400).json({error:"invalid fields"})
@@ -106,6 +112,7 @@ router.post('/user/signup',(req,res)=>{
             newUser.save()
         }
 
+        
         var transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
@@ -133,8 +140,6 @@ router.post('/user/signup',(req,res)=>{
             return res.json({message:"verification code sent to your email"})
             }
         });
-
-
 
         // bcrypt.genSalt(5,(err,salt)=>{
         //     // console.log(salt)
