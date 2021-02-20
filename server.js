@@ -42,16 +42,13 @@ app.use(require('./routes/contest'))
 if(process.env.NODE_ENV=='production')
 {
     app.use(express.static('client/build'))
+    const path=require('path')
     app.get('*',(req,res)=>{
-        res.sendFile(__dirname + '/client/build/index.html')
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+        // res.sendFile(__dirname + '/client/build/index.html')
     })
 }
 
-
-
-app.get('/',(req,res)=>{
-    res.sendFile(__dirname + '/public/index.html')
-})
 
 app.listen(PORT,()=>{
     console.log('server started on port 5000')
