@@ -4,6 +4,7 @@ import './App.css';
 import Home from './screens/Home.js'
 import Signin from './screens/Signin'
 import SignUp from './screens/Signup'
+import Profile from './screens/Profile'
 
 function AllRouting()
 {
@@ -21,6 +22,9 @@ function AllRouting()
     }
     else
     {
+      if(history.location.pathname.startsWith('/profile'))
+      history.push('/profile')
+      else
       history.push('/home')
     }
   },[])
@@ -35,6 +39,9 @@ function AllRouting()
         </Route>
         <Route exact path='/signup'>
           <SignUp/>
+        </Route>
+        <Route exact path='/profile'>
+          <Profile/>
         </Route>
     </div>
   )

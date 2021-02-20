@@ -1,6 +1,6 @@
 import { Verify } from 'crypto'
 import {useEffect,useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory,Link} from 'react-router-dom'
 
 function Home()
 {
@@ -25,6 +25,7 @@ function Home()
         <div>
             <h1>Hi {name}</h1>
             <h2>....You can see this page because you are logged in xD....</h2>
+            <h2>Update your handles on your <Link to='/profile'>Profile</Link></h2>
         </div>
     )
 }
