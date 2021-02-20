@@ -19,6 +19,10 @@ function AllRouting()
       else
       history.push('/signup')
     }
+    else
+    {
+      history.push('/home')
+    }
   },[])
 
   return(
