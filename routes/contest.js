@@ -16,9 +16,25 @@ router.get('/contest/test',(req,res)=>{
     res.json({message:"verified"})
 })
 
-router.put('/contest/joinRoom/:roomId',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.get('/conetst/roomDetails/:roomId',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const roomId=req.params.roomId;
-    // console.log(req.params)
+    Contest.findOne({roomId:roomId})
+    .then((foundRoom)=>{
+        if(!foundRoom)
+        {
+            return res.status(400).json({error:"no such room found"})
+        }
+
+        return res.status(200).json(foundRoom);
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
+
+router.put('/contest/joinRoom/:roomId',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    var roomId=req.params.roomId;
+    console.log(req.params.roomId)
     Contest.findOne({roomId:roomId})
     .then((foundRoom)=>{
         if(!foundRoom)
@@ -66,7 +82,7 @@ router.post('/contest/createRoom',passport.authenticate('jwt',{session:false}),(
         
         const newRoom=new Contest({
             roomId:randomCode,
-            type:"abc",
+            name:roomName,
             participants:req.user,
             admin:req.user,
             timeOfCreation:currentTime,

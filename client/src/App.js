@@ -5,6 +5,8 @@ import Home from './screens/Home.js'
 import Signin from './screens/Signin'
 import SignUp from './screens/Signup'
 import Profile from './screens/Profile'
+import Contest from './screens/Contest'
+import Room from './screens/Room'
 
 function AllRouting()
 {
@@ -42,6 +44,12 @@ function AllRouting()
         </Route>
         <Route exact path='/profile'>
           <Profile/>
+        </Route>
+        <Route exact path='/contest'>
+          <Contest/>
+        </Route>
+        <Route exact path='/room/:roomId'>
+          <Room/>
         </Route>
     </div>
   )

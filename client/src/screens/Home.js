@@ -26,6 +26,7 @@ function Home()
             <h1>Hi {name}</h1>
             <h2>....You can see this page because you are logged in xD....</h2>
             <h2>Update your handles on your <Link to='/profile'>Profile</Link></h2>
+            <h2>Check the <Link to='/contest'>Contests Page</Link></h2>
         </div>
     )
 }

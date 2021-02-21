@@ -5,7 +5,7 @@ const contestSchema=new mongoose.Schema({
     roomId:{
         type: String
     },
-    type:{
+    name:{
         type:String
     },
     participants:[
