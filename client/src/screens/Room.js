@@ -9,6 +9,7 @@ function Room()
     // console.log(roomId)
     // const [roomDetails,setRoomDetails]=useState()
     const [roomName,setRoomName]=useState('');
+    const [participants,setParticipants]=useState([])
     useEffect(()=>{
         fetch(`/conetst/roomDetails/${roomId}`,{
             method:'GET',
@@ -29,6 +30,7 @@ function Room()
             {
                 // setRoomDetails(data)
                 setRoomName(data.name)
+                setParticipants(data.participants)
             }
             
         })
@@ -37,10 +39,42 @@ function Room()
         })
     },[])
 
+    function Refresh()
+    {
+        fetch(`/conetst/roomDetails/${roomId}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('jwt')
+            }
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            // console.log(data)
+            if(data.error)
+            {
+                alert('no such room exists')
+                history.push('/home')
+            }
+            else
+            {
+                // setRoomDetails(data)
+                setRoomName(data.name)
+                setParticipants(data.participants)
+            }
+            
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
     return (
         <div>
             <h2>Room name: {roomName}</h2>
             <h2>Room Id: {roomId}</h2>
+            <h2>Total participants: {participants.length}</h2>
+            <button onClick={()=>{Refresh()}}>Refresh</button>
         </div>
     )
 }
