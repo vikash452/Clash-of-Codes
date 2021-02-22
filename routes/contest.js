@@ -16,9 +16,14 @@ router.get('/contest/test',(req,res)=>{
     res.json({message:"verified"})
 })
 
-router.get('/conetst/roomDetails/:roomId',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.get('/contest/roomDetails/:roomId',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const roomId=req.params.roomId;
     Contest.findOne({roomId:roomId})
+    .populate({
+        path:'participants',
+        model:'User',
+        select:'name email'
+    })
     .then((foundRoom)=>{
         if(!foundRoom)
         {
@@ -34,7 +39,7 @@ router.get('/conetst/roomDetails/:roomId',passport.authenticate('jwt',{session:f
 
 router.put('/contest/joinRoom/:roomId',passport.authenticate('jwt',{session:false}),(req,res)=>{
     var roomId=req.params.roomId;
-    console.log(req.params.roomId)
+    // console.log(req.params.roomId)
     Contest.findOne({roomId:roomId})
     .then((foundRoom)=>{
         if(!foundRoom)
@@ -42,7 +47,7 @@ router.put('/contest/joinRoom/:roomId',passport.authenticate('jwt',{session:fals
             return res.status(400).json({error:"no such room found"})
         }
 
-        console.log(foundRoom.participants.includes(req.user.id))
+        // console.log(foundRoom.participants.includes(req.user.id))
         if(!foundRoom.participants.includes(req.user.id))
         {
             foundRoom.participants.push(req.user.id)
@@ -99,6 +104,31 @@ router.post('/contest/createRoom',passport.authenticate('jwt',{session:false}),(
         console.log(err)
     })
     
+})
+
+router.put('/contest/leaveRoom/:roomId',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    const roomId=req.params.roomId
+    console.log(roomId)
+    Contest.findOne({roomId:roomId})
+    .then((foundRoom)=>{
+        if(!foundRoom)
+        {
+            return res.status(400).json({error:"no such room found"})
+        }
+
+        if(foundRoom.participants.admin != req.user)
+        {
+            foundRoom.participants.pull(req.user.id)
+        }
+        
+        foundRoom.save()
+        .then(()=>{
+            res.status(200).json({room:foundRoom})
+        })
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 })
 
 module.exports=router;

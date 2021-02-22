@@ -69,7 +69,7 @@ function Profile()
                 }}
                 />
                 <br/>
-                <button onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
+                <button className='btn-large' onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
             </div>
             <div>
                 <h1>Your current Codeforces handle is {cf}</h1>

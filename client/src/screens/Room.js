@@ -11,7 +11,7 @@ function Room()
     const [roomName,setRoomName]=useState('');
     const [participants,setParticipants]=useState([])
     useEffect(()=>{
-        fetch(`/conetst/roomDetails/${roomId}`,{
+        fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -41,7 +41,7 @@ function Room()
 
     function Refresh()
     {
-        fetch(`/conetst/roomDetails/${roomId}`,{
+        fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json',
@@ -69,12 +69,67 @@ function Room()
         })
     }
 
+    function LeaveRoom()
+    {
+        fetch(`/contest/leaveRoom/${roomId}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('jwt')
+            }
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            // console.log(data)
+            if(data.error)
+            {
+                M.toast({
+                html:data.error,
+                classes: "#ce93d8 purple",
+                displayLength: 1000,
+                })
+            }
+            else
+            {
+                history.push('/home')
+            }
+            // if(data.error)
+            // {
+            //     alert('no such room exists')
+            //     history.push('/home')
+            // }
+            // else
+            // {
+            //     // setRoomDetails(data)
+            //     setParticipants(data.participants)
+            // }
+            
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
     return (
         <div>
             <h2>Room name: {roomName}</h2>
             <h2>Room Id: {roomId}</h2>
             <h2>Total participants: {participants.length}</h2>
-            <button onClick={()=>{Refresh()}}>Refresh</button>
+            <button className='btn-large' onClick={()=>{Refresh()}}>Refresh</button>
+            <button className='btn-large' onClick={()=>LeaveRoom()}>Leave Room</button>
+            <div>
+               { 
+                participants.map((part)=>{
+                    // console.log(part)
+                    return (
+                            <div key={part._id}>
+                                <h3>{part.name}</h3>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            
         </div>
     )
 }

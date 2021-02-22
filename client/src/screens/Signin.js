@@ -61,7 +61,7 @@ function Signin()
             />
             <br />
             <br />
-            <button onClick={()=>{Login()}}>Sign In</button>
+            <button className='btn-large' onClick={()=>{Login()}}>Sign In</button>
             <br/>
             <br/>
             <span>Don't have an account? <Link to='/signup'>SignUp</Link> </span>

@@ -7,6 +7,7 @@ import SignUp from './screens/Signup'
 import Profile from './screens/Profile'
 import Contest from './screens/Contest'
 import Room from './screens/Room'
+import Navbar from './screens/Navbar'
 
 function AllRouting()
 {
@@ -24,16 +25,20 @@ function AllRouting()
     }
     else
     {
-      if(history.location.pathname.startsWith('/profile'))
-      history.push('/profile')
-      else
+      // console.log(history.location.pathname === '/')
+      if(history.location.pathname === '/')
       history.push('/home')
+      // if(history.location.pathname.startsWith('/profile'))
+      // history.push('/profile')
+      // else
+      // history.push('/home')
     }
   },[])
 
   return(
     <div>
       <Route exact path='/home'>
+          <Navbar/>
           <Home/>
         </Route>
         <Route exact path='/signin'>
@@ -43,12 +48,15 @@ function AllRouting()
           <SignUp/>
         </Route>
         <Route exact path='/profile'>
+          <Navbar/>
           <Profile/>
         </Route>
         <Route exact path='/contest'>
+          <Navbar/>
           <Contest/>
         </Route>
         <Route exact path='/room/:roomId'>
+          <Navbar/>
           <Room/>
         </Route>
     </div>

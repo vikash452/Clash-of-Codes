@@ -1,9 +1,28 @@
 import { Verify } from 'crypto'
 import {useEffect,useState} from 'react'
 import {useHistory,Link} from 'react-router-dom'
+import M from 'materialize-css'
 
 function Home()
 {
+    function Logout()
+    {
+        fetch('/user/logout',{
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            // console.log(data)
+            localStorage.clear()
+            history.push('/signin')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
     var [name,setName]=useState('');
     var user;
     const history=useHistory();
@@ -24,9 +43,8 @@ function Home()
     return(
         <div>
             <h1>Hi {name}</h1>
-            <h2>....You can see this page because you are logged in xD....</h2>
-            <h2>Update your handles on your <Link to='/profile'>Profile</Link></h2>
-            <h2>Check the <Link to='/contest'>Contests Page</Link></h2>
+            <h2>....Hope you are coding well....</h2>
+            <button className='btn-large' onClick={()=>{Logout()}}>Logout</button>
         </div>
     )
 }

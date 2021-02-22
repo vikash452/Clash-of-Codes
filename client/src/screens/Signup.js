@@ -133,7 +133,7 @@ function Signup()
             }}
             />
             <br/>
-            <button onClick={()=>{getVerificationCode()}}>SignUp</button>
+            <button className='btn-large' onClick={()=>{getVerificationCode()}}>SignUp</button>
             <br/><br/>
 
             {
@@ -146,7 +146,7 @@ function Signup()
                     }}
                     />
                     <br/>
-                    <button onClick={()=>{verifyCode()}}>Verify</button>
+                    <button className='btn-large' onClick={()=>{verifyCode()}}>Verify</button>
                 </div>
                 :
                 <div>
