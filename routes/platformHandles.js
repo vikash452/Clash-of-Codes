@@ -42,9 +42,9 @@ router.post('/post/handles',passport.authenticate('jwt',{session:false}),(req,re
     })
 })
 
-router.get('/get/handleName/:platformName',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.get('/get/handleName',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const userEmail=req.user.email
-    const platform=req.params.platformName
+    // const platform=req.params.platformName
     User.findOne({email:userEmail})
     .then((user)=>{
         if(!user)
@@ -52,34 +52,49 @@ router.get('/get/handleName/:platformName',passport.authenticate('jwt',{session:
             return res.status(400).json({error:"no such user found"});
         }
 
-        
-        switch(platform)
+        handles={};
+        if(user.codeforces)
         {
-            case "codeforces":{
-                if(!user.codeforces)
-                return res.status(400).json({error:"codeforces handle not added"})
-
-                return res.status(200).json({handle:user.codeforces})
-                break;
-            }
-            case "codechef":{
-                if(!user.codechef)
-                return res.status(400).json({error:"codechef handle not added"})
-
-                return res.status(200).json({handle:user.codechef})
-                break;
-            }
-            case "leetcode":{
-                if(!user.leetcode)
-                return res.status(400).json({error:"leetcode handle not added"})
-
-                return res.status(200).json({handle:user.leetcode})
-                break;
-            }
-            default:{
-                return res.status(400).json({error:"invalid platform name"})
-            }
+            handles.codeforces=user.codeforces
         }
+        if(user.codechef)
+        {
+            handles.codechef=user.codechef
+        }
+        if(user.leetcode)
+        {
+            handles.leetcode=user.leetcode
+        }
+        
+        return res.status(200).json(handles)
+
+        // switch(platform)
+        // {
+        //     case "codeforces":{
+        //         if(!user.codeforces)
+        //         return res.status(400).json({error:"codeforces handle not added"})
+
+        //         return res.status(200).json({handle:user.codeforces})
+        //         break;
+        //     }
+        //     case "codechef":{
+        //         if(!user.codechef)
+        //         return res.status(400).json({error:"codechef handle not added"})
+
+        //         return res.status(200).json({handle:user.codechef})
+        //         break;
+        //     }
+        //     case "leetcode":{
+        //         if(!user.leetcode)
+        //         return res.status(400).json({error:"leetcode handle not added"})
+
+        //         return res.status(200).json({handle:user.leetcode})
+        //         break;
+        //     }
+        //     default:{
+        //         return res.status(400).json({error:"invalid platform name"})
+        //     }
+        // }
 
 
     })

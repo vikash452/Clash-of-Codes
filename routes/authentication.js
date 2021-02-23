@@ -191,6 +191,84 @@ router.post('/user/signin',(req,res)=>{
     })
 })
 
+router.post('/user/forgotPassword',(req,res)=>{
+    const email=req.body.email;
+    User.findOne({email:email})
+    .then((foundUser)=>{
+        if(!foundUser)
+        {
+            return res.status(400).json({error:'no such user found'})
+        }
+
+        var randomCode=crypto.randomBytes(10).toString('hex')  
+        foundUser.forgotPassword=randomCode;
+        foundUser.save()
+        .then((updated)=>{
+
+            var transporter = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                  user: process.env.GMAIL_ID,
+                  pass: process.env.GMAIL_PASSWORD,
+                },
+            });
+
+            var mailOptions = {
+                from: process.env.GMAIL_ID,
+                to: updated.email,
+                subject: "Forgot password link",
+                html: `
+                <h2>Hi! ${updated.name}</h2>
+                <h3>Forgot your password??</h3>
+                <h4> No worries, we have coded to give you a  cover .... xD </h4>
+                Proceed to <a href='http://clashofcodes.herokuapp.com/updatePassword/${randomCode}'>this link</a> to reset you password
+                `,
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log("Email sent: " + info.response);
+                return res.json({message:"verification code sent to your email"})
+                }
+            });
+        })      
+
+    })
+})
+
+router.post('/user/updatePassword',(req,res)=>{
+    var email=req.body.email
+    var verification=req.body.verification
+    var password=req.body.password
+
+    User.findOne({email:email})
+    .then((foundUser)=>{
+        if(!foundUser)
+        {
+            return res.status(400).json({error:'no such user found'})
+        }
+
+        bcrypt.genSalt(5,(err,salt)=>{
+            bcrypt.hash(password,salt,(err,hash)=>{
+                foundUser.password=hash
+                foundUser.verification=null
+                if(err){
+                    return res.status(400).json({error:err})
+                }
+
+                foundUser.save()
+                .then((password_update_done)=>{
+                    res.status(200).json(password_update_done)
+                })
+            })
+        })
+
+    })
+    
+})
+
 router.get('/user/logout',(req,res)=>{
     req.logOut();
     res.json({message:"logged out successfully"});

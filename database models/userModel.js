@@ -38,6 +38,9 @@ const UserSchema=new mongoose.Schema({
     verified:{
         type:Boolean,
         default:false
+    },
+    forgotPassword:{
+        type:String
     }
 },{timestamps:true})
 

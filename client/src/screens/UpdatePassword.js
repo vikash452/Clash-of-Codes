@@ -1,22 +1,24 @@
 import {useState,useEffect} from 'react'
-import {useHistory, Link} from 'react-router-dom'
+import {useHistory, Link,useParams} from 'react-router-dom'
 import M from 'materialize-css'
 
-function Signin()
+function UpdatePassword()
 {
-    var [email,setEmail]=useState('')
-    var [password,setPassword]=useState('')
-    const history=useHistory();
+    const [email,setEmail]=useState('');
+    const [password,setPassword]=useState('');
+    const {vCode}=useParams()
+    const history=useHistory()
 
-    function Login()
+    function ChangePassword()
     {
-        fetch('/user/signin',{
-            method:'POST',
+        fetch('/user/updatePassword',{
+            method: 'POST',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type' : 'application/json'
             },
             body:JSON.stringify({
                 email,
+                verification:vCode,
                 password
             })
         })
@@ -25,20 +27,20 @@ function Signin()
             if(data.error)
             {
                 M.toast({
-                    html:'Invalid email id or password',
+                    html:data.error,
                     classes: "#ce93d8 purple",
                     displayLength: 1000,
                 })
             }
-            else{
+            else
+            {
+                localStorage.setItem('user',JSON.stringify(data))
                 M.toast({
-                    html:'Successfully signed in',
+                    html:'Password updated successfully',
                     classes: "#ce93d8 purple",
                     displayLength: 1000,
                 })
-                localStorage.setItem('jwt',data.token)
-                localStorage.setItem('user',JSON.stringify(data.foundUser))
-                history.push('/home')
+                history.push('/signin')
             }
         })
         .catch((err)=>{
@@ -46,30 +48,21 @@ function Signin()
         })
     }
 
-    return(
+    return (
         <div>
             <input type='text' placeholder='email' style={{maxWidth:'300px'}}
             onChange={(e)=>{
                 setEmail(e.target.value)
             }}
             />
-            <br />
             <input type='text' placeholder='password' style={{maxWidth:'300px'}}
             onChange={(e)=>{
                 setPassword(e.target.value)
             }}
             />
-            <br />
-            <br />
-            <button className='btn-large' onClick={()=>{Login()}}>Sign In</button>
-            <br/>
-            <br/>
-            <span><Link to='/forgotPassword'>Forgot your password?</Link> </span>
-            <br/>
-            <span>Don't have an account? <Link to='/signup'>SignUp</Link> </span>
-
+            <button className='btn btn-large' onClick={()=>ChangePassword()}>Change Password</button>
         </div>
     )
 }
 
-export default Signin;
+export default UpdatePassword;

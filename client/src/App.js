@@ -8,6 +8,8 @@ import Profile from './screens/Profile'
 import Contest from './screens/Contest'
 import Room from './screens/Room'
 import Navbar from './screens/Navbar'
+import ForgotPassword from './screens/ForgotPassword'
+import UpdatePassword from './screens/UpdatePassword'
 
 function AllRouting()
 {
@@ -20,6 +22,10 @@ function AllRouting()
     {
       if(history.location.pathname.startsWith('/signin'))
       history.push('/signin')
+      else if(history.location.pathname.startsWith('/forgotPassword'))
+      history.push('/forgotPassword')
+      else if(history.location.pathname.startsWith('/updatePassword'))
+      history.push(history.location.pathname)
       else
       history.push('/signup')
     }
@@ -58,6 +64,12 @@ function AllRouting()
         <Route exact path='/room/:roomId'>
           <Navbar/>
           <Room/>
+        </Route>
+        <Route exact path='/forgotPassword'>
+          <ForgotPassword/>
+        </Route>
+        <Route exact path='/updatePassword/:vCode'>
+          <UpdatePassword/>
         </Route>
     </div>
   )

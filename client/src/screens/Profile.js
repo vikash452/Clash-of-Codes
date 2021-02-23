@@ -1,13 +1,15 @@
 import {useEffect,useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import M from 'materialize-css'
-import passport from 'passport';
+import passport, { use } from 'passport';
 
 function Profile()
 {
     const history=useHistory();
     var user;
     const [cf,setCf]=useState('');
+    const [cc,setCc]=useState('');
+    const [leetcode,setLeetcode]=useState('');
     const [searchList,setSearchList]=useState([])
     const [friendList,setFriendList]=useState([])
 
@@ -16,6 +18,30 @@ function Profile()
         if(user)
         {
             setCf(user.codeforces)
+            setFriendList(user.friends)
+            fetch('/get/handleName',{
+                headers:{
+                    'Content-Type':'application/json',
+                    'Authorization':'Bearer ' + localStorage.getItem('jwt')
+                }
+            })
+            .then(res=>res.json())
+            .then((data)=>{
+                console.log(data)
+                if(data.error)
+                {
+                    console.log(data.error);
+                }
+                else
+                {
+                    setCf(data.codeforces)
+                    setCc(data.codechef)
+                    setLeetcode(data.leetcode)
+                }
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
         }
         else
         {
@@ -147,7 +173,8 @@ function Profile()
                         })
                     }
                 </ul>
-                
+            </div>  
+            <div>
                 <input type='text' placeholder='codeforces handle' style={{maxWidth:'300px'}}
                 onChange={(e)=>{
                     setCf(e.target.value)
@@ -155,9 +182,14 @@ function Profile()
                 />
                 <br/>
                 <button className='btn-large' onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
-            </div>
+                <h2>Your current Codeforces handle is {cf}</h2>
+            </div>  
+                
+            
             <div>
-                <h1>Your current Codeforces handle is {cf}</h1>
+                
+                <h2>Your current codechef handle is {cc}</h2>
+                <h2>Your current leetcode handle is {leetcode}</h2>
                 <h1>Your total friends are :  {friendList.length}</h1>
             </div>
             
