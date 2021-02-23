@@ -1,12 +1,16 @@
 import {useEffect,useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import M from 'materialize-css'
+import passport from 'passport';
 
 function Profile()
 {
     const history=useHistory();
     var user;
     const [cf,setCf]=useState('');
+    const [searchList,setSearchList]=useState([])
+    const [friendList,setFriendList]=useState([])
+
     useEffect(()=>{
         user=JSON.parse(localStorage.getItem('user'))
         if(user)
@@ -17,7 +21,7 @@ function Profile()
         {
             history.push('/signin')
         }
-    },[])
+    },[user])
     
 
     function addCfHandle(platform)
@@ -60,9 +64,90 @@ function Profile()
             })
     }
 
+    function friendSearch(pattern)
+    {
+        // console.log(pattern.length == 0)
+        if(!pattern.startsWith(' ') && !(pattern.length == 0))
+        {
+            fetch(`/user/searchFriend/${pattern}`,{
+                headers:{
+                    'Content-Type':'application/json',
+                    'Authorization':'Bearer ' + localStorage.getItem('jwt')
+                },
+            })
+            .then(res=>res.json())
+            .then((data)=>{
+                // console.log(data)
+                setSearchList(data)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+
+        if(pattern.length == 0)
+        {
+            setSearchList([])
+        }
+    }
+
+    function AddFriend(friendEmail)
+    {
+        fetch(`/user/addFriend/${friendEmail}`,{
+            method: 'PUT',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('jwt')
+            },
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            console.log(data)
+            if(data.error)
+            {
+                // console.log(data.error)
+                M.toast({
+                html:data.error,
+                classes: "#ce93d8 purple",
+                displayLength: 1000,
+                })
+            }
+            else
+            {
+                M.toast({
+                html:'Friend added successfully',
+                classes: "#ce93d8 purple",
+                displayLength: 1000,
+                })
+                setFriendList(data.friends)
+                user=JSON.parse(localStorage.setItem('user',JSON.stringify(data)))
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
     return (
-        <div>
-            <div>
+        <div style={{justifyContent:'center'}} >
+            <div >
+                <input type='text' placeholder='search for friend' style={{maxWidth:'300px'}}
+                onChange={(e)=>{
+                    // console.log(e.target.value)
+                    friendSearch(e.target.value)
+                }} />
+                <ul className='collection' style={{maxWidth:'300px', margin:'auto'}} >
+                    {
+                        searchList.map((item)=>{
+                            return (
+                                <div key={item._id}>
+                                    <li className='collection-item'>{item.name} &emsp; <Link to='/profile' onClick={()=>{AddFriend(item.email)}} >Add as friend</Link ></li>
+                                </div>
+                            )
+                        })
+                    }
+                </ul>
+                
                 <input type='text' placeholder='codeforces handle' style={{maxWidth:'300px'}}
                 onChange={(e)=>{
                     setCf(e.target.value)
@@ -73,6 +158,7 @@ function Profile()
             </div>
             <div>
                 <h1>Your current Codeforces handle is {cf}</h1>
+                <h1>Your total friends are :  {friendList.length}</h1>
             </div>
             
         </div>

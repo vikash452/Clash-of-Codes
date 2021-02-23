@@ -38,6 +38,7 @@ function Home()
         {
             setName(user.name)
         }
+        console.log(Notification.permission)
     },[])
     
     return(

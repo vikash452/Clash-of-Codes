@@ -38,6 +38,7 @@ app.use(require('./routes/authentication'))
 app.use(require('./routes/platformHandles'))
 app.use(require('./routes/question'))
 app.use(require('./routes/contest'))
+app.use(require('./routes/user'))
 
 if(process.env.NODE_ENV=='production')
 {
