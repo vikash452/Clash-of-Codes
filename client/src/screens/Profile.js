@@ -196,22 +196,15 @@ function Profile()
                 <button className='btn-large' onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
                 <h2>Your current Codeforces handle is {cf}</h2>
             </div>  
-            <div class="parallax-container">
-                    <div class="parallax">
-                    <img src={"https://w.wallhaven.cc/full/96/wallhaven-96w8e8.png"} style = {{height: '500px'}}/>
-                    </div>        
-                </div>
+            
             
             <div>
-                
-                
                 <div>
                     <h2>Your current codechef handle is {cc}</h2>
                     <Link to = '/codeforces'> Go to Codeforces handle </Link>
                     <h2>Your current leetcode handle is {leetcode}</h2>
                     <h2>Your total friends are :  {friendList.length}</h2>
                 </div>
-                
             </div>
             
         </div>

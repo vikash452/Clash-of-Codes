@@ -93,16 +93,6 @@ function Room()
             {
                 history.push('/home')
             }
-            // if(data.error)
-            // {
-            //     alert('no such room exists')
-            //     history.push('/home')
-            // }
-            // else
-            // {
-            //     // setRoomDetails(data)
-            //     setParticipants(data.participants)
-            // }
             
         })
         .catch((err)=>{
@@ -115,7 +105,7 @@ function Room()
             <h2>Room name: {roomName}</h2>
             <h2>Room Id: {roomId}</h2>
             <h2>Total participants: {participants.length}</h2>
-            <button className='btn-large' onClick={()=>{Refresh()}}>Refresh</button>
+            <button className='btn-large' onClick={()=>{Refresh()}} style={{margin:'20px'}}>Refresh</button>
             <button className='btn-large' onClick={()=>LeaveRoom()}>Leave Room</button>
             <div>
                { 

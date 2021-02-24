@@ -1,15 +1,15 @@
 import {useEffect,useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-//import canvas from 'canvasjs';
-var CanvasJSReact = require('../assets/canvasjs.react.js');
+import CanvasJSReact from '../assets/canvasjs.react'
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function Codeforces(){
     const handle = 'umanggupta001122';
-    var options;
+    const [loaded,setLoaded]=useState(false)
+    const [options,setOptions]=useState({})
     useEffect(()=>{
-        options = {
+        var options2 = {
             title: {
               text: "Basic Column Chart in React"
             },
@@ -24,7 +24,10 @@ function Codeforces(){
                       ]
              }]
          }
+         setOptions(options2)
     },[])
+
+
     return (
         <div>
             <CanvasJSChart options = {options}/>
