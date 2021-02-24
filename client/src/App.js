@@ -10,6 +10,7 @@ import Room from './screens/Room'
 import Navbar from './screens/Navbar'
 import ForgotPassword from './screens/ForgotPassword'
 import UpdatePassword from './screens/UpdatePassword'
+import Codeforces from './screens/Codeforces'
 
 function AllRouting()
 {
@@ -56,6 +57,10 @@ function AllRouting()
         <Route exact path='/profile'>
           <Navbar/>
           <Profile/>
+        </Route>
+        <Route exact path='/codeforces'>
+          <Navbar/>
+          <Codeforces/>
         </Route>
         <Route exact path='/contest'>
           <Navbar/>

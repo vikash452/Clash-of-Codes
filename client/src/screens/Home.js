@@ -1,6 +1,7 @@
 import { Verify } from 'crypto'
 import {useEffect,useState} from 'react'
 import {useHistory,Link} from 'react-router-dom'
+import $ from 'jquery';
 import M from 'materialize-css'
 
 function Home()

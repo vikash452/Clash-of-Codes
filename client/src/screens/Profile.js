@@ -1,8 +1,15 @@
 import {useEffect,useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-import M from 'materialize-css'
+import ing1 from '../images/parallax1.jpg'
 import passport, { use } from 'passport';
 
+import M from 'materialize-css'
+
+
+//import Parallax from "./Parallax"
+// jQuery(document).ready(function(){
+//     jQuery('.parallax').parallax();
+//   });
 function Profile()
 {
     const history=useHistory();
@@ -154,6 +161,8 @@ function Profile()
         })
     }
 
+    
+    
     return (
         <div style={{justifyContent:'center'}} >
             <div >
@@ -174,9 +183,12 @@ function Profile()
                     }
                 </ul>
             </div>  
+            <br></br>
+            <br></br>
             <div>
                 <input type='text' placeholder='codeforces handle' style={{maxWidth:'300px'}}
                 onChange={(e)=>{
+                    console.log(e.target.value);
                     setCf(e.target.value)
                 }}
                 />
@@ -184,13 +196,22 @@ function Profile()
                 <button className='btn-large' onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
                 <h2>Your current Codeforces handle is {cf}</h2>
             </div>  
-                
+            <div class="parallax-container">
+                    <div class="parallax">
+                    <img src={"https://w.wallhaven.cc/full/96/wallhaven-96w8e8.png"} style = {{height: '500px'}}/>
+                    </div>        
+                </div>
             
             <div>
                 
-                <h2>Your current codechef handle is {cc}</h2>
-                <h2>Your current leetcode handle is {leetcode}</h2>
-                <h1>Your total friends are :  {friendList.length}</h1>
+                
+                <div>
+                    <h2>Your current codechef handle is {cc}</h2>
+                    <Link to = '/codeforces'> Go to Codeforces handle </Link>
+                    <h2>Your current leetcode handle is {leetcode}</h2>
+                    <h2>Your total friends are :  {friendList.length}</h2>
+                </div>
+                
             </div>
             
         </div>
