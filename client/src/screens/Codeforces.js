@@ -9,15 +9,29 @@ function compare(a, b){
     return b.y - a.y;
 }
 function Codeforces(){
-    const handle = 'umanggupta001122';
+    const history=useHistory()
+    // const handle = 'Marcos_0901';
     const [loaded,setLoaded]=useState(false)
     const [options,setOptions]=useState({})
+    const [handle,setHandle]=useState('Marcos_0901')
+    var user;
+
+    useEffect(()=>{
+        user=JSON.parse(localStorage.getItem('user'))
+        if(!user)
+        {
+            history.push('/signin')
+        }
+        setHandle(user.codeforces)
+    },[]);
+
     useEffect(()=>{
         let arr = [];
         var dtype = [];
         let i = 0;
         let nmap = new Map();
-        fetch(`https://codeforces.com/api/user.status?handle=${handle}&from=1`)
+
+        fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
         .then(response => response.json())
         .then(data =>{
             //console.table(data);
@@ -50,23 +64,8 @@ function Codeforces(){
                 i += 1;
               }
             dtype.sort(compare);
-            console.log(dtype);
+            // console.log(dtype);
             var options2 = {
-                // title: {
-                //   text: "Basic Column Chart in React"
-                // },
-                // data: [{				
-                //           type: "column",
-                //          dataPoints:dtype
-                //          // [
-                //         //       //dtype[0],
-                //         //       { label: "Apple",  y: 10  },
-                //         //       { label: "Orange", y: 15  },
-                //         //       { label: "Banana", y: 25  },
-                //         //       { label: "Mango",  y: 30  },
-                //         //       { label: "Grape",  y: 28  }
-                //         //   ]
-                //  }]
                     animationEnabled: true,
 			        theme: "light2",
 			        title:{
@@ -82,29 +81,38 @@ function Codeforces(){
 			        axisX: {
 			        	title: "Problem tags",
                         reversed: true,
-                        labelAutoFit:true
+                        labelAutoFit:true,
+                        labelFontSize:20,
+                        interval:1,
+                        tickLength: 1,
+                        // labelMaxWidth: 70
 			        },
 			        axisY: {
 			        	title: "Number of Questions successfully solved",
 			        	includeZero: true,
+                        labelFontSize:20,
+                        // interval:1,
+                        tickLength: 1,
+                        labelMaxWidth: 70
                     },
-                    height : 600,
+                    height : 700,
 			        data: [{
 			        	type: "bar",
                         dataPoints: dtype
 			        }]
              }
              setOptions(options2)
-        }
-        )}
-        
-    ,[])
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }    
+    ,[handle])
 
 
     return (
         
         <div>
-            <div className="parallax"></div>
             <CanvasJSChart options = {options}/>
 
             <div className="parallax"></div>
