@@ -34,7 +34,7 @@ function Profile()
             })
             .then(res=>res.json())
             .then((data)=>{
-                console.log(data)
+                // console.log(data)
                 if(data.error)
                 {
                     console.log(data.error);
@@ -186,16 +186,21 @@ function Profile()
             <br></br>
             <br></br>
             <div>
-                <input type='text' placeholder='codeforces handle' style={{maxWidth:'300px'}}
+                <input type='text' placeholder='codeforces handle' style={{maxWidth:'300px'}} id='cf_handle_input'
                 onChange={(e)=>{
-                    console.log(e.target.value);
                     setCf(e.target.value)
                 }}
                 />
                 <br/>
                 <button className='btn-large' onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
-                <h2>Your current Codeforces handle is {cf}</h2>
-                <Link to = '/codeforces'> Go to Codeforces handle </Link>
+                <h2>Your current Codeforces handle is : {cf}</h2>
+
+                {
+                    cf 
+                    &&
+                    <h3><Link to='/codeforces'>Click here to see your statistics</Link></h3>
+                }
+                
             </div>  
             <div className = "parallax"></div>
             
@@ -203,7 +208,7 @@ function Profile()
                 <div>
                     
                     
-                    <h2>Your current codechef handle is {cc}</h2>
+                    <h2>Your current codechef handle is : {cc}</h2>
                     <h2>Your current leetcode handle is {leetcode}</h2>
                     <h2>Your total friends are :  {friendList.length}</h2>
                 </div>

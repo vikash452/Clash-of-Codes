@@ -13,7 +13,9 @@ function Codeforces(){
     // const handle = 'Marcos_0901';
     const [loaded,setLoaded]=useState(false)
     const [options,setOptions]=useState({})
-    const [handle,setHandle]=useState('Marcos_0901')
+    const [handle,setHandle]=useState('')
+    const [totalQuestions,setTotalQuestion]=useState(0);
+    const [options2,setOptions2]=useState({})
     var user;
 
     useEffect(()=>{
@@ -23,9 +25,20 @@ function Codeforces(){
             history.push('/signin')
         }
         setHandle(user.codeforces)
-    },[]);
+        
+        if(handle)
+        trigger_after_page_loading()
+    },[handle]);
 
-    useEffect(()=>{
+    function trigger_after_page_loading()
+    {
+
+        console.log('tr')
+        if(handle.length == 0)
+        {
+            history.push('/profile')
+        }
+        
         let arr = [];
         var dtype = [];
         let i = 0;
@@ -34,10 +47,75 @@ function Codeforces(){
         fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
         .then(response => response.json())
         .then(data =>{
-            //console.table(data);
+            
+            var total_question=new Set()
+            var questions_per_day_map=new Map()
+            var questions_per_day_array=[];
+            data.result.forEach((element)=>{
+                if(element.verdict === 'OK')
+                {
+                    total_question.add(element.problem.contestId.toString() + element.problem.index)
+                    var dateOfQues = new Date(element.creationTimeSeconds*1000);
+                    var formattedDate = dateOfQues.getDate() + '/' + (dateOfQues.getMonth()+1) + '/' + dateOfQues.getFullYear();
+
+                    if(questions_per_day_map.has(formattedDate))
+                    {
+                        questions_per_day_map.set( formattedDate , questions_per_day_map.get(formattedDate)+1);
+                    }
+                    else
+                    {
+                        questions_per_day_map.set( formattedDate , 1);
+                    }
+                }
+            })
+
+            const iterator1=questions_per_day_map[Symbol.iterator]();
+            for(const item of iterator1)
+            {
+                var temp_object={
+                    label:item[0],
+                    y:item[1]
+                }
+                questions_per_day_array.push(temp_object)
+            }
+
+            // questions_per_day_array.reverse()
+            // console.log(questions_per_day_array)
+
+            var temp_options_2={
+                animationEnabled: true,
+			        theme: "light2",
+			        title:{
+                        text: "Questions done per day",
+                        fontSize :30,
+                        fontColor : "Green",
+                        fontFamily: "Helvetica",
+                        horizontalAlign : "center",
+                        padding: 5,
+			        },
+			        axisX: {
+			        	title: "Date",
+                        reversed: true,
+                        labelAutoFit:true,
+                        labelFontSize:15,
+			        },
+			        axisY: {
+			        	title: "Number of Questions successfully solved",
+                        labelAutoFit:true,
+                        labelFontSize:15,
+                    },
+                    height : 500,
+			        data: [{
+			        	type: "spline",
+                        dataPoints: questions_per_day_array
+			        }]
+            }
+
+            setOptions2(temp_options_2)
+
+            setTotalQuestion(total_question.size)
+
             data.result.forEach(function(element){
-          
-                //console.log(element.problem.tags);
                 
                 if( element.verdict === "OK"){
                     i += 1;
@@ -45,8 +123,6 @@ function Codeforces(){
                 }
             });
             i = 0;
-            //console.log(i);
-            //console.table(arr);
             arr.forEach( function(element){
                 element.forEach(function(str){
                     if( nmap.has(str) == false )
@@ -57,15 +133,13 @@ function Codeforces(){
                     }
                 })
             })
-            //console.log(nmap);
             for (let [key, value] of nmap) {
                 //console.log(key + ' = ' + value);
                 dtype[i] = { label : key, y : value };
                 i += 1;
               }
             dtype.sort(compare);
-            // console.log(dtype);
-            var options2 = {
+            var temp_options_1 = {
                     animationEnabled: true,
 			        theme: "light2",
 			        title:{
@@ -101,19 +175,21 @@ function Codeforces(){
                         dataPoints: dtype
 			        }]
              }
-             setOptions(options2)
+             setOptions(temp_options_1)
         })
         .catch((err)=>{
             console.log(err)
         })
-    }    
-    ,[handle])
-
+    }
 
     return (
         
         <div>
+            <h2>You have done {totalQuestions} questions</h2>
+            <div className="parallax"></div>
             <CanvasJSChart options = {options}/>
+            <div className="parallax"></div>
+            <CanvasJSChart options = {options2}/>
 
             <div className="parallax"></div>
         </div>
