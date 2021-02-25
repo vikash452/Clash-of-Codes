@@ -4,7 +4,7 @@ import ing1 from '../images/parallax1.jpg'
 import passport, { use } from 'passport';
 
 import M from 'materialize-css'
-
+import './design.css';
 
 //import Parallax from "./Parallax"
 // jQuery(document).ready(function(){
@@ -195,18 +195,20 @@ function Profile()
                 <br/>
                 <button className='btn-large' onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
                 <h2>Your current Codeforces handle is {cf}</h2>
+                <Link to = '/codeforces'> Go to Codeforces handle </Link>
             </div>  
-            
+            <div className = "parallax"></div>
             
             <div>
                 <div>
+                    
+                    
                     <h2>Your current codechef handle is {cc}</h2>
-                    <Link to = '/codeforces'> Go to Codeforces handle </Link>
                     <h2>Your current leetcode handle is {leetcode}</h2>
                     <h2>Your total friends are :  {friendList.length}</h2>
                 </div>
             </div>
-            
+            <div className = "parallax"></div>
         </div>
     )
 }

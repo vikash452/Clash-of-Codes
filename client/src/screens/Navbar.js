@@ -2,9 +2,7 @@ import {useEffect,useState} from 'react'
 import {useHistory,Link} from 'react-router-dom'
 import M from 'materialize-css'
 import { use } from 'passport';
-
-
-
+import './design.css';
 function Navbar()
 {
     useEffect(()=>{
@@ -23,10 +21,10 @@ function Navbar()
                         <li><Link to='/home'>Home</Link></li>
                     </ul>
                 </div> */}
-                <ul id="slide-out" className="sidenav">
-                    <li><Link className="sidenav-close" to="/contest"><h2>Contest</h2></Link></li>
-                    <li><Link className="sidenav-close" to="/profile"><h2>Profile</h2></Link></li>
-                    <li><Link className="sidenav-close" to="/home"><h2>Home</h2></Link></li>
+                <ul id="slide-out" className="sidenav nav darken-4">
+                    <li><Link className="sidenav-close" to="/contest"><h3>Contest</h3></Link></li>
+                    <li><Link className="sidenav-close" to="/profile"><h3>Profile</h3></Link></li>
+                    <li><Link className="sidenav-close" to="/home"><h3>Home</h3></Link></li>
                 </ul>
             {/* </nav> */}
         </div>

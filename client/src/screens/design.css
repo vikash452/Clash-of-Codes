@@ -1,0 +1,16 @@
+.parallax{
+    background-image : url(../images/parallax1.jpg);
+    min-height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.sidenav.nav{
+    background-color : #03DAC6;
+}
+.sidenav.nav li :hover{
+    background-color: #40C4FF;
+}
