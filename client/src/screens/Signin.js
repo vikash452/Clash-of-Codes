@@ -7,6 +7,13 @@ function Signin()
     var [email,setEmail]=useState('')
     var [password,setPassword]=useState('')
     const history=useHistory();
+    var user=JSON.parse(localStorage.getItem('user'))
+    useEffect(()=>{
+        if(user)
+        {
+            history.push('/home')
+        }
+    },[]);
 
     function Login()
     {

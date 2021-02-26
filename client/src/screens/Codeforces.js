@@ -32,8 +32,6 @@ function Codeforces(){
 
     function trigger_after_page_loading()
     {
-
-        console.log('tr')
         if(handle.length == 0)
         {
             alert("Please set your codeforces handle");

@@ -12,6 +12,10 @@ function Room()
     // const [roomDetails,setRoomDetails]=useState()
     const [roomName,setRoomName]=useState('');
     const [participants,setParticipants]=useState([])
+    // let questionList=[]
+    const [questionList,setQuestionList]=useState([])
+    const [q2,setQ2]=useState([])
+
     useEffect(()=>{
         fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
@@ -39,10 +43,20 @@ function Room()
         .catch((err)=>{
             console.log(err)
         })
-        let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502'];
+        
+    },[])
+
+    function GetProblems()
+    {
+        // let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502'];
+        let handles=[]
+        participants.forEach(part=>{
+            handles.push(part.codeforces)
+        })
         let arr = [];
         let i = 0;
         let nmap = new Map();
+        console.log(participants)
         handles.forEach(function(handle){
             if(handle.length == 0)
             {
@@ -70,15 +84,16 @@ function Room()
             data.result.problems.forEach(function(element){
                 let id = element.contestId.toString() + element.index;
                 if( k < 1600 && nmap.get(id) !== true && element.rating === k ){
-                    arr[i] = id;
+                    arr[i] = element;
                     i += 1;
                     k += 100;
                 }
             });
-            console.log(arr);
+            // console.log(questionList);
+            // setQ2(questionList)
+            setQuestionList(arr)
         })
-        
-    },[])
+    }
 
     function Refresh()
     {
@@ -140,34 +155,26 @@ function Room()
             console.log(err)
         })
     }
-    // function GetProblems(){
-    //     let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502'];
-    //     let arr = [];
-    //             let i = 0;
-    //             let nmap = new Map();
-    //     handles.forEach(function(handle){
-    //         if(handle.length == 0)
-    //         {
-    //             alert("Please set your codeforces handle");
-    //             history.push('/profile');
-    //         }
-    //         fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
-    //         .then(response => response.json())
-    //         .then(data =>{
-    //             data.result.forEach(function(element){
-    //                 nmap.set( element.id, true);
-    //             })
-    //         })
-    //     });
-    //     console.log(nmap);
-    // }
+
+
+    function StartContest()
+    {
+        Refresh()
+        GetProblems()
+    }
+
+    useEffect(()=>{
+        console.log(questionList)
+    },[questionList])
+
     return (
         <div>
             <h2>Room name: {roomName}</h2>
             <h2>Room Id: {roomId}</h2>
             <h2>Total participants: {participants.length}</h2>
             <button className='btn-large' onClick={()=>{Refresh()}} style={{margin:'20px'}}>Refresh</button>
-            <button className='btn-large' onClick={()=>LeaveRoom()}>Leave Room</button>
+            <button className='btn-large' onClick={()=>LeaveRoom()} style={{margin:'20px'}}>Leave Room</button>
+            <button className='btn-large' onClick={()=>StartContest()} style={{margin:'20px'}}>Start Contest</button>
             <div>
                { 
                 participants.map((part)=>{
@@ -180,7 +187,37 @@ function Room()
                     })
                 }
             </div>
-            
+           
+           <div className='row'>
+               {
+                   questionList.map(question=>{
+                       return (
+                           <a className='col s3' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`} 
+                           target='_blank' 
+                           key={question.name}
+                           style={{color:'black'}}
+                           >
+                                <div className='card' style={{height:'500px'}}>
+                                    <div className='card-content'>
+                                        <span className='card-title'><h2>{question.name}</h2></span>
+                                        <h3>{question.contestId}{question.index}</h3>
+                                        {
+                                            question.tags.map((tag)=>{
+                                                return (
+                                                    <p key={question.name+tag}>{tag}</p>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            </a>
+                       )
+                   })
+               }
+                
+                
+           </div>
+                
         </div>
     )
 }

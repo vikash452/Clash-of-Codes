@@ -22,7 +22,7 @@ router.get('/contest/roomDetails/:roomId',passport.authenticate('jwt',{session:f
     .populate({
         path:'participants',
         model:'User',
-        select:'name email'
+        select:'name email codeforces codechef leetcode'
     })
     .then((foundRoom)=>{
         if(!foundRoom)
