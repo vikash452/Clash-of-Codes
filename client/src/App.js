@@ -32,13 +32,10 @@ function AllRouting()
     }
     else
     {
-      // console.log(history.location.pathname === '/')
       if(history.location.pathname === '/')
       history.push('/home')
-      // if(history.location.pathname.startsWith('/profile'))
-      // history.push('/profile')
-      // else
-      // history.push('/home')
+      else if(history.location.pathname.startsWith('/signin') || history.location.pathname.startsWith('/signup') || history.location.pathname.startsWith('/forgotPassword') || history.location.pathname.startsWith('/updatePassword'))
+      history.push('/home')
     }
   },[])
 

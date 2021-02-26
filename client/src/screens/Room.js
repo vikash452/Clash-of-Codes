@@ -56,7 +56,7 @@ function Room()
         let arr = [];
         let i = 0;
         let nmap = new Map();
-        console.log(participants)
+        // console.log(participants)
         handles.forEach(function(handle){
             if(handle.length == 0)
             {
@@ -75,7 +75,7 @@ function Room()
                 })
             })
         });
-        console.log(nmap);
+        // console.log(nmap);
         let k = 800;
         fetch(`https://codeforces.com/api/problemset.problems`)
         .then(response => response.json())
@@ -164,7 +164,7 @@ function Room()
     }
 
     useEffect(()=>{
-        console.log(questionList)
+        // console.log(questionList)
     },[questionList])
 
     return (
@@ -174,6 +174,7 @@ function Room()
             <h2>Total participants: {participants.length}</h2>
             <button className='btn-large' onClick={()=>{Refresh()}} style={{margin:'20px'}}>Refresh</button>
             <button className='btn-large' onClick={()=>LeaveRoom()} style={{margin:'20px'}}>Leave Room</button>
+            {/* <input type></input> */}
             <button className='btn-large' onClick={()=>StartContest()} style={{margin:'20px'}}>Start Contest</button>
             <div>
                { 
