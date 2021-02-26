@@ -16,10 +16,11 @@ function Navbar()
                 <a data-target="slide-out" className="sidenav-trigger show-on-large" style={{cursor:'pointer'}}>
                     <i className="material-icons">menu</i>
                 </a>
-                <ul id="slide-out" className="sidenav nav yellow lighten-2">
-                    <li><Link className="sidenav-close z-depth-5" to="/contest"><h3>Contest</h3></Link></li>
-                    <li><Link className="sidenav-close z-depth-5" to="/profile"><h3>Profile</h3></Link></li>
-                    <li><Link className="sidenav-close z-depth-5" to="/home"><h3>Home</h3></Link></li>
+                <ul id="slide-out" className="sidenav nav lighten-2">
+                    <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/home">Home</Link></li>
+                    <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/contest">Contest</Link></li>
+                    <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/profile">Profile</Link></li>
+                    
                 </ul>
             {/* </nav> */}
         </div>

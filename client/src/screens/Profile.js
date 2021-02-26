@@ -206,8 +206,6 @@ function Profile()
             
             <div>
                 <div>
-                    
-                    
                     <h2>Your current codechef handle is : {cc}</h2>
                     <h2>Your current leetcode handle is {leetcode}</h2>
                     <h2>Your total friends are :  {friendList.length}</h2>

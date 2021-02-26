@@ -100,7 +100,7 @@ function Contest()
                 <button onClick={()=>{CreateRoom()}}>Create</button>
             </div>
             <br/><br/>
-            <h1>OR</h1>
+            <h2>OR</h2>
             <br/><br/>
             <div>
                 Join a room

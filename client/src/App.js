@@ -11,7 +11,7 @@ import Navbar from './screens/Navbar'
 import ForgotPassword from './screens/ForgotPassword'
 import UpdatePassword from './screens/UpdatePassword'
 import Codeforces from './screens/Codeforces'
-
+import img1 from './images/img1.jpg';
 function AllRouting()
 {
   const history=useHistory();
@@ -44,7 +44,7 @@ function AllRouting()
 
   return(
     <div>
-      <Route exact path='/home'>
+      <Route exact path='/home' >
           <Navbar/>
           <Home/>
         </Route>

@@ -2,7 +2,7 @@ import { Verify } from 'crypto'
 import {useEffect,useState} from 'react'
 import {useHistory,Link} from 'react-router-dom'
 import M from 'materialize-css'
-
+import './design.css';
 function Home()
 {
     function Logout()
@@ -41,7 +41,7 @@ function Home()
     },[])
     
     return(
-        <div>
+        <div >
             <h1>Hi {name}</h1>
             <h2>....Hope you are coding well....</h2>
             <button className='btn-large' onClick={()=>{Logout()}}>Logout</button>

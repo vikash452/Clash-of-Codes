@@ -36,7 +36,8 @@ function Codeforces(){
         console.log('tr')
         if(handle.length == 0)
         {
-            history.push('/profile')
+            alert("Please set your codeforces handle");
+            history.push('/profile');
         }
         
         let arr = [];
