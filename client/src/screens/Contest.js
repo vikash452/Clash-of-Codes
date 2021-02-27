@@ -6,6 +6,7 @@ function Contest()
 {
     const [roomName,setRoomName]=useState('');
     const [joinRoom,setJoinRoom]=useState('');
+    const [startTime,setStartTime]=useState(Date);
     const history=useHistory()
 
     function CreateRoom()
@@ -17,7 +18,8 @@ function Contest()
                 'Authorization':'Bearer ' + localStorage.getItem('jwt')
             },
             body:JSON.stringify({
-                name:roomName
+                name:roomName,
+                startTiming:startTime
             })
         })
         .then(res=>res.json())
@@ -95,6 +97,13 @@ function Contest()
                 onChange={(e)=>{
                     setRoomName(e.target.value)
                 }}
+                />
+                <br/>
+                <input type='datetime-local' style={{maxWidth:'300px'}} placeholder='Contest start timing' 
+                    onChange={(e)=>{
+                        setStartTime(e.target.value)
+                        console.log(new Date(e.target.value).toLocaleString())
+                    }}
                 />
                 <br/>
                 <button onClick={()=>{CreateRoom()}}>Create</button>

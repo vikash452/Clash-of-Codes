@@ -23,6 +23,12 @@ const contestSchema=new mongoose.Schema({
     },
     expiry:{
         type:Date
+    },
+    startTiming:{
+        type:Date
+    },
+    adminEmail:{
+        type:String
     }
 },{timestamps:true})
 

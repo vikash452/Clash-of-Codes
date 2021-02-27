@@ -15,8 +15,16 @@ function Room()
     // let questionList=[]
     const [questionList,setQuestionList]=useState([])
     const [q2,setQ2]=useState([])
+    // const [startTime,setStartTime]=useState(Date)
+    var startTime;
+    const [hours,setHours]=useState(0);
+    const [minutes,setMinutes]=useState(0);
+    const [seconds,setSeconds]=useState(0);
+    var isAdmin=false;
+    var user;
 
     useEffect(()=>{
+        user=JSON.parse(localStorage.getItem('user'))
         fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
             headers:{
@@ -37,13 +45,45 @@ function Room()
                 // setRoomDetails(data)
                 setRoomName(data.name)
                 setParticipants(data.participants)
+                // console.log(user.email)
+                // console.log(data.adminEmail)
+                if(user.email == data.adminEmail)
+                {
+                    isAdmin=true
+                }
+                // console.log(isAdmin)
+                // setStartTime(new Date(data.startTiming).getTime())
+                startTime=new Date(data.startTiming).getTime()
+
+                var clock=setInterval(()=>{
+                var now=new Date().getTime();
+                var diff=Math.floor((startTime-now)/1000);
+                var s=diff%60;
+                var min=Math.floor(diff/60) %60;
+                var hrs=Math.floor(diff/(60*60)) % 60;
+                setSeconds(s)
+                setMinutes(min)
+                setHours(hrs)
+
+                if(hrs<=0 && min<=0 && s<=0)
+                {
+                    // console.log('t')
+                    // console.log(clock)
+                    StartContest()
+                    clearInterval(clock)
+                }
+
+                },1000)
             }
             
         })
         .catch((err)=>{
             console.log(err)
         })
+
         
+        
+
     },[])
 
     function GetProblems()
@@ -171,7 +211,14 @@ function Room()
         <div>
             <h2>Room name: {roomName}</h2>
             <h2>Room Id: {roomId}</h2>
+            <h2>Before start : {hours}h {minutes}min {seconds}sec</h2>
             <h2>Total participants: {participants.length}</h2>
+            <input type='time' style={{maxWidth:'500px'}}
+            onChange={(e)=>{
+                console.log(e.target.value)
+            }}
+            />
+            <br/>
             <button className='btn-large' onClick={()=>{Refresh()}} style={{margin:'20px'}}>Refresh</button>
             <button className='btn-large' onClick={()=>LeaveRoom()} style={{margin:'20px'}}>Leave Room</button>
             {/* <input type></input> */}
