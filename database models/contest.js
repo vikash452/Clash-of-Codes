@@ -27,6 +27,9 @@ const contestSchema=new mongoose.Schema({
     startTiming:{
         type:Date
     },
+    endTiming:{
+        type:Date
+    },
     adminEmail:{
         type:String
     }

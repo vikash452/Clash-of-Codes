@@ -7,6 +7,7 @@ function Contest()
     const [roomName,setRoomName]=useState('');
     const [joinRoom,setJoinRoom]=useState('');
     const [startTime,setStartTime]=useState(Date);
+    const [endTime,setEndTime]=useState(Date)
     const history=useHistory()
 
     function CreateRoom()
@@ -19,7 +20,8 @@ function Contest()
             },
             body:JSON.stringify({
                 name:roomName,
-                startTiming:startTime
+                startTiming:startTime,
+                endTiming:endTime
             })
         })
         .then(res=>res.json())
@@ -101,8 +103,13 @@ function Contest()
                 <br/>
                 <input type='datetime-local' style={{maxWidth:'300px'}} placeholder='Contest start timing' 
                     onChange={(e)=>{
-                        setStartTime(e.target.value)
-                        console.log(new Date(e.target.value).toLocaleString())
+                        setStartTime(new Date(e.target.value))
+                        var now=new Date(e.target.value)
+                        // console.log(now)
+                        var end=new Date()
+                        end.setTime(now.getTime() + 2*60*60*1000)
+                        // console.log(end)
+                        setEndTime(end)
                     }}
                 />
                 <br/>

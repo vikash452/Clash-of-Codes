@@ -16,10 +16,11 @@ function Room()
     const [questionList,setQuestionList]=useState([])
     const [q2,setQ2]=useState([])
     // const [startTime,setStartTime]=useState(Date)
-    var startTime;
+    var startTime,endTime;
     const [hours,setHours]=useState(0);
     const [minutes,setMinutes]=useState(0);
     const [seconds,setSeconds]=useState(0);
+    const [contestStarted,setContestStarted]=useState(false)
     var isAdmin=false;
     var user;
 
@@ -54,6 +55,8 @@ function Room()
                 // console.log(isAdmin)
                 // setStartTime(new Date(data.startTiming).getTime())
                 startTime=new Date(data.startTiming).getTime()
+                endTime=new Date(data.endTiming).getTime()
+                // console.log(endTime)
 
                 var clock=setInterval(()=>{
                 var now=new Date().getTime();
@@ -61,18 +64,26 @@ function Room()
                 var s=diff%60;
                 var min=Math.floor(diff/60) %60;
                 var hrs=Math.floor(diff/(60*60)) % 60;
-                setSeconds(s)
-                setMinutes(min)
-                setHours(hrs)
 
-                if(hrs<=0 && min<=0 && s<=0)
+                if(hrs<0 && min<0 && s<0)
                 {
                     // console.log('t')
                     // console.log(clock)
                     StartContest()
                     clearInterval(clock)
+                    setContestStarted(true)
+                    M.toast({
+                        html:'Contest started',
+                        classes: "#ce93d8 purple",
+                        displayLength: 5000,
+                    })
                 }
-
+                else
+                {
+                    setSeconds(s)
+                    setMinutes(min)
+                    setHours(hrs)
+                }
                 },1000)
             }
             
@@ -201,6 +212,34 @@ function Room()
     {
         Refresh()
         GetProblems()
+        // var now=new Date().getTime();
+            var deadline=new Date(endTime);
+
+            var remainTime=setInterval(()=>{
+
+                var now=new Date().getTime();
+                var diff=Math.floor((deadline-now)/1000);
+                var s=diff%60;
+                var min=Math.floor(diff/60) %60;
+                var hrs=Math.floor(diff/(60*60)) % 60;
+
+                if(hrs<0 && min<0 && s<0)
+                {
+                    M.toast({
+                        html:'Contest ended',
+                        classes: "#ce93d8 purple",
+                        displayLength: 5000,
+                    })
+                    clearInterval(remainTime)
+                }
+                else
+                {
+                    setSeconds(s)
+                    setMinutes(min)
+                    setHours(hrs)
+                }
+
+        },1000)
     }
 
     useEffect(()=>{
@@ -211,18 +250,20 @@ function Room()
         <div>
             <h2>Room name: {roomName}</h2>
             <h2>Room Id: {roomId}</h2>
-            <h2>Before start : {hours}h {minutes}min {seconds}sec</h2>
+            
+            {
+                contestStarted
+                ?
+                    <h2>Time Remaining : {hours}h {minutes}min {seconds}sec</h2>
+                :
+                    <h2>Before start : {hours}h {minutes}min {seconds}sec</h2>
+            }
             <h2>Total participants: {participants.length}</h2>
-            <input type='time' style={{maxWidth:'500px'}}
-            onChange={(e)=>{
-                console.log(e.target.value)
-            }}
-            />
             <br/>
             <button className='btn-large' onClick={()=>{Refresh()}} style={{margin:'20px'}}>Refresh</button>
             <button className='btn-large' onClick={()=>LeaveRoom()} style={{margin:'20px'}}>Leave Room</button>
             {/* <input type></input> */}
-            <button className='btn-large' onClick={()=>StartContest()} style={{margin:'20px'}}>Start Contest</button>
+            {/* <button className='btn-large' onClick={()=>StartContest()} style={{margin:'20px'}}>Start Contest</button> */}
             <div>
                { 
                 participants.map((part)=>{

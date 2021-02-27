@@ -91,6 +91,7 @@ router.post('/contest/createRoom',passport.authenticate('jwt',{session:false}),(
             participants:req.user,
             admin:req.user,
             startTiming:req.body.startTiming,
+            endTiming:req.body.endTiming,
             adminEmail:req.user.email,
             timeOfCreation:currentTime,
             expiry:currentTime + 3*60*60*1000
