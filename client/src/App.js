@@ -11,7 +11,7 @@ import Navbar from './screens/Navbar'
 import ForgotPassword from './screens/ForgotPassword'
 import UpdatePassword from './screens/UpdatePassword'
 import Codeforces from './screens/Codeforces'
-import img1 from './images/img1.jpg';
+import './screens/design.css'
 function AllRouting()
 {
   const history=useHistory();
@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>WELCOME TO CLASH OF CODES</h1>
+      <h1 class="heading">WELCOME TO CLASH OF CODES</h1>
       <BrowserRouter>
         <AllRouting/>
       </BrowserRouter>

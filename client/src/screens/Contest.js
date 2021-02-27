@@ -93,15 +93,16 @@ function Contest()
     return (
         <div>
             <div>
-                Create  a room
+                <h3>Create  a room</h3>
                 <br/>
-                <input type='text' placeholder='Room name' style={{maxWidth:'300px'}}
+                <p style={{fontSize:'20px'}}>Set the room name :
+                <input type='text' placeholder='Room name' style={{maxWidth:'300px', marginLeft: '75px'}}
                 onChange={(e)=>{
                     setRoomName(e.target.value)
                 }}
-                />
-                <br/>
-                <input type='datetime-local' style={{maxWidth:'300px'}} placeholder='Contest start timing' 
+                /></p>
+                <p style={{fontSize:'20px'}}>Set the Contest start time :
+                    <input type='datetime-local' placeholder='Contest start time' style={{maxWidth:'300px', marginLeft:'10px'}}  
                     onChange={(e)=>{
                         setStartTime(new Date(e.target.value))
                         var now=new Date(e.target.value)
@@ -111,22 +112,25 @@ function Contest()
                         // console.log(end)
                         setEndTime(end)
                     }}
-                />
+                /></p>
+                
                 <br/>
-                <button onClick={()=>{CreateRoom()}}>Create</button>
+                <button class="waves-effect waves-light btn-large" style={{marginTop: '5px'}}onClick={()=>{CreateRoom()}}>Create</button>
             </div>
             <br/><br/>
-            <h2>OR</h2>
+            <h3>OR</h3>
             <br/><br/>
             <div>
-                Join a room
+                <h3>Join a room</h3>
                 <br/>
                 <input type='text' placeholder='Room Id' style={{maxWidth:'300px'}} value={joinRoom}
                 onChange={(e)=>{
                     setJoinRoom(e.target.value)
                 }}
                 />
-                <button onClick={()=>{Join()}}>Join</button>
+                <button class="waves-effect waves-light btn-large" style={{marginLeft: '10px'}} onClick={()=>{Join()}}>Join</button>
+                <br></br>
+                <br></br>
             </div>
         </div>
     )

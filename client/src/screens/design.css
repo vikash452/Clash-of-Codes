@@ -31,6 +31,53 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     padding: 2px 1px;
 }
-.home-background{
-    background-image: url('https://venngage-wordpress.s3.amazonaws.com/uploads/2018/09/Simple-White-Gradient-Background-Image.jpg')
+
+.waves-effect.waves-light.btn-large{
+    margin-left: 8px;
+}
+.Home-design{
+    text-align: center;
+    /* background-image: url("../images/img1.jpg");
+    position:absolute;
+    z-index:0;
+    min-width: 100%;
+    min-height:100%;
+    background-size: cover;
+    background-position: center; */
+}
+.flexbox {
+    /* display: flex; */
+    /* flew-wrap: wrap; */
+    /* justify-content: center;*/
+    align-items: center;
+} 
+
+.heading{
+    background: inherit;
+    background-clip: text;
+    color: rgb(5, 1, 7);
+    filter: drop-shadow(.075em .075em rgb(229, 255, 0));
+    font-family:  Bookman, URW Bookman L, serif;
+    font-weight: bold;
+}
+.card-text{
+    color :rgb(0, 119, 255);
+    font-size: 40px;
+    font-weight: bold;
+    font-family:  Bookman, URW Bookman L, serif;
+}
+.card{
+    /* height: 300px; */
+    position: relative;
+    /* width : 300px; */
+    /* align-items: center;
+    align-self: center; */
+}
+.row{
+    /* position: relative; */
+    /* align-items: center; */
+    align-content: center;
+}
+.card-title{
+    text-align: left;
 }
