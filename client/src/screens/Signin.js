@@ -69,12 +69,13 @@ function Signin()
             />
             <br />
             <br />
-            <button className='btn-large' onClick={()=>{Login()}}>Sign In</button>
+            <button className='btn-large' onClick={()=>{Login()}}>Sign In</button><span><Link to='/forgotPassword'><button className='waves-effect waves-light btn-large'>Forgot your password?</button></Link> </span>
             <br/>
             <br/>
-            <span><Link to='/forgotPassword'><h4>Forgot your password?</h4></Link> </span>
+            
             <br/>
-            <h4><span>Don't have an account? <Link to='/signup'>SignUp</Link> </span></h4>
+            <br/>
+            <span>Don't have an account? <Link to='/signup'><button className='waves-effect waves-light btn-large'>SignUp</button></Link></span>
             
 
         </div>

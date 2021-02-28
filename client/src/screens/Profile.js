@@ -166,7 +166,7 @@ function Profile()
     
     return (
         <div style={{justifyContent:'center'}} >
-            <div >
+            <div style={{marginTop: '70px'}}>
                 <input type='text' placeholder='search for friend' style={{maxWidth:'300px'}}
                 onChange={(e)=>{
                     // console.log(e.target.value)
@@ -193,26 +193,26 @@ function Profile()
                 }}
                 />
                 <br/>
-                <button className='btn-large' onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
-                <h2>Your current Codeforces handle is : {cf}</h2>
+                <button className='btn-large' style = {{marginTop : '10px'}}onClick={()=>{addCfHandle('codeforces')}}>Set codeforces handle</button>
+                <h3>Your current Codeforces handle is : {cf}</h3>
 
                 {
                     cf 
                     &&
-                    <h3><Link to='/codeforces'>Click here to see your statistics</Link></h3>
+                    <button className='waves-effect waves-light btn-large'><Link to='/codeforces' style={{color: 'white', marginBottom: '80px'}}>Click here to see your statistics</Link></button>
                 }
                 
             </div>  
-            <div className = "parallax"></div>
+            <div className = "parallax1"></div>
             
             <div>
                 <div>
-                    <h2>Your current codechef handle is : {cc}</h2>
-                    <h2>Your current leetcode handle is {leetcode}</h2>
-                    <h2>Your total friends are :  {friendList.length}</h2>
+                    <h3>Your current codechef handle is : {cc}</h3>
+                    <h3>Your current leetcode handle is : {leetcode}</h3>
+                    <h3>Your total friends are :  {friendList.length}</h3>
                 </div>
             </div>
-            <div className = "parallax"></div>
+            <div className = "parallax2"></div>
         </div>
     )
 }

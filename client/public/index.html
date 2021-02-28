@@ -22,7 +22,8 @@
     <!-- Compiled and minified JavaScript -->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -38,15 +39,36 @@
 
     <style>
       body{
-        background-image:linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)), url(./amongus.jpg)  !important;
+        background-image:linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)), url(./amongus.jpg)  !important; 
         background-position: 0px -170px;
-        background-repeat: repeat;
+        background-repeat: norepeat;
+        background-attachment: fixed;
         color: white;
-      }
+        font-family:  'Nova Round', cursive;
+        margin: 0px;
+        padding: 0px;
+        /*background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #166c4d, #ca4329, #cade5c, #61dfa0, #3c67d7, #9963df, #de5f90);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;*/
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+      
     </style>
 
   </head>
-  <body class="deep-purple lighten-5" style="background-image: url('./amongus.jpg');">
+  <body class="deep-purple lighten-5" >
+    
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

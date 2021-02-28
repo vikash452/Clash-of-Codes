@@ -360,16 +360,16 @@ function Room()
                                             key={question.name}
                                             
                                             >
-                                          <div className='card-content card-panel hoverable yellow' style={{height:'300px'}}>
+                                          <div className='card-content card-panel hoverable yellow' style={{height:'200px'}}>
                                               <span className='card-title'><span class="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
                                               
-                                              {
+                                              {/* {
                                                   question.tags.map((tag)=>{
                                                       return (
                                                           <p key={question.name+tag}>{tag}</p>
                                                       )
                                                   })
-                                              }
+                                              } */}
                                              
                                           </div>
                                           </a>  

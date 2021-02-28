@@ -41,7 +41,7 @@ function Home()
     },[])
     
     return(
-        <div >
+        <div style={{marginTop:'100px'}}>
             <h1>Hi {name}</h1>
             <h2>....Hope you are coding well....</h2>
             <button className='btn-large' onClick={()=>{Logout()}}>Logout</button>

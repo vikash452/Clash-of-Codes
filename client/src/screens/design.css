@@ -1,41 +1,67 @@
-.parallax{
-    background-image : url(../images/parallax1.jpg);
-    min-height: 500px; 
+.parallax1 {
+    background-image: url(../images/parallax1.jpg);
+    min-height: 300px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 10px;
+}
 
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.parallax2 {
+    background-image: url(../images/parallax2.jpg);
+    min-height:300px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 10px;
 }
-.sidenav.nav{
-    background-color : #03DAC6;
-    padding-top:100px;
+
+.sidenav.nav {
+    background-color: #03DAC6;
+    padding-top: 100px;
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_LHX3o0ih7YZQIlMOOBVX72tM2ThMKlM6Jg&usqp=CAU');
+    background-repeat: norepeat;
 }
-.sidenav.nav li h3{
+
+.sidenav.nav li h3 {
     Color: white;
 }
-.sidenav.nav li :hover{
+
+.sidenav.nav li :hover {
     background-color: #40C4FF;
     font-size: 15px;
     margin: 40px 2px;
 }
-.sidenav.nav li .sidenav-close.waves-effect.waves-light{
+
+.sidenav.nav li .sidenav-close.waves-effect.waves-light {
     font-size: 20px;
     padding: 2px 1px;
 }
-.sidenav.nav li .sidenav-close.waves-effect.waves-light.btn-large{
+
+.sidenav.nav li .sidenav-close.waves-effect.waves-light.btn-large {
     background-color: #03DAC6;
     font-size: 30px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     padding: 2px 1px;
 }
 
-.waves-effect.waves-light.btn-large{
+.waves-effect.waves-light.btn-large {
     margin-left: 8px;
 }
-.Home-design{
+
+.waves-effect.waves-light.btn-large Link {
+    color: rgb(255, 255, 255);
+}
+
+Link .waves-effect.waves-light.btn-large {
+    margin-top: 10px;
+}
+
+.Home-design {
     text-align: center;
     /* background-image: url("../images/img1.jpg");
     position:absolute;
@@ -45,43 +71,85 @@
     background-size: cover;
     background-position: center; */
 }
+
 .flexbox {
     /* display: flex; */
     /* flew-wrap: wrap; */
     /* justify-content: center;*/
     align-items: center;
-} 
-
-.heading{
-    background: inherit;
-    background-clip: text;
-    color: rgb(5, 1, 7);
-    filter: drop-shadow(.075em .075em rgb(229, 255, 0));
-    font-family:  Bookman, URW Bookman L, serif;
-    font-weight: bold;
 }
-.card-text{
-    color :rgb(0, 119, 255);
+
+.heading {
+    /* background: inherit;
+    background-clip: text;
+    background-color: black;
+    color: rgb(171, 49, 233);
+    filter: drop-shadow(.075em .075em rgb(252, 235, 5));  */
+    font-family: 'Nova Round', cursive;
+    font-weight: bold;
+    background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 200% auto;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: hue 10s infinite linear;
+    
+    /* transform: translateY(-50%); */
+    text-shadow: 0px 5px 10px black;
+    font-size: 5rem;
+
+}
+
+.OuterHeading{
+    background-color:rgb(255, 255, 255) !important;
+    margin: 0px;
+    padding: 50px 10px 50px 10px;
+    text-align: center;
+}
+@keyframes hue {
+    from {
+        -webkit-filter: hue-rotate(0deg);
+    }
+    to {
+        -webkit-filter: hue-rotate(-360deg);
+    }
+}
+
+.card-text {
+    color: rgb(0, 119, 255);
     font-size: 40px;
     font-weight: bold;
-    font-family:  Bookman, URW Bookman L, serif;
+    font-family: Bookman, URW Bookman L, serif;
 }
-.card{
+
+.card {
     /* height: 300px; */
     position: relative;
     /* width : 300px; */
     /* align-items: center;
     align-self: center; */
 }
-.row{
+
+.row {
     /* position: relative; */
     /* align-items: center; */
     align-content: center;
 }
-.card-title{
+
+.card-title {
     text-align: left;
 }
 
-input{
+input {
     color: white !important;
+}
+
+.wave {
+    position: absolute;
+    width: 100%;
+    bottom: -140px;
+}
+
+.wave :hover {
+    fill: orange;
 }

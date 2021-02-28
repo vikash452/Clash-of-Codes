@@ -185,9 +185,9 @@ function Codeforces(){
         
         <div>
             <h2>You have done {totalQuestions} questions</h2>
-            <div className="parallax"></div>
+            <div className="parallax1"></div>
             <CanvasJSChart options = {options}/>
-            <div className="parallax"></div>
+            <div className="parallax2"></div>
             <CanvasJSChart options = {options2}/>
 
             <div className="parallax"></div>

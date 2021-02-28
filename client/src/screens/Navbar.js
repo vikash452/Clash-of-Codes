@@ -14,7 +14,7 @@ function Navbar()
         <div>
             {/* <nav> */}
                 <a data-target="slide-out" className="sidenav-trigger show-on-large" style={{cursor:'pointer'}}>
-                    <i className="material-icons">menu</i>
+                    <i className="material-icons" style={{fontSize:'80px', right: '0px', top: '170px', position: 'absolute'}}>menu</i>
                 </a>
                 <ul id="slide-out" className="sidenav nav lighten-2">
                     <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/home">Home</Link></li>
