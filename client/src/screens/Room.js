@@ -1,5 +1,6 @@
 import {useEffect,useState} from 'react'
 import {Link, useHistory,useParams} from 'react-router-dom'
+import './design.css'
 import M from 'materialize-css'
 function compare(a, b){
     return a.result.problem.rating - b.result.problem.rating;
@@ -160,11 +161,11 @@ function Room()
         let nmap = new Map();
         // console.log(participants)
         handles.forEach(function(handle){
-            if(handle.length == 0)
-            {
-                alert("Please set your codeforces handle");
-                history.push('/profile');
-            }
+            // if(handle.length == 0)
+            // {
+            //     alert("Please set your codeforces handle");
+            //     history.push('/profile');
+            // }
             fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
             .then(response => response.json())
             .then(data =>{
@@ -345,7 +346,7 @@ function Room()
                 <br></br>
             </div>
            
-            <div className='container row' >
+            <div className='row' >
                      {
                          
                          questionList.map(question=>{
@@ -354,23 +355,24 @@ function Room()
                              return (
                                  
                                       <div className='card'>
-                                          <a className='col s12 m7' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`} 
+                                          <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`} 
                                             target='_blank' 
                                             key={question.name}
-                                            ></a>
-                                          <div className='card-content card-panel hoverable yellow'>
+                                            
+                                            >
+                                          <div className='card-content card-panel hoverable yellow' style={{height:'300px'}}>
                                               <span className='card-title'><span class="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
                                               
-                                              {/* {
+                                              {
                                                   question.tags.map((tag)=>{
                                                       return (
                                                           <p key={question.name+tag}>{tag}</p>
                                                       )
                                                   })
-                                              } */}
+                                              }
                                              
                                           </div>
-                                          
+                                          </a>  
                                       </div>
                                   
                              )

@@ -1,6 +1,7 @@
 import {useEffect,useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import M from 'materialize-css'
+import './design.css'
 
 function Contest()
 {
@@ -91,10 +92,9 @@ function Contest()
     }
 
     return (
-        <div>
-            <div>
+        <div style={{margin:'auto',width:'40%'}}>
+            <div style={{backgroundColor:'rgba(191,191,63,0.3)', border:'20px ridge white', borderRadius:'60px'}}>
                 <h3>Create  a room</h3>
-                <br/>
                 <p style={{fontSize:'20px'}}>Set the room name :
                 <input type='text' placeholder='Room name' style={{maxWidth:'300px', marginLeft: '75px'}}
                 onChange={(e)=>{
@@ -120,9 +120,8 @@ function Contest()
             <br/><br/>
             <h3>OR</h3>
             <br/><br/>
-            <div>
+            <div style={{backgroundColor:'rgba(191,191,63,0.7)', border:'20px ridge white', borderRadius:'60px'}}>
                 <h3>Join a room</h3>
-                <br/>
                 <input type='text' placeholder='Room Id' style={{maxWidth:'300px'}} value={joinRoom}
                 onChange={(e)=>{
                     setJoinRoom(e.target.value)

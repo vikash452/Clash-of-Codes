@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import ing1 from '../images/parallax1.jpg'
 import passport, { use } from 'passport';
+import './design.css'
 
 import M from 'materialize-css'
 import './design.css';
@@ -171,12 +172,12 @@ function Profile()
                     // console.log(e.target.value)
                     friendSearch(e.target.value)
                 }} />
-                <ul className='collection' style={{maxWidth:'300px', margin:'auto'}} >
+                <ul className='collection green' style={{maxWidth:'300px', margin:'auto'}} >
                     {
                         searchList.map((item)=>{
                             return (
                                 <div key={item._id}>
-                                    <li className='collection-item'>{item.name} &emsp; <Link to='/profile' onClick={()=>{AddFriend(item.email)}} >Add as friend</Link ></li>
+                                    <li className='collection-item'><span style={{color:'black'}}>{item.name}</span> &emsp; <Link to='/profile' onClick={()=>{AddFriend(item.email)}} >Add as friend</Link ></li>
                                 </div>
                             )
                         })

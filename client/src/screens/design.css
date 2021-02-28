@@ -81,3 +81,7 @@
 .card-title{
     text-align: left;
 }
+
+input{
+    color: white !important;
+}

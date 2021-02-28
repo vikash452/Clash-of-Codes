@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import {useHistory, Link} from 'react-router-dom'
 import M from 'materialize-css'
+import './design.css'
 
 function Signin()
 {
@@ -61,7 +62,7 @@ function Signin()
             }}
             />
             <br />
-            <input type='text' placeholder='password' style={{maxWidth:'300px'}}
+            <input type='text' placeholder='password' style={{maxWidth:'300px', color:'white !important'}}
             onChange={(e)=>{
                 setPassword(e.target.value)
             }}
@@ -71,9 +72,10 @@ function Signin()
             <button className='btn-large' onClick={()=>{Login()}}>Sign In</button>
             <br/>
             <br/>
-            <span><Link to='/forgotPassword'>Forgot your password?</Link> </span>
+            <span><Link to='/forgotPassword'><h4>Forgot your password?</h4></Link> </span>
             <br/>
-            <span>Don't have an account? <Link to='/signup'>SignUp</Link> </span>
+            <h4><span>Don't have an account? <Link to='/signup'>SignUp</Link> </span></h4>
+            
 
         </div>
     )

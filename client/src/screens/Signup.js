@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import {useHistory,Link} from 'react-router-dom'
 import M from 'materialize-css'
+import './design.css'
 
 function Signup()
 {
