@@ -20,6 +20,7 @@ function Navbar()
                     <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/home">Home</Link></li>
                     <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/contest">Contest</Link></li>
                     <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/profile">Profile</Link></li>
+                    <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/dsa">DSA</Link></li>
                     
                 </ul>
             {/* </nav> */}
