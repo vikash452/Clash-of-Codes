@@ -9,14 +9,31 @@ function DSA()
     
     const [topic,setTopic]=useState('greedy');
     const [difficulty,setDifficulty]=useState('easy')
+    const [questions,setQuestions]=useState([])
+    const [alreadySolved,setAlreadySolved]=useState([])
+    // var alreadySolved=[]
+    var user;
 
     useEffect(()=>{
         var elems=document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);
-    },[])
+        user=JSON.parse(localStorage.getItem('user'))
+        // console.log(user.dsaQuestion.includes('abc'))
+        // setAlreadySolved(user.dsaQuestion)
+        var temp=[]
+        user.dsaQuestion.forEach((qu)=>{
+            // console.log(qu._id)
+            temp.push(qu._id)
+        })
+
+        // console.log(alreadySolved)
+        setAlreadySolved(temp)
+
+    },[user])
 
     function GetQuestions()
     {
+        // console.log(alreadySolved)
         fetch(`/question/getQuestion?topic=${topic}&difficulty=${difficulty}`,{
             method:'GET',
             headers:{
@@ -26,7 +43,40 @@ function DSA()
         })
         .then(res=>res.json())
         .then((data)=>{
-            console.log(data)
+            // console.log(data)
+            setQuestions(data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    function MarkAsDone(questionID)
+    {
+        // console.log(questionID)
+        // console.log(alreadySolved.includes(questionID))
+        // console.log(alreadySolved)
+        
+        fetch('/question/markAsDone',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('jwt')
+            },
+            body:JSON.stringify({
+                id:questionID
+            })
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            // console.log(data)
+            // setQuestions(data)
+            if(!data.error)
+            {
+                localStorage.setItem('user',JSON.stringify(data))
+                user=data
+            }
+            
         })
         .catch((err)=>{
             console.log(err)
@@ -36,40 +86,92 @@ function DSA()
     return (
         <div>
             <h2>You will be able to practice DSA questions here</h2>
-            <div style={{display:'flex' , justifyContent:'space-evenly'}}>
-                <div style={{width:'600px'}}>
+            {/* <div style={{display:'flex' , justifyContent:'space-evenly'}}> */}
+                {/* <div style={{width:'600px'}}> */}
+                <div>
                     <h3>Here you can practice questions based on the topic</h3>
 
-                    <select  onChange={(e)=>{
-                        setTopic(e.target.value)
-                    }}>
-                        <option value={'greedy'}>Greedy</option>
-                        <option value={'dp'}>DP</option>
-                        <option value={'bitmasking'}>Bit Masking</option>
-                        <option value={'stacks'}>Stacks</option>
-                        <option value={'queues'}>Queues</option>
-                        <option value={'array'}>Arrays</option>
-                        <option value={'string'}>Strings</option>
-                        <option value={'sorting'}>Sorting</option>
-                        <option value={'graphs'}>Graphs</option>
-                        <option value={'backtracking'}>Backtracking</option>
-                    </select>
+                    <div style={{width:'400px', margin:'auto'}}>
+                        <select onChange={(e)=>{
+                            setTopic(e.target.value)
+                        }}>
+                            <option value={'greedy'}>Greedy</option>
+                            <option value={'dp'}>DP</option>
+                            <option value={'bitmasking'}>Bit Masking</option>
+                            <option value={'stacks'}>Stacks</option>
+                            <option value={'queues'}>Queues</option>
+                            <option value={'array'}>Arrays</option>
+                            <option value={'string'}>Strings</option>
+                            <option value={'sorting'}>Sorting</option>
+                            <option value={'graphs'}>Graphs</option>
+                            <option value={'backtracking'}>Backtracking</option>
+                        </select>
 
-                    <select onChange={(e)=>{
-                        setDifficulty(e.target.value)
-                    }}>
-                        <option value={'easy'}>Easy</option>
-                        <option value={'medium'}>Medium</option>
-                        <option value={'difficult'}>Difficult</option>
-                    </select>
-
+                        <select onChange={(e)=>{
+                            setDifficulty(e.target.value)
+                        }}>
+                            <option value={'easy'}>Easy</option>
+                            <option value={'medium'}>Medium</option>
+                            <option value={'difficult'}>Difficult</option>
+                        </select>
+                    </div>
+                    
+                    {/* style={{backgroundColor:'blueviolet'}} */}
                     <button className='btn btn-large' onClick={()=>{GetQuestions()}}>Get Questions</button>
 
+                        <br/>
+                        <br/>
+                        <br/>
+
+                    <div className='card' style={{color:'blueviolet', width:'1200px', margin:'auto'}}>
+                        <div className='card-content'>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td style={{width:'20%'}}><h3>S.No</h3></td>
+                                        <td style={{width:'50%'}}><h3>Question</h3></td>
+                                        <td style={{width:'30%'}}><h3>Status</h3></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        questions.map((item)=>{
+                                            var questionID=item._id
+                                            return (
+                                                // <div>
+                                            
+                                                    <tr key={questionID}>
+                                                        <td style={{width:'20%'}}><h5>1</h5></td>
+                                                        <td style={{width:'50%'}}><h5><a href={item.url} target='_blank'>{item.questionName}</a></h5></td>
+                                                        <td style={{width:'30%'}}>
+                                                            {
+                                                                alreadySolved.includes(item._id)
+                                                                ?
+                                                                <h5><span><i className='material-icons'>done</i>Already Done</span></h5>
+                                                                :
+                                                                <button onClick={()=>{
+                                                                    MarkAsDone(questionID)
+                                                                }} ><h5><i className='material-icons medium'>edit</i>Mark as Done</h5> </button>
+                                                                
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                // </div>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                                
+                            </table>
+                            Questions here
+                        </div>
+                    </div>
+
                 </div>
-                <div style={{width:'600px'}}>
+                {/* <div style={{width:'600px'}}>
                     <h3>Here you will have statistics</h3>
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
             
         </div>
     )
