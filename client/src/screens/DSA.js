@@ -8,11 +8,30 @@ function DSA()
 
     
     const [topic,setTopic]=useState('greedy');
+    const [difficulty,setDifficulty]=useState('easy')
 
     useEffect(()=>{
-        var elems=document.querySelector('select');
+        var elems=document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);
     },[])
+
+    function GetQuestions()
+    {
+        fetch(`/question/getQuestion?topic=${topic}&difficulty=${difficulty}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('jwt')
+            }
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            console.log(data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
 
     return (
         <div>
@@ -35,6 +54,16 @@ function DSA()
                         <option value={'graphs'}>Graphs</option>
                         <option value={'backtracking'}>Backtracking</option>
                     </select>
+
+                    <select onChange={(e)=>{
+                        setDifficulty(e.target.value)
+                    }}>
+                        <option value={'easy'}>Easy</option>
+                        <option value={'medium'}>Medium</option>
+                        <option value={'difficult'}>Difficult</option>
+                    </select>
+
+                    <button className='btn btn-large' onClick={()=>{GetQuestions()}}>Get Questions</button>
 
                 </div>
                 <div style={{width:'600px'}}>
