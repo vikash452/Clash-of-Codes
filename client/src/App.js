@@ -87,7 +87,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="OuterHeading"><div className="heading">WELCOME TO CLASH OF CODES</div></h1>
+      <h1 className="OuterHeading" style={{opacity:'0.55'}}><div className="heading">WELCOME TO CLASH OF CODES</div></h1>
       <BrowserRouter>
         <AllRouting />
       </BrowserRouter>

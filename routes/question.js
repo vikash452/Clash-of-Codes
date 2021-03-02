@@ -87,6 +87,31 @@ router.post('/question/markAsDone',passport.authenticate('jwt',{session:false}),
 
 })
 
+router.post('/question/undone',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    if(!req.user.dsaQuestion.includes(req.body.id))
+    {
+        return res.status(400).json({error:"question haven't done before"});
+    }
+
+    User.findByIdAndUpdate(req.user.id,{
+        $pull:{dsaQuestion:req.body.id}
+    },{
+        new:true
+    })
+    .populate({
+        path:'dsaQuestion',
+        model:'Question',
+        select:'questionName difficulty url topic'
+    })
+    .then((updatedUser)=>{
+        res.status(200).json(updatedUser)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+
+})
+
 router.get('/question/solvedQuestions',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const email=req.user.email;
     User.findOne({email})

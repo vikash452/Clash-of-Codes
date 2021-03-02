@@ -26,10 +26,11 @@ function DSA()
             temp.push(qu._id)
         })
 
+        // console.log(temp)
         // console.log(alreadySolved)
         setAlreadySolved(temp)
 
-    },[user])
+    },[])
 
     function GetQuestions()
     {
@@ -53,10 +54,6 @@ function DSA()
 
     function MarkAsDone(questionID)
     {
-        // console.log(questionID)
-        // console.log(alreadySolved.includes(questionID))
-        // console.log(alreadySolved)
-        
         fetch('/question/markAsDone',{
             method:'POST',
             headers:{
@@ -75,6 +72,56 @@ function DSA()
             {
                 localStorage.setItem('user',JSON.stringify(data))
                 user=data
+                var temp=alreadySolved; 
+                setAlreadySolved([
+                    ...alreadySolved,
+                    questionID
+                ])
+                // console.log(alreadySolved)
+            }
+            else
+            {
+                console.log(data)
+            }
+            
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    function Undone(questionID)
+    {
+        // console.log(alreadySolved)
+        fetch('/question/undone',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('jwt')
+            },
+            body:JSON.stringify({
+                id:questionID
+            })
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            // console.log(data)
+            // setQuestions(data)
+            if(!data.error)
+            {
+                localStorage.setItem('user',JSON.stringify(data))
+                user=data
+                // var temp=alreadySolved
+                var temp=alreadySolved.filter((item)=>{
+                    return item!=questionID
+                })
+                // temp.pull(questionID
+
+                setAlreadySolved(temp)
+            }
+            else
+            {
+                console.log(data)
             }
             
         })
@@ -123,7 +170,7 @@ function DSA()
                         <br/>
                         <br/>
 
-                    <div className='card' style={{color:'blueviolet', width:'1200px', margin:'auto'}}>
+                    <div className='card' style={{color:'blueviolet', width:'1200px', margin:'auto', opacity:'0.9'}}>
                         <div className='card-content'>
                             <table>
                                 <thead>
@@ -135,19 +182,22 @@ function DSA()
                                 </thead>
                                 <tbody>
                                     {
-                                        questions.map((item)=>{
+                                        questions.map((item,index)=>{
                                             var questionID=item._id
+                                            // console.log(index)
                                             return (
                                                 // <div>
                                             
                                                     <tr key={questionID}>
-                                                        <td style={{width:'20%'}}><h5>1</h5></td>
+                                                        <td style={{width:'20%'}}><h5>{index+1}</h5></td>
                                                         <td style={{width:'50%'}}><h5><a href={item.url} target='_blank'>{item.questionName}</a></h5></td>
                                                         <td style={{width:'30%'}}>
                                                             {
                                                                 alreadySolved.includes(item._id)
                                                                 ?
-                                                                <h5><span><i className='material-icons'>done</i>Already Done</span></h5>
+                                                                <h5><span><i className='material-icons'>done</i>Already Done <button onClick={()=>{
+                                                                    Undone(questionID)
+                                                                }}>Undone</button> </span></h5>
                                                                 :
                                                                 <button onClick={()=>{
                                                                     MarkAsDone(questionID)
@@ -163,7 +213,6 @@ function DSA()
                                 </tbody>
                                 
                             </table>
-                            Questions here
                         </div>
                     </div>
 
