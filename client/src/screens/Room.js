@@ -5,7 +5,10 @@ import M from 'materialize-css'
 function compare(a, b){
     return a.result.problem.rating - b.result.problem.rating;
 }
-function randomize(a, b) {return Math.random() - 0.5;}
+function randomize(a, b) 
+{
+    return Math.random() - 0.5;
+}
 function Room()
 {
     const history=useHistory();
@@ -206,7 +209,7 @@ function Room()
             console.log(questionList);
         })
     }
-    
+
     function Refresh()
     {
         fetch(`/contest/roomDetails/${roomId}`,{
@@ -374,7 +377,6 @@ function Room()
                                           </div>
                                           </a>  
                                       </div>
-                                  
                              )
                          })
                      }

@@ -11,7 +11,7 @@
 
 .parallax2 {
     background-image: url(../images/parallax2.jpg);
-    min-height:300px;
+    min-height: 300px;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
@@ -25,6 +25,7 @@
     padding-top: 100px;
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_LHX3o0ih7YZQIlMOOBVX72tM2ThMKlM6Jg&usqp=CAU');
     background-repeat: norepeat;
+    display: inline-block;
 }
 
 .sidenav.nav li h3 {
@@ -55,6 +56,10 @@
 
 .waves-effect.waves-light.btn-large Link {
     color: rgb(255, 255, 255);
+}
+
+.sidenav-trigger.show-on-large.right i:hover {
+    color: black;
 }
 
 Link .waves-effect.waves-light.btn-large {
@@ -88,24 +93,23 @@ Link .waves-effect.waves-light.btn-large {
     font-family: 'Nova Round', cursive;
     font-weight: bold;
     background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 200% auto;
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-	animation: hue 10s infinite linear;
-    
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hue 10s infinite linear;
     /* transform: translateY(-50%); */
     text-shadow: 0px 5px 10px black;
     font-size: 5rem;
-
 }
 
-.OuterHeading{
-    background-color:rgb(255, 255, 255) !important;
+.OuterHeading {
+    background-color: rgb(255, 255, 255) !important;
     margin: 0px;
     padding: 50px 10px 50px 10px;
     text-align: center;
 }
+
 @keyframes hue {
     from {
         -webkit-filter: hue-rotate(0deg);
@@ -152,4 +156,12 @@ input {
 
 .wave :hover {
     fill: orange;
+}
+
+.nav-wrapper>a>img {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    overflow: hidden;
+    border-radius: 90%;
 }
