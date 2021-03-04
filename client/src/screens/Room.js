@@ -450,7 +450,6 @@ function Room()
                                           </div>
                                           </a>  
                                       </div>
-                                  
                              )
                          })
                      }
