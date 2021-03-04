@@ -2,13 +2,16 @@ import {useEffect,useState} from 'react'
 import {Link, useHistory,useParams} from 'react-router-dom'
 import './design.css'
 import M from 'materialize-css'
+
 function compare(a, b){
     return a.result.problem.rating - b.result.problem.rating;
 }
+
 function randomize(a, b) {
     // var t=Math.random()
     return 1;
 }
+
 function Room()
 {
     const history=useHistory();
@@ -46,28 +49,9 @@ function Room()
             else
             {
                 setRoomName(data.name)
-                var temp=data.participants
-                var set=new Set();
-                participants.forEach((item)=>{
-                    if(!set.has(item._id))
-                    {
-                        set.add(item._id)
-                    }
-                })
+               
+                setParticipants(data.participants)
 
-                console.log(set)
-
-                var temp2=[]
-                
-                data.participants.forEach((item)=>{
-                    if(!set.has(item._id))
-                    {
-                        temp2.push(item)
-                    }
-                })
-                console.log(temp2)
-                setParticipants(participants=>[...participants,...temp2])
-                // participants=data.participants
                 if(user.email == data.adminEmail)
                     isAdmin=true
 
@@ -90,8 +74,6 @@ function Room()
                         classes: "#ce93d8 purple",
                         displayLength: 5000,
                     })
-                    // console.log(participants)
-                    // console.log(contestStarted)
                     StartContest(true)
                 }
                 else
@@ -164,20 +146,19 @@ function Room()
         setscores(userscores);
     }
 
-    function GetProblems()
+    function GetProblems(local_participants_array)
     {
         // let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502'];
         let handles=[]
-        participants.forEach(part=>{
+        local_participants_array.forEach(part=>{
             handles.push(part.codeforces)
         })
 
-        console.log(participants)
-        console.log(handles)
+        // console.log(local_participants_array)
+        // console.log(handles)
         let arr = [];
         let i = 0;
         let nmap = new Map();
-        // console.log(participants)
         handles.forEach(function(handle){
             fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
             .then(response => response.json())
@@ -189,7 +170,7 @@ function Room()
                 })
             })
         });
-        console.log(nmap);
+        // console.log(nmap);
         let k = 800;
         fetch(`https://codeforces.com/api/problemset.problems`)
         .then(response => response.json())
@@ -214,48 +195,12 @@ function Room()
             
             // setQ2(questionList)
             setQuestionList(arr)
-            console.log(questionList);
+            // console.log(questionList);
         })
     }
-
-    // useEffect(()=>{
-
-    //     Refresh()
-    //     // GetProblems()
-    //     // var now=new Date().getTime();
-    //         var deadline=new Date(endTime);
-
-    //         var remainTime=setInterval(()=>{
-
-    //             var now=new Date().getTime();
-    //             var diff=Math.floor((deadline-now)/1000);
-    //             var s=diff%60;
-    //             var min=Math.floor(diff/60) %60;
-    //             var hrs=Math.floor(diff/(60*60)) % 60;
-
-    //             if(hrs<0 && min<0 && s<0)
-    //             {
-    //                 M.toast({
-    //                     html:'Contest ended',
-    //                     classes: "#ce93d8 purple",
-    //                     displayLength: 5000,
-    //                 })
-    //                 clearInterval(remainTime)
-    //             }
-    //             else
-    //             {
-    //                 setSeconds(s)
-    //                 setMinutes(min)
-    //                 setHours(hrs)
-    //             }
-
-    //     },1000)
-        
-    // },[contestStarted])
     
     function Refresh(contestStarted)
     {
-        // console.log(contestStarted)
         fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
             headers:{
@@ -265,7 +210,6 @@ function Room()
         })
         .then(res=>res.json())
         .then((data)=>{
-            // console.log(data)
             if(data.error)
             {
                 alert('no such room exists')
@@ -273,37 +217,11 @@ function Room()
             }
             else
             {   
-                console.log('here')
                 setRoomName(data.name)
-               
-
-                var temp=data.participants
-                var set=new Set();
-                participants.forEach((item)=>{
-                    if(!set.has(item._id))
-                    {
-                        set.add(item._id)
-                    }
-                })
-
-                console.log(set)
-
-                var temp2=[]
-                
-                data.participants.forEach((item)=>{
-                    if(!set.has(item._id))
-                    {
-                        temp2.push(item)
-                    }
-                })
-                console.log(temp2)
-                setParticipants(participants=>[...participants,...temp2])
-
-                console.log(participants)
+                setParticipants(data.participants)
                 if(contestStarted)
                 {
-                    console.log('called')
-                    GetProblems();
+                    GetProblems(data.participants);
                 }
             }
             
@@ -346,7 +264,6 @@ function Room()
 
     function StartContest(contestStarted)
     {
-        console.log(contestStarted)
         Refresh(true)
         // GetProblems()
         // var now=new Date().getTime();
@@ -379,10 +296,6 @@ function Room()
         },1000)
     }
     
-    useEffect(()=>{
-        //console.log(questionList);
-        
-    },[questionList], [setscores])
 
     let i = -1;
     return (
@@ -430,10 +343,10 @@ function Room()
                              i += 1;
                              return (
                                  
-                                      <div className='card'>
+                                      <div className='card' key={question.name}>
                                           <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`} 
                                             target='_blank' 
-                                            key={question.name}
+                                            
                                             
                                             >
                                           <div className='card-content card-panel hoverable yellow' style={{height:'200px'}}>
