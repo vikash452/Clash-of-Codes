@@ -5,19 +5,19 @@ import M from 'materialize-css'
 function compare(a, b){
     return a.result.problem.rating - b.result.problem.rating;
 }
-function randomize(a, b) {return Math.random() - 0.5;}
+function randomize(a, b) {
+    // var t=Math.random()
+    return 1;
+}
 function Room()
 {
     const history=useHistory();
     const {roomId}=useParams();
-    // console.log(roomId)
-    // const [roomDetails,setRoomDetails]=useState()
     const [roomName,setRoomName]=useState('');
     const [participants,setParticipants]=useState([])
-    // let questionList=[]
+    // var participants=[]
     const [questionList,setQuestionList]=useState([])
     const [q2,setQ2]=useState([])
-    // const [startTime,setStartTime]=useState(Date)
     var startTime,endTime;
     const [hours,setHours]=useState(0);
     const [minutes,setMinutes]=useState(0);
@@ -38,7 +38,6 @@ function Room()
         })
         .then(res=>res.json())
         .then((data)=>{
-            // console.log(data)
             if(data.error)
             {
                 alert('no such room exists')
@@ -46,20 +45,34 @@ function Room()
             }
             else
             {
-                // setRoomDetails(data)
                 setRoomName(data.name)
-                setParticipants(data.participants)
-                // console.log(user.email)
-                // console.log(data.adminEmail)
+                var temp=data.participants
+                var set=new Set();
+                participants.forEach((item)=>{
+                    if(!set.has(item._id))
+                    {
+                        set.add(item._id)
+                    }
+                })
+
+                console.log(set)
+
+                var temp2=[]
+                
+                data.participants.forEach((item)=>{
+                    if(!set.has(item._id))
+                    {
+                        temp2.push(item)
+                    }
+                })
+                console.log(temp2)
+                setParticipants(participants=>[...participants,...temp2])
+                // participants=data.participants
                 if(user.email == data.adminEmail)
-                {
                     isAdmin=true
-                }
-                // console.log(isAdmin)
-                // setStartTime(new Date(data.startTiming).getTime())
+
                 startTime=new Date(data.startTiming).getTime()
                 endTime=new Date(data.endTiming).getTime()
-                // console.log(endTime)
 
                 var clock=setInterval(()=>{
                 var now=new Date().getTime();
@@ -70,16 +83,16 @@ function Room()
 
                 if(hrs<0 && min<0 && s<0)
                 {
-                    // console.log('t')
-                    // console.log(clock)
-                    StartContest()
-                    clearInterval(clock)
                     setContestStarted(true)
+                    clearInterval(clock)
                     M.toast({
                         html:'Contest started',
                         classes: "#ce93d8 purple",
                         displayLength: 5000,
                     })
+                    // console.log(participants)
+                    // console.log(contestStarted)
+                    StartContest(true)
                 }
                 else
                 {
@@ -99,6 +112,7 @@ function Room()
         
 
     },[])
+
     function Scoreboard(){
         let handles=[]
         let nmap = new Map()//for mapping rating to score
@@ -149,6 +163,7 @@ function Room()
         })
         setscores(userscores);
     }
+
     function GetProblems()
     {
         // let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502'];
@@ -156,35 +171,31 @@ function Room()
         participants.forEach(part=>{
             handles.push(part.codeforces)
         })
+
+        console.log(participants)
+        console.log(handles)
         let arr = [];
         let i = 0;
         let nmap = new Map();
         // console.log(participants)
         handles.forEach(function(handle){
-            // if(handle.length == 0)
-            // {
-            //     alert("Please set your codeforces handle");
-            //     history.push('/profile');
-            // }
             fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
             .then(response => response.json())
             .then(data =>{
-                //console.log(data);
                 data.result.forEach(function(element){
-                    //console.log(element.problem.contestId, element.problem.index);
                     let id = element.problem.contestId.toString() + element.problem.index;
                     if( element.verdict === "OK")
                         nmap.set( id, true);
                 })
             })
         });
-        // console.log(nmap);
+        console.log(nmap);
         let k = 800;
         fetch(`https://codeforces.com/api/problemset.problems`)
         .then(response => response.json())
         .then( data =>{
             //console.log(data);
-            data.result.problems.sort(randomize);
+            // data.result.problems.sort(randomize);
             //console.table(data.result.problems);
             data.result.problems.forEach(function(element){
                 let id = element.contestId.toString() + element.index;
@@ -194,7 +205,7 @@ function Room()
                         flag = false;
                     }
                 })
-                if( flag === true && k < 1400 && nmap.get(id) !== true && element.rating === k ){
+                if( flag === true && k < 1400 && nmap.get(id) != true && element.rating == k ){
                     arr[i] = element;
                     i += 1;
                     k += 100;
@@ -206,9 +217,45 @@ function Room()
             console.log(questionList);
         })
     }
+
+    // useEffect(()=>{
+
+    //     Refresh()
+    //     // GetProblems()
+    //     // var now=new Date().getTime();
+    //         var deadline=new Date(endTime);
+
+    //         var remainTime=setInterval(()=>{
+
+    //             var now=new Date().getTime();
+    //             var diff=Math.floor((deadline-now)/1000);
+    //             var s=diff%60;
+    //             var min=Math.floor(diff/60) %60;
+    //             var hrs=Math.floor(diff/(60*60)) % 60;
+
+    //             if(hrs<0 && min<0 && s<0)
+    //             {
+    //                 M.toast({
+    //                     html:'Contest ended',
+    //                     classes: "#ce93d8 purple",
+    //                     displayLength: 5000,
+    //                 })
+    //                 clearInterval(remainTime)
+    //             }
+    //             else
+    //             {
+    //                 setSeconds(s)
+    //                 setMinutes(min)
+    //                 setHours(hrs)
+    //             }
+
+    //     },1000)
+        
+    // },[contestStarted])
     
-    function Refresh()
+    function Refresh(contestStarted)
     {
+        // console.log(contestStarted)
         fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
             headers:{
@@ -225,10 +272,39 @@ function Room()
                 history.push('/home')
             }
             else
-            {
-                // setRoomDetails(data)
+            {   
+                console.log('here')
                 setRoomName(data.name)
-                setParticipants(data.participants)
+               
+
+                var temp=data.participants
+                var set=new Set();
+                participants.forEach((item)=>{
+                    if(!set.has(item._id))
+                    {
+                        set.add(item._id)
+                    }
+                })
+
+                console.log(set)
+
+                var temp2=[]
+                
+                data.participants.forEach((item)=>{
+                    if(!set.has(item._id))
+                    {
+                        temp2.push(item)
+                    }
+                })
+                console.log(temp2)
+                setParticipants(participants=>[...participants,...temp2])
+
+                console.log(participants)
+                if(contestStarted)
+                {
+                    console.log('called')
+                    GetProblems();
+                }
             }
             
         })
@@ -268,11 +344,11 @@ function Room()
         })
     }
 
-
-    function StartContest()
+    function StartContest(contestStarted)
     {
-        Refresh()
-        GetProblems()
+        console.log(contestStarted)
+        Refresh(true)
+        // GetProblems()
         // var now=new Date().getTime();
             var deadline=new Date(endTime);
 
@@ -323,7 +399,7 @@ function Room()
             }
             <h3>Total participants: {participants.length}</h3>
             <br/>
-            <button className='waves-effect waves-light btn-large' onClick={()=>{Refresh()}} style={{margin:'30px'}}>Refresh</button>
+            <button className='waves-effect waves-light btn-large' onClick={()=>{Refresh(false)}} style={{margin:'30px'}}>Refresh</button>
             <button className='waves-effect waves-light btn-large' onClick={()=>LeaveRoom()} style={{margin:'30px'}}>Leave Room</button>
             {/* <input type></input> */}
             {/* <button className='btn-large' onClick={()=>StartContest()} style={{margin:'20px'}}>Start Contest</button> */}
@@ -361,7 +437,7 @@ function Room()
                                             
                                             >
                                           <div className='card-content card-panel hoverable yellow' style={{height:'200px'}}>
-                                              <span className='card-title'><span class="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
+                                              <span className='card-title'><span className="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
                                               
                                               {/* {
                                                   question.tags.map((tag)=>{
