@@ -14,8 +14,13 @@ function Navbar() {
         <div>
             {/* <nav> */}
             <nav>
+<<<<<<< HEAD
                 <div class="nav-wrapper">
                     <Link to="/home" class="brand-logo center">
+=======
+                <div className="nav-wrapper">
+                    <a href="#" className="brand-logo center">
+>>>>>>> cf313f509bb9e874d3be25627d4abfe2d1c2a594
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRD9watd98GuxuplYkqW5OizlYfQa_Iy4_3g&usqp=CAU"></img>
                     </Link>
                     <a data-target="slide-out" className="sidenav-trigger show-on-large right" style={{ cursor: 'pointer' }}>

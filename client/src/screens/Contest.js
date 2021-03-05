@@ -115,7 +115,7 @@ function Contest()
                 /></p>
                 
                 <br/>
-                <button class="waves-effect waves-light btn-large" style={{marginTop: '5px', marginBottom : '7px'}}onClick={()=>{CreateRoom()}}>Create</button>
+                <button className="waves-effect waves-light btn-large" style={{marginTop: '5px', marginBottom : '7px'}}onClick={()=>{CreateRoom()}}>Create</button>
             </div>
             <br/><br/>
             <h3>OR</h3>
@@ -127,7 +127,7 @@ function Contest()
                     setJoinRoom(e.target.value)
                 }}
                 />
-                <button class="waves-effect waves-light btn-large" style={{marginLeft: '10px'}} onClick={()=>{Join()}}>Join</button>
+                <button className="waves-effect waves-light btn-large" style={{marginLeft: '10px'}} onClick={()=>{Join()}}>Join</button>
                 <br></br>
                 <br></br>
             </div>

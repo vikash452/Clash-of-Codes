@@ -2,25 +2,25 @@ import {useEffect,useState} from 'react'
 import {Link, useHistory,useParams} from 'react-router-dom'
 import './design.css'
 import M from 'materialize-css'
+
 function compare(a, b){
     return a.result.problem.rating - b.result.problem.rating;
 }
-function randomize(a, b) 
-{
-    return Math.random() - 0.5;
+
+function randomize(a, b) {
+    // var t=Math.random()
+    return 1;
 }
+
 function Room()
 {
     const history=useHistory();
     const {roomId}=useParams();
-    // console.log(roomId)
-    // const [roomDetails,setRoomDetails]=useState()
     const [roomName,setRoomName]=useState('');
     const [participants,setParticipants]=useState([])
-    // let questionList=[]
+    // var participants=[]
     const [questionList,setQuestionList]=useState([])
     const [q2,setQ2]=useState([])
-    // const [startTime,setStartTime]=useState(Date)
     var startTime,endTime;
     const [hours,setHours]=useState(0);
     const [minutes,setMinutes]=useState(0);
@@ -41,7 +41,6 @@ function Room()
         })
         .then(res=>res.json())
         .then((data)=>{
-            // console.log(data)
             if(data.error)
             {
                 alert('no such room exists')
@@ -49,20 +48,15 @@ function Room()
             }
             else
             {
-                // setRoomDetails(data)
                 setRoomName(data.name)
+               
                 setParticipants(data.participants)
-                // console.log(user.email)
-                // console.log(data.adminEmail)
+
                 if(user.email == data.adminEmail)
-                {
                     isAdmin=true
-                }
-                // console.log(isAdmin)
-                // setStartTime(new Date(data.startTiming).getTime())
+
                 startTime=new Date(data.startTiming).getTime()
                 endTime=new Date(data.endTiming).getTime()
-                // console.log(endTime)
 
                 var clock=setInterval(()=>{
                 var now=new Date().getTime();
@@ -73,16 +67,14 @@ function Room()
 
                 if(hrs<0 && min<0 && s<0)
                 {
-                    // console.log('t')
-                    // console.log(clock)
-                    StartContest()
-                    clearInterval(clock)
                     setContestStarted(true)
+                    clearInterval(clock)
                     M.toast({
                         html:'Contest started',
                         classes: "#ce93d8 purple",
                         displayLength: 5000,
                     })
+                    StartContest(true)
                 }
                 else
                 {
@@ -102,7 +94,11 @@ function Room()
         
 
     },[])
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> cf313f509bb9e874d3be25627d4abfe2d1c2a594
     function Scoreboard(){
         let handles=[]
         let nmap = new Map()//for mapping rating to score
@@ -153,42 +149,42 @@ function Room()
         })
         setscores(userscores);
     }
-    function GetProblems()
+
+    function FillHandles(index,nmap,handles,totalParticipants)
     {
-        // let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502'];
-        let handles=[]
-        participants.forEach(part=>{
-            handles.push(part.codeforces)
-        })
-        let arr = [];
-        let i = 0;
-        let nmap = new Map();
-        // console.log(participants)
-        handles.forEach(function(handle){
-            // if(handle.length == 0)
-            // {
-            //     alert("Please set your codeforces handle");
-            //     history.push('/profile');
-            // }
-            fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
-            .then(response => response.json())
-            .then(data =>{
-                //console.log(data);
-                data.result.forEach(function(element){
-                    //console.log(element.problem.contestId, element.problem.index);
-                    let id = element.problem.contestId.toString() + element.problem.index;
-                    if( element.verdict === "OK")
-                        nmap.set( id, true);
-                })
+        if(index >= totalParticipants)
+        {
+            GetProblems(nmap)
+            return;
+        }
+
+        // console.log(index)
+        // console.log('run')
+        fetch(`https://codeforces.com/api/user.status?handle=${handles[index]}`)
+        .then(response => response.json())
+        .then(data =>{
+            data.result.forEach(function(element){
+                let id = element.problem.contestId.toString() + element.problem.index;
+                if( element.verdict === "OK")
+                    nmap.set( id, true);
             })
-        });
-        // console.log(nmap);
+                // console.log('ended')
+
+            FillHandles(index+1,nmap,handles,totalParticipants);
+
+        })
+    }
+
+    function GetProblems(nmap)
+    {   
+        // console.log('get problems called')
+        let arr = [];
         let k = 800;
         fetch(`https://codeforces.com/api/problemset.problems`)
         .then(response => response.json())
         .then( data =>{
             //console.log(data);
-            data.result.problems.sort(randomize);
+            // data.result.problems.sort(randomize);
             //console.table(data.result.problems);
             data.result.problems.forEach(function(element){
                 let id = element.contestId.toString() + element.index;
@@ -198,7 +194,7 @@ function Room()
                         flag = false;
                     }
                 })
-                if( flag === true && k < 1400 && nmap.get(id) !== true && element.rating === k ){
+                if( flag === true && k < 1400 && nmap.get(id) != true && element.rating == k ){
                     arr[i] = element;
                     i += 1;
                     k += 100;
@@ -207,11 +203,29 @@ function Room()
             
             // setQ2(questionList)
             setQuestionList(arr)
-            console.log(questionList);
+            console.log(new Date())
+            // console.log(questionList);
         })
     }
 
-    function Refresh()
+    function FilterProblems(participants_array)
+    {
+        let i = 0;
+        let nmap = new Map();
+        // let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502', 'DLN','mexomerf','jainanshika193'];
+        let handles=[]
+        participants_array.forEach((part)=>{
+            handles.push(part.codeforces)
+        })
+        console.log(handles)
+
+        var totalParticipants=handles.length;
+
+        FillHandles(0,nmap,handles,totalParticipants)
+
+    }
+    
+    function Refresh(contestStarted)
     {
         fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
@@ -222,17 +236,21 @@ function Room()
         })
         .then(res=>res.json())
         .then((data)=>{
-            // console.log(data)
             if(data.error)
             {
                 alert('no such room exists')
                 history.push('/home')
             }
             else
-            {
-                // setRoomDetails(data)
+            {   
                 setRoomName(data.name)
                 setParticipants(data.participants)
+                if(contestStarted)
+                {
+                    // GetProblems(data.participants);
+                    console.log(new Date())
+                    FilterProblems(data.participants)
+                }
             }
             
         })
@@ -272,11 +290,10 @@ function Room()
         })
     }
 
-
-    function StartContest()
+    function StartContest(contestStarted)
     {
-        Refresh()
-        GetProblems()
+        Refresh(true)
+        // GetProblems()
         // var now=new Date().getTime();
             var deadline=new Date(endTime);
 
@@ -307,10 +324,6 @@ function Room()
         },1000)
     }
     
-    useEffect(()=>{
-        //console.log(questionList);
-        
-    },[questionList], [setscores])
 
     let i = -1;
     return (
@@ -327,7 +340,7 @@ function Room()
             }
             <h3>Total participants: {participants.length}</h3>
             <br/>
-            <button className='waves-effect waves-light btn-large' onClick={()=>{Refresh()}} style={{margin:'30px'}}>Refresh</button>
+            <button className='waves-effect waves-light btn-large' onClick={()=>{Refresh(false)}} style={{margin:'30px'}}>Refresh</button>
             <button className='waves-effect waves-light btn-large' onClick={()=>LeaveRoom()} style={{margin:'30px'}}>Leave Room</button>
             {/* <input type></input> */}
             {/* <button className='btn-large' onClick={()=>StartContest()} style={{margin:'20px'}}>Start Contest</button> */}
@@ -358,14 +371,14 @@ function Room()
                              i += 1;
                              return (
                                  
-                                      <div className='card'>
+                                      <div className='card' key={question.name}>
                                           <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`} 
                                             target='_blank' 
-                                            key={question.name}
+                                            
                                             
                                             >
                                           <div className='card-content card-panel hoverable yellow' style={{height:'200px'}}>
-                                              <span className='card-title'><span class="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
+                                              <span className='card-title'><span className="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
                                               
                                               {/* {
                                                   question.tags.map((tag)=>{

@@ -6,32 +6,16 @@ require('dotenv').config();
 const jwtStrategy=require('passport-jwt').Strategy;
 const extractStrategy=require('passport-jwt').ExtractJwt;
 const passport=require('passport')
-// const User=require('../database models/userModel')
 const PORT = process.env.PORT || 5000 ;
 
-// mongoose.connect('mongodb://localhost:27017/ClashOfCodes',{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} );
-mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} )
+mongoose.connect('mongodb://localhost:27017/ClashOfCodes',{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} );
+// mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true,useUnifiedTopology:true,useFindAndModify:false} )
 mongoose.connection.on('connected',()=>{
     console.log('connected to database')
 })
 mongoose.connection.on('error',()=>{
     console.log('failed to connect to database')
 })
-
-// var options={
-//     jwtFromRequest:extractStrategy.fromAuthHeaderAsBearerToken(),
-//     secretOrKey:"secret"
-// }
-
-// passport.use(new jwtStrategy(options,(jwt_payload,done)=>{
-//     User.findOne({email:jwt_payload.email})
-//     .then((foundUser)=>{
-//         return done(null,foundUser)
-//     })
-//     .catch((err)=>{
-//         return done(err,false)
-//     })
-// }))
 
 app.use(bodyParser.json())
 app.use(require('./routes/authentication'))
@@ -46,7 +30,6 @@ if(process.env.NODE_ENV=='production')
     const path=require('path')
     app.get('*',(req,res)=>{
         res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-        // res.sendFile(__dirname + '/client/build/index.html')
     })
 }
 

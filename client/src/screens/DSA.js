@@ -184,10 +184,7 @@ function DSA()
                                     {
                                         questions.map((item,index)=>{
                                             var questionID=item._id
-                                            // console.log(index)
                                             return (
-                                                // <div>
-                                            
                                                     <tr key={questionID}>
                                                         <td style={{width:'20%'}}><h5>{index+1}</h5></td>
                                                         <td style={{width:'50%'}}><h5><a href={item.url} target='_blank'>{item.questionName}</a></h5></td>
@@ -206,7 +203,6 @@ function DSA()
                                                             }
                                                         </td>
                                                     </tr>
-                                                // </div>
                                             )
                                         })
                                     }
