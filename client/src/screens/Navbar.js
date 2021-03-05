@@ -14,6 +14,7 @@ function Navbar() {
         <div>
             {/* <nav> */}
             <nav>
+
                 <div className="nav-wrapper">
                     <a href="#" className="brand-logo center">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRD9watd98GuxuplYkqW5OizlYfQa_Iy4_3g&usqp=CAU"></img>
