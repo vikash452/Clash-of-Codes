@@ -102,6 +102,7 @@ function Room()
         
 
     },[])
+    
     function Scoreboard(){
         let handles=[]
         let nmap = new Map()//for mapping rating to score

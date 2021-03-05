@@ -15,9 +15,9 @@ function Navbar() {
             {/* <nav> */}
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo center">
+                    <Link to="/home" class="brand-logo center">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRD9watd98GuxuplYkqW5OizlYfQa_Iy4_3g&usqp=CAU"></img>
-                    </a>
+                    </Link>
                     <a data-target="slide-out" className="sidenav-trigger show-on-large right" style={{ cursor: 'pointer' }}>
                         <i className="material-icons" style={{ fontSize: '80px', marginRight: '0px', color: 'teal' }}>menu</i>
                     </a>
