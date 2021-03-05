@@ -3,6 +3,7 @@ import {Link, useHistory,useParams} from 'react-router-dom'
 import './design.css'
 import M from 'materialize-css'
 
+
 function compare(a, b){
     return a.result.problem.rating - b.result.problem.rating;
 }
@@ -14,6 +15,8 @@ function randomize(a, b) {
 
 function Room()
 {
+    
+
     const history=useHistory();
     const {roomId}=useParams();
     const [roomName,setRoomName]=useState('');
@@ -27,6 +30,7 @@ function Room()
     const [seconds,setSeconds]=useState(0);
     const [contestStarted,setContestStarted]=useState(false)
     const [scores, setscores] = useState([]);
+    const [questions_loaded_percentage,setQuestionsPercentage]=useState(0.0)
     var isAdmin=false;
     var user;
 
@@ -154,8 +158,9 @@ function Room()
             return;
         }
 
-        // console.log(index)
-        // console.log('run')
+        var limit=Math.min(totalParticipants-index,4);
+        var calls=0;
+
         fetch(`https://codeforces.com/api/user.status?handle=${handles[index]}`)
         .then(response => response.json())
         .then(data =>{
@@ -164,11 +169,14 @@ function Room()
                 if( element.verdict === "OK")
                     nmap.set( id, true);
             })
-                // console.log('ended')
-
-            FillHandles(index+1,nmap,handles,totalParticipants);
-
+            ++index
+            setQuestionsPercentage(Math.trunc((index/totalParticipants)*100))
+            FillHandles(index,nmap,handles,totalParticipants);
         })
+        // setInterval(()=>{
+
+        // },21)
+
     }
 
     function GetProblems(nmap)
@@ -199,7 +207,7 @@ function Room()
             
             // setQ2(questionList)
             setQuestionList(arr)
-            console.log(new Date())
+            console.log(new Date().toUTCString())
             // console.log(questionList);
         })
     }
@@ -244,7 +252,7 @@ function Room()
                 if(contestStarted)
                 {
                     // GetProblems(data.participants);
-                    console.log(new Date())
+                    console.log(new Date().toUTCString())
                     FilterProblems(data.participants)
                 }
             }
@@ -355,9 +363,21 @@ function Room()
                 }
                 <br></br>
                 <br></br>
+            </div>
                 <h2> Problems </h2>
                 <br></br>
-            </div>
+            
+            {
+                contestStarted
+                ?
+                    questionList.length == 0
+                    ?
+                    <h1>Loading questions {questions_loaded_percentage} %</h1>
+                    :
+                    <></>
+                :
+                <></>
+            }
            
             <div className='row' >
                      {
