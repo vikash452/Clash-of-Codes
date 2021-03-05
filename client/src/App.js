@@ -86,7 +86,7 @@ function AllRouting() {
 function App() {
 
   return (
-    <div className="App">
+    <div className="App" style={{display:'flex', flexDirection:'column'}}>
       <h1 className="OuterHeading" style={{ opacity: '0.55' }}>
         <div className="heading">WELCOME TO CLASH OF CODES</div></h1>
       <BrowserRouter>

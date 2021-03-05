@@ -270,7 +270,23 @@ router.post('/user/updatePassword',(req,res)=>{
 })
 
 router.get('/user/logout',(req,res)=>{
-    req.logOut();
+    // console.log(req.session)
+    // console.log(req.cookies)
+    // console.log(res.clearCookie('jwt'))
+    // res.clearCookie()
+    req.logOut()
+    // req.logOut()
+    
+    // req.session.destroy((err)=>{
+    //     if(!err)
+    //     {
+    //         res.clearCookie('connect.sid',{path:'/'}).json({status:'successfully logged out'})
+    //     }
+    //     else
+    //     {
+    //         console.log(err)
+    //     }
+    // })
     res.json({message:"logged out successfully"});
 })
 

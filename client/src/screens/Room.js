@@ -146,31 +146,35 @@ function Room()
         setscores(userscores);
     }
 
-    function GetProblems(local_participants_array)
+    function FillHandles(index,nmap,handles,totalParticipants)
     {
-        // let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502'];
-        let handles=[]
-        local_participants_array.forEach(part=>{
-            handles.push(part.codeforces)
-        })
+        if(index >= totalParticipants)
+        {
+            GetProblems(nmap)
+            return;
+        }
 
-        // console.log(local_participants_array)
-        // console.log(handles)
-        let arr = [];
-        let i = 0;
-        let nmap = new Map();
-        handles.forEach(function(handle){
-            fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
-            .then(response => response.json())
-            .then(data =>{
-                data.result.forEach(function(element){
-                    let id = element.problem.contestId.toString() + element.problem.index;
-                    if( element.verdict === "OK")
-                        nmap.set( id, true);
-                })
+        // console.log(index)
+        // console.log('run')
+        fetch(`https://codeforces.com/api/user.status?handle=${handles[index]}`)
+        .then(response => response.json())
+        .then(data =>{
+            data.result.forEach(function(element){
+                let id = element.problem.contestId.toString() + element.problem.index;
+                if( element.verdict === "OK")
+                    nmap.set( id, true);
             })
-        });
-        // console.log(nmap);
+                // console.log('ended')
+
+            FillHandles(index+1,nmap,handles,totalParticipants);
+
+        })
+    }
+
+    function GetProblems(nmap)
+    {   
+        // console.log('get problems called')
+        let arr = [];
         let k = 800;
         fetch(`https://codeforces.com/api/problemset.problems`)
         .then(response => response.json())
@@ -195,8 +199,26 @@ function Room()
             
             // setQ2(questionList)
             setQuestionList(arr)
+            console.log(new Date())
             // console.log(questionList);
         })
+    }
+
+    function FilterProblems(participants_array)
+    {
+        let i = 0;
+        let nmap = new Map();
+        // let handles = ['umanggupta001122', 'Marcos_0901', 'Lord_Invincible', 'shantys502', 'DLN','mexomerf','jainanshika193'];
+        let handles=[]
+        participants_array.forEach((part)=>{
+            handles.push(part.codeforces)
+        })
+        console.log(handles)
+
+        var totalParticipants=handles.length;
+
+        FillHandles(0,nmap,handles,totalParticipants)
+
     }
     
     function Refresh(contestStarted)
@@ -221,7 +243,9 @@ function Room()
                 setParticipants(data.participants)
                 if(contestStarted)
                 {
-                    GetProblems(data.participants);
+                    // GetProblems(data.participants);
+                    console.log(new Date())
+                    FilterProblems(data.participants)
                 }
             }
             
