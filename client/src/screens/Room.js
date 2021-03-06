@@ -31,8 +31,12 @@ function Room()
     const [contestStarted,setContestStarted]=useState(false)
     const [scores, setscores] = useState([]);
     const [questions_loaded_percentage,setQuestionsPercentage]=useState(0.0)
+    // const [resultCard,setResultCard]=useState(Array.from({1: 5},()=> Array.from({1: 5}, () => null)));
+    // var resultCard=[[]];
+    const [resultCard,setResultCard]=useState(new Array(5))
     var isAdmin=false;
     var user;
+
 
     useEffect(()=>{
         user=JSON.parse(localStorage.getItem('user'))
@@ -100,54 +104,120 @@ function Room()
     },[])
 
     function Scoreboard(){
-        let handles=[]
-        let nmap = new Map()//for mapping rating to score
-        let userscores = []//for mapping user and his/her score
-        let i = 0;
-        nmap.set(800, 500);
-        nmap.set(900, 1000);
-        nmap.set(1000, 1500);
-        nmap.set(1100, 2000);
-        nmap.set(1200, 2500);
-        nmap.set(1300, 3000);
+
+        var total_questions=5;
+        var total_participants=participants.length;
+        var score_card=new Array(total_participants);
+        for(var i=0; i<total_participants; ++i)
+        {
+            score_card[i]=new Array(total_questions);      // 5 because we are giving 5 questions
+            for(var j=0; j<total_questions; ++j)
+            {
+                score_card[i][j]=0;
+            }
+        }
+
+        var handles=[];
+
         participants.forEach(part=>{
             handles.push(part.codeforces)
         })
-        handles.forEach(function(handle){
-            if(handle.length == 0 ){
-                alert("")
-            }
-            let score = 0;
-            fetch(`https://codeforces.com/api/user.status?handle=${handle}&from=1&count=30`)
-            .then(response=> response.json())
-            .then(data =>{
-                let arr = []
-                let i = 0;
-                data.result.forEach(function(submission){//loop to check the submissions of user
-                    let id = submission.problem.contestId.toString() + submission.problem.index;
-                    let obj;
-                    questionList.forEach(function(question){//loop to check if the user has solved any of the problems given in the contest
-                        let id2 =  question.contestId.toString() + question.index;
-                        if(id === id2 && submission.verdict === "OK"){
-                            obj = question;
-                            return;
-                        }
-                    })
-                    if(typeof(obj) === undefined )
-                        return;
-                    arr[i] = obj;//appending all the problems that are successfully solved
-                    i += 1;
-                })
-                
-                arr.forEach(function(submission){//traversing the solved problems and calculating the user's score
-                    score += nmap[submission.rating] 
-                })
-            })
-            //mapping the user to his/her score
-            userscores[i]= { handle : score };
-            i += 1;
+
+        var questions_map=new Map();
+        questionList.forEach((ques,index)=>{
+            var id=ques.contestId.toString() + ques.index
+            questions_map.set(id,index);
         })
-        setscores(userscores);
+
+        console.log(questions_map)
+        FillHandles(0)
+
+        function FillHandles(index)
+        {
+            if(index >= total_participants)
+            {
+                setResultCard(score_card)
+                // // resultCard=score_card
+                // console.log(resultCard)
+                // console.log('stopping')
+                return;
+            }
+
+            fetch(`https://codeforces.com/api/user.status?handle=${handles[index]}&from=1&count=30`)
+            .then(res=>res.json())
+            .then((data)=>{
+                data.result.forEach((item)=>{
+                    var id=item.problem.contestId.toString() + item.problem.index;
+                    if(questions_map.has(id))
+                    {
+                        var questionIndex=questions_map.get(id);
+                        console.log(questionIndex)
+                        if(item.verdict === 'OK')
+                        {
+                            score_card[index][questionIndex]=1;
+                        }
+                        else
+                        {
+                            score_card[index][questionIndex]=2;
+                        }
+                    }
+                    
+                })
+                FillHandles(index+1)
+            })
+
+        }
+
+        console.log(score_card)
+
+        // let handles=[]
+        // let nmap = new Map()//for mapping rating to score
+        // let userscores = []//for mapping user and his/her score
+        // let i = 0;
+        // nmap.set(800, 500);
+        // nmap.set(900, 1000);
+        // nmap.set(1000, 1500);
+        // nmap.set(1100, 2000);
+        // nmap.set(1200, 2500);
+        // nmap.set(1300, 3000);
+        // participants.forEach(part=>{
+        //     handles.push(part.codeforces)
+        // })
+        // handles.forEach(function(handle){
+        //     if(handle.length == 0 ){
+        //         alert("")
+        //     }
+        //     let score = 0;
+        //     fetch(`https://codeforces.com/api/user.status?handle=${handle}&from=1&count=30`)
+        //     .then(response=> response.json())
+        //     .then(data =>{
+        //         let arr = []
+        //         let i = 0;
+        //         data.result.forEach(function(submission){//loop to check the submissions of user
+        //             let id = submission.problem.contestId.toString() + submission.problem.index;
+        //             let obj;
+        //             questionList.forEach(function(question){//loop to check if the user has solved any of the problems given in the contest
+        //                 let id2 =  question.contestId.toString() + question.index;
+        //                 if(id === id2 && submission.verdict === "OK"){
+        //                     obj = question;
+        //                     return;
+        //                 }
+        //             })
+        //             if(typeof(obj) === undefined )
+        //                 return;
+        //             arr[i] = obj;//appending all the problems that are successfully solved
+        //             i += 1;
+        //         })
+                
+        //         arr.forEach(function(submission){//traversing the solved problems and calculating the user's score
+        //             score += nmap[submission.rating] 
+        //         })
+        //     })
+        //     //mapping the user to his/her score
+        //     userscores[i]= { handle : score };
+        //     i += 1;
+        // })
+        // setscores(userscores);
     }
 
     function FillHandles(index,nmap,handles,totalParticipants)
@@ -415,6 +485,31 @@ function Room()
                  
            </div>
                 
+            {/* Scoreboard */}
+            <div>
+                <table>
+                    {
+                        resultCard.forEach((item,ide2)=>{
+                            // console.log(resultCard)
+                            // console.log(resultCard.length)
+                            // console.log('2=',ide2)
+                            return (
+                                <tr>
+                                    {
+                                        item.forEach((scores,index)=>{
+                                            // console.log('index=',index)
+                                            return (
+                                                <td>{scores}</td>
+                                            )
+                                        })
+                                    }
+                                </tr>
+                            )
+                        })
+                    }
+                </table>
+                <button onClick={()=>{Scoreboard()}}>Scoreboard</button>
+            </div>
         </div>
     )
 }
