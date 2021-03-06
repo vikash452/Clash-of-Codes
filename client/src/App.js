@@ -15,6 +15,9 @@ import Codeforces from './screens/Codeforces'
 import DSA from './screens/DSA'
 import './screens/design.css'
 import img from './images/img3.jpg'
+import LandingScreen from './screens/Landing'
+import Header from './screens/Header'
+import Footer from './screens/Footer'
 
 
 function AllRouting() {
@@ -44,8 +47,13 @@ function AllRouting() {
   return (
     <div>
       <Route exact path='/home' >
+        <Header />
         <Navbar />
         <Home />
+        <Footer/>
+      </Route>
+      <Route exact path='/landing' >
+        <LandingScreen />
       </Route>
       <Route exact path='/signin'>
         <Signin />
@@ -54,24 +62,34 @@ function AllRouting() {
         <SignUp />
       </Route>
       <Route exact path='/profile'>
+        <Header />
         <Navbar />
         <Profile />
+        <Footer/>
       </Route>
       <Route exact path='/codeforces'>
+        <Header />
         <Navbar />
         <Codeforces />
+        <Footer/>
       </Route>
       <Route exact path='/contest'>
+        <Header />
         <Navbar />
         <Contest />
+        <Footer/>
       </Route>
       <Route exact path='/dsa'>
+        <Header />
         <Navbar />
         <DSA />
+        <Footer/>
       </Route>
       <Route exact path='/room/:roomId'>
+        <Header />
         <Navbar />
         <Room />
+        <Footer/>
       </Route>
       <Route exact path='/forgotPassword'>
         <ForgotPassword />
@@ -88,20 +106,9 @@ function App() {
   return (
 
 <div className="App" style={{display:'flex', flexDirection:'column'}}>
-      <h1 className="OuterHeading" style={{ opacity: '0.55' }}>
-        <div className="heading">WELCOME TO CLASH OF CODES</div></h1>
       <BrowserRouter>
         <AllRouting />
       </BrowserRouter>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="5%" stopColor="green" />
-          <stop offset="95%" stopColor="yellow" />
-        </linearGradient>
-        <path fill="url(#Gradient2)" fillOpacity="1"
-          d="M0,224L48,234.7C96,245,192,267,288,272C384,277,480,267,576,256C672,245,768,235,864,240C960,245,1056,267,1152,272C1248,277,1344,267,1392,261.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-        </path>
-      </svg>
     </div>
   );
 }

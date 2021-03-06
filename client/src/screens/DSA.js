@@ -166,18 +166,17 @@ function DSA()
                     {/* style={{backgroundColor:'blueviolet'}} */}
                     <button className='btn btn-large' onClick={()=>{GetQuestions()}}>Get Questions</button>
 
-                        <br/>
-                        <br/>
-                        <br/>
+                    <br/>
+                    <br/>
+                    <br/>
 
-                    <div className='card' style={{color:'blueviolet', width:'1200px', margin:'auto', opacity:'0.9'}}>
-                        <div className='card-content'>
-                            <table>
+                    <div style={{backgroundColor:'whitesmoke',color:'blueviolet',marginLeft:'10%',marginRight:'10%',opacity:'0.8' , boxShadow:'5px 5px 15px black'}}>
+                    <table>
                                 <thead>
                                     <tr>
-                                        <td style={{width:'20%'}}><h3>S.No</h3></td>
-                                        <td style={{width:'50%'}}><h3>Question</h3></td>
-                                        <td style={{width:'30%'}}><h3>Status</h3></td>
+                                        <td style={{width:'20%'}}><h4>S.No</h4></td>
+                                        <td style={{width:'50%'}}><h4>Question</h4></td>
+                                        <td style={{width:'30%'}}><h4>Status</h4></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -209,8 +208,8 @@ function DSA()
                                 </tbody>
                                 
                             </table>
-                        </div>
                     </div>
+                    
 
                 </div>
                 {/* <div style={{width:'600px'}}>

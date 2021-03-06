@@ -3,6 +3,7 @@ const passport = require('passport');
 const router=express.Router();
 const Question=require('../database models/questions')
 const User=require('../database models/userModel')
+const nodemailer=require('nodemailer')
 
 router.put('/user/addFriend/:friendEmail',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const friendEmail=req.params.friendEmail;
@@ -65,6 +66,37 @@ router.put('/user/removeFriend/:friendEmail',passport.authenticate('jwt',{sessio
             console.log(err)
         })
     })
+})
+
+router.post('/user/submitQuery',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    const userQuery=req.body.userQuery;
+    var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: process.env.GMAIL_ID,
+          pass: process.env.GMAIL_PASSWORD,
+        },
+    });
+
+    var mailOptions = {
+        from: req.user.email,
+        to: process.env.GMAIL_ID,
+        subject: "User query/feedback",
+        html: `
+        Received from : ${req.user.name} , ${req.user.email}
+        Query/Feedback : ${userQuery}
+        `,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+          res.json({error:'Error!! Query/Feedback not submitted'})
+        } else {
+          console.log("Email sent: " + info.response);
+        return res.status(200).json({message:"Query submitted successfully"})
+        }
+    });
 })
 
 module.exports=router;
