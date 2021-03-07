@@ -15,7 +15,7 @@ function randomize(a, b) {
 
 function Room()
 {
-    
+    var temp_2d=new Array
 
     const history=useHistory();
     const {roomId}=useParams();
@@ -31,9 +31,9 @@ function Room()
     const [contestStarted,setContestStarted]=useState(false)
     const [scores, setscores] = useState([]);
     const [questions_loaded_percentage,setQuestionsPercentage]=useState(0.0)
-    // const [resultCard,setResultCard]=useState(Array.from({1: 5},()=> Array.from({1: 5}, () => null)));
+    // const [resultCard,setResultCard]=useState(Array.from({length: 5},()=> Array.from({length: 5}, () => null)));
     // var resultCard=[[]];
-    const [resultCard,setResultCard]=useState(new Array(5))
+    const [resultCard,setResultCard]=useState([])
     var isAdmin=false;
     var user;
 
@@ -129,7 +129,7 @@ function Room()
             questions_map.set(id,index);
         })
 
-        console.log(questions_map)
+        // console.log(questions_map)
         FillHandles(0)
 
         function FillHandles(index)
@@ -151,14 +151,14 @@ function Room()
                     if(questions_map.has(id))
                     {
                         var questionIndex=questions_map.get(id);
-                        console.log(questionIndex)
+                        // console.log(questionIndex)
                         if(item.verdict === 'OK')
                         {
                             score_card[index][questionIndex]=1;
                         }
                         else
                         {
-                            score_card[index][questionIndex]=2;
+                            score_card[index][questionIndex]=-1;
                         }
                     }
                     
@@ -167,57 +167,6 @@ function Room()
             })
 
         }
-
-        console.log(score_card)
-
-        // let handles=[]
-        // let nmap = new Map()//for mapping rating to score
-        // let userscores = []//for mapping user and his/her score
-        // let i = 0;
-        // nmap.set(800, 500);
-        // nmap.set(900, 1000);
-        // nmap.set(1000, 1500);
-        // nmap.set(1100, 2000);
-        // nmap.set(1200, 2500);
-        // nmap.set(1300, 3000);
-        // participants.forEach(part=>{
-        //     handles.push(part.codeforces)
-        // })
-        // handles.forEach(function(handle){
-        //     if(handle.length == 0 ){
-        //         alert("")
-        //     }
-        //     let score = 0;
-        //     fetch(`https://codeforces.com/api/user.status?handle=${handle}&from=1&count=30`)
-        //     .then(response=> response.json())
-        //     .then(data =>{
-        //         let arr = []
-        //         let i = 0;
-        //         data.result.forEach(function(submission){//loop to check the submissions of user
-        //             let id = submission.problem.contestId.toString() + submission.problem.index;
-        //             let obj;
-        //             questionList.forEach(function(question){//loop to check if the user has solved any of the problems given in the contest
-        //                 let id2 =  question.contestId.toString() + question.index;
-        //                 if(id === id2 && submission.verdict === "OK"){
-        //                     obj = question;
-        //                     return;
-        //                 }
-        //             })
-        //             if(typeof(obj) === undefined )
-        //                 return;
-        //             arr[i] = obj;//appending all the problems that are successfully solved
-        //             i += 1;
-        //         })
-                
-        //         arr.forEach(function(submission){//traversing the solved problems and calculating the user's score
-        //             score += nmap[submission.rating] 
-        //         })
-        //     })
-        //     //mapping the user to his/her score
-        //     userscores[i]= { handle : score };
-        //     i += 1;
-        // })
-        // setscores(userscores);
     }
 
     function FillHandles(index,nmap,handles,totalParticipants)
@@ -277,7 +226,7 @@ function Room()
             
             // setQ2(questionList)
             setQuestionList(arr)
-            console.log(new Date().toUTCString())
+            // console.log(new Date().toUTCString())
             // console.log(questionList);
         })
     }
@@ -291,7 +240,7 @@ function Room()
         participants_array.forEach((part)=>{
             handles.push(part.codeforces)
         })
-        console.log(handles)
+        // console.log(handles)
 
         var totalParticipants=handles.length;
 
@@ -322,7 +271,7 @@ function Room()
                 if(contestStarted)
                 {
                     // GetProblems(data.participants);
-                    console.log(new Date().toUTCString())
+                    // console.log(new Date().toUTCString())
                     FilterProblems(data.participants)
                 }
             }
@@ -400,6 +349,7 @@ function Room()
     
 
     let i = -1;
+    var index_scoreboard=100;
     return (
         <div className="container">
             <h3>Room name: {roomName}</h3>
@@ -456,7 +406,6 @@ function Room()
                              let ID = "ABCDEF";
                              i += 1;
                              return (
-                                 
                                       <div className='card' key={question.name}>
                                           <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`} 
                                             target='_blank' 
@@ -486,29 +435,57 @@ function Room()
            </div>
                 
             {/* Scoreboard */}
-            <div>
+            <div style={{backgroundColor:'white', color:'violet', textAlign:'center', boxShadow:'5px 10px 10px black'}}>
                 <table>
-                    {
-                        resultCard.forEach((item,ide2)=>{
-                            // console.log(resultCard)
-                            // console.log(resultCard.length)
-                            // console.log('2=',ide2)
+                    <thead>
+                        <tr>
+                            <td> </td>
+                            {
+                                questionList.map((ques,index)=>{
+                                    return (
+                                        <td key={ques.name} style={{textAlign:'center'}}>{String.fromCharCode(65+index)}</td>
+                                    )
+                                })
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                        resultCard.map((item,ide2)=>{
                             return (
-                                <tr>
+                                <tr key={ide2}>
+                                    <td style={{textAlign:'center'}}>
+                                        {participants[ide2].name}
+                                    </td>
                                     {
-                                        item.forEach((scores,index)=>{
-                                            // console.log('index=',index)
+                                        item.map((scores,index)=>{
+                                            var color_of_cell='lightgray';
+                                            var time=0;
+                                            scores==0
+                                                ?
+                                                color_of_cell='lightgray'
+                                                :
+                                                    scores==1
+                                                    ?
+                                                        color_of_cell='lightgreen'
+                                                    :
+                                                    color_of_cell='lightsalmon'
+                                                    
                                             return (
-                                                <td>{scores}</td>
+                                                <td key={index} style={{backgroundColor:color_of_cell, color:'black', textAlign:'center'}}>
+                                                    {scores}    
+                                                </td>
                                             )
                                         })
                                     }
                                 </tr>
                             )
-                        })
-                    }
+                            })
+                        }
+                    </tbody>
+                    
                 </table>
-                <button onClick={()=>{Scoreboard()}}>Scoreboard</button>
+                <button className='btn btn-large toggle' onClick={()=>{Scoreboard()}}>Update Scoreboard</button>
             </div>
         </div>
     )
