@@ -9,8 +9,13 @@ function compare(a, b){
 }
 
 function randomize(a, b) {
-    // var t=Math.random()
+    var x=Math.floor(new Date()/1000);
+    if(x%10 == 0)
+    return 0;
+    else if(x%2 == 0)
     return 1;
+    else
+    return -1;
 }
 
 function Room()
@@ -34,11 +39,13 @@ function Room()
     // const [resultCard,setResultCard]=useState(Array.from({length: 5},()=> Array.from({length: 5}, () => null)));
     // var resultCard=[[]];
     const [resultCard,setResultCard]=useState([])
+    const [start_timings,set_Start_timings]=useState(0)
     var isAdmin=false;
     var user;
 
 
     useEffect(()=>{
+        // console.log(Math.floor(new Date()/1000))
         user=JSON.parse(localStorage.getItem('user'))
         fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
@@ -65,6 +72,7 @@ function Room()
 
                 startTime=new Date(data.startTiming).getTime()
                 endTime=new Date(data.endTiming).getTime()
+                set_Start_timings(data.startTiming)
 
                 var clock=setInterval(()=>{
                 var now=new Date().getTime();
@@ -116,6 +124,7 @@ function Room()
                 score_card[i][j]=0;
             }
         }
+        // console.log()
 
         var handles=[];
 
@@ -143,7 +152,7 @@ function Room()
                 return;
             }
 
-            fetch(`https://codeforces.com/api/user.status?handle=${handles[index]}&from=1&count=30`)
+            fetch(`https://codeforces.com/api/user.status?handle=${handles[index]}&from=1&count=100`)
             .then(res=>res.json())
             .then((data)=>{
                 data.result.forEach((item)=>{
@@ -154,7 +163,12 @@ function Room()
                         // console.log(questionIndex)
                         if(item.verdict === 'OK')
                         {
-                            score_card[index][questionIndex]=1;
+                            var x=Math.floor(new Date(start_timings)/1000)
+                            var y=item.creationTimeSeconds
+                            // console.log(y)
+                            var min=Math.floor((y-x)/(60));
+                            var hrs=Math.floor(min/24)
+                            score_card[index][questionIndex]=hrs + ':' + min
                         }
                         else
                         {
@@ -207,7 +221,7 @@ function Room()
         .then(response => response.json())
         .then( data =>{
             //console.log(data);
-            // data.result.problems.sort(randomize);
+            data.result.problems.sort(randomize);
             //console.table(data.result.problems);
             data.result.problems.forEach(function(element){
                 let id = element.contestId.toString() + element.index;
@@ -465,7 +479,7 @@ function Room()
                                                 ?
                                                 color_of_cell='lightgray'
                                                 :
-                                                    scores==1
+                                                    scores!=-1
                                                     ?
                                                         color_of_cell='lightgreen'
                                                     :
