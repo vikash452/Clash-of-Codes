@@ -9,7 +9,13 @@ function Contest()
     const [joinRoom,setJoinRoom]=useState('');
     const [startTime,setStartTime]=useState(Date);
     const [endTime,setEndTime]=useState(Date)
+    const [initialRating,setInitialRating]=useState(800)
     const history=useHistory()
+
+    useEffect(()=>{
+        var select_tag=document.querySelectorAll('select');
+        var instances = M.FormSelect.init(select_tag);
+    },[])
 
     function CreateRoom()
     {
@@ -22,7 +28,8 @@ function Contest()
             body:JSON.stringify({
                 name:roomName,
                 startTiming:startTime,
-                endTiming:endTime
+                endTiming:endTime,
+                initialRating,
             })
         })
         .then(res=>res.json())
@@ -113,6 +120,15 @@ function Contest()
                         setEndTime(end)
                     }}
                 /></p>
+                
+                <p style={{width:'400px', margin:'auto'}}>
+                    <select onClick={(e)=>{setInitialRating(e.target.value)}} >
+                        <option value={800}>800</option>
+                        <option value={900}>900</option>
+                        <option value={1000}>1000</option>
+                        <option value={1100}>110</option>
+                    </select>
+                </p>
                 
                 <br/>
                 <button className="waves-effect waves-light btn-large" style={{marginTop: '5px', marginBottom : '7px'}}onClick={()=>{CreateRoom()}}>Create</button>

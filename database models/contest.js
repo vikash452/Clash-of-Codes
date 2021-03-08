@@ -32,6 +32,10 @@ const contestSchema=new mongoose.Schema({
     },
     adminEmail:{
         type:String
+    },
+    initialRating:{
+        type:Number,
+        default:800
     }
 },{timestamps:true})
 

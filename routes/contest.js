@@ -66,11 +66,16 @@ router.put('/contest/joinRoom/:roomId',passport.authenticate('jwt',{session:fals
 
 router.post('/contest/createRoom',passport.authenticate('jwt',{session:false}),(req,res)=>{
     
-    var roomName;
+    var roomName,initialRating;
     if(req.body.name)
     roomName=req.body.name
     else
     roomName='Default'
+
+    if(req.body.initialRating)
+    initialRating=parseInt(req.body.initialRating)
+    else
+    initialRating=800
 
     var randomCode=crypto.randomBytes(3).toString('hex')
     console.log(randomCode)
@@ -94,7 +99,8 @@ router.post('/contest/createRoom',passport.authenticate('jwt',{session:false}),(
             endTiming:req.body.endTiming,
             adminEmail:req.user.email,
             timeOfCreation:currentTime,
-            expiry:currentTime + 3*60*60*1000
+            expiry:currentTime + 3*60*60*1000,
+            initialRating,
         })
 
         newRoom.save()

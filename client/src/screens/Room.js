@@ -9,13 +9,13 @@ function compare(a, b){
 }
 
 function randomize(a, b) {
-    var x=Math.floor(new Date()/1000);
-    if(x%10 == 0)
-    return 0;
-    else if(x%2 == 0)
+    // var x=Math.floor(new Date()/1000);
+    // if(x%10 == 0)
+    // return 0;
+    // else if(x%2 == 0)
     return 1;
-    else
-    return -1;
+    // else
+    // return -1;
 }
 
 function Room()
@@ -40,12 +40,14 @@ function Room()
     // var resultCard=[[]];
     const [resultCard,setResultCard]=useState([])
     const [start_timings,set_Start_timings]=useState(0)
+    const [initialRating,setInitialRating]=useState(800)
     var isAdmin=false;
     var user;
 
 
     useEffect(()=>{
         // console.log(Math.floor(new Date()/1000))
+        
         user=JSON.parse(localStorage.getItem('user'))
         fetch(`/contest/roomDetails/${roomId}`,{
             method:'GET',
@@ -66,6 +68,7 @@ function Room()
                 setRoomName(data.name)
                
                 setParticipants(data.participants)
+                setInitialRating(data.initialRating)
 
                 if(user.email == data.adminEmail)
                     isAdmin=true
@@ -167,7 +170,7 @@ function Room()
                             var y=item.creationTimeSeconds
                             // console.log(y)
                             var min=Math.floor((y-x)/(60));
-                            var hrs=Math.floor(min/24)
+                            var hrs=Math.floor(min/60)
                             score_card[index][questionIndex]=hrs + ':' + min
                         }
                         else
@@ -199,11 +202,11 @@ function Room()
         .then(data =>{
             data.result.forEach(function(element){
                 let id = element.problem.contestId.toString() + element.problem.index;
-                if( element.verdict === "OK")
+                // if( element.verdict === "OK")
                     nmap.set( id, true);
             })
             ++index
-            setQuestionsPercentage(Math.trunc((index/totalParticipants)*100))
+            setQuestionsPercentage(Math.trunc((index/(totalParticipants+1))*100))
             FillHandles(index,nmap,handles,totalParticipants);
         })
         // setInterval(()=>{
@@ -216,7 +219,7 @@ function Room()
     {   
         // console.log('get problems called')
         let arr = [];
-        let k = 800;
+        let k = initialRating;
         fetch(`https://codeforces.com/api/problemset.problems`)
         .then(response => response.json())
         .then( data =>{
