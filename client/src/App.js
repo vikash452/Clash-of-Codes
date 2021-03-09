@@ -27,14 +27,18 @@ function AllRouting() {
     var userDetails = localStorage.getItem('user')
     // console.log(userDetails)
     if (!userDetails) {
+      if (history.location.pathname == '/')
+        history.push('/landing')
       if (history.location.pathname.startsWith('/signin'))
         history.push('/signin')
       else if (history.location.pathname.startsWith('/forgotPassword'))
         history.push('/forgotPassword')
       else if (history.location.pathname.startsWith('/updatePassword'))
         history.push(history.location.pathname)
+      else if (history.location.pathname.startsWith('/signup'))
+        history.push(history.location.pathname)
       else
-        history.push('/signup')
+        history.push('/landing')
     }
     else {
       if (history.location.pathname === '/')

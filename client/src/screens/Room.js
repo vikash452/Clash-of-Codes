@@ -164,19 +164,25 @@ function Room()
                     {
                         var questionIndex=questions_map.get(id);
                         // console.log(questionIndex)
-                        if(item.verdict === 'OK')
+
+                        if(score_card[index][questionIndex] == -1 || score_card[index][questionIndex] == 0)
                         {
-                            var x=Math.floor(new Date(start_timings)/1000)
-                            var y=item.creationTimeSeconds
-                            // console.log(y)
-                            var min=Math.floor((y-x)/(60));
-                            var hrs=Math.floor(min/60)
-                            score_card[index][questionIndex]=hrs + ':' + min
+                            if(item.verdict === 'OK')
+                            {
+                                var x=Math.floor(new Date(start_timings)/1000)
+                                var y=item.creationTimeSeconds
+                                // console.log(y)
+                                var min=Math.floor((y-x)/(60));
+                                var hrs=Math.floor(min/60)
+                                score_card[index][questionIndex]=hrs + ':' + min;
+                            }
+                            else
+                            {
+                                score_card[index][questionIndex]=-1;
+                            }
                         }
-                        else
-                        {
-                            score_card[index][questionIndex]=-1;
-                        }
+
+                        
                     }
                     
                 })
@@ -369,40 +375,44 @@ function Room()
     var index_scoreboard=100;
     return (
         <div className="container">
-            <h3>Room name: {roomName}</h3>
-            <h3>Room Id: {roomId}</h3>
-            
-            {
-                contestStarted
-                ?
-                    <h3>Time Remaining : {hours}h {minutes}min {seconds}sec</h3>
-                :
-                    <h3>Before start : {hours}h {minutes}min {seconds}sec</h3>
-            }
-            <h3>Total participants: {participants.length}</h3>
-            <br/>
-            <button className='waves-effect waves-light btn-large' onClick={()=>{Refresh(false)}} style={{margin:'30px'}}>Refresh</button>
-            <button className='waves-effect waves-light btn-large' onClick={()=>LeaveRoom()} style={{margin:'30px'}}>Leave Room</button>
-            {/* <input type></input> */}
-            {/* <button className='btn-large' onClick={()=>StartContest()} style={{margin:'20px'}}>Start Contest</button> */}
-            <div>
-                <h3>Participants are : </h3>
-               { 
+            <div style={{display:'flex', justifyContent:'space-between'}}>
+                <div>
+                    <h4>Room name: {roomName}</h4>
+                    <h4>Room Id: {roomId}</h4>
+                    
+                    {
+                        contestStarted
+                        ?
+                            <h3>Time Remaining : {hours}h {minutes}min {seconds}sec</h3>
+                        :
+                            <h3>Before start : {hours}h {minutes}min {seconds}sec</h3>
+                    }
+                    <h3>Total participants: {participants.length}</h3>
+                </div>
+
+                <div>
+                    <div style={{paddingTop:'50px'}}>
+                    {
+                        participants.map((part)=>{
+                            // console.log(part)
+                            return (
+                                    <div key={part._id} className='chip'>
+                                        {part.name}
+                                    </div>
+                                )
+                            })
+                    }
+                    </div>
+
+                    <button className='waves-effect waves-light btn-large' onClick={()=>{Refresh(false)}} style={{margin:'30px'}}>Refresh</button>
+                    <button className='waves-effect waves-light btn-large' onClick={()=>LeaveRoom()} style={{margin:'30px'}}>Leave Room</button>
+
+                </div>
                 
-                participants.map((part)=>{
-                    // console.log(part)
-                    return (
-                            <div key={part._id}>
-                                <h3>{part.name}</h3>
-                            </div>
-                        )
-                    })
-                }
-                <br></br>
-                <br></br>
             </div>
-                <h2> Problems </h2>
-                <br></br>
+            
+            <h2> Problems </h2>
+            <br></br>
             
             {
                 contestStarted
@@ -456,7 +466,13 @@ function Room()
                 <table>
                     <thead>
                         <tr>
-                            <td> </td>
+                            {
+                                contestStarted
+                                ?
+                                    <td width={'186.444px'} style={{textAlign:'center'}}>{hours}h {minutes}min {seconds}sec</td>
+                                :
+                                    <td width={'186.444px'}></td>
+                            }
                             {
                                 questionList.map((ques,index)=>{
                                     return (
