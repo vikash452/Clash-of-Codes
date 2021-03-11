@@ -77,6 +77,8 @@ router.post('/contest/createRoom',passport.authenticate('jwt',{session:false}),(
     else
     initialRating=800
 
+    console.log(initialRating)
+
     var randomCode=crypto.randomBytes(3).toString('hex')
     console.log(randomCode)
 

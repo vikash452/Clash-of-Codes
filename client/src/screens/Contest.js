@@ -121,12 +121,17 @@ function Contest()
                     }}
                 /></p>
                 
-                <p style={{width:'400px', margin:'auto'}}>
-                    <select onClick={(e)=>{setInitialRating(e.target.value)}} >
+                <p style={{width:'400px', margin:'auto', fontSize:'20px'}}>
+                    Set the starting question rating
+                    <select onChange={(e)=>{
+                        setInitialRating(e.target.value)
+                    }} >
                         <option value={800}>800</option>
                         <option value={900}>900</option>
                         <option value={1000}>1000</option>
-                        <option value={1100}>110</option>
+                        <option value={1100}>1100</option>
+                        <option value={1100}>1200</option>
+                        <option value={1100}>1300</option>
                     </select>
                 </p>
                 

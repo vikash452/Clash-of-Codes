@@ -530,6 +530,58 @@ function Room()
     
     function NotEntered()
     {
+
+        function Entry_into_room()
+        {
+            var user=JSON.parse(localStorage.getItem('user'))   
+            var found=false;
+            for(var i=0; i<participants.length; ++i)
+            {
+                if(participants[i].email == user.email)
+                {
+                    found=true;
+                    break;
+                }
+            }
+
+            if(found == false)
+            {
+                fetch(`/contest/joinRoom/${roomId}`,{
+                    method:'PUT',
+                    headers:{
+                        'Content-Type':'application/json',
+                        'Authorization':'Bearer ' + localStorage.getItem('jwt')
+                    }
+                })
+                .then(res=>res.json())
+                .then((data)=>{
+                    // console.log(data)
+                    if(data.error)
+                    {
+                        // console.log(data.error)
+                        M.toast({
+                        html:data.error,
+                        classes: "#ce93d8 purple",
+                        displayLength: 1000,
+                        })
+                    }
+                    else
+                    {
+                        // history.push(`/room/${joinRoom}`)
+                        setInRoom(true)
+                    }
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+            }
+            else
+            {
+                setInRoom(true)
+            }
+
+        }
+
         var time=new Date(start_timings).toLocaleString()
         return (
             <div style={{marginTop:'200px', display:'flex', justifyContent:'center', alignContent:'center', alignSelf:'center'}}>
@@ -551,7 +603,7 @@ function Room()
                 <button
                 className='btn btn-large' 
                 style={{marginTop:'auto', marginBottom:'auto'}}
-                onClick={()=>{setInRoom(true)}}>Enter the room</button>
+                onClick={()=>{Entry_into_room()}}>Enter the room</button>
             </div>
         )
     }
