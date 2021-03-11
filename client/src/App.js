@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import ReactDOM from "react-dom";
 import { BrowserRouter, Route, useHistory } from 'react-router-dom'
 import './App.css';
 // import CssBaseline from '@material-ui/core/CssBaseline';
@@ -116,5 +117,8 @@ function App() {
     </div>
   );
 }
+debugger; // TO INSPECT THE PAGE BEFORE 1ST RENDER
 
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
 export default App;

@@ -51,7 +51,7 @@ function Signin() {
     }
 
     return (
-        <div style={{ position: 'relative', top: '20%', margin: '0px', padding: '0px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div>
             <div class="container" style={{
                 position: 'relative',
                 display: 'flex',
@@ -63,12 +63,13 @@ function Signin() {
             }}>
                 <div class="card" style={{
                     position: 'relative',
-                    width: '650px',
+                    width: '600px',
+                    //minWidth: '420px',
                     height: '600px',
                     margin: '30px',
-                    boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.664)',
+                    boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
                     borderRadius: '15px',
-                    background: 'rgba(230, 236, 233, 0.50)',
+                    background: 'rgba(230, 236, 233, 0.35)',
                     overflow: 'hidden',
                     display: 'box',
                     justifyContent: 'center',
@@ -115,28 +116,53 @@ function Signin() {
                             alignItems: 'center',
                             marginTop: '2rem'
                         }}>
-                            <button className='btn-large' onClick={() => { Login() }}
-                                style={{
-                                    backgroundColor: '#42f067',
-                                    fontSize: '1.2rem',
-                                    overflow: 'hidden',
-                                    fontFamily: '"Nova Round", cursive',
-                                    fontWeight: 'bold'
-                                }}>
-                                Sign In
+
+                            <button class="blobby-button" onClick={() => { Login() }} >Sign In <span class="inner">
+                                <span class="blobs">
+                                    <span class="blob"></span>
+                                    <span class="blob"></span>
+                                    <span class="blob"></span>
+
+                                    <span
+                                        class="blob"></span>
+                                </span>
+                            </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                    <defs>
+                                        <filter id="goo">
+                                            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                                result="goo"></feColorMatrix>
+                                            <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                        </filter>
+                                    </defs>
+                                </svg>
                             </button>
                             <span>
                                 <Link to='/forgotPassword'>
-                                    <button className='waves-effect waves-light btn-large'
-                                        style={{
-                                            backgroundColor: '#42f067',
-                                            fontSize: '1.2rem',
-                                            overflow: 'hidden',
-                                            fontFamily: '"Nova Round", cursive',
-                                            fontWeight: 'bold',
-                                        }}>
-                                        Forgot your password?
-                                </button>
+                                    <button class="blobby-button" style={{
+                                        marginLeft: '2rem'
+                                    }}>Forgot Password <span class="inner">
+                                            <span class="blobs">
+                                                <span class="blob"></span>
+                                                <span class="blob"></span>
+                                                <span class="blob"></span>
+
+                                                <span
+                                                    class="blob"></span>
+                                            </span>
+                                        </span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                            <defs>
+                                                <filter id="goo">
+                                                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                                        result="goo"></feColorMatrix>
+                                                    <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                                </filter>
+                                            </defs>
+                                        </svg>
+                                    </button>
                                 </Link>
                             </span>
                         </div>
@@ -148,22 +174,35 @@ function Signin() {
                             marginTop: '2rem'
                         }}>
                             <h5 style={{
-                                color: '#1f13ec',
+                                color: '#e6ff02',
                                 fontFamily: '"Nova Round", cursive',
                                 fontWeight: 'bold',
                                 fontSize: '1.8rem'
                             }}>Don't have an account?</h5>
                             <span>
                                 <Link to='/signup'>
-                                    <button className='waves-effect waves-light btn-large'
-                                        style={{
-                                            backgroundColor: '#42f067',
-                                            fontSize: '1.2rem',
-                                            overflow: 'hidden',
-                                            fontFamily: '"Nova Round", cursive',
-                                            fontWeight: 'bold'
-                                        }}>
-                                        SignUp
+                                    <button class="blobby-button" style={{
+                                        marginLeft: '0.5rem'
+                                    }}>Sign Up <span class="inner">
+                                        <span class="blobs">
+                                            <span class="blob"></span>
+                                            <span class="blob"></span>
+                                            <span class="blob"></span>
+
+                                            <span
+                                                class="blob"></span>
+                                        </span>
+                                    </span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                            <defs>
+                                                <filter id="goo">
+                                                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                                        result="goo"></feColorMatrix>
+                                                    <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                                </filter>
+                                            </defs>
+                                        </svg>
                                     </button>
                                 </Link>
                             </span>
