@@ -194,13 +194,14 @@ input {
     padding: 1em 2em;
     border-radius: 4px;
     transition: color calc(0.5s * .75);
-    font-weight: 900;
+    font-weight: 1000;
     cursor: pointer;
     align-items: center;
     letter-spacing: 2px;
     justify-content: center;
     z-index: 1;
     font-size: 16px;
+    font-family: 'Nova Round', cursive;
 }
 
 .blobby-button .blobs {

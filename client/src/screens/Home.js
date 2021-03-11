@@ -1,50 +1,81 @@
 import { Verify } from 'crypto'
-import {useEffect,useState} from 'react'
-import {useHistory,Link} from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useHistory, Link } from 'react-router-dom'
 import M from 'materialize-css'
 import './design.css';
-function Home()
-{
-    function Logout()
-    {
-        fetch('/user/logout',{
-            headers:{
-                'Content-Type':'application/json'
+function Home() {
+    function Logout() {
+        fetch('/user/logout', {
+            headers: {
+                'Content-Type': 'application/json'
             }
         })
-        .then(res=>res.json())
-        .then((data)=>{
-            // console.log(data)
-            localStorage.clear()
-            history.push('/signin')
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+            .then(res => res.json())
+            .then((data) => {
+                // console.log(data)
+                localStorage.clear()
+                history.push('/signin')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
-    var [name,setName]=useState('');
+    var [name, setName] = useState('');
     var user;
-    const history=useHistory();
-    useEffect(()=>{
+    const history = useHistory();
+    useEffect(() => {
 
-        user=JSON.parse(localStorage.getItem('user'))
+        user = JSON.parse(localStorage.getItem('user'))
         // console.log(user)
-        if(!user)
-        {
+        if (!user) {
             history.push('/signin')
         }
-        else
-        {
+        else {
             setName(user.name)
         }
-    },[])
-    
-    return(
-        <div style={{marginTop:'100px'}}>
+    }, [])
+
+    return (
+        <div style={{
+            marginTop: '100px',
+            display: 'inline-block',
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
             <h1>Hi {name}</h1>
             <h2>....Hope you are coding well....</h2>
-            <button className='btn-large' onClick={()=>{Logout()}}>Logout</button>
+            <div style={{ 
+                marginTop: '7rem',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
+                <button class="blobby-button" onClick={() => { Logout() }}
+                    style={{
+                        position: 'absolute',
+                        fontSize: '1.3rem',
+                    }}>Logout<span class="inner">
+                        <span class="blobs">
+                            <span class="blob"></span>
+                            <span class="blob"></span>
+                            <span class="blob"></span>
+                            <span class="blob"></span>
+                        </span>
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                        <defs>
+                            <filter id="goo">
+                                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                    result="goo"></feColorMatrix>
+                                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                            </filter>
+                        </defs>
+                    </svg>
+                </button>
+            </div>
+
         </div>
     )
 }
