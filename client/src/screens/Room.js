@@ -41,6 +41,7 @@ function Room()
     const [resultCard,setResultCard]=useState([])
     const [start_timings,set_Start_timings]=useState(0)
     const [initialRating,setInitialRating]=useState(800)
+    const [inRoom,setInRoom]=useState(false);
     var isAdmin=false;
     var user;
 
@@ -88,11 +89,15 @@ function Room()
                 {
                     setContestStarted(true)
                     clearInterval(clock)
-                    M.toast({
+                    if(inRoom)
+                    {
+                        M.toast({
                         html:'Contest started',
                         classes: "#ce93d8 purple",
                         displayLength: 5000,
-                    })
+                        })
+                    }
+                    
                     StartContest(true)
                 }
                 else
@@ -112,7 +117,7 @@ function Room()
         
         
 
-    },[])
+    },[inRoom])
 
     function Scoreboard(){
 
@@ -351,7 +356,7 @@ function Room()
                 var min=Math.floor(diff/60) %60;
                 var hrs=Math.floor(diff/(60*60)) % 60;
 
-                if(hrs<0 && min<0 && s<0)
+                if(hrs<0 && min<0 && s<0 && inRoom)
                 {
                     M.toast({
                         html:'Contest ended',
@@ -369,12 +374,11 @@ function Room()
 
         },1000)
     }
-    
 
-    let i = -1;
-    var index_scoreboard=100;
-    return (
-        <div className="container">
+    function EnteredRoom()
+    {
+        return (
+            <div className="container">
             <div style={{display:'flex', justifyContent:'space-between'}}>
                 <div>
                     <h4>Room name: {roomName}</h4>
@@ -521,7 +525,47 @@ function Room()
                 <button className='btn btn-large toggle' onClick={()=>{Scoreboard()}}>Update Scoreboard</button>
             </div>
         </div>
-    )
+        )
+    }
+    
+    function NotEntered()
+    {
+        var time=new Date(start_timings).toLocaleString()
+        return (
+            <div style={{marginTop:'200px', display:'flex', justifyContent:'center', alignContent:'center', alignSelf:'center'}}>
+                <div 
+                style={{
+                    backgroundColor:'burlywood', 
+                    height:'400px', 
+                    width:'500px', 
+                    marginLeft:'20px', 
+                    marginRight:'40px',
+                    borderRadius:'20px',
+                    boxShadow:'10px 10px 10px black',
+                    opacity:'0.95'
+                }}>
+                    <h2>{roomName}</h2>
+                    <h4>Contest start timing : {time}</h4>
+                    <h4>Initial Question Rating : {initialRating}</h4>
+                </div>
+                <button
+                className='btn btn-large' 
+                style={{marginTop:'auto', marginBottom:'auto'}}
+                onClick={()=>{setInRoom(true)}}>Enter the room</button>
+            </div>
+        )
+    }
+
+    let i = -1;
+    var index_scoreboard=100;
+    if(inRoom)
+    {
+        return <EnteredRoom/>
+    }
+    else
+    {
+        return <NotEntered/>
+    }
 }
 
 export default Room;

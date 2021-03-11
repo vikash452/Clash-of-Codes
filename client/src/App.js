@@ -98,7 +98,6 @@ function AllRouting() {
         <Footer/>
       </Route>
       <Route exact path='/room/:roomId'>
-        <Header />
         <Navbar />
         <Room />
         <Footer/>
@@ -124,8 +123,8 @@ function App() {
     </div>
   );
 }
-debugger; // TO INSPECT THE PAGE BEFORE 1ST RENDER
+// debugger; // TO INSPECT THE PAGE BEFORE 1ST RENDER
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+// const rootElement = document.getElementById("root");
+// ReactDOM.render(<App />, rootElement);
 export default App;
