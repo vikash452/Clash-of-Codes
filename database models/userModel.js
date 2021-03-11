@@ -41,6 +41,12 @@ const UserSchema=new mongoose.Schema({
     },
     forgotPassword:{
         type:String
+    },
+    accessToken:{
+        type:String
+    },
+    refreshToken:{
+        type:String
     }
 },{timestamps:true})
 

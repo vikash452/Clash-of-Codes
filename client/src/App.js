@@ -12,6 +12,7 @@ import Navbar from './screens/Navbar'
 import ForgotPassword from './screens/ForgotPassword'
 import UpdatePassword from './screens/UpdatePassword'
 import Codeforces from './screens/Codeforces'
+import Codechef from './screens/Codechef'
 import DSA from './screens/DSA'
 import './screens/design.css'
 import img from './images/img3.jpg'
@@ -75,6 +76,12 @@ function AllRouting() {
         <Header />
         <Navbar />
         <Codeforces />
+        <Footer/>
+      </Route>
+      <Route exact path='/codechef'>
+        <Header />
+        <Navbar />
+        <Codechef />
         <Footer/>
       </Route>
       <Route exact path='/contest'>
