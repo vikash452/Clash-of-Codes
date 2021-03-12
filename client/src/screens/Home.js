@@ -35,7 +35,7 @@ function Home() {
             setName(user.name)
         }
     }, [])
-
+    // console.log(process.env)
     return (
         <div style={{
             marginTop: '100px',
@@ -51,7 +51,7 @@ function Home() {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
-                <button class="blobby-button" onClick={() => { Logout() }}
+                <button className="blobby-button" onClick={() => { Logout() }}
                     style={{
                         position: 'absolute',
                         fontSize: '1.3rem',

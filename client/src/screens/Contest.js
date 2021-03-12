@@ -99,8 +99,8 @@ function Contest()
     }
 
     return (
-        <div style={{margin:'auto',width:'40%'}}>
-            <div style={{backgroundColor:'rgb(171, 49, 233)', border:'20px ridge white', borderRadius:'60px', marginTop:'10px'}}>
+        <div style={{ display:'flex', justifyContent:"space-evenly", alignItems:'center'}}>
+            <div style={{backgroundColor:'rgb(171, 49, 233)', border:'20px ridge white', borderRadius:'60px', marginTop:'10px', marginRight:'20px'}}>
                 <h3>Create  a room</h3>
                 <p style={{fontSize:'20px'}}>Set the room name :
                 <input type='text' placeholder='Room name' style={{maxWidth:'300px', marginLeft: '10px'}}
@@ -138,10 +138,15 @@ function Contest()
                 <br/>
                 <button className="waves-effect waves-light btn-large" style={{marginTop: '5px', marginBottom : '7px'}}onClick={()=>{CreateRoom()}}>Create</button>
             </div>
-            <br/><br/>
-            <h3>OR</h3>
-            <br/><br/>
-            <div style={{backgroundColor:'rgb(171, 49, 233)', border:'20px ridge white', borderRadius:'60px'}}>
+            
+            <div style=
+            {{backgroundColor:'rgb(171, 49, 233)', 
+            border:'20px ridge white', 
+            borderRadius:'60px', 
+            marginLeft:'20px',
+            display:'flex',
+            alignItems:'center'
+            }}>
                 <h3>Join a room</h3>
                 <input type='text' placeholder='Room Id' style={{maxWidth:'300px'}} value={joinRoom}
                 onChange={(e)=>{
@@ -149,8 +154,6 @@ function Contest()
                 }}
                 />
                 <button className="waves-effect waves-light btn-large" style={{marginLeft: '10px'}} onClick={()=>{Join()}}>Join</button>
-                <br></br>
-                <br></br>
             </div>
         </div>
     )

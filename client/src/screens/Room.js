@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react'
 import {Link, useHistory,useParams} from 'react-router-dom'
 import './design.css'
 import M from 'materialize-css'
+import Background from '../images/img2.png'
 
 
 function compare(a, b){
@@ -594,7 +595,8 @@ function Room()
                     marginRight:'40px',
                     borderRadius:'20px',
                     boxShadow:'10px 10px 10px black',
-                    opacity:'0.95'
+                    opacity:'0.95',
+                    backgroundImage:`url(${Background})`
                 }}>
                     <h2>{roomName}</h2>
                     <h4>Contest start timing : {time}</h4>
