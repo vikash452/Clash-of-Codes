@@ -53,7 +53,6 @@ function AllRouting() {
   return (
     <div>
       <Route exact path='/home' >
-        <Header />
         <Navbar />
         <Home />
         <Footer/>
@@ -68,31 +67,26 @@ function AllRouting() {
         <SignUp />
       </Route>
       <Route exact path='/profile'>
-        <Header />
         <Navbar />
         <Profile />
         <Footer/>
       </Route>
       <Route exact path='/codeforces'>
-        <Header />
         <Navbar />
         <Codeforces />
         <Footer/>
       </Route>
       <Route exact path='/codechef'>
-        <Header />
         <Navbar />
         <Codechef />
         <Footer/>
       </Route>
       <Route exact path='/contest'>
-        <Header />
         <Navbar />
         <Contest />
         <Footer/>
       </Route>
       <Route exact path='/dsa'>
-        <Header />
         <Navbar />
         <DSA />
         <Footer/>

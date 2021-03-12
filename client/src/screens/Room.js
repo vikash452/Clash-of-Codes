@@ -46,7 +46,6 @@ function Room()
     var isAdmin=false;
     var user;
 
-
     useEffect(()=>{
         // console.log(Math.floor(new Date()/1000))
         
@@ -118,7 +117,7 @@ function Room()
         
         
 
-    },[inRoom])
+    },[])
 
     function Scoreboard(){
 
@@ -375,164 +374,8 @@ function Room()
 
         },1000)
     }
-
-    function EnteredRoom()
-    {
-        return (
-            <div className="container">
-            <div style={{display:'flex', justifyContent:'space-between'}}>
-                <div>
-                    <h4>Room name: {roomName}</h4>
-                    <h4>Room Id: {roomId}</h4>
-                    
-                    {
-                        contestStarted
-                        ?
-                            <h3>Time Remaining : {hours}h {minutes}min {seconds}sec</h3>
-                        :
-                            <h3>Before start : {hours}h {minutes}min {seconds}sec</h3>
-                    }
-                    <h3>Total participants: {participants.length}</h3>
-                </div>
-
-                <div>
-                    <div style={{paddingTop:'50px'}}>
-                    {
-                        participants.map((part)=>{
-                            // console.log(part)
-                            return (
-                                    <div key={part._id} className='chip'>
-                                        {part.name}
-                                    </div>
-                                )
-                            })
-                    }
-                    </div>
-
-                    <button className='waves-effect waves-light btn-large' onClick={()=>{Refresh(false)}} style={{margin:'30px'}}>Refresh</button>
-                    <button className='waves-effect waves-light btn-large' onClick={()=>LeaveRoom()} style={{margin:'30px'}}>Leave Room</button>
-
-                </div>
-                
-            </div>
-            
-            <h2> Problems </h2>
-            <br></br>
-            
-            {
-                contestStarted
-                ?
-                    questionList.length == 0
-                    ?
-                    <h1>Loading questions {questions_loaded_percentage} %</h1>
-                    :
-                    <></>
-                :
-                <></>
-            }
-           
-            <div className='row' >
-                     {
-                         
-                         questionList.map(question=>{
-                             let ID = "ABCDEF";
-                             i += 1;
-                             return (
-                                      <div className='card' key={question.name}>
-                                          <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`} 
-                                            target='_blank' 
-                                            
-                                            
-                                            >
-                                          <div className='card-content card-panel hoverable yellow' style={{height:'200px'}}>
-                                              <span className='card-title'><span className="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
-                                              
-                                              {/* {
-                                                  question.tags.map((tag)=>{
-                                                      return (
-                                                          <p key={question.name+tag}>{tag}</p>
-                                                      )
-                                                  })
-                                              } */}
-                                             
-                                          </div>
-                                          </a>  
-                                      </div>
-                             )
-                         })
-                     }
-                      
-                      
-                 
-           </div>
-                
-            {/* Scoreboard */}
-            <div style={{backgroundColor:'white', color:'violet', textAlign:'center', boxShadow:'5px 10px 10px black'}}>
-                <table>
-                    <thead>
-                        <tr>
-                            {
-                                contestStarted
-                                ?
-                                    <td width={'186.444px'} style={{textAlign:'center'}}>{hours}h {minutes}min {seconds}sec</td>
-                                :
-                                    <td width={'186.444px'}></td>
-                            }
-                            {
-                                questionList.map((ques,index)=>{
-                                    return (
-                                        <td key={ques.name} style={{textAlign:'center'}}>{String.fromCharCode(65+index)}</td>
-                                    )
-                                })
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                        resultCard.map((item,ide2)=>{
-                            return (
-                                <tr key={ide2}>
-                                    <td style={{textAlign:'center'}}>
-                                        {participants[ide2].name}
-                                    </td>
-                                    {
-                                        item.map((scores,index)=>{
-                                            var color_of_cell='lightgray';
-                                            var time=0;
-                                            scores==0
-                                                ?
-                                                color_of_cell='lightgray'
-                                                :
-                                                    scores!=-1
-                                                    ?
-                                                        color_of_cell='lightgreen'
-                                                    :
-                                                    color_of_cell='lightsalmon'
-                                                    
-                                            return (
-                                                <td key={index} style={{backgroundColor:color_of_cell, color:'black', textAlign:'center'}}>
-                                                    {scores}    
-                                                </td>
-                                            )
-                                        })
-                                    }
-                                </tr>
-                            )
-                            })
-                        }
-                    </tbody>
-                    
-                </table>
-                <button className='btn btn-large toggle' onClick={()=>{Scoreboard()}}>Update Scoreboard</button>
-            </div>
-        </div>
-        )
-    }
     
-    function NotEntered()
-    {
-
-        function Entry_into_room()
+    function Entry_into_room()
         {
             var user=JSON.parse(localStorage.getItem('user'))   
             var found=false;
@@ -583,43 +426,195 @@ function Room()
 
         }
 
-        var time=new Date(start_timings).toLocaleString()
-        return (
-            <div style={{marginTop:'200px', display:'flex', justifyContent:'center', alignContent:'center', alignSelf:'center'}}>
-                <div 
-                style={{
-                    backgroundColor:'burlywood', 
-                    height:'400px', 
-                    width:'500px', 
-                    marginLeft:'20px', 
-                    marginRight:'40px',
-                    borderRadius:'20px',
-                    boxShadow:'10px 10px 10px black',
-                    opacity:'0.95',
-                    backgroundImage:`url(${Background})`
-                }}>
-                    <h2>{roomName}</h2>
-                    <h4>Contest start timing : {time}</h4>
-                    <h4>Initial Question Rating : {initialRating}</h4>
-                </div>
-                <button
-                className='btn btn-large' 
-                style={{marginTop:'auto', marginBottom:'auto'}}
-                onClick={()=>{Entry_into_room()}}>Enter the room</button>
-            </div>
-        )
-    }
-
     let i = -1;
     var index_scoreboard=100;
-    if(inRoom)
-    {
-        return <EnteredRoom/>
-    }
-    else
-    {
-        return <NotEntered/>
-    }
+    
+    var time=new Date(start_timings).toLocaleString()
+    return (
+        <div>
+            {/* if in room */}
+            <div className="container" style={{display:inRoom?'':'none'}}>
+                <div style={{display:'flex', justifyContent:'space-between'}}>
+                    <div style={{width:'60%'}}>
+                        <h4>Room name: {roomName}</h4>
+                        <h4>Room Id: {roomId}</h4>
+                        
+                        {
+                            contestStarted
+                            ?
+                                <h3>Time Remaining : {hours}h {minutes}min {seconds}sec</h3>
+                            :
+                                <h3>Before start : {hours}h {minutes}min {seconds}sec</h3>
+                        }
+                        <h3>Total participants: {participants.length}</h3>
+                    </div>
+
+                    <div style={{width:'40%'}}>
+                        <div style={{paddingTop:'50px'}}>
+                        {
+                            participants.map((part)=>{
+                                // console.log(part)
+                                return (
+                                        <div key={part._id} className='chip'>
+                                            {part.name}
+                                        </div>
+                                    )
+                                })
+                        }
+                        </div>
+
+                        <div style={{display:'flex'}}>
+                            <button className='waves-effect waves-light btn-large' onClick={()=>{Refresh(false)}} style={{margin:'30px',minWidth:'fit-content'}}>Refresh</button>
+                            <button className='waves-effect waves-light btn-large' onClick={()=>LeaveRoom()} style={{margin:'30px',minWidth:'fit-content'}}>Leave Room</button>
+                        </div>
+                        
+
+                    </div>
+                    
+                </div>
+                
+                <h2> Problems </h2>
+                <br></br>
+                
+                {
+                    contestStarted
+                    ?
+                        questionList.length == 0
+                        ?
+                        <h1>Loading questions {questions_loaded_percentage} %</h1>
+                        :
+                        <></>
+                    :
+                    <></>
+                }
+            
+                <div className='row' >
+                        {
+                            
+                            questionList.map(question=>{
+                                let ID = "ABCDEF";
+                                i += 1;
+                                return (
+                                        <div className='card' key={question.name}>
+                                            <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`} 
+                                                target='_blank' 
+                                                
+                                                
+                                                >
+                                            <div className='card-content card-panel hoverable yellow' style={{height:'200px'}}>
+                                                <span className='card-title'><span className="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
+                                                
+                                                {/* {
+                                                    question.tags.map((tag)=>{
+                                                        return (
+                                                            <p key={question.name+tag}>{tag}</p>
+                                                        )
+                                                    })
+                                                } */}
+                                                
+                                            </div>
+                                            </a>  
+                                        </div>
+                                )
+                            })
+                        }
+                        
+                        
+                    
+            </div>
+                    
+                {/* Scoreboard */}
+                <div style={{backgroundColor:'white', color:'violet', textAlign:'center', boxShadow:'5px 10px 10px black'}}>
+                    <table>
+                        <thead>
+                            <tr>
+                                {
+                                    contestStarted
+                                    ?
+                                        <td width={'186.444px'} style={{textAlign:'center'}}>{hours}h {minutes}min {seconds}sec</td>
+                                    :
+                                        <td width={'186.444px'}></td>
+                                }
+                                {
+                                    questionList.map((ques,index)=>{
+                                        return (
+                                            <td key={ques.name} style={{textAlign:'center'}}>{String.fromCharCode(65+index)}</td>
+                                        )
+                                    })
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                            resultCard.map((item,ide2)=>{
+                                return (
+                                    <tr key={ide2}>
+                                        <td style={{textAlign:'center'}}>
+                                            {participants[ide2].name}
+                                        </td>
+                                        {
+                                            item.map((scores,index)=>{
+                                                var color_of_cell='lightgray';
+                                                var time=0;
+                                                scores==0
+                                                    ?
+                                                    color_of_cell='lightgray'
+                                                    :
+                                                        scores!=-1
+                                                        ?
+                                                            color_of_cell='lightgreen'
+                                                        :
+                                                        color_of_cell='lightsalmon'
+                                                        
+                                                return (
+                                                    <td key={index} style={{backgroundColor:color_of_cell, color:'black', textAlign:'center'}}>
+                                                        {scores}    
+                                                    </td>
+                                                )
+                                            })
+                                        }
+                                    </tr>
+                                )
+                                })
+                            }
+                        </tbody>
+                        
+                    </table>
+                    <button className='btn btn-large toggle' onClick={()=>{Scoreboard()}}>Update Scoreboard</button>
+                </div>
+            </div>
+            
+            {/* if not in room */}
+            <div style={{
+                display:inRoom?'none':'flex',
+                marginTop:'200px', 
+                justifyContent:'center', 
+                alignContent:'center', 
+                alignSelf:'center'
+                }}>
+                    	<div 
+                        style={{
+                            backgroundColor:'burlywood', 
+                            height:'400px', 
+                            width:'500px', 
+                            marginLeft:'20px', 
+                            marginRight:'40px',
+                            borderRadius:'20px',
+                            boxShadow:'10px 10px 10px black',
+                            opacity:'0.95',
+                            backgroundImage:`url(${Background})`
+                        }}>
+                        <h2>{roomName}</h2>
+                        <h4>Contest start timing : {time}</h4>
+                        <h4>Initial Question Rating : {initialRating}</h4>
+                        </div>
+                        <button
+                        className='btn btn-large' 
+                        style={{marginTop:'auto', marginBottom:'auto'}}
+                        onClick={()=>{Entry_into_room()}}>Enter the room</button>
+            </div>
+        </div>
+    )
 }
 
 export default Room;

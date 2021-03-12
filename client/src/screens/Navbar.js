@@ -4,6 +4,8 @@ import M from 'materialize-css'
 import { use } from 'passport';
 import './design.css';
 import img1 from '../images/cf.jpg'
+import Navbar_Logo from '../images/logo.png'
+
 function Navbar() {
 
     const [query,setQuery]=useState('')
@@ -51,14 +53,25 @@ function Navbar() {
 
     return (
         <div>
-            <nav>
+            <nav
+            style={{backgroundColor:'rgb(0,0,0,0)',
+            height:'160px',
+            paddingTop:'15px'
+            }}
+            >
                 <div className="nav-wrapper">
-                    <a href="#" className="brand-logo center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRD9watd98GuxuplYkqW5OizlYfQa_Iy4_3g&usqp=CAU"></img>
-                    </a>
-                    <a data-target="slide-out" className="sidenav-trigger show-on-large right" style={{ cursor: 'pointer' }}>
-                        <i className="material-icons" style={{ fontSize: '80px', marginRight: '0px', color: 'teal' }}>menu</i>
-                    </a>
+                    <div>
+                        <a href="#" className="brand-logo right right hide-on-med-and-down" >
+                            <img src={Navbar_Logo} style={{height:'150px', width:'200px'}}></img>
+                        </a>
+                        <a data-target="slide-out" className="sidenav-trigger show-on-large left" style={{ cursor: 'pointer' }}>
+                            <i className="material-icons" style={{ fontSize: '80px', marginRight: '0px', color:'lightslategray' }}>menu</i>
+                        </a>
+                        <a className="heading center" style={{width:'70%'}}>
+                            CLASH OF CODES
+                        </a>
+                    </div>
+                    
                     <ul id="slide-out" className="sidenav nav lighten-2">
                         <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/home">Home</Link></li>
                         <li><Link className="sidenav-close waves-effect waves-light btn-large" to="/contest">Contest</Link></li>
