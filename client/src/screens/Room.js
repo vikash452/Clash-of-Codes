@@ -37,14 +37,14 @@ function Room()
     const [contestStarted,setContestStarted]=useState(false)
     const [scores, setscores] = useState([]);
     const [questions_loaded_percentage,setQuestionsPercentage]=useState(0.0)
-    // const [resultCard,setResultCard]=useState(Array.from({length: 5},()=> Array.from({length: 5}, () => null)));
-    // var resultCard=[[]];
     const [resultCard,setResultCard]=useState([])
     const [start_timings,set_Start_timings]=useState(0)
     const [initialRating,setInitialRating]=useState(800)
     const [inRoom,setInRoom]=useState(false);
+    var IR;
     var isAdmin=false;
     var user;
+    // var initialRating=800;
 
     useEffect(()=>{
         // console.log(Math.floor(new Date()/1000))
@@ -70,6 +70,9 @@ function Room()
                
                 setParticipants(data.participants)
                 setInitialRating(data.initialRating)
+                console.log(data.initialRating)
+                IR=data.initialRating
+                // console.log(initialRating)
 
                 if(user.email == data.adminEmail)
                     isAdmin=true
@@ -117,7 +120,7 @@ function Room()
         
         
 
-    },[])
+    },[initialRating])
 
     function Scoreboard(){
 
@@ -177,7 +180,7 @@ function Room()
                                 var x=Math.floor(new Date(start_timings)/1000)
                                 var y=item.creationTimeSeconds
                                 // console.log(y)
-                                var min=Math.floor((y-x)/(60));
+                                var min=(Math.floor((y-x)/(60)))%60;
                                 var hrs=Math.floor(min/60)
                                 score_card[index][questionIndex]=hrs + ':' + min;
                             }
@@ -230,25 +233,31 @@ function Room()
     {   
         // console.log('get problems called')
         let arr = [];
-        let k = initialRating;
+        let k = IR;
+        console.log(k)
         fetch(`https://codeforces.com/api/problemset.problems`)
         .then(response => response.json())
         .then( data =>{
             //console.log(data);
             data.result.problems.sort(randomize);
             //console.table(data.result.problems);
+            var total=0;
             data.result.problems.forEach(function(element){
                 let id = element.contestId.toString() + element.index;
                 let flag = true;
+
                 element.tags.forEach(function(element2){
                     if(element2 === "special problem"){
                         flag = false;
                     }
                 })
-                if( flag === true && k < 1400 && nmap.get(id) != true && element.rating == k ){
-                    arr[i] = element;
-                    i += 1;
+                if( flag === true && nmap.get(id) != true && element.rating == k && total<=5 ){
+                    console.log(element)
+                    // arr[i] = element;
+                    arr.push(element)
+                    // i += 1;
                     k += 100;
+                    ++total;
                 }
             });
             
@@ -296,6 +305,8 @@ function Room()
             {   
                 setRoomName(data.name)
                 setParticipants(data.participants)
+                // initialRating=data.initialRating;
+                // setInitialRating(data.initialRating)
                 if(contestStarted)
                 {
                     // GetProblems(data.participants);
@@ -440,7 +451,7 @@ function Room()
                         <h4>Room Id: {roomId}</h4>
                         
                         {
-                            contestStarted
+                            contestStarted && hours >=0 && minutes>=0 && seconds>=0
                             ?
                                 <h3>Time Remaining : {hours}h {minutes}min {seconds}sec</h3>
                             :

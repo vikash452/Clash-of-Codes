@@ -55,12 +55,12 @@ function Home() {
                     style={{
                         position: 'absolute',
                         fontSize: '1.3rem',
-                    }}>Logout<span class="inner">
-                        <span class="blobs">
-                            <span class="blob"></span>
-                            <span class="blob"></span>
-                            <span class="blob"></span>
-                            <span class="blob"></span>
+                    }}>Logout<span className="inner">
+                        <span className="blobs">
+                            <span className="blob"></span>
+                            <span className="blob"></span>
+                            <span className="blob"></span>
+                            <span className="blob"></span>
                         </span>
                     </span>
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1">

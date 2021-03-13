@@ -130,8 +130,8 @@ function Contest()
                         <option value={900}>900</option>
                         <option value={1000}>1000</option>
                         <option value={1100}>1100</option>
-                        <option value={1100}>1200</option>
-                        <option value={1100}>1300</option>
+                        <option value={1200}>1200</option>
+                        <option value={1300}>1300</option>
                     </select>
                 </p>
                 

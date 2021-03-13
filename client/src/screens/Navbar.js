@@ -87,12 +87,12 @@ function Navbar() {
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
-                                            }}>Home<span class="inner">
-                                                <span class="blobs">
-                                                    <span class="blob"></span>
-                                                    <span class="blob"></span>
-                                                    <span class="blob"></span>
-                                                    <span class="blob"></span>
+                                            }}>Home<span className="inner">
+                                                <span className="blobs">
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
                                                 </span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -115,12 +115,12 @@ function Navbar() {
                                     style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
-                                    }}>Contest<span class="inner">
-                                        <span class="blobs">
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
+                                    }}>Contest<span className="inner">
+                                        <span className="blobs">
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
                                         </span>
                                     </span>
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -143,12 +143,12 @@ function Navbar() {
                                     style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
-                                    }}>Profile<span class="inner">
-                                        <span class="blobs">
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
+                                    }}>Profile<span className="inner">
+                                        <span className="blobs">
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
                                         </span>
                                     </span>
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -172,12 +172,12 @@ function Navbar() {
                                         style={{
                                             fontSize: '1.3rem',
                                             width: '100%',
-                                        }}>DSA<span class="inner">
-                                            <span class="blobs">
-                                                <span class="blob"></span>
-                                                <span class="blob"></span>
-                                                <span class="blob"></span>
-                                                <span class="blob"></span>
+                                        }}>DSA<span className="inner">
+                                            <span className="blobs">
+                                                <span className="blob"></span>
+                                                <span className="blob"></span>
+                                                <span className="blob"></span>
+                                                <span className="blob"></span>
                                             </span>
                                         </span>
                                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -200,12 +200,12 @@ function Navbar() {
                                     style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
-                                    }}>Report<span class="inner">
-                                        <span class="blobs">
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
+                                    }}>Report<span className="inner">
+                                        <span className="blobs">
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
                                         </span>
                                     </span>
                                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
