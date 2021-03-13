@@ -63,21 +63,29 @@ function Navbar() {
                     display: 'grid',
                     gridTemplateColumns: '10rem auto 10rem',
                     columnGap: '2rem',
+                    //overflow: 'auto',
+                    width: '100%',
                 }}>
                     <li style={{ marginTop: '2.4rem' }}>
-                        <a data-target="slide-out" className="sidenav-trigger show-on-large left" style={{ cursor: 'pointer' }}>
-                            <i className="material-icons" style={{ fontSize: '80px', color: 'white' }}>menu</i>
+                        <a data-target="slide-out" className="sidenav-trigger show-on-large left" style={{
+                             cursor: 'pointer', 
+                             overflow: 'hidden',
+                             height: '10vh' }}>
+                            <i className="material-icons" style={{ fontSize: '80px', color: 'white', height: 'auto' }}>menu</i>
                         </a>
                     </li>
                     <li style={{ marginTop: '2.2rem' }}>
                         <div className="nav-wrapper" style={{}}>
                             <div>
-                                <a className="heading center" style={{ width: '70%', display: 'inline' }}>
+                                <a className="heading" style={{
+                                    display: 'block'
+                                }}>
                                     CLASH OF CODES
                                 </a>
                             </div>
 
                             <ul id="slide-out" className="sidenav nav lighten-2" style={{
+
                             }}>
                                 <li style={{
                                     marginTop: '1.2rem',
@@ -228,9 +236,10 @@ function Navbar() {
                         <a href="#" className="brand-logo right" >
                             <img src={Navbar_Logo} style={{
                                 width: '8rem',
-                                height: '7rem',
+                                height: '20vh',
                                 borderRadius: '20%',
-                                marginTop: '1rem'
+                                marginTop: '1rem',
+                                overflow: 'hidden',
                             }}></img>
                         </a>
                     </li>
@@ -257,7 +266,7 @@ function Navbar() {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 
