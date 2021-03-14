@@ -99,7 +99,8 @@ function Contest() {
             alignItems: 'center',
             maxWidth: '1200px',
             flexwrap: 'wrap',
-            zindex: '1'
+            zindex: '1',
+            margin:'auto'
         }}>
             {/* <div style={{ backgroundColor: 'rgb(171, 49, 233)', border: '20px ridge white', borderRadius: '60px', marginTop: '10px', marginRight: '20px' }}> */}
             <div style={{
@@ -147,28 +148,31 @@ function Contest() {
                     <select onChange={(e) => {
                         setInitialRating(e.target.value)
                     }} >
-                        <option value={800}>800 (Easy)</option>
-                        <option value={900}>900 (Easy)</option>
-                        <option value={1000}>1000 (Medium)</option>
-                        <option value={1100}>1100 (Medium)</option>
-                        <option value={1200}>1200 (Hard)</option>
-                        <option value={1300}>1300 (Hard)</option>
+                        <option value={800}>800</option>
+                        <option value={900}>900</option>
+                        <option value={1000}>1000</option>
+                        <option value={1100}>1100</option>
+                        <option value={1200}>1200</option>
+                        <option value={1300}>1300</option>
+                        <option value={1400}>1400</option>
+                        <option value={1500}>1500</option>
+                        <option value={1600}>1600</option>
                     </select>
                 </p>
                 <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <button class="blobby-button" onClick={() => { CreateRoom() }} style={{
+                    <button className="blobby-button" onClick={() => { CreateRoom() }} style={{
                         margin: '0 auto',
                         position: 'absolute',
                         fontSize: '1.3rem',
 
-                    }}>Create Room <span class="inner">
-                            <span class="blobs">
-                                <span class="blob"></span>
-                                <span class="blob"></span>
-                                <span class="blob"></span>
+                    }}>Create Room <span className="inner">
+                            <span className="blobs">
+                                <span className="blob"></span>
+                                <span className="blob"></span>
+                                <span className="blob"></span>
 
                                 <span
-                                    class="blob"></span>
+                                    className="blob"></span>
                             </span>
                         </span>
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -218,19 +222,19 @@ function Contest() {
                 />
                 <br></br>
                 <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <button class="blobby-button" onClick={() => { Join() }} style={{
+                    <button className="blobby-button" onClick={() => { Join() }} style={{
                         margin: '0 auto',
                         position: 'absolute',
                         fontSize: '1.3rem',
 
-                    }}>Join<span class="inner">
-                            <span class="blobs">
-                                <span class="blob"></span>
-                                <span class="blob"></span>
-                                <span class="blob"></span>
+                    }}>Join<span className="inner">
+                            <span className="blobs">
+                                <span className="blob"></span>
+                                <span className="blob"></span>
+                                <span className="blob"></span>
 
                                 <span
-                                    class="blob"></span>
+                                    className="blob"></span>
                             </span>
                         </span>
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
