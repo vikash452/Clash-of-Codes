@@ -73,7 +73,7 @@ function Profile()
             })
             .then(res=>res.json())
             .then((data)=>{
-                console.log(data)
+                // console.log(data)
                 if(data.error)
                 {
                     M.toast({
@@ -114,7 +114,7 @@ function Profile()
             })
             .then(res=>res.json())
             .then((data)=>{
-                console.log(data)
+                // console.log(data)
                 if(data.error)
                 {
                     M.toast({
@@ -130,7 +130,7 @@ function Profile()
                     classes: "#ce93d8 purple",
                     displayLength: 1000,
                     })
-                    setCc(data.codeforces)
+                    setCc(data.codechef)
                     localStorage.setItem('user',JSON.stringify(data))
                 }
             })

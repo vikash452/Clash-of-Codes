@@ -38,7 +38,7 @@ function codechefMiddleware(req,res,next)
                 code: code,
                 client_id:process.env.CLIENT_ID_CODECHEF,
                 client_secret:process.env.CLIENT_SECRET_CODECHEF,
-                redirect_uri:'http://localhost:3000/codechefdone'
+                redirect_uri:'http://www.clashofcodes.herokuapp.com/codechefdone'
             })
             })
             .then(res=>res.json())
