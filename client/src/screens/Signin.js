@@ -52,7 +52,7 @@ function Signin() {
 
     return (
         <div>
-            <div class="container" style={{
+            <div className="container" style={{
                 position: 'relative',
                 display: 'flex',
                 justifyContent: 'center',
@@ -61,7 +61,7 @@ function Signin() {
                 flexwrap: 'wrap',
                 zindex: '1'
             }}>
-                <div class="card" style={{
+                <div className="card" style={{
                     position: 'relative',
                     width: '600px',
                     //minWidth: '420px',
@@ -81,7 +81,7 @@ function Signin() {
                         width: '100%',
                         height: '35%'
                     }}></img>
-                    <div class="content" style={{
+                    <div className="content" style={{
                         position: 'relative',
                         padding: '20px',
                         textAlign: 'center',
@@ -117,14 +117,14 @@ function Signin() {
                             marginTop: '2rem'
                         }}>
 
-                            <button class="blobby-button" onClick={() => { Login() }} >Sign In <span class="inner">
-                                <span class="blobs">
-                                    <span class="blob"></span>
-                                    <span class="blob"></span>
-                                    <span class="blob"></span>
+                            <button className="blobby-button" onClick={() => { Login() }} >Sign In <span className="inner">
+                                <span className="blobs">
+                                    <span className="blob"></span>
+                                    <span className="blob"></span>
+                                    <span className="blob"></span>
 
                                     <span
-                                        class="blob"></span>
+                                        className="blob"></span>
                                 </span>
                             </span>
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -140,16 +140,16 @@ function Signin() {
                             </button>
                             <span>
                                 <Link to='/forgotPassword'>
-                                    <button class="blobby-button" style={{
+                                    <button className="blobby-button" style={{
                                         marginLeft: '2rem'
-                                    }}>Forgot Password <span class="inner">
-                                            <span class="blobs">
-                                                <span class="blob"></span>
-                                                <span class="blob"></span>
-                                                <span class="blob"></span>
+                                    }}>Forgot Password <span className="inner">
+                                            <span className="blobs">
+                                                <span className="blob"></span>
+                                                <span className="blob"></span>
+                                                <span className="blob"></span>
 
                                                 <span
-                                                    class="blob"></span>
+                                                    className="blob"></span>
                                             </span>
                                         </span>
                                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -181,16 +181,16 @@ function Signin() {
                             }}>Don't have an account?</h5>
                             <span>
                                 <Link to='/signup'>
-                                    <button class="blobby-button" style={{
+                                    <button className="blobby-button" style={{
                                         marginLeft: '0.5rem'
-                                    }}>Sign Up <span class="inner">
-                                        <span class="blobs">
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
-                                            <span class="blob"></span>
+                                    }}>Sign Up <span className="inner">
+                                        <span className="blobs">
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
+                                            <span className="blob"></span>
 
                                             <span
-                                                class="blob"></span>
+                                                className="blob"></span>
                                         </span>
                                     </span>
                                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1">

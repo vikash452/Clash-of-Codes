@@ -26,7 +26,7 @@ function Codechef()
 
         if(user.codechefVerified == false)
         {
-            window.location.href='https://api.codechef.com/oauth/authorize?response_type=code&client_id=914de23a3999f5e2e312d3c06fd003b7&redirect_uri=http://www.clashofcodes.herokuapp.com/codechefdone&state=xyz'
+            window.location.href='https://api.codechef.com/oauth/authorize?response_type=code&client_id=c6fea028e960e1096ba59b88e3532118&redirect_uri=https://clashofcodes.herokuapp.com/codechefdone&state=xyz'
         }
 
         setHandle(user.codechef)
