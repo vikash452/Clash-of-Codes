@@ -47,6 +47,13 @@ const UserSchema=new mongoose.Schema({
     },
     refreshToken:{
         type:String
+    },
+    expiresIn:{
+        type:Date
+    },
+    codechefVerified:{
+        type:Boolean,
+        default:false
     }
 },{timestamps:true})
 

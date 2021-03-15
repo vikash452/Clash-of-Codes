@@ -98,6 +98,47 @@ function Profile()
             })
     }
 
+    function addCcHandle(platform)
+    {
+        console.log(platform)
+        fetch('/post/handles',{
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + localStorage.getItem('jwt')
+            },
+            body:JSON.stringify({
+                platform,
+                handle:cc
+            })
+            })
+            .then(res=>res.json())
+            .then((data)=>{
+                console.log(data)
+                if(data.error)
+                {
+                    M.toast({
+                    html:data.error,
+                    classes: "#ce93d8 purple",
+                    displayLength: 1000,
+                    })
+                }
+                else
+                {
+                    M.toast({
+                    html:'handle set successfully',
+                    classes: "#ce93d8 purple",
+                    displayLength: 1000,
+                    })
+                    setCc(data.codeforces)
+                    localStorage.setItem('user',JSON.stringify(data))
+                }
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+    }
+
     function friendSearch(pattern)
     {
         // console.log(pattern.length == 0)
@@ -203,6 +244,27 @@ function Profile()
                 }
                 
             </div>  
+
+            <div className = "parallax1"></div>
+
+            <div>
+                <input type='text' placeholder='codechef handle' style={{maxWidth:'300px'}} id='cc_handle_input'
+                onChange={(e)=>{
+                    setCc(e.target.value)
+                }}
+                />
+                <br/>
+                <button className='btn-large' style = {{marginTop : '10px'}} onClick={()=>{addCcHandle('codechef')}}>Set codechef handle</button>
+                <h3>Your current Codechef handle is : {cc}</h3>
+
+                {
+                    cc
+                    &&
+                    <button className='waves-effect waves-light btn-large'><Link to='/codechef' style={{color: 'white', marginBottom: '80px'}}>Click here to see your statistics</Link></button>
+                }
+                
+            </div>  
+            
             <div className = "parallax1"></div>
             
             <div>

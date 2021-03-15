@@ -14,6 +14,7 @@ import ForgotPassword from './screens/ForgotPassword'
 import UpdatePassword from './screens/UpdatePassword'
 import Codeforces from './screens/Codeforces'
 import Codechef from './screens/Codechef'
+import CodechefAuthorization from './screens/ChefAuthorization'
 import DSA from './screens/DSA'
 import './screens/design.css'
 import LandingScreen from './screens/Landing'
@@ -78,6 +79,11 @@ function AllRouting() {
       <Route exact path='/codechef'>
         <Navbar />
         <Codechef />
+        <Footer/>
+      </Route>
+      <Route exact path='/codechefdone'>
+        <Navbar />
+        <CodechefAuthorization />
         <Footer/>
       </Route>
       <Route exact path='/contest'>

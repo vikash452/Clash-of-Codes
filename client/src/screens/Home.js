@@ -43,7 +43,7 @@ function Home() {
             justifyContent: 'center',
             alignItems: 'center',
         }}>
-            <h1>Hi {name} {process.env.REACT_APP_SECRET}</h1>
+            <h1>Hi {name}</h1>
             <h2>....Hope you are coding well....</h2>
             <div style={{ 
                 marginTop: '7rem',
