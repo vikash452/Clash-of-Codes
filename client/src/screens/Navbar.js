@@ -240,7 +240,8 @@ function Navbar() {
                                 borderRadius: '20%',
                                 marginTop: '1rem',
                                 overflow: 'hidden',
-                            }}></img>
+                            }} 
+                            className="hide-on-med-and-down"></img>
                         </a>
                     </li>
                 </ul>
