@@ -4,7 +4,7 @@ function Footer()
         <div style={{display:'flex', flexDirection:'column'}}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="5%" stopColor="green" />
+                    <stop offset="5%" stopColor="black" />
                     <stop offset="95%" stopColor="yellow" />
                 </linearGradient>
                     <path fill="url(#Gradient2)" fillOpacity="1"

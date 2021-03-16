@@ -91,7 +91,7 @@ function Navbar() {
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
                                 }}><Link to="/home">
-                                        <button className="blobby-button"
+                                        <button className="blobby-button sidenav-close"
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
@@ -119,7 +119,7 @@ function Navbar() {
                                 <li style={{
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
-                                }}><Link to="/contest"><button className="blobby-button"
+                                }}><Link to="/contest"><button className="blobby-button sidenav-close"
                                     style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
@@ -147,7 +147,7 @@ function Navbar() {
                                 <li style={{
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
-                                }}><Link to="/profile"><button className="blobby-button"
+                                }}><Link to="/profile"><button className="blobby-button sidenav-close"
                                     style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
@@ -176,7 +176,7 @@ function Navbar() {
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
                                 }}>
-                                    <Link to="/dsa"><button className="blobby-button"
+                                    <Link to="/dsa"><button className="blobby-button sidenav-close"
                                         style={{
                                             fontSize: '1.3rem',
                                             width: '100%',
@@ -204,7 +204,7 @@ function Navbar() {
                                 <li style={{
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
-                                }}><a className="modal-trigger" href="#modal1"><button className="blobby-button"
+                                }}><a className="modal-trigger" href="#modal1"><button className="blobby-button sidenav-close"
                                     style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
