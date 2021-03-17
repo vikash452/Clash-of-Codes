@@ -10,6 +10,7 @@ const app=express()
 
 function codechefMiddleware(req,res,next)
 {
+    console.log('a')
     const userEmail=req.user.email
     const code=req.body.code;
     User.findOne({email:userEmail})
@@ -20,14 +21,14 @@ function codechefMiddleware(req,res,next)
         }
 
         var currentTime=Math.floor((new Date())/1000)
-        console.log(currentTime)
+        // console.log(currentTime)
         var expiryTime=Math.floor((new Date(foundUser.expiresIn))/1000)
-        console.log(expiryTime)
-        console.log(expiryTime <= currentTime)
+        // console.log(expiryTime)
+        // console.log(expiryTime <= currentTime)
         
         if(foundUser.accessToken == null)
         {
-            console.log('y')
+            // console.log('y')
             fetch('https://api.codechef.com/oauth/token',{
             method:'POST',
             headers:{
@@ -36,9 +37,9 @@ function codechefMiddleware(req,res,next)
             body:JSON.stringify({
                 grant_type:'authorization_code',
                 code: code,
-                client_id:process.env.CLIENT_ID_CODECHEF,
-                client_secret:process.env.CLIENT_SECRET_CODECHEF,
-                redirect_uri:'https://clashofcodes.herokuapp.com/codechefdone'
+                client_id:process.env.CLIENT_ID_CODECHEF_PRACTICE,
+                client_secret:process.env.CLIENT_SECRET_CODECHEF_PRACTICE,
+                redirect_uri:process.env.REDIRECT_URI_PRACTICE
             })
             })
             .then(res=>res.json())
@@ -72,7 +73,7 @@ function codechefMiddleware(req,res,next)
         {
             if(expiryTime <= currentTime)
             {
-                console.log('t')
+                // console.log('t')
                 fetch('https://api.codechef.com/oauth/token',{
                     method:'POST',
                     headers:{
@@ -81,14 +82,14 @@ function codechefMiddleware(req,res,next)
                     body:JSON.stringify({
                         grant_type:'refresh_token',
                         refresh_token: foundUser.refreshToken,
-                        client_id:process.env.CLIENT_ID_CODECHEF,
-                        client_secret:process.env.CLIENT_SECRET_CODECHEF,
+                        client_id:process.env.CLIENT_ID_CODECHEF_PRACTICE,
+                        client_secret:process.env.CLIENT_SECRET_CODECHEF_PRACTICE,
                     })
                 })
                 .then(res=>res.json())
                 .then((data)=>{
                     
-                    console.log(data)
+                    // console.log(data)
                     foundUser.accessToken=data.result.data.access_token
                     foundUser.refreshToken=data.result.data.refresh_token
                     foundUser.expiresIn=new Date(currentTime*1000 + 118*60*1000);
@@ -113,6 +114,8 @@ function codechefMiddleware(req,res,next)
 }
 
 router.post('/codechef/accessToken',passport.authenticate('jwt',{session:false}),codechefMiddleware,(req,res)=>{
+    // console.log(req.user)
+    console.log('b')
     return res.status(200).json(req.user)
 })
 

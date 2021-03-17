@@ -9,6 +9,7 @@ import Navbar_Logo from '../images/logo.jpg'
 function Navbar() {
 
     const [query, setQuery] = useState('')
+    const history=useHistory()
 
     useEffect(() => {
         var side_nav_elem = document.querySelectorAll('#slide-out');
@@ -48,8 +49,25 @@ function Navbar() {
             })
     }
 
+    function Logout() {
+        fetch('/user/logout', {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then((data) => {
+                // console.log(data)
+                localStorage.clear()
+                history.push('/signin')
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
-        <div>
+        <div style={{minWidth:'fit-content'}}>
             <nav
                 style={{
                     backgroundColor: 'rgb(0,0,0,0.2)',
@@ -77,12 +95,12 @@ function Navbar() {
                     <li style={{ marginTop: '2.2rem' }}>
                         <div className="nav-wrapper" style={{}}>
                             <div>
-                                <a className="heading" style={{
+                                <div className="heading" style={{
                                     display: 'block'
                                 }}>
                                     <Link to="/home" style={{ fontSize: '4.8rem'}}>CLASH OF CODES</Link>
                                     
-                                </a>
+                                </div>
                             </div>
 
                             <ul id="slide-out" className="sidenav nav lighten-2" style={{
@@ -177,64 +195,171 @@ function Navbar() {
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
                                 }}>
-                                    <Link to="/dsa"><button className="blobby-button sidenav-close"
+                                    <Link to="/dsa">
+                                        <button className="blobby-button sidenav-close"
                                         style={{
                                             fontSize: '1.3rem',
                                             width: '100%',
-                                        }}>DSA<span className="inner">
-                                            <span className="blobs">
-                                                <span className="blob"></span>
-                                                <span className="blob"></span>
-                                                <span className="blob"></span>
-                                                <span className="blob"></span>
+                                        }}>
+                                            DSA
+                                            <span className="inner">
+                                                <span className="blobs">
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                </span>
                                             </span>
-                                        </span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                            <defs>
-                                                <filter id="goo">
-                                                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                        result="goo"></feColorMatrix>
-                                                    <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                </filter>
-                                            </defs>
-                                        </svg>
-                                    </button>
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                                <defs>
+                                                    <filter id="goo">
+                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                                            result="goo"></feColorMatrix>
+                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                                    </filter>
+                                                </defs>
+                                            </svg>
+                                        </button>
                                     </Link>
                                 </li>
                                 <li style={{
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
-                                }}><a className="modal-trigger" href="#modal1"><button className="blobby-button sidenav-close"
-                                    style={{
-                                        fontSize: '1.3rem',
-                                        width: '100%',
-                                    }}>Report<span className="inner">
-                                        <span className="blobs">
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                        </span>
-                                    </span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                        <defs>
-                                            <filter id="goo">
-                                                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                    result="goo"></feColorMatrix>
-                                                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                            </filter>
-                                        </defs>
-                                    </svg>
-                                </button>
-                                    </a></li>
+                                }}>
+                                    <Link to="/codeforces">
+                                        <button className="blobby-button sidenav-close"
+                                        style={{
+                                            fontSize: '1.3rem',
+                                            width: '100%',
+                                        }}>
+                                            Codeforces
+                                            <span className="inner">
+                                                <span className="blobs">
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                </span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                                <defs>
+                                                    <filter id="goo">
+                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                                            result="goo"></feColorMatrix>
+                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                                    </filter>
+                                                </defs>
+                                            </svg>
+                                        </button>
+                                    </Link>
+                                </li>
+                                <li style={{
+                                    marginTop: '1.2rem',
+                                    marginBottom: '1.2rem',
+                                }}>
+                                    <Link to="/codechef">
+                                        <button className="blobby-button sidenav-close"
+                                        style={{
+                                            fontSize: '1.3rem',
+                                            width: '100%',
+                                        }}>
+                                            Codechef
+                                            <span className="inner">
+                                                <span className="blobs">
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                </span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                                <defs>
+                                                    <filter id="goo">
+                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                                            result="goo"></feColorMatrix>
+                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                                    </filter>
+                                                </defs>
+                                            </svg>
+                                        </button>
+                                    </Link>
+                                </li>
+                                
+                                <li 
+                                style={{
+                                    marginTop: '1.2rem',
+                                    marginBottom: '1.2rem',
+                                }}>
+                                    <a className="modal-trigger" href="#modal1">
+                                        <button className="blobby-button sidenav-close"
+                                        style={{
+                                            fontSize: '1.3rem',
+                                            width: '100%',
+                                        }}>
+                                            Report
+                                            <span className="inner">
+                                                <span className="blobs">
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                </span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                                <defs>
+                                                    <filter id="goo">
+                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                                            result="goo"></feColorMatrix>
+                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                                    </filter>
+                                                </defs>
+                                            </svg>
+                                        </button>
+                                    </a>
+                                </li>
+                                <li 
+                                style={{
+                                    marginTop: '1.2rem',
+                                    marginBottom: '1.2rem',
+                                }}>
+                                    <a className="" href="#">
+                                        <button className="blobby-button sidenav-close" onClick={()=>{Logout()}}
+                                        style={{
+                                            fontSize: '1.3rem',
+                                            width: '100%',
+                                        }}>
+                                            Logout
+                                            <span className="inner">
+                                                <span className="blobs">
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                    <span className="blob"></span>
+                                                </span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                                <defs>
+                                                    <filter id="goo">
+                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                                            result="goo"></feColorMatrix>
+                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                                    </filter>
+                                                </defs>
+                                            </svg>
+                                        </button>
+                                    </a>
+                                </li>
 
                             </ul>
                         </div>
                     </li>
                     <li>
-                        <a href="#" className="brand-logo right" >
+                        <div className="brand-logo right" >
                             <Link to="/home">
                             <img src={Navbar_Logo} style={{
                                 width: '8rem',
@@ -244,7 +369,7 @@ function Navbar() {
                                 overflow: 'hidden',
                             }} 
                             className="hide-on-med-and-down"></img></Link>
-                        </a>
+                        </div>
                     </li>
                 </ul>
 

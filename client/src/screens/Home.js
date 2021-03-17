@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import M from 'materialize-css'
 import './design.css';
+import fetch from 'node-fetch';
 function Home() {
     function Logout() {
         fetch('/user/logout', {
@@ -22,6 +23,7 @@ function Home() {
     }
 
     var [name, setName] = useState('');
+    var [upcomingCF, setUpcomingCF] = useState([]);
     var user;
     const history = useHistory();
     useEffect(() => {
@@ -34,6 +36,21 @@ function Home() {
         else {
             setName(user.name)
         }
+
+        fetch('https://codeforces.com/api/contest.list')
+        .then(res=>res.json())
+        .then((data)=>{
+            console.log(data)
+            var temp=[]
+            data.result.forEach(element => {
+                if(element.relativeTimeSeconds < 0)
+                temp.push(element)
+            });
+            temp.reverse()
+            temp.splice(3,temp.length)
+            setUpcomingCF(temp)
+        })
+
     }, [])
     // console.log(process.env)
     return (
@@ -42,10 +59,24 @@ function Home() {
             display: 'inline-block',
             justifyContent: 'center',
             alignItems: 'center',
+            marginBottom:'70px'
         }}>
             <h1>Hi {name}</h1>
             <h2>....Hope you are coding well....</h2>
-            <div style={{ 
+            {
+                upcomingCF.map(item=>{
+                    var startDate=new Date(item.startTimeSeconds*1000).toLocaleDateString()
+                    // var startDate=d.getDate() + ' ' + d.getMonth()+1 + ' ' + d.getFullYear()
+                    var startTime=new Date(item.startTimeSeconds*1000).toLocaleTimeString()
+                    return(
+                        <h4 key={item.startTimeSeconds}>
+                            {item.name} {startDate} {startTime}
+                        </h4>
+                    )
+                })
+            }
+            
+            {/* <div style={{ 
                 marginTop: '7rem',
                 display: 'flex',
                 justifyContent: 'center',
@@ -74,8 +105,8 @@ function Home() {
                         </defs>
                     </svg>
                 </button>
-            </div>
-
+            </div> */}
+                
         </div>
     )
 }

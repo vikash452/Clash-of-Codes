@@ -23,6 +23,11 @@ function ChefAuthorization()
         })
         .then(res=>res.json())
         .then((data)=>{
+            // console.log(data)
+            data={
+                ...data,
+                codechefVerified:true
+            }
             localStorage.setItem('user',JSON.stringify(data))
             var clock=setTimeout(()=>{
                 history.push('/codechef')

@@ -240,7 +240,7 @@ function Profile() {
                         }
                     </ul>
                     <h4>Your total friends are :  {friendList.length}</h4>
-                    {
+                    {/* {
                         friendList.forEach((friend) => {
                             return (
                                 <div >
@@ -249,7 +249,7 @@ function Profile() {
                             )
 
                         })
-                    }
+                    } */}
                 </div>
 
             </div>

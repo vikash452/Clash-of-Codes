@@ -16,6 +16,11 @@ function Codechef()
     const [content,setContent]=useState()
     var user;
     const history=useHistory()
+    const REDIRECT_URI_PRACTICE='http://localhost:3000/codechefdone'
+    const REDIRECT_URI='https://clashofcodes.herokuapp.com/codechefdone'
+    
+    const CLIENT_ID_CODECHEF_PRACTICE='0b05f9d425528e5d97f7b8905ad4111b'
+    const CLIENT_ID_CODECHEF='c6fea028e960e1096ba59b88e3532118'
 
     useEffect(()=>{
         user=JSON.parse(localStorage.getItem('user'))
@@ -26,9 +31,9 @@ function Codechef()
 
         if(user.codechefVerified == false)
         {
-            window.location.href='https://api.codechef.com/oauth/authorize?response_type=code&client_id=c6fea028e960e1096ba59b88e3532118&redirect_uri=https://clashofcodes.herokuapp.com/codechefdone&state=xyz'
+            window.location.href=`https://api.codechef.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID_CODECHEF_PRACTICE}&redirect_uri=${REDIRECT_URI_PRACTICE}&state=xyz`
         }
-
+        // console.log(`https://api.codechef.com/oauth/authorize?response_type=code&client_id=c6fea028e960e1096ba59b88e3532118&redirect_uri=${REDIRECT_URI_PRACTICE}&state=xyz`)
         setHandle(user.codechef)
         
         if(handle)
@@ -51,7 +56,7 @@ function Codechef()
         })
         .then(res=>res.json())
         .then((data)=>{
-            // console.log(data)
+            console.log(data)
             setContent(data.result.data.content)
             // console.log(Object.entries(data.result.data.content.problemStats.attempted))
             // for(let [key,value] of Object.entries(data.result.data.content.problemStats.attempted))
