@@ -37,19 +37,24 @@ function Home() {
             setName(user.name)
         }
 
-        fetch('https://codeforces.com/api/contest.list')
-        .then(res=>res.json())
-        .then((data)=>{
-            console.log(data)
-            var temp=[]
-            data.result.forEach(element => {
-                if(element.relativeTimeSeconds < 0)
-                temp.push(element)
-            });
-            temp.reverse()
-            temp.splice(3,temp.length)
-            setUpcomingCF(temp)
-        })
+        // fetch('https://codeforces.com/api/contest.list')
+        // .then(res=>res.json())
+        // .then((data)=>{
+        //     console.log(data)
+        //     var temp=[]
+        //     var unique_maker=[]
+        //     data.result.forEach(element => {
+        //         if(element.relativeTimeSeconds < 0 && !unique_maker.includes(element.id))
+        //         {
+        //             temp.push(element)
+        //             unique_maker.push(element.id)
+        //         }
+                
+        //     });
+        //     temp.reverse()
+        //     temp.splice(3,temp.length)
+        //     setUpcomingCF(temp)
+        // })
 
     }, [])
     // console.log(process.env)
@@ -65,6 +70,7 @@ function Home() {
             <h2>....Hope you are coding well....</h2>
             {
                 upcomingCF.map(item=>{
+                    console.log(item.startTimeSeconds)
                     var startDate=new Date(item.startTimeSeconds*1000).toLocaleDateString()
                     // var startDate=d.getDate() + ' ' + d.getMonth()+1 + ' ' + d.getFullYear()
                     var startTime=new Date(item.startTimeSeconds*1000).toLocaleTimeString()
