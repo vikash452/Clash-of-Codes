@@ -141,7 +141,7 @@ function Signup() {
                         textAlign: 'center',
                         transition: '0.5s'
                     }}>
-                        <input type='text' placeholder='name' style={{ maxWidth: '300px' }}
+                        <input type='text' placeholder='name' style={{ maxWidth: '300px', borderBottom: '2px solid' }}
                             onChange={(e) => {
                                 setName(e.target.value)
                             }}
@@ -149,7 +149,7 @@ function Signup() {
 
                         <br />
 
-                        <input type='text' placeholder='email' style={{ maxWidth: '300px' }}
+                        <input type='text' placeholder='email' style={{ maxWidth: '300px', borderBottom: '2px solid' }}
                             onChange={(e) => {
                                 setEmail(e.target.value)
                             }}
@@ -157,7 +157,7 @@ function Signup() {
 
                         <br />
 
-                        <input type='text' placeholder='password' style={{ maxWidth: '300px' }}
+                        <input type='text' placeholder='password' style={{ maxWidth: '300px', borderBottom: '2px solid' }}
                             onChange={(e) => {
                                 setPassword(e.target.value)
                             }}
@@ -172,7 +172,7 @@ function Signup() {
 
                         }}>
                             <button className="blobby-button" onClick={() => { getVerificationCode() }}
-                                style={{ fontSize: '1.3rem' }} >
+                                style={{ fontSize: '1.2rem' }} >
                                 Sign Up <span className="inner">
                                     <span className="blobs">
                                         <span className="blob"></span>
@@ -202,7 +202,7 @@ function Signup() {
                             gotCode
                                 ?
                                 <div>
-                                    <input type='text' placeholder='verification code' style={{ maxWidth: '300px' }}
+                                    <input type='text' placeholder='verification code' style={{ maxWidth: '300px', borderBottom: '2px solid' }}
                                         onChange={(e) => {
                                             setVcode(e.target.value)
                                         }}
@@ -216,7 +216,7 @@ function Signup() {
                                         //marginTop: '2rem'
                                     }}>
                                         <button className="blobby-button" onclick={()=>{ verifyCode() }} style={{
-                                            fontSize: '1.3rem'
+                                            fontSize: '1.2rem'
                                         }}>Verify <span className="inner">
                                                 <span className="blobs">
                                                     <span className="blob"></span>
@@ -262,7 +262,7 @@ function Signup() {
                                         <Link to='/signin'>
                                             <button className="blobby-button" style={{
                                                 marginLeft: '0.9rem',
-                                                fontSize: '1.3rem'
+                                                fontSize: '1.2rem'
                                             }}>Sign In <span className="inner">
                                                     <span className="blobs">
                                                         <span className="blob"></span>

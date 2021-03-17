@@ -117,7 +117,7 @@ function Signin() {
                             marginTop: '2rem'
                         }}>
 
-                            <button className="blobby-button" onClick={() => { Login() }} >Sign In <span className="inner">
+                            <button className="blobby-button" onClick={() => { Login() }} style={{fontSize: '1.2rem'}}>Sign In <span className="inner">
                                 <span className="blobs">
                                     <span className="blob"></span>
                                     <span className="blob"></span>
@@ -141,7 +141,8 @@ function Signin() {
                             <span>
                                 <Link to='/forgotPassword'>
                                     <button className="blobby-button" style={{
-                                        marginLeft: '2rem'
+                                        marginLeft: '2rem',
+                                        fontSize: '1.2rem'
                                     }}>Forgot Password <span className="inner">
                                             <span className="blobs">
                                                 <span className="blob"></span>
@@ -182,7 +183,8 @@ function Signin() {
                             <span>
                                 <Link to='/signup'>
                                     <button className="blobby-button" style={{
-                                        marginLeft: '0.5rem'
+                                        marginLeft: '0.5rem',
+                                        fontSize: '1.2rem'
                                     }}>Sign Up <span className="inner">
                                         <span className="blobs">
                                             <span className="blob"></span>

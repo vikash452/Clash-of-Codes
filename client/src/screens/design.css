@@ -20,10 +20,31 @@
     background-size: cover;
     margin-top: 10px;
 } */ 
-
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.5);;
+    /*border-radius: 10px;*/
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #e6ff02; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #000;
+  }
+  
 .sidenav.nav {
     align-items: center;
     padding-top: 100px;
+    padding-bottom: 150px;
     background-image: url('../images/amongus.jpg');
     opacity: 0.8;
     background-position: 10px -250px;
