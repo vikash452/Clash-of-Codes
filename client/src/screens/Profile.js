@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import ing1 from '../images/parallax1.jpg'
+// import ing1 from '../images/parallax1.jpg'
 import passport, { use } from 'passport';
 import './design.css'
 

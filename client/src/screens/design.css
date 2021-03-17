@@ -1,25 +1,25 @@
 
-.parallax1 {
+/* .parallax1 {
     background-image: url(../images/parallax1.jpg);
     min-height: 300px;
     /* Create the parallax scrolling effect */
-    background-attachment: fixed;
+    /* background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 10px;
-}
+} */
 
-.parallax2 {
+/* .parallax2 {
     background-image: url(../images/parallax2.jpg);
-    min-height: 300px;
+    min-height: 300px; */
     /* Create the parallax scrolling effect */
-    background-attachment: fixed;
+    /* background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 10px;
-}
+} */ 
 
 .sidenav.nav {
     align-items: center;

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import './design.css'
 import M from 'materialize-css'
-import Background from '../images/img2.png'
+// import Background from '../images/img2.png'
 
 
 function compare(a, b) {

@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom'
 import M from 'materialize-css'
 import { use } from 'passport';
 import './design.css';
-import img1 from '../images/cf.jpg'
+// import img1 from '../images/cf.jpg'
 import Navbar_Logo from '../images/logo.jpg'
 
 function Navbar() {
