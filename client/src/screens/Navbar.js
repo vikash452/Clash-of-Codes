@@ -80,7 +80,8 @@ function Navbar() {
                                 <a className="heading" style={{
                                     display: 'block'
                                 }}>
-                                    CLASH OF CODES
+                                    <Link to="/home" style={{ fontSize: '4.8rem'}}>CLASH OF CODES</Link>
+                                    
                                 </a>
                             </div>
 
@@ -234,6 +235,7 @@ function Navbar() {
                     </li>
                     <li>
                         <a href="#" className="brand-logo right" >
+                            <Link to="/home">
                             <img src={Navbar_Logo} style={{
                                 width: '8rem',
                                 height: '20vh',
@@ -241,7 +243,7 @@ function Navbar() {
                                 marginTop: '1rem',
                                 overflow: 'hidden',
                             }} 
-                            className="hide-on-med-and-down"></img>
+                            className="hide-on-med-and-down"></img></Link>
                         </a>
                     </li>
                 </ul>

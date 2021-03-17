@@ -51,6 +51,7 @@ function UpdatePassword()
 
     return (
         <div>
+            
             <input type='text' placeholder='email' style={{maxWidth:'300px'}}
             onChange={(e)=>{
                 setEmail(e.target.value)
