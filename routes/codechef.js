@@ -10,7 +10,7 @@ const app=express()
 
 function codechefMiddleware(req,res,next)
 {
-    console.log('a')
+    // console.log('a')
     const userEmail=req.user.email
     const code=req.body.code;
     User.findOne({email:userEmail})
@@ -73,7 +73,8 @@ function codechefMiddleware(req,res,next)
         {
             if(expiryTime <= currentTime)
             {
-                // console.log('t')
+                // console.log('initial')
+                // console.log(req.user)
                 fetch('https://api.codechef.com/oauth/token',{
                     method:'POST',
                     headers:{
@@ -89,15 +90,22 @@ function codechefMiddleware(req,res,next)
                 .then(res=>res.json())
                 .then((data)=>{
                     
-                    // console.log(data)
+                    console.log(data)
                     foundUser.accessToken=data.result.data.access_token
                     foundUser.refreshToken=data.result.data.refresh_token
-                    foundUser.expiresIn=new Date(currentTime*1000 + 118*60*1000);
+                    foundUser.expiresIn=new Date(currentTime*1000 + 58*60*1000);
                     foundUser.codechefVerified=true;
         
-                    foundUser.save((savedUser)=>{
-                        // return res.status(200).json(savedUser)
-                        // req.accessToken=savedUser.accessToken;
+                    foundUser.save()
+                    .then((savedUser)=>{
+                        // console.log('final')
+                        // console.log(savedUser)
+                        // req.logIn(savedUser,(err)=>{
+                        //     if(!err)
+                        //     {
+                        //         next()
+                        //     }
+                        // })
                         next()
                     })
                 })
@@ -106,23 +114,26 @@ function codechefMiddleware(req,res,next)
             else
             next()
         }
-
     })
-
-    // console.log(req.body.code)
-    // console.log('reached here')
 }
 
 router.post('/codechef/accessToken',passport.authenticate('jwt',{session:false}),codechefMiddleware,(req,res)=>{
     // console.log(req.user)
-    console.log('b')
+    // console.log('b')
     return res.status(200).json(req.user)
 })
 
-router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:false}),codechefMiddleware,(req,res)=>{
+router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:false}),codechefMiddleware,passport.authenticate('jwt',{session:false}),(req,res)=>{
+    
     var handle=req.params.handle;
+
+    // User.findOne({email:req.user.email})
+    // .then((foundUser))
+
     // console.log(handle)
     // console.log(req.accessToken)
+    // console.log('now')
+    // console.log(req.user)
     fetch(`https://api.codechef.com/users/${handle}`,{
         headers:{
             'Content-Type' : 'application/json',

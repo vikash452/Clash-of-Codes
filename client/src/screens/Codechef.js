@@ -2,9 +2,11 @@ import fetch from 'node-fetch';
 import {useEffect,useState} from 'react'
 import {Link, Redirect, useHistory} from 'react-router-dom'
 import CanvasJSReact from '../assets/canvasjs.react'
+import Pre from '../images/pre.gif'
 import './design.css';
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
 
 function Codechef()
 {
@@ -81,6 +83,8 @@ function Codechef()
     {
         return (
             <div>
+            {/* <div style={{backgroundImage:`linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(${Pre})`, height:'700px' , width:'800px', margin:'auto'}}></div> */}
+
                 <h1>{content.fullname}</h1>
                 <h1>{content.occupation}</h1>
                 <h1>{content.organization}</h1>
@@ -132,7 +136,22 @@ function Codechef()
     else
     {
         return (
-            <div><h1>Loading</h1></div>
+            <div>
+            {/* <div style={{backgroundImage:`url(${Pre})`, height:'700px' , width:'800px', margin:'auto'}}></div> */}
+                <div className="preloader-wrapper big active" style={{marginBottom:'400px'}}>
+                    <div className="spinner-layer spinner-blue-only">
+                        <div className="circle-clipper left">
+                            <div className="circle"></div>
+                        </div>
+                        <div className="gap-patch">
+                            <div className="circle"></div>
+                        </div>
+                        <div className="circle-clipper right">
+                            <div className="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
 

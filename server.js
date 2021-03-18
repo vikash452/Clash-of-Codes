@@ -17,6 +17,7 @@ mongoose.connection.on('error',()=>{
     console.log('failed to connect to database')
 })
 
+app.use(passport.initialize())
 app.use(bodyParser.json())
 app.use(require('./routes/authentication'))
 app.use(require('./routes/platformHandles'))
