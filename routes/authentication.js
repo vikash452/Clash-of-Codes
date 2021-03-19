@@ -162,15 +162,17 @@ router.post('/user/signin',(req,res)=>{
     // console.log(req.body)
     const {email,password}=req.body;
     User.findOne({email:email})
+    .populate({
+        path:'friends',
+        model:'User',
+        select:'email name codeforces codechef'
+    })
     .then((foundUser)=>{
         // foundUser null nhi hoga
         if(!foundUser)
         {
             return res.status(400).json({error:"no such user exists"})
         }
-
-        // abc
-        // 4gvgshfr67sug
 
         bcrypt.compare(password,foundUser.password,(err,same)=>{
             // console.log(same)
@@ -184,6 +186,7 @@ router.post('/user/signin',(req,res)=>{
                 token:token,
                 foundUser,
             }
+            console.log(userDetails)
             return res.status(200).json(userDetails)
 
         })

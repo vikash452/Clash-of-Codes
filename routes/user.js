@@ -5,25 +5,21 @@ const Question=require('../database models/questions')
 const User=require('../database models/userModel')
 const nodemailer=require('nodemailer')
 
-router.put('/user/addFriend/:friendEmail',passport.authenticate('jwt',{session:false}),(req,res)=>{
-    const friendEmail=req.params.friendEmail;
-    User.findOne({email:friendEmail})
-    .then((foundFriend)=>{
-        if(!foundFriend)
-        {
-            return res.status(400).json({error:'no such friend found'})
-        }
+router.put('/user/addFriend/:friendID',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    const friendID=req.params.friendID;
 
-        // console.log(req.user.friends.includes(foundFriend._id))
-
-        if(!req.user.friends.includes(foundFriend._id))
-        {
-            req.user.friends.push(foundFriend)
-        }
-        req.user.save()
-        .then((updated)=>{
-            return res.status(200).json(updated)
-        })
+    User.findOneAndUpdate({email:req.user.email},{
+        $push:{friends:friendID}
+    },{
+        new:true
+    })
+    .populate({
+        path:'friends',
+        model:'User',
+        select:'email name codeforces codechef'
+    })
+    .then((updatedUser)=>{
+        return res.status(200).json(updatedUser)
     })
     .catch((err)=>{
         console.log(err)
@@ -48,23 +44,24 @@ router.get('/user/searchFriend/:friend',passport.authenticate('jwt',{session:fal
     })
 })
 
-router.put('/user/removeFriend/:friendEmail',passport.authenticate('jwt',{session:false}),(req,res)=>{
-    const friendEmail=req.params.friendEmail
-    User.findOne({email:friendEmail})
-    .then((foundFriend)=>{
-        if(!foundFriend)
-        {
-            return res.status(400).json({error:'no such user found'})
-        }
+router.put('/user/removeFriend/:friendID',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    const friendID=req.params.friendID
 
-        req.user.friends.pull(foundFriend.id)
-        req.user.save()
-        .then((updated)=>{
-            return res.status(200).json(updated)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+    User.findOneAndUpdate({email:req.user.email},{
+        $pull:{friends:friendID}
+    },{
+        new:true
+    })
+    .populate({
+        path:'friends',
+        model:'User',
+        select:'email name codeforces codechef'
+    })
+    .then((updatedUser)=>{
+        return res.status(200).json(updatedUser)
+    })
+    .catch((err)=>{
+        console.log(err)
     })
 })
 

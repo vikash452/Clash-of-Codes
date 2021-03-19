@@ -6,6 +6,7 @@ import './design.css'
 
 import M from 'materialize-css'
 import './design.css';
+import fetch from 'node-fetch';
 
 //import Parallax from "./Parallax"
 // jQuery(document).ready(function(){
@@ -20,11 +21,30 @@ function Profile() {
     const [searchList, setSearchList] = useState([])
     const [friendList, setFriendList] = useState([])
 
+    var remove=document.querySelector('.remove_user');
+
+    if(remove)
+    {
+        remove.addEventListener('mouseover',()=>{
+        // console.log('hey')
+        remove.style.color='red'
+        remove.style.fontSize='28px'
+        })
+
+        remove.addEventListener('mouseleave',()=>{
+        // console.log('hey')
+        remove.style.color='rgba(0,0,0,0.6)'
+        remove.style.fontSize='24px'
+        })
+    }
+    
+
     useEffect(() => {
         user = JSON.parse(localStorage.getItem('user'))
         if (user) {
             setCf(user.codeforces)
             setFriendList(user.friends)
+            // console.log(user.friends)
             fetch('/get/handleName', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -152,8 +172,8 @@ function Profile() {
         }
     }
 
-    function AddFriend(friendEmail) {
-        fetch(`/user/addFriend/${friendEmail}`, {
+    function AddFriend(friendID) {
+        fetch(`/user/addFriend/${friendID}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -162,7 +182,7 @@ function Profile() {
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data)
+                // console.log(data)
                 if (data.error) {
                     // console.log(data.error)
                     M.toast({
@@ -189,6 +209,41 @@ function Profile() {
         console.log(friendList);
     }
 
+    function RemoveFriend(friendID,friendName)
+    {
+        fetch(`/user/removeFriend/${friendID}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer ' + localStorage.getItem('jwt')
+            }
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            console.log(data)
+            if (data.error) {
+                // console.log(data.error)
+                M.toast({
+                    html: data.error,
+                    classes: "#ce93d8 purple",
+                    displayLength: 1000,
+                })
+            }
+            else {
+                M.toast({
+                    html:  `${friendName} removed successfully`,
+                    classes: "#ce93d8 purple",
+                    displayLength: 1000,
+                })
+                setFriendList(data.friends)
+                // user = JSON.parse(localStorage.setItem('user', JSON.stringify(data)))
+                localStorage.setItem('user', JSON.stringify(data));
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
 
 
     return (
@@ -233,23 +288,24 @@ function Profile() {
                             searchList.map((item) => {
                                 return (
                                     <div key={item._id}>
-                                        <li className='collection-item'><span style={{ color: 'black' }}>{item.name}</span> &emsp; <Link to='/profile' onClick={() => { AddFriend(item.email) }} >Add as friend</Link ></li>
+                                        <li className='collection-item'><span style={{ color: 'black' }}>{item.name}</span> &emsp; <Link to='/profile' onClick={() => { AddFriend(item._id) }} >Add as friend</Link ></li>
                                     </div>
                                 )
                             })
                         }
                     </ul>
                     <h4>Your total friends are :  {friendList.length}</h4>
-                    {/* {
-                        friendList.forEach((friend) => {
+                    {
+                        friendList.map((friend) => {
+                            // console.log(friend._id)
                             return (
-                                <div >
-                                    <li><span> friend.name </span></li>
-                                </div>
+                                <div  key={friend._id} className='chip' style={{display:'block' ,maxWidth:'fit-content', margin:'auto', marginBottom:'5px'}}> 
+                                    <span>{friend.name}  <i alt='Remove user' onClick={()=>{RemoveFriend(friend._id,friend.name)}}   className="material-icons remove_user">remove_circle_outline</i></span> 
+                                </div >
                             )
 
                         })
-                    } */}
+                    }
                 </div>
 
             </div>
