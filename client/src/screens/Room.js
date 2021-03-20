@@ -116,6 +116,12 @@ function Room() {
 
     }, [initialRating])
 
+    function scoreboard_sort_comparator(a,b)
+    {
+        console.log(a,b)
+        return a.score-b.score
+    }
+
     function Scoreboard() {
 
         var total_questions = 5;
@@ -130,6 +136,7 @@ function Room() {
         // console.log()
 
         var handles = [];
+        var rank_calculator=[]
 
         participants.forEach(part => {
             handles.push(part.codeforces)
@@ -140,12 +147,42 @@ function Room() {
             var id = ques.contestId.toString() + ques.index
             questions_map.set(id, index);
         })
-
         // console.log(questions_map)
+
+        function Order_Scoreboard()
+        {
+            var sorter=[]
+            for(var i=0; i<total_participants; ++i)
+            {
+                var obj={
+                    // score:score_card[i][0]+score_card[i][1]+score_card[i][2]+score_card[i][3]+score_card[i][4],
+                    score:rank_calculator[i],
+                    participant_data:participants[i],
+                    score_line:score_card[i]
+                }
+                sorter.push(obj)
+            }
+            // console.log(sorter)
+            sorter.sort(scoreboard_sort_comparator)
+            var new_participants_list=[]
+
+            for(var i=0; i<total_participants; ++i)
+            {
+                new_participants_list.push(sorter[i].participant_data)
+                score_card[i]=sorter[i].score_line
+            }
+
+            setParticipants(new_participants_list)
+
+            console.log(sorter)
+        }
+        rank_calculator=[0,0,0,0,0];
         FillHandles(0)
 
         function FillHandles(index) {
             if (index >= total_participants) {
+                console.log(rank_calculator)
+                Order_Scoreboard()
                 setResultCard(score_card)
                 // // resultCard=score_card
                 // console.log(resultCard)
@@ -167,22 +204,30 @@ function Room() {
                                     var x = Math.floor(new Date(start_timings) / 1000)
                                     var y = item.creationTimeSeconds
                                     // console.log(y)
-                                    var min = (Math.floor((y - x) / (60))) % 60;
+                                    var min = (Math.floor((y - x) / (60)));
                                     var hrs = Math.floor(min / 60)
-                                    score_card[index][questionIndex] = hrs + ':' + min;
+                                    // score_card[index][questionIndex] = hrs + ':' + (min%60);
+                                    score_card[index][questionIndex] = y-x;
+                                    var diff=Math.floor((y-x)/60)
+                                    console.log(diff)
+                                    console.log(typeof(questionList[questionIndex].rating))
+                                    if(diff > 10)
+                                    {
+                                        rank_calculator[index]+=((questionList[questionIndex].rating) - diff*5)
+                                    }
+                                    else
+                                    {
+                                        rank_calculator[index]+=(questionList[questionIndex].rating)
+                                    }
                                 }
                                 else {
                                     score_card[index][questionIndex] = -1;
                                 }
                             }
-
-
                         }
-
                     })
                     FillHandles(index + 1)
                 })
-
         }
     }
 
@@ -542,9 +587,23 @@ function Room() {
                                                             :
                                                             color_of_cell = 'lightsalmon'
 
+                                                    // scores==0
+                                                    //     ?
+                                                    //     return()
+                                                    var toDisplay;
+                                                        scores==0
+                                                                ?
+                                                                    toDisplay=0
+                                                                    :
+                                                                    scores != -1
+                                                                    ?
+                                                                    toDisplay=(Math.floor(scores/3600)) + ':' + (Math.floor(scores/60)%60)
+                                                                    :
+                                                                    toDisplay=-1;
+
                                                     return (
                                                         <td key={index} style={{ backgroundColor: color_of_cell, color: 'black', textAlign: 'center' }}>
-                                                            {scores}
+                                                            {toDisplay}
                                                         </td>
                                                     )
                                                 })
