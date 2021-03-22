@@ -50,13 +50,12 @@ function codechefMiddleware(req,res,next)
                 {
                     foundUser.accessToken=data.result.data.access_token
                     foundUser.refreshToken=data.result.data.refresh_token
-                    foundUser.expiresIn=new Date(currentTime*1000 + 118*60*1000);
+                    foundUser.expiresIn=new Date(currentTime*1000 + 58*60*1000);
                     foundUser.codechefVerified=true;
         
-                    foundUser.save((savedUser)=>{
-                        // return res.status(200).json(savedUser)
-                        // req.accessToken=savedUser.accessToken;
-                        next()
+                    foundUser.save()
+                    .then((savedUser)=>{
+                      next()
                     })
                 }
                 else
@@ -73,8 +72,8 @@ function codechefMiddleware(req,res,next)
         {
             if(expiryTime <= currentTime)
             {
-                // console.log('initial')
-                // console.log(req.user)
+                console.log('initial')
+                console.log(req.user)
                 fetch('https://api.codechef.com/oauth/token',{
                     method:'POST',
                     headers:{
@@ -98,8 +97,8 @@ function codechefMiddleware(req,res,next)
         
                     foundUser.save()
                     .then((savedUser)=>{
-                        // console.log('final')
-                        // console.log(savedUser)
+                        console.log('final')
+                        console.log(savedUser)
                         // req.logIn(savedUser,(err)=>{
                         //     if(!err)
                         //     {
@@ -123,31 +122,199 @@ router.post('/codechef/accessToken',passport.authenticate('jwt',{session:false})
     return res.status(200).json(req.user)
 })
 
-router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:false}),codechefMiddleware,passport.authenticate('jwt',{session:false}),(req,res)=>{
+// codechefMiddleware
+router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:false}),codechefMiddleware,(req,res)=>{
     
+    var resultTemp={
+        "status": "OK",
+        "result": {
+          "data": {
+            "content": {
+              "username": "invincible28",
+              "fullname": "Shubhang Jyotirmay",
+              "country": {
+                "name": "India"
+              },
+              "state": {
+                "name": "Delhi"
+              },
+              "city": {
+                "name": "New Delhi"
+              },
+              "rankings": {
+                "allContestRanking": {
+                  "global": 31421,
+                  "country": 24885
+                },
+                "longRanking": {
+                  "global": 40117,
+                  "country": 32857
+                },
+                "shortRanking": {
+                  "global": 24249,
+                  "country": 19140
+                },
+                "ltimeRanking": {
+                  "global": 0,
+                  "country": 0
+                },
+                "allSchoolRanking": {
+                  "global": 0,
+                  "country": 0
+                },
+                "longSchoolRanking": {
+                  "global": 0,
+                  "country": 0
+                },
+                "shortSchoolRanking": {
+                  "global": 0,
+                  "country": 0
+                },
+                "ltimeSchoolRanking": {
+                  "global": 0,
+                  "country": 0
+                }
+              },
+              "ratings": {
+                "allContest": 1697,
+                "long": 1613,
+                "short": 1566,
+                "lTime": 0,
+                "allSchoolContest": 0,
+                "longSchool": 0,
+                "shortSchool": 0,
+                "lTimeSchool": 0
+              },
+              "occupation": "Student",
+              "organization": "Delhi Technological University",
+              "problemStats": {
+                "partiallySolved": {
+                  "JAN21C": [
+                    "ANTSCHEF",
+                    "ORAND"
+                  ],
+                  "LTIME92B": [
+                    "DREDIV"
+                  ]
+                },
+                "solved": {
+                  "JAN21C": [
+                    "ANTSCHEF",
+                    "WIPL",
+                    "FAIRELCT",
+                    "ORAND",
+                    "DIVTHREE",
+                    "BILLRD",
+                    "DECODEIT"
+                  ],
+                  "FEB21B": [
+                    "FROGS",
+                    "TEAMNAME",
+                    "PRIGAME",
+                    "MAXFUN"
+                  ],
+                  "COOK125B": [
+                    "SDSTRING",
+                    "CATHIEF",
+                    "ATTENDU"
+                  ],
+                  "LTIME91B": [
+                    "THREE",
+                    "SEDARR",
+                    "SWAP10HG"
+                  ],
+                  "COOK126B": [
+                    "PTUPLES",
+                    "MINIL"
+                  ],
+                  "LTIME92B": [
+                    "DREDIV",
+                    "BINSUBS",
+                    "EVENDIFF",
+                    "EVENGAME"
+                  ]
+                },
+                "attempted": {
+                  "JAN21C": [
+                    "ANTSCHEF",
+                    "WIPL",
+                    "BLKJK",
+                    "ORAND"
+                  ],
+                  "COOK126B": [
+                    "PTUPLES",
+                    "MINIL"
+                  ],
+                  "COOK125B": [
+                    "CATHIEF",
+                    "SDSTRING"
+                  ],
+                  "LTIME91B": [
+                    "SWAP10HG",
+                    "THREE"
+                  ],
+                  "LTIME92B": [
+                    "GOODGRID"
+                  ],
+                  "FEB21B": [
+                    "TEAMNAME",
+                    "PRIGAME"
+                  ]
+                }
+              },
+              "submissionStats": {
+                "partiallySolvedProblems": 3,
+                "solvedProblems": 23,
+                "attemptedProblems": 13,
+                "submittedSolutions": 73,
+                "wrongSubmissions": 33,
+                "runTimeError": 0,
+                "timeLimitExceed": 4,
+                "compilationError": 0,
+                "partiallySolvedSubmissions": 8,
+                "acceptedSubmissions": 28
+              },
+              "language": "C++17",
+              "band": "3★"
+            },
+            "code": 9001,
+            "message": "user detail successfully fetched"
+          }
+        }
+      }
+
+    // return res.status(200).json(resultTemp)
+
     var handle=req.params.handle;
 
-    // User.findOne({email:req.user.email})
-    // .then((foundUser))
+    User.findOne({email:req.user.email})
+    .then((foundUser)=>{
+        console.log('token in use')
+        console.log(foundUser)
+        fetch(`https://api.codechef.com/users/${handle}`,{
+            headers:{
+                'Content-Type' : 'application/json',
+                'Authorization': 'Bearer ' + foundUser.accessToken
+            }
+        })
+        .then(res=>res.json())
+        .then((data)=>{
+            console.log(data)
+            return res.status(200).json(data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    })  
+    .catch((err)=>{
+        console.log(err)
+    })
 
     // console.log(handle)
     // console.log(req.accessToken)
     // console.log('now')
     // console.log(req.user)
-    fetch(`https://api.codechef.com/users/${handle}`,{
-        headers:{
-            'Content-Type' : 'application/json',
-            'Authorization': 'Bearer ' + req.user.accessToken
-        }
-    })
-    .then(res=>res.json())
-    .then((data)=>{
-        console.log(data)
-        return res.status(200).json(data)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+    
 })
 
 module.exports=router;

@@ -96,4 +96,24 @@ router.post('/user/submitQuery',passport.authenticate('jwt',{session:false}),(re
     });
 })
 
+router.get('/user/getFriendList',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    User.findOne({email:req.user.email})
+    .populate({
+        path:'friends',
+        model:'User',
+        select:'email name codeforces codechef'
+    })
+    .then((foundUser)=>{
+        if(!foundUser)
+        {
+            return res.status(400).json({error:"no such user found"})
+        }
+
+        return res.status(200).json({friends:foundUser.friends})
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
+
 module.exports=router;

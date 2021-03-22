@@ -82,47 +82,61 @@ function Codechef()
     if(content)
     {
         return (
-            <div>
-            {/* <div style={{backgroundImage:`linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(${Pre})`, height:'700px' , width:'800px', margin:'auto'}}></div> */}
+            <div className='row codechefParent'>
+                <div className='codechefCard initialDetailsCard col s6 '>
+                    <span>{content.fullname}</span>
+                    <br/>
+                    <span>{content.occupation}</span>
+                    <br/>
+                    <span>{content.organization}</span>
+                    <br/>
+                    <span>{content.band} star</span>
+                </div>
 
-                <h1>{content.fullname}</h1>
-                <h1>{content.occupation}</h1>
-                <h1>{content.organization}</h1>
-                <h1>{content.band} star</h1>
-                <h1>allContestRanking country {content.rankings.allContestRanking.country} global {content.rankings.allContestRanking.global}</h1>
+                <div className='codechefCard contestRankingsCard col s6 '>
+                            {
+                                Object.entries(content.rankings).map((item)=>{
+                                    // console.log(item)
+                                    return (
+                                        <div key={item[0]}>
+                                            <span>{item[0]}   country : {item[1].country} , global : {item[1].global}</span>
+                                            <br/>
+                                        </div>
+                                        
+                                    )
+                                    
+                                })
+                            }
+                </div>
                 
-                {
-                    Object.entries(content.submissionStats).map((submission)=>{
-                        return(
-                            <h3 key={submission[0]}>{submission[0]} : {submission[1]}</h3>
-                        )
-                    })
-                }
-                <br/>
-                <br/>
+                <div className='codechefCard submissionDetailsCard col s6 '>
+                        {
+                            Object.entries(content.submissionStats).map((submission)=>{
+                                return(
+                                    <div key={submission[0]}>
+                                        <span>{submission[0]} : {submission[1]}</span>
+                                        <br/>
+                                    </div>
+                                    
+                                )
+                            })
+                        }
+                </div>
 
-                {
-                    Object.entries(content.rankings).map((item)=>{
-                        // console.log(item)
-                        return (
-                            <h3 key={item[0]}>{item[0]}   country : {item[1].country} , global : {item[1].global}</h3>
-                        )
-                        
-                    })
-                }
-
-                <br/>
-                <br/>
-
+                <div className='codechefCard attemptedProblemsCard col s6 '>
                 {
                     Object.entries(content.problemStats.attempted).map((submission)=>{
                         return(
                             <div key={submission[0]}>
-                                <h2>{submission[0]}</h2>
+                                <span>{submission[0]}</span>
                                 {
                                     submission[1].map((problemName)=>{
                                         return (
-                                            <h4 key={problemName}>{problemName} </h4>
+                                            <div key={problemName}>
+                                                <span >{problemName} </span>
+                                                <br/>
+                                            </div>
+                                            
                                         )
                                     })
                                 }
@@ -130,6 +144,8 @@ function Codechef()
                         )
                     })
                 }
+            </div>
+                
             </div>
         )
     }

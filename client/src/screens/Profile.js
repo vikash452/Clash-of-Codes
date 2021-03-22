@@ -43,7 +43,7 @@ function Profile() {
         user = JSON.parse(localStorage.getItem('user'))
         if (user) {
             setCf(user.codeforces)
-            setFriendList(user.friends)
+            // setFriendList(user.friends)
             // console.log(user.friends)
             fetch('/get/handleName', {
                 headers: {
@@ -66,6 +66,22 @@ function Profile() {
                 .catch((err) => {
                     console.log(err)
                 })
+
+            fetch('/user/getFriendList',{
+                method:'GET',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+                }
+            })
+            .then(res=>res.json())
+            .then((data)=>{
+                // console.log(data)
+                setFriendList(data.friends)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
         }
         else {
             history.push('/signin')
@@ -246,6 +262,7 @@ function Profile() {
     }
 
 
+    // var url=new URL('/compare?ab=a&bc=b')
     return (
         <div >
             {/* <div style={{ marginTop: '70px' }}> */}
@@ -552,6 +569,7 @@ function Profile() {
 
                 </div>
             </div> */}
+            <Link to='/compare'>Compare</Link>
         </div>
     )
 }
