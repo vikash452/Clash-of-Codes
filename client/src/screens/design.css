@@ -1,9 +1,9 @@
-
 /* .parallax1 {
     background-image: url(../images/parallax1.jpg);
     min-height: 300px;
     /* Create the parallax scrolling effect */
-    /* background-attachment: fixed;
+
+/* background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,34 +13,41 @@
 /* .parallax2 {
     background-image: url(../images/parallax2.jpg);
     min-height: 300px; */
-    /* Create the parallax scrolling effect */
-    /* background-attachment: fixed;
+
+/* Create the parallax scrolling effect */
+
+/* background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 10px;
-} */ 
+} */
+
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-      background-color: rgba(0, 0, 0, 0.5);;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.5);
+    ;
     /*border-radius: 10px;*/
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #e6ff02; 
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #e6ff02;
     border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
     background: #000;
-  }
-  
+}
+
 .sidenav.nav {
     align-items: center;
     padding-top: 100px;
@@ -51,22 +58,24 @@
     background-repeat: norepeat;
     display: inline-block;
 }
+
 .sidenav-overlay {
     background-color: rgba(0, 0, 0, 0);
     display: none;
 }
-.nav .nav-wrapper{
+
+.nav .nav-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.nav .nav-wrapper ul > li{
+.nav .nav-wrapper ul>li {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
-.sidenav li>a{
+.sidenav li>a {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
@@ -89,7 +98,6 @@ Link .waves-effect.waves-light.btn-large {
 
 .Home-design {
     text-align: center;
-
     /* background-image: url("../images/img1.jpg");
     position:absolute;
     z-index:0;
@@ -217,13 +225,12 @@ input {
     border-radius: 90%;
 }
 
-.chip
-{
+.chip {
     display: inline-block;
     height: 50px;
     font-size: 30px;
     font-weight: 500;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
     line-height: 32px;
     padding: 0 12px;
     border-radius: 16px;
@@ -233,6 +240,7 @@ input {
     margin-left: 15px;
     padding-top: 7px;
 }
+
 .blobby-button {
     overflow: hidden;
     outline: none;
@@ -305,7 +313,7 @@ input {
     height: 100%;
     background: #e6ff02;
     border-radius: 100%;
-    transform: translate3d(0,150%,0) scale(1.7);
+    transform: translate3d(0, 150%, 0) scale(1.7);
     transition: transform 0.5s;
 }
 
@@ -313,7 +321,7 @@ input {
     color: rgb(15, 15, 15);
 }
 
-.blobby-button > svg {
+.blobby-button>svg {
     display: none;
 }
 
@@ -326,26 +334,26 @@ input {
     width: 100%;
     height: 100%;
 }
-.card-container:hover{
-   
-        transition: all 0.3s ease-out;
-        box-shadow: 0px 0px 0px rgba(38, 38, 38, 0.2);
-        top: -4px;
-        left: -2px;
-        /*border: 1px solid #cccccc;*/
-}
-.card>h2{
-    font-weight: bold;
-    color: rgb(15, 15, 15);
-    text-shadow: 3px 3px 2px rgba(240, 255, 0, 0.5),
-                -3px -3px 2px rgba(245, 230, 83, 0.5)
+
+.card-container:hover {
+    transition: all 0.3s ease-out;
+    box-shadow: 0px 0px 0px rgba(38, 38, 38, 0.2);
+    top: -4px;
+    left: -2px;
+    /*border: 1px solid #cccccc;*/
 }
 
-.remove_user{
+.card>h2 {
+    font-weight: bold;
+    color: rgb(15, 15, 15);
+    text-shadow: 3px 3px 2px rgba(240, 255, 0, 0.5), -3px -3px 2px rgba(245, 230, 83, 0.5)
+}
+
+.remove_user {
     cursor: pointer;
 }
 
-.remove_user :hover div{
+.remove_user :hover div {
     cursor: pointer !important;
     font-size: 26px !important;
     color: red !important;
@@ -393,8 +401,9 @@ input {
     }
 }
 
-.codechefCard
-{
+/* .codechefCard
+{ */
+.codechefCard {
     max-width: max-content;
     min-width: 40%;
     /* background-color: rgba(245, 230, 83, 0.5); */
@@ -422,8 +431,7 @@ input {
     filter: blur(10px);
 }
 
-.codechefParent
-{
+.codechefParent {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -453,3 +461,132 @@ input {
     animation-duration: 2s;
 }
 
+    /* align-items: flex-start;
+} */
+.landing-nav{
+    background: rgba(230, 236, 233, 0.212);
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);   
+    position: relative;
+    overflow: hidden;
+    height: 20vh;
+}
+.landing-nav .nav-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.landing-nav .nav-wrapper .contact{
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    left: 0px;
+    float: left !important;
+}
+/* .landing-nav .nav-wrapper .contact a{
+    margin-left: 2rem;
+} */
+#nav-mobile{
+    position: absolute;
+    height: 100%;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#nav-mobile li{
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.landing-container{
+    position: absolute;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#carousel{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(230, 236, 233, 0.212);
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 10%;
+}
+#carousel >a >img{
+    border-radius: 10%;
+    height: 100%;
+}
+.carousel .carousel-item:hover{
+    pointer-events: none;
+}
+.carousel .indicators .indicator-item{
+    background-color: rgb(245, 238, 238);
+}
+.carousel .indicators .indicator-item.active{
+    background-color: #e6ff02;
+}
+.landing-container .content-card{
+    position: relative;
+    width: auto;
+    margin: 30px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
+    border-radius: 15px;
+    background: rgba(230, 236, 233, 0.212);
+    overflow: hidden;
+    display: box;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+}
+.landing-container .content-card >h2{
+    font-size: 2.5rem;
+    font-family:'Lobster Two', cursive;;
+}
+.landing-container .content-card >h3{
+    font-size: 1.5rem;
+    font-family:'Lobster Two', cursive;;
+}
+@media only screen and (max-width: 768px) {
+    nav .nav-wrapper .brand-logo {
+        left: 4rem;
+        position: absolute;
+    }
+    .landing-nav .nav-wrapper .contact{
+        display: none;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .landing-nav{
+        height: 30vh;
+    }
+    
+    nav .nav-wrapper #nav-mobile{
+        position: absolute;
+        display: block;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        height: 100%;
+    }
+    nav .nav-wrapper #nav-mobile li{
+        width: 80%;
+        font-size: 0.8rem;
+    }
+    nav ul a{
+        padding: 0px;
+    }
+}
