@@ -69,13 +69,15 @@ function Navbar() {
     return (
         <div style={{minWidth:'fit-content'}}>
             <nav
-                style={{
-                    backgroundColor: 'rgb(0,0,0,0.2)',
-                    borderBottom: '2px solid rgba(0, 0, 0, 1)',
-                    height: '24vh',
-                    textAlign: 'center',
-                    //paddingTop: '1.3rem',
-                }}
+                // style={{
+                //     backgroundColor: 'rgb(0,0,0,0.2)',
+                //     borderBottom: '2px solid rgba(0, 0, 0, 1)',
+                //     height: '17vw',
+                //     textAlign: 'center',
+                //     //paddingTop: '1.3rem',
+                // }}
+
+                className='navbar-setter'
             >
                 <ul style={{
                     display: 'grid',
@@ -89,7 +91,7 @@ function Navbar() {
                              cursor: 'pointer', 
                              overflow: 'hidden',
                              height: '10vh' }}>
-                            <i className="material-icons" style={{ fontSize: '80px', color: 'white', height: 'auto' }}>menu</i>
+                            <i className="material-icons" style={{ fontSize: '4vw', color: 'white', height: 'auto' }}>menu</i>
                         </a>
                     </li>
                     <li style={{ marginTop: '2.2rem' }}>
@@ -98,7 +100,7 @@ function Navbar() {
                                 <div className="heading" style={{
                                     display: 'block'
                                 }}>
-                                    <Link to="/home" style={{ fontSize: '4.8rem'}}>CLASH OF CODES</Link>
+                                    <Link to="/home" style={{ fontSize:'4.7vw', width:'max-content', margin:'auto'}}>CLASH OF CODES</Link>
                                     
                                 </div>
                             </div>

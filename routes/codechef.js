@@ -123,7 +123,7 @@ router.post('/codechef/accessToken',passport.authenticate('jwt',{session:false})
 })
 
 // codechefMiddleware
-router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:false}),codechefMiddleware,(req,res)=>{
+router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:false}),(req,res)=>{
     
     var resultTemp={
         "status": "OK",
@@ -283,7 +283,7 @@ router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:fa
         }
       }
 
-    // return res.status(200).json(resultTemp)
+    return res.status(200).json(resultTemp)
 
     var handle=req.params.handle;
 

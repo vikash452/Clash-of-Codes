@@ -4,6 +4,9 @@ import {Link, Redirect, useHistory} from 'react-router-dom'
 import CanvasJSReact from '../assets/canvasjs.react'
 import Pre from '../images/pre.gif'
 import './design.css';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -25,6 +28,12 @@ function Codechef()
     const CLIENT_ID_CODECHEF='c6fea028e960e1096ba59b88e3532118'
 
     useEffect(()=>{
+        // AOS.init({
+        //     duration:2000,
+        // })
+        AOS.init({
+            duration:1000
+        })
         user=JSON.parse(localStorage.getItem('user'))
         if(!user)
         {
@@ -83,7 +92,7 @@ function Codechef()
     {
         return (
             <div className='row codechefParent'>
-                <div className='codechefCard initialDetailsCard col s6 '>
+                <div className='codechefCard initialDetailsCard col s12 m12 l12 xl12 '>
                     <span>{content.fullname}</span>
                     <br/>
                     <span>{content.occupation}</span>
@@ -93,7 +102,7 @@ function Codechef()
                     <span>{content.band} star</span>
                 </div>
 
-                <div className='codechefCard contestRankingsCard col s6 '>
+                <div className='codechefCard contestRankingsCard col s12 m12 l12 xl12    '>
                             {
                                 Object.entries(content.rankings).map((item)=>{
                                     // console.log(item)
@@ -109,7 +118,7 @@ function Codechef()
                             }
                 </div>
                 
-                <div className='codechefCard submissionDetailsCard col s6 '>
+                <div className='codechefCard submissionDetailsCard col s12 m12 l12 xl12  '>
                         {
                             Object.entries(content.submissionStats).map((submission)=>{
                                 return(
@@ -123,23 +132,24 @@ function Codechef()
                         }
                 </div>
 
-                <div className='codechefCard attemptedProblemsCard col s6 '>
+                <div className='codechefCard attemptedProblemsCard col s12 m12 l12 xl12  '>
                 {
-                    Object.entries(content.problemStats.attempted).map((submission)=>{
+                    Object.entries(content.problemStats.solved).map((submission)=>{
                         return(
                             <div key={submission[0]}>
-                                <span>{submission[0]}</span>
+                                <span style={{fontSize:'40px'}}>{submission[0]} : </span>
                                 {
                                     submission[1].map((problemName)=>{
                                         return (
-                                            <div key={problemName}>
-                                                <span >{problemName} </span>
-                                                <br/>
-                                            </div>
+                                            // <div key={problemName}>
+                                                <span key={problemName} style={{fontSize:'20px'}}>{problemName} </span>
+                                                // <br/>
+                                            // </div>
                                             
                                         )
                                     })
                                 }
+                                <br/>
                             </div>
                         )
                     })
