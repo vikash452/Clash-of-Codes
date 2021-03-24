@@ -6,20 +6,21 @@ import './design.css'
 import Navbar_Logo from '../images/logo.jpg'
 
 function LandingScreen() {
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     var elems = document.querySelectorAll('.carousel');
-    //     var options = M.Carousel;
-    //     console.log(options);
-    //     var instances = M.Carousel.init(elems, 'duration: 200');
-    // });
-    document.addEventListener('DOMContentLoaded', function () {
+    
+    useEffect(()=>{
+        document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.carousel');
         var instances = M.Carousel.init(elems, {
-            duration: 100,
-            indicators: true,
+                duration: 100,
+                indicators: true,
+            });
         });
-    });
-    M.AutoInit()
+        M.AutoInit()
+        var side_nav_elem=document.querySelectorAll('#slide-out')
+        M.Sidenav.init(side_nav_elem);
+    },[])
+
+    
     // function moveNext(){
     //     var elems = document.querySelectorAll('.carousel');
     //     var moveRight = M.Carousel.getInstance(elems);
@@ -36,7 +37,7 @@ function LandingScreen() {
                     <ul class="contact right">
                         <li>
                             <Link to='/Signin'>
-                                <button className="blobby-button">
+                                <button className="blobby-button" style={{height: '6vh'}}>
                                     Contact Us
                                 <span className="inner">
                                         <span className="blobs">
@@ -60,6 +61,14 @@ function LandingScreen() {
                             </Link>
                         </li>
                     </ul>
+
+                    <ul class="sidenav" id="slide-out">
+                        <li><a href="sass.html">Sass</a></li>
+                        <li><a href="badges.html">Components</a></li>
+                        <li><a href="collapsible.html">Javascript</a></li>
+                        <li><a href="mobile.html">Mobile</a></li>
+                    </ul>
+
                     <div className="brand-logo center" style={{
                         display: 'flex',
                         flexDirection: 'row',
@@ -70,31 +79,28 @@ function LandingScreen() {
                     }}>
 
                         <Link to="/home" style={{ marginTop: '1.4rem' }}>
-                            <img src={Navbar_Logo} style={{
-                                width: '120px',
-                                height: '120px',
-                                borderRadius: '20%',
-                                background: 'rgba(230, 236, 233, 0.014)',
-                                boxShadow: '50px 50px 100px rgba(0, 0, 0, 0.667)',
-                            }}
-                            ></img></Link>
+                                <img src={Navbar_Logo} style={{
+                                    width: '120px',
+                                    height: '12vh',
+                                    borderRadius: '20%',
+                                    background: 'rgba(230, 236, 233, 0.014)',
+                                    boxShadow: '50px 50px 100px rgba(0, 0, 0, 0.667)',
+                                }}
+                                />
+                        </Link>
+                        <a href="#" data-target="slide-out" class="sidenav-trigger">
+                            <i class="material-icons">menu</i>
+                        </a>
                     </div>
                     {/* <ul id="nav-mobile" class="right hide-on-med-and-down"> */}
-                    <ul id="nav-mobile" className="right" style={{
+                    
 
-                    }}>
-                        {/* <li><a href="sass.html">Sass</a></li>
-                        <li><a href="badges.html">Components</a></li>
-                        <li><a href="collapsible.html">JavaScript</a></li> */}
-                        <li
-                            style={{
-
-                            }}>
+                    <ul id="nav-mobile" className="right">
+                        <li>
                             <Link to='/Signin'>
-                                <button className="blobby-button">
-
+                                <button className="blobby-button" style={{height:'6vh'}}>
                                     Log In
-                                            <span className="inner">
+                                    <span className="inner">
                                         <span className="blobs">
                                             <span className="blob"></span>
                                             <span className="blob"></span>
@@ -120,7 +126,7 @@ function LandingScreen() {
 
                             }}>
                             <Link to='/Signup'>
-                                <button className="blobby-button">
+                                <button className="blobby-button" style={{height:'6vh'}}>
 
                                     Sign Up
                                             <span className="inner">
