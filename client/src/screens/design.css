@@ -510,7 +510,7 @@ input {
     position: absolute;
     padding: 50px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -561,18 +561,20 @@ input {
     font-size: 1.5rem;
     font-family:'Lobster Two', cursive;;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 944px) {
     nav .nav-wrapper .brand-logo {
         left: 4rem;
         position: absolute;
     }
-    .landing-nav .nav-wrapper .contact{
-        display: none;
+    .landing-nav .nav-wrapper .sidenav-trigger{
+        left: 83vw;
+        position: absolute;
     }
 }
-@media only screen and (max-width: 450px) {
+
+@media only screen and (max-width: 500px) {
     .landing-nav{
-        height: 30vh;
+        height: 12vh;
     }
     
     nav .nav-wrapper #nav-mobile{
@@ -590,4 +592,18 @@ input {
     nav ul a{
         padding: 0px;
     }
+}
+
+.boil_text{
+    height: 110px;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.big_div{
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
 }
