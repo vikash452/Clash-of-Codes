@@ -22,14 +22,14 @@ import './screens/design.css'
 import LandingScreen from './screens/Landing'
 import Header from './screens/Header'
 import Footer from './screens/Footer'
+import fetch from 'node-fetch';
 
 
 function AllRouting() {
   const history = useHistory();
 
-  useEffect(() => {
-    var userDetails = localStorage.getItem('user')
-    // console.log(userDetails)
+  function Redirecter(userDetails)
+  {
     if (!userDetails) {
       if (history.location.pathname == '/')
         history.push('/landing')
@@ -50,6 +50,60 @@ function AllRouting() {
       else if (history.location.pathname.startsWith('/signin') || history.location.pathname.startsWith('/signup') || history.location.pathname.startsWith('/forgotPassword') || history.location.pathname.startsWith('/updatePassword'))
         history.push('/home')
     }
+  }
+
+  useEffect(() => {
+    var userDetails = localStorage.getItem('user')
+    if(!userDetails)
+    {
+      fetch('/details',{
+        method:'GET',
+        headers:{
+          'Content-Type':'application/json'
+        }
+      })
+      .then(res=>res.json())
+      .then((data)=>{
+        console.log(data)
+        if(!data.error)
+        {
+          localStorage.setItem('user',JSON.stringify(data.foundUser))
+          localStorage.setItem('jwt',data.token)
+          userDetails=data
+          Redirecter(userDetails)
+        }
+        else
+        {
+          history.push('/landing')
+        }
+      })
+    }
+    else
+    {
+      Redirecter(userDetails)
+    }
+
+    // console.log(userDetails)
+    // if (!userDetails) {
+    //   if (history.location.pathname == '/')
+    //     history.push('/landing')
+    //   if (history.location.pathname.startsWith('/signin'))
+    //     history.push('/signin')
+    //   else if (history.location.pathname.startsWith('/forgotPassword'))
+    //     history.push('/forgotPassword')
+    //   else if (history.location.pathname.startsWith('/updatePassword'))
+    //     history.push(history.location.pathname)
+    //   else if (history.location.pathname.startsWith('/signup'))
+    //     history.push(history.location.pathname)
+    //   else
+    //     history.push('/landing')
+    // }
+    // else {
+    //   if (history.location.pathname === '/')
+    //     history.push('/home')
+    //   else if (history.location.pathname.startsWith('/signin') || history.location.pathname.startsWith('/signup') || history.location.pathname.startsWith('/forgotPassword') || history.location.pathname.startsWith('/updatePassword'))
+    //     history.push('/home')
+    // }
   }, [])
 
   return (

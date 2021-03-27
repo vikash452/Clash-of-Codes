@@ -547,7 +547,7 @@ input {
     border-radius: 15px;
     background: rgba(230, 236, 233, 0.212);
     overflow: hidden;
-    display: box;
+    display: flex;
     justify-content: center;
     align-items: center;
     border-top: 1px solid rgba(255, 255, 255, 0.5);

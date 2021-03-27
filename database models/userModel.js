@@ -2,6 +2,9 @@ const mongoose=require('mongoose')
 const {Question}=require('./questions')
 const {ObjectId} = mongoose.Schema.Types
 const UserSchema=new mongoose.Schema({
+    googleId:{
+        type:String
+    },
     name:{
         type:String
     },

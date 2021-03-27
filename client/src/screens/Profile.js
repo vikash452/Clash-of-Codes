@@ -414,7 +414,7 @@ function Profile() {
                         alignItems: 'center',
                         flexwrap: 'wrap',
                     }}>
-                        <button className="blobby-button" onClick={() => { addCcHandle('codeforces') }} style={{
+                        <button className="blobby-button" onClick={() => { addCfHandle('codeforces') }} style={{
                             fontSize: '1.1rem',
                         }}>Set this as Codeforces handle <span className="inner">
                                 <span className="blobs">

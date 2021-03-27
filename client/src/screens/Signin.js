@@ -3,6 +3,10 @@ import { useHistory, Link } from 'react-router-dom'
 import M from 'materialize-css'
 import './design.css'
 import img from '../images/clash_of_codes.jpg'
+import fetch from 'node-fetch'
+import BlobbyButton from './BlobbyButton'
+import GoogleLogo from '../images/google logo.png'
+
 function Signin() {
     var [email, setEmail] = useState('')
     var [password, setPassword] = useState('')
@@ -65,7 +69,7 @@ function Signin() {
                     position: 'relative',
                     width: '600px',
                     //minWidth: '420px',
-                    height: '600px',
+                    height: '630px',
                     margin: '30px',
                     boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
                     borderRadius: '15px',
@@ -117,55 +121,43 @@ function Signin() {
                             marginTop: '2rem'
                         }}>
 
-                            <button className="blobby-button" onClick={() => { Login() }} style={{fontSize: '1.2rem'}}>Sign In <span className="inner">
-                                <span className="blobs">
-                                    <span className="blob"></span>
-                                    <span className="blob"></span>
-                                    <span className="blob"></span>
-
-                                    <span
-                                        className="blob"></span>
-                                </span>
-                            </span>
-                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                    <defs>
-                                        <filter id="goo">
-                                            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                result="goo"></feColorMatrix>
-                                            <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                        </filter>
-                                    </defs>
-                                </svg>
+                            <button className="blobby-button" onClick={() => { Login() }} style={{fontSize: '1.2rem'}}>
+                                Sign In 
+                                <BlobbyButton/>
                             </button>
-                            <span>
-                                <Link to='/forgotPassword'>
-                                    <button className="blobby-button" style={{
-                                        marginLeft: '2rem',
-                                        fontSize: '1.2rem'
-                                    }}>Forgot Password <span className="inner">
-                                            <span className="blobs">
-                                                <span className="blob"></span>
-                                                <span className="blob"></span>
-                                                <span className="blob"></span>
+                            
+                            {/* <div>
+                                <a href='http://localhost:5000/auth/google'>
+                                    <img src={GoogleLogo} style={{width:'50px', height:'50px'}}></img>
+                                </a>
+                            </div> */}
+                            
+                            {/* <a href='http://localhost:5000/auth/google'>Google</a> */}
 
-                                                <span
-                                                    className="blob"></span>
-                                            </span>
-                                        </span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                            <defs>
-                                                <filter id="goo">
-                                                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                        result="goo"></feColorMatrix>
-                                                    <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                </filter>
-                                            </defs>
-                                        </svg>
-                                    </button>
-                                </Link>
+                            <Link to='/forgotPassword'>
+                                <button className="blobby-button" style={{
+                                    marginLeft: '2rem',
+                                    fontSize: '1.2rem'
+                                }}>
+                                    Forgot Password 
+                                    <BlobbyButton/>
+                                </button>
+                            </Link>
+                        </div>
+
+                        <div style={{display:'flex', marginTop:'2rem', justifyContent:'center'}}>
+                            <span style={{
+                                color: '#e6ff02',
+                                fontFamily: '"Nova Round", cursive',
+                                fontWeight: 'bold',
+                                fontSize: '1.9rem'
+                            }}>
+                                Or connect with us through 
                             </span>
+                                <a href='http://localhost:5000/auth/google'>
+                                    <img src={GoogleLogo} style={{width:'50px', height:'50px', marginLeft:'0.5rem'}}></img>
+                                </a>
+                            
                         </div>
 
                         <div style={{
@@ -179,32 +171,16 @@ function Signin() {
                                 fontFamily: '"Nova Round", cursive',
                                 fontWeight: 'bold',
                                 fontSize: '1.8rem'
-                            }}>Don't have an account?</h5>
+                            }}>
+                                Don't have an account?
+                            </h5>
                             <span>
                                 <Link to='/signup'>
                                     <button className="blobby-button" style={{
                                         marginLeft: '0.5rem',
                                         fontSize: '1.2rem'
-                                    }}>Sign Up <span className="inner">
-                                        <span className="blobs">
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-
-                                            <span
-                                                className="blob"></span>
-                                        </span>
-                                    </span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                            <defs>
-                                                <filter id="goo">
-                                                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                        result="goo"></feColorMatrix>
-                                                    <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                </filter>
-                                            </defs>
-                                        </svg>
+                                    }}>Sign Up 
+                                    <BlobbyButton/>
                                     </button>
                                 </Link>
                             </span>

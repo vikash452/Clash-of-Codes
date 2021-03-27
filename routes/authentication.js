@@ -7,14 +7,96 @@ const jwt=require('jsonwebtoken')
 const jwtStrategy=require('passport-jwt').Strategy;
 const extractStrategy=require('passport-jwt').ExtractJwt;
 const passport=require('passport')
+const GoogleStrategy=require('passport-google-oauth20').Strategy;
 const nodemailer = require('nodemailer')
 const crypto=require('crypto')
 
-var options={
-    jwtFromRequest:extractStrategy.fromAuthHeaderAsBearerToken(),
-    secretOrKey:"secret"
-}
+// var options={
+//     jwtFromRequest:extractStrategy.fromAuthHeaderAsBearerToken(),
+//     secretOrKey:"secret"
+// }
 
+// passport.serializeUser((user,done)=>{
+//     return done(null,user.id)
+// })
+
+// passport.deserializeUser((id,done)=>{
+//     // User.findOne({email:emailID})
+//     // .then((foundUser)=>{
+//     //     return done(null,foundUser)
+//     // })
+//     User.findById(id).then((user)=>{
+//         done(null,user)
+//     })
+// })
+
+/*
+passport.use(new GoogleStrategy({
+    clientID:'798277582035-r2sh8gl63k7o27mluss0esga9q5v8q65.apps.googleusercontent.com',
+    clientSecret:'X3IisCWwr7VwferyElVKK9V-',
+    callbackURL:'http://localhost:5000/auth/google/callback',
+    proxy:true
+},
+function(accessToken, refreshToken, profile, done) {
+    // User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    //   return cb(err, user);
+    // });
+    console.log(accessToken)
+    console.log(refreshToken)
+    console.log(profile)
+    // console.log(cb)
+    console.log('hello')
+    var emailID=profile.emails[0].value;
+    User.findOne({googleId:profile.id})
+    .then((foundUser)=>{
+        if(foundUser)
+        {
+            return done(null,foundUser)
+        }
+        else
+        {
+            const newUser=new User({
+                googleId:profile.id,
+                email:emailID
+            })
+            newUser.save()
+            .then((savedUser)=>{
+                return done(null,savedUser)
+            })
+        }
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+  }
+))*/
+
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}))
+
+// router.get('/auth/google/callback',passport.authenticate('google'),(req,res)=>{
+//     // console.log('here2')
+//     // res.json(req.user)
+//     // res.cookie('x-auth-cookie','abcd')
+//     res.redirect('http://localhost:3000')
+// })
+
+router.get('/auth/google/callback',passport.authenticate('google'),(req,res)=>{
+    res.redirect('http://localhost:3000')
+})
+
+router.get('/details',(req,res)=>{
+    // res.json({hello:'hi'})
+    if(!req.user)
+    return res.json({error:true})
+    
+    const token=jwt.sign({email:req.user.email},'secret');
+    const userDetails={
+        token:token,
+        foundUser:req.user,
+    }
+    return res.json(userDetails)
+})
+/*
 passport.use(new jwtStrategy(options,(jwt_payload,done)=>{
     User.findOne({email:jwt_payload.email})
     .then((foundUser)=>{
@@ -23,7 +105,7 @@ passport.use(new jwtStrategy(options,(jwt_payload,done)=>{
     .catch((err)=>{
         return done(err,false)
     })
-}))
+}))*/
 
 router.get('/user/test',passport.authenticate('jwt',{session:false}),(req,res)=>{
     console.log('test')
@@ -276,6 +358,10 @@ router.get('/user/logout',(req,res)=>{
     req.logOut()
     res.json({message:"logged out successfully"});
 })
+
+// router.get('/user/details/oauth',(req,res)=>{
+//     const 
+// })
 
 // export default router;
 module.exports=router
