@@ -379,6 +379,7 @@ input {
         opacity: 1
     }
 }
+
 @keyframes fadeInRight {
     from {
         transform: translatex(20px);
@@ -463,6 +464,7 @@ input {
 
     /* align-items: flex-start;
 } */
+
 .landing-nav{
     /* background: rgba(230, 236, 233, 0.212); */
     background: transparent;
@@ -473,12 +475,14 @@ input {
     overflow: hidden;
     height: 12vh;
 }
+
 .landing-nav .nav-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
+
 .landing-nav .nav-wrapper .contact{
     position: absolute;
     display:flex;
@@ -491,6 +495,7 @@ input {
 /* .landing-nav .nav-wrapper .contact a{
     margin-left: 2rem;
 } */
+
 #nav-mobile{
     position: absolute;
     /* height: 100%; */
@@ -501,6 +506,7 @@ input {
     align-items: center;
     flex-wrap: wrap;
 }
+
 #nav-mobile li{
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
@@ -515,6 +521,7 @@ input {
     align-items: center;
     width: 100%;
 }
+
 #carousel{
     width: 50%;
     display: flex;
@@ -526,19 +533,24 @@ input {
     backdrop-filter: blur(5px);
     border-radius: 10%;
 }
+
 #carousel >a >img{
     border-radius: 10%;
     height: 100%;
 }
+
 .carousel .carousel-item:hover{
     pointer-events: none;
 }
+
 .carousel .indicators .indicator-item{
     background-color: rgb(245, 238, 238);
 }
+
 .carousel .indicators .indicator-item.active{
     background-color: #e6ff02;
 }
+
 .landing-container .content-card{
     position: relative;
     width: auto;
@@ -553,14 +565,17 @@ input {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
 }
+
 .landing-container .content-card >h2{
     font-size: 2.5rem;
     font-family:'Lobster Two', cursive;;
 }
+
 .landing-container .content-card >h3{
     font-size: 1.5rem;
     font-family:'Lobster Two', cursive;;
 }
+
 @media only screen and (max-width: 944px) {
     nav .nav-wrapper .brand-logo {
         left: 4rem;
@@ -606,4 +621,19 @@ input {
     flex-direction: column;
     justify-content: center;
     width: fit-content;
+}
+
+@media only screen and (max-width:850px)
+{
+    .boil_text{
+        display: none;
+    }
+}
+
+.swiperCard{
+    height: 150px;
+    /* width: max-content;   */
+    font-size: 2rem;
+    background-color: aquamarine;
+    margin: auto;
 }

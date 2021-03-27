@@ -22,7 +22,7 @@ import './screens/design.css'
 import LandingScreen from './screens/Landing'
 import Header from './screens/Header'
 import Footer from './screens/Footer'
-import fetch from 'node-fetch';
+// import CF from '../images/cf.jpg'
 
 
 function AllRouting() {
@@ -114,7 +114,7 @@ function AllRouting() {
         <Footer/>
       </Route>
       <Route exact path='/landing' >
-        <LandingScreen />
+        <LandingScreen/>
       </Route>
       <Route exact path='/signin'>
         <Signin />
@@ -180,16 +180,11 @@ function AllRouting() {
 function App() {
 
   return (
-
-<div className="App" style={{display:'flex', flexDirection:'column'}}>
+  <div className="App" style={{display:'flex', flexDirection:'column'}}>
       <BrowserRouter>
         <AllRouting />
       </BrowserRouter>
     </div>
   );
 }
-// debugger; // TO INSPECT THE PAGE BEFORE 1ST RENDER
-
-// const rootElement = document.getElementById("root");
-// ReactDOM.render(<App />, rootElement);
 export default App;

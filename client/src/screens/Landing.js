@@ -5,10 +5,26 @@ import { use } from 'passport';
 import './design.css'
 import Navbar_Logo from '../images/logo.jpg'
 import BlobbyButton from './BlobbyButton'
+import CF from '../images/cf.jpg'
+import LandingPage from '../images/landingPage.png'
+import {Swiper,SwiperSlide} from 'swiper/react'
+import SwiperCore,{Navigation, Pagination, Autoplay, Scrollbar, A11y, EffectCoverflow} from 'swiper'
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
 
+SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar, EffectCoverflow])
 function LandingScreen() {
     
     useEffect(()=>{
+        // var b=document.querySelector('body')
+        // console.log(b.style)
+        // b.style.backgroundImage=`url(${CF})`
+        // b.style.backgroundColor='blue !important'
+        SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar])
+        document.body.style.backgroundImage=`url('${LandingPage}')`
+
         document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.carousel');
         var instances = M.Carousel.init(elems, {
@@ -50,13 +66,13 @@ function LandingScreen() {
     },[])
 
     return (
-        <div style={{ fontFamily: "'Nova Round', cursive" }}>
+        <div style={{ fontFamily: "'Nova Round', cursive"}}>
 
             <nav className="landing-nav">
                 <div className="nav-wrapper">
                     <ul className="contact hide-on-med-and-down">
                         <li>
-                            <Link to='/Signin'>
+                            <Link to='/signin'>
                                 <button className="blobby-button" style={{height: '6vh'}}>
                                     Contact Us
                                     <BlobbyButton/>
@@ -100,7 +116,7 @@ function LandingScreen() {
 
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li>
-                            <Link to='/Signin'>
+                            <Link to='/signin'>
                                 <button className="blobby-button" style={{height:'6vh'}}>
                                     Log In
                                     <BlobbyButton/>
@@ -108,7 +124,7 @@ function LandingScreen() {
                             </Link>
                         </li>
                         <li>
-                            <Link to='/Signup'>
+                            <Link to='/signup'>
                                 <button className="blobby-button" style={{height:'6vh'}}>
                                     Sign Up
                                     <BlobbyButton/>
@@ -138,14 +154,86 @@ function LandingScreen() {
                         </div>
                     </div>
                     <br></br>
-                    {/* <div>
-                        <h2 className='sideShift'>Programming isn't about what you know</h2>
-                    </div>                     */}
+                    
                     <div className="content-card">
                         <h2> "Programming isn't about what you know, <br></br>
                         It's about what you can figure out." </h2>
                         <h3> -Chris Pine (Author of Learn To Code) </h3>
                     </div>
+
+                    <div className='swiper-ka-sir-dard'>
+                        <div className='swiper-container'>
+                            <div className='swiper-wrapper'> 
+                            <Swiper 
+                            effect='coverflow'
+                                // effect= EffectCoverflow
+                                grabCursor= {false}
+                                centeredSlides= {true}
+                                // observer= {true}
+                                // observeParents= {true}
+                                // spaceBetween={0}
+                                // spaceBetween={50}
+                                loop={true}
+                                autoplay={{
+                                    delay:2000,
+                                    disableOnInteraction:false
+                                }}
+                                coverflowEffect={{
+                                    rotate: 50,
+                                    stretch: 0,
+                                    depth: 100,
+                                    modifier: 1,
+                                    slideShadows: true,
+                                }}
+                                slidesPerView={4}
+                                navigation={{
+                                    nextEl: '.swiper-button-next',
+                                    prevEl: '.swiper-button-prev',
+                                }}
+                                pagination={{
+                                    el: '.swiper-pagination',
+                                    clickable:true,
+                                    type:'bullets',
+                                    bulletElement:'span',
+                                    bulletClass:'timeline-icon',
+                                    bulletActiveClass: 'timeline-icon-active',
+                                }}
+                                // onSlideChange={() => console.log('slide change')}
+                                // onSwiper={(swiper) => console.log(swiper)}
+                            >
+                                <SwiperSlide>
+                                    <div className='swiperCard'>
+                                        Competitive Coding
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div  className='swiperCard'>
+                                        Codeforces
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div  className='swiperCard'>
+                                        Codechef
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div  className='swiperCard'>
+                                        Data Structure Algorithms
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div  className='swiperCard'>
+                                        Leetcode
+                                    </div>
+                                </SwiperSlide>
+                            </Swiper>
+                            </div>
+                        </div>
+                        <div className="swiper-pagination"></div>
+                        <div className="swiper-button-next" style={{marginTop:'110px'}}></div>
+                        <div className="swiper-button-prev" style={{marginTop:'110px'}}></div>
+                    </div>
+                    
 
                     {/**
                     <div id="carousel" className="carousel carousel-slider" style={{
