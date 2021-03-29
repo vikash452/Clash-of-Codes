@@ -356,6 +356,7 @@ router.post('/user/updatePassword',(req,res)=>{
 
 router.get('/user/logout',(req,res)=>{
     req.logOut()
+    req.logout()
     res.json({message:"logged out successfully"});
 })
 

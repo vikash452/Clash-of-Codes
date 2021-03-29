@@ -18,11 +18,13 @@ import CodechefAuthorization from './screens/ChefAuthorization'
 import DSA from './screens/DSA'
 import Compare from './screens/Compare'
 import DSA_stats from './screens/DSA_stats'
+import ContactUs from './screens/ContactUs'
 import './screens/design.css'
 import LandingScreen from './screens/Landing'
 import Header from './screens/Header'
 import Footer from './screens/Footer'
-// import CF from '../images/cf.jpg'
+import LandingPageBackground from './images/landingPage.png'
+import AmongUsBackground from './images/amongus.jpg'
 
 
 function AllRouting() {
@@ -41,6 +43,8 @@ function AllRouting() {
         history.push(history.location.pathname)
       else if (history.location.pathname.startsWith('/signup'))
         history.push(history.location.pathname)
+      else if (history.location.pathname.startsWith('/contactus'))
+        history.push('/contactus')
       else
         history.push('/landing')
     }
@@ -74,7 +78,8 @@ function AllRouting() {
         }
         else
         {
-          history.push('/landing')
+          Redirecter(userDetails)
+          // history.push('/landing')
         }
       })
     }
@@ -82,6 +87,17 @@ function AllRouting() {
     {
       Redirecter(userDetails)
     }
+
+    // if(history.location.pathname.startsWith('/landing'))
+    // {
+    //   console.log(history.location.pathname)
+    //   document.body.style.backgroundImage=`url('${LandingPageBackground}')`
+    // }
+    // else
+    // {
+    //   console.log(history.location.pathname)
+    //   document.body.style.backgroundImage=`url('${AmongUsBackground}')`
+    // }
 
     // console.log(userDetails)
     // if (!userDetails) {
@@ -115,6 +131,9 @@ function AllRouting() {
       </Route>
       <Route exact path='/landing' >
         <LandingScreen/>
+      </Route>
+      <Route exact path='/contactus' >
+        <ContactUs/>
       </Route>
       <Route exact path='/signin'>
         <Signin />

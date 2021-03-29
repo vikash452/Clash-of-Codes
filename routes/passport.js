@@ -4,6 +4,7 @@ const jwtStrategy=require('passport-jwt').Strategy;
 const extractStrategy=require('passport-jwt').ExtractJwt;
 const User=require('../database models/userModel')
 const jwt=require('jsonwebtoken')
+require('dotenv').config()
 
 var options={
     jwtFromRequest:extractStrategy.fromAuthHeaderAsBearerToken(),
@@ -35,9 +36,9 @@ passport.deserializeUser((emailID,done)=>{
 })
 
 passport.use(new GoogleStrategy({
-    clientID:'798277582035-r2sh8gl63k7o27mluss0esga9q5v8q65.apps.googleusercontent.com',
-    clientSecret:'X3IisCWwr7VwferyElVKK9V-',
-    callbackURL:'http://localhost:5000/auth/google/callback',
+    clientID:process.env.CLIENT_ID_GOOGLE,
+    clientSecret:process.env.CLIENT_SECRET_GOOGLE,
+    callbackURL:process.env.REDIRECT_URI_GOOGLE,
     proxy:true
 },
 function(accessToken, refreshToken, profile, done) {

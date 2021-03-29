@@ -16,6 +16,8 @@ function Signin() {
         if (user) {
             history.push('/home')
         }
+
+        console.log(window.innerWidth)
     }, []);
 
     function Login() {
@@ -69,7 +71,8 @@ function Signin() {
                     position: 'relative',
                     width: '600px',
                     //minWidth: '420px',
-                    height: '630px',
+                    // height: '630px',
+                    height: 'fit-content',
                     margin: '30px',
                     boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
                     borderRadius: '15px',
@@ -105,7 +108,7 @@ function Signin() {
                             }}
                         />
                         <br />
-                        <input type='text' placeholder='password' style={{
+                        <input type='password' placeholder='password' style={{
                             maxWidth: '300px',
                             color: 'white !important',
                             borderBottom: '2px solid'
@@ -114,14 +117,14 @@ function Signin() {
                                 setPassword(e.target.value)
                             }}
                         />
-                        <div style={{
+                        <div className='signin_forgot_button_parent' style={{
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
                             marginTop: '2rem'
                         }}>
 
-                            <button className="blobby-button" onClick={() => { Login() }} style={{fontSize: '1.2rem'}}>
+                            <button className="blobby-button" onClick={() => { Login() }} style={{fontSize: '1.2rem', marginBottom:'10px'}}>
                                 Sign In 
                                 <BlobbyButton/>
                             </button>
@@ -154,7 +157,7 @@ function Signin() {
                             }}>
                                 Or connect with us through 
                             </span>
-                                <a href='http://localhost:5000/auth/google'>
+                                <a href='http://localhost:5000/auth/google' style={{marginBottom:'auto', marginTop:'auto'}}>
                                     <img src={GoogleLogo} style={{width:'50px', height:'50px', marginLeft:'0.5rem'}}></img>
                                 </a>
                             

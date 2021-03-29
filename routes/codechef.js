@@ -37,9 +37,9 @@ function codechefMiddleware(req,res,next)
             body:JSON.stringify({
                 grant_type:'authorization_code',
                 code: code,
-                client_id:process.env.CLIENT_ID_CODECHEF_PRACTICE,
-                client_secret:process.env.CLIENT_SECRET_CODECHEF_PRACTICE,
-                redirect_uri:process.env.REDIRECT_URI_PRACTICE
+                client_id:process.env.CLIENT_ID_CODECHEF,
+                client_secret:process.env.CLIENT_SECRET_CODECHEF,
+                redirect_uri:process.env.REDIRECT_URI
             })
             })
             .then(res=>res.json())
@@ -125,6 +125,7 @@ router.post('/codechef/accessToken',passport.authenticate('jwt',{session:false})
 // codechefMiddleware
 router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:false}),(req,res)=>{
     
+  /*
     var resultTemp={
         "status": "OK",
         "result": {
@@ -281,9 +282,9 @@ router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:fa
             "message": "user detail successfully fetched"
           }
         }
-      }
+      }*/
 
-    return res.status(200).json(resultTemp)
+    // return res.status(200).json(resultTemp)
 
     var handle=req.params.handle;
 

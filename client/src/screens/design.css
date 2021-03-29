@@ -781,3 +781,18 @@ input {
     background-color: aquamarine;
     margin: auto;
 }
+
+.material-tooltip{
+    width: 300px !important;
+}
+
+/* .signin_forgot_button_parent{
+
+} */
+
+@media (max-width:700px)
+{
+    .signin_forgot_button_parent{
+        flex-direction: column;
+    }
+}

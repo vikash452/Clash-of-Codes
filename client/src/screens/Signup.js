@@ -157,18 +157,19 @@ function Signup() {
 
                         <br />
 
-                        <input type='text' placeholder='password' style={{ maxWidth: '300px', borderBottom: '2px solid' }}
+                        <input type='password' placeholder='password' style={{ maxWidth: '300px', borderBottom: '2px solid' }}
                             onChange={(e) => {
                                 setPassword(e.target.value)
                             }}
                         />
                         <br />
-                        <div style={{
+                        <div  style={{
                             marginTop: '2rem',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
                             flexwrap: 'wrap',
+                            flexDirection:'row'
 
                         }}>
                             <button className="blobby-button" onClick={() => { getVerificationCode() }}

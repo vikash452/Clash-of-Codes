@@ -16,6 +16,10 @@ function Navbar() {
         M.Sidenav.init(side_nav_elem);
         var modal_elem = document.querySelectorAll('.modal');
         M.Modal.init(modal_elem)
+
+        var tooltip_elem=document.querySelectorAll('.tooltipped')
+        M.Tooltip.init(tooltip_elem)
+
     }, [])
 
     function SubmitQuery() {
@@ -110,7 +114,9 @@ function Navbar() {
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
                                 }}><Link to="/home">
-                                        <button className="blobby-button sidenav-close"
+                                        <button className="blobby-button sidenav-close tooltipped"
+                                            data-position='right'
+                                            data-tooltip="Go to the home page"
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
@@ -138,8 +144,10 @@ function Navbar() {
                                 <li style={{
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
-                                }}><Link to="/contest"><button className="blobby-button sidenav-close"
-                                    style={{
+                                }}><Link to="/contest"><button className="blobby-button sidenav-close tooltipped"
+                                data-position='right'
+                                data-tooltip="Join or Create a contest from all your unattempted questions on codeforces"    
+                                style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
                                     }}>Contest<span className="inner">
@@ -166,7 +174,9 @@ function Navbar() {
                                 <li style={{
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
-                                }}><Link to="/profile"><button className="blobby-button sidenav-close"
+                                }}><Link to="/profile"><button className="blobby-button sidenav-close tooltipped"
+                                    data-position='right'
+                                    data-tooltip="View/Set your handles and don't forget to add your friends!!"
                                     style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
@@ -196,7 +206,9 @@ function Navbar() {
                                     marginBottom: '1.2rem',
                                 }}>
                                     <Link to="/dsa">
-                                        <button className="blobby-button sidenav-close"
+                                        <button className="blobby-button sidenav-close tooltipped"
+                                        data-position='right'
+                                        data-tooltip="Practice Data Structures & Algorithms and keep a track on your daily progress"
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
@@ -228,7 +240,9 @@ function Navbar() {
                                     marginBottom: '1.2rem',
                                 }}>
                                     <Link to="/codeforces">
-                                        <button className="blobby-button sidenav-close"
+                                        <button className="blobby-button sidenav-close tooltipped"
+                                            data-position='right'
+                                            data-tooltip="Complete statistics of your codeforces performance"
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
@@ -260,7 +274,9 @@ function Navbar() {
                                     marginBottom: '1.2rem',
                                 }}>
                                     <Link to="/codechef">
-                                        <button className="blobby-button sidenav-close"
+                                        <button className="blobby-button sidenav-close tooltipped"
+                                            data-position='right'
+                                            data-tooltip="Complete statistics of your Codechef performance"
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
@@ -294,7 +310,9 @@ function Navbar() {
                                         marginBottom: '1.2rem',
                                     }}>
                                     <a className="modal-trigger" href="#modal1">
-                                        <button className="blobby-button sidenav-close"
+                                        <button className="blobby-button sidenav-close tooltipped"
+                                        data-position='right'
+                                        data-tooltip="Found a bug? Some feedback or suggestion? We will be happy to hear from you"
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
@@ -327,7 +345,9 @@ function Navbar() {
                                         marginBottom: '1.2rem',
                                     }}>
                                     <a className="" href="#">
-                                        <button className="blobby-button sidenav-close" onClick={() => { Logout() }}
+                                        <button className="blobby-button sidenav-close tooltipped" onClick={() => { Logout() }}
+                                            data-position='right'
+                                            data-tooltip="Hope you liked the website"
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',

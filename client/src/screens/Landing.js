@@ -23,7 +23,7 @@ function LandingScreen() {
         // b.style.backgroundImage=`url(${CF})`
         // b.style.backgroundColor='blue !important'
         SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar])
-        document.body.style.backgroundImage=`url('${LandingPage}')`
+        // document.body.style.backgroundImage=`url('${LandingPage}')`
 
         document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.carousel');
@@ -72,7 +72,7 @@ function LandingScreen() {
                 <div className="nav-wrapper">
                     <ul className="contact hide-on-med-and-down">
                         <li>
-                            <Link to='/signin'>
+                            <Link to='/contactus'>
                                 <button className="blobby-button" style={{height: '6vh'}}>
                                     Contact Us
                                     <BlobbyButton/>
@@ -81,11 +81,31 @@ function LandingScreen() {
                         </li>
                     </ul>
 
-                    <ul className="sidenav" id="slide-out">
-                        <li><a href="sass.html">Sass</a></li>
-                        <li><a href="badges.html">Components</a></li>
-                        <li><a href="collapsible.html">Javascript</a></li>
-                        <li><a href="mobile.html">Mobile</a></li>
+                    <ul className="sidenav" id="slide-out" style={{backgroundImage:`url(${LandingPage})`, paddingTop:'100px', maxWidth:'fit-content'}}>
+                        <li>
+                            <Link to='/signin'>
+                                <button className="blobby-button" style={{height: '6vh'}}>
+                                    Signin
+                                    <BlobbyButton/>
+                                </button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/signup'>
+                                <button className="blobby-button" style={{height: '6vh'}}>
+                                    Signup
+                                    <BlobbyButton/>
+                                </button>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/contactus'>
+                                <button className="blobby-button" style={{height: '6vh'}}>
+                                    Contact Us
+                                    <BlobbyButton/>
+                                </button>
+                            </Link>
+                        </li>
                     </ul>
 
                     <div className="brand-logo center" style={{
@@ -161,6 +181,7 @@ function LandingScreen() {
                         <h3> -Chris Pine (Author of Learn To Code) </h3>
                     </div>
 
+                    {/*
                     <div className='swiper-ka-sir-dard'>
                         <div className='swiper-container'>
                             <div className='swiper-wrapper'> 
@@ -233,7 +254,7 @@ function LandingScreen() {
                         <div className="swiper-button-next" style={{marginTop:'110px'}}></div>
                         <div className="swiper-button-prev" style={{marginTop:'110px'}}></div>
                     </div>
-                    
+                            */}
 
                     {/**
                     <div id="carousel" className="carousel carousel-slider" style={{
