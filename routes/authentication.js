@@ -81,7 +81,7 @@ router.get('/auth/google',passport.authenticate('google',{scope:['profile','emai
 // })
 
 router.get('/auth/google/callback',passport.authenticate('google'),(req,res)=>{
-    res.redirect('http://localhost:3000')
+    res.redirect('http://clashofcodes.herokuapp.com/home')
 })
 
 router.get('/details',(req,res)=>{
