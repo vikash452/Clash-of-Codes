@@ -157,7 +157,7 @@ function Signin() {
                             }}>
                                 Or connect with us through 
                             </span>
-                                <a href='http://localhost:5000/auth/google' style={{marginBottom:'auto', marginTop:'auto'}}>
+                                <a href='http://clashofcodes.herokuapp.com/auth/google' style={{marginBottom:'auto', marginTop:'auto'}}>
                                     <img src={GoogleLogo} style={{width:'50px', height:'50px', marginLeft:'0.5rem'}}></img>
                                 </a>
                             
