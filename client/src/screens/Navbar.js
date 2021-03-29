@@ -9,7 +9,7 @@ import Navbar_Logo from '../images/logo.jpg'
 function Navbar() {
 
     const [query, setQuery] = useState('')
-    const history=useHistory()
+    const history = useHistory()
 
     useEffect(() => {
         var side_nav_elem = document.querySelectorAll('#slide-out');
@@ -67,8 +67,8 @@ function Navbar() {
     }
 
     return (
-        <div style={{minWidth:'fit-content'}}>
-            <nav
+        <div className="navbar-div" style={{ minWidth: 'fit-content' }}>
+            <nav className='navbar-setter'
                 // style={{
                 //     backgroundColor: 'rgb(0,0,0,0.2)',
                 //     borderBottom: '2px solid rgba(0, 0, 0, 1)',
@@ -76,38 +76,36 @@ function Navbar() {
                 //     textAlign: 'center',
                 //     //paddingTop: '1.3rem',
                 // }}
-
-                className='navbar-setter'
             >
                 <ul style={{
                     display: 'grid',
-                    gridTemplateColumns: '10rem auto 10rem',
+                    gridTemplateColumns: '10rem 50rem 10rem',
                     columnGap: '2rem',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     //overflow: 'auto',
+                    position: 'absolute',
                     width: '100%',
+                    height: '100%',
                 }}>
-                    <li style={{ marginTop: '2.4rem' }}>
-                        <a data-target="slide-out" className="sidenav-trigger show-on-large left" style={{
-                             cursor: 'pointer', 
-                             overflow: 'hidden',
-                             height: '10vh' }}>
-                            <i className="material-icons" style={{ fontSize: '4vw', color: 'white', height: 'auto' }}>menu</i>
+                    <li style={{ position: 'absolute' }}>
+                        <a data-target="slide-out" className="sidenav-trigger show-on-large left"
+                            style={{
+                                cursor: 'pointer',
+                                overflow: 'hidden',
+                                height: '10vh'
+                            }}>
+                            <i className="material-icons">menu</i>
                         </a>
                     </li>
-                    <li style={{ marginTop: '2.2rem' }}>
-                        <div className="nav-wrapper" style={{}}>
-                            <div>
-                                <div className="heading" style={{
-                                    display: 'block'
-                                }}>
-                                    <Link to="/home" style={{ fontSize:'4.7vw', width:'max-content', margin:'auto'}}>CLASH OF CODES</Link>
-                                    
-                                </div>
-                            </div>
-
-                            <ul id="slide-out" className="sidenav nav lighten-2" style={{
-
-                            }}>
+                    
+                    <li className="Heading-navbar" style={{position: 'absolute'}}>
+                        <div className="heading">
+                            {/* <Link to="/home" style={{ fontSize: '4.7vw', margin: 'auto' }}>CLASH OF CODES</Link> */}
+                            <Link to="/home" className="heading-content">CLASH OF CODES</Link>
+                        </div>
+                        <div className="nav-wrapper">
+                            <ul id="slide-out" className="sidenav nav lighten-2">
                                 <li style={{
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
@@ -199,10 +197,10 @@ function Navbar() {
                                 }}>
                                     <Link to="/dsa">
                                         <button className="blobby-button sidenav-close"
-                                        style={{
-                                            fontSize: '1.3rem',
-                                            width: '100%',
-                                        }}>
+                                            style={{
+                                                fontSize: '1.3rem',
+                                                width: '100%',
+                                            }}>
                                             DSA
                                             <span className="inner">
                                                 <span className="blobs">
@@ -231,10 +229,10 @@ function Navbar() {
                                 }}>
                                     <Link to="/codeforces">
                                         <button className="blobby-button sidenav-close"
-                                        style={{
-                                            fontSize: '1.3rem',
-                                            width: '100%',
-                                        }}>
+                                            style={{
+                                                fontSize: '1.3rem',
+                                                width: '100%',
+                                            }}>
                                             Codeforces
                                             <span className="inner">
                                                 <span className="blobs">
@@ -263,10 +261,10 @@ function Navbar() {
                                 }}>
                                     <Link to="/codechef">
                                         <button className="blobby-button sidenav-close"
-                                        style={{
-                                            fontSize: '1.3rem',
-                                            width: '100%',
-                                        }}>
+                                            style={{
+                                                fontSize: '1.3rem',
+                                                width: '100%',
+                                            }}>
                                             Codechef
                                             <span className="inner">
                                                 <span className="blobs">
@@ -289,18 +287,18 @@ function Navbar() {
                                         </button>
                                     </Link>
                                 </li>
-                                
-                                <li 
-                                style={{
-                                    marginTop: '1.2rem',
-                                    marginBottom: '1.2rem',
-                                }}>
+
+                                <li
+                                    style={{
+                                        marginTop: '1.2rem',
+                                        marginBottom: '1.2rem',
+                                    }}>
                                     <a className="modal-trigger" href="#modal1">
                                         <button className="blobby-button sidenav-close"
-                                        style={{
-                                            fontSize: '1.3rem',
-                                            width: '100%',
-                                        }}>
+                                            style={{
+                                                fontSize: '1.3rem',
+                                                width: '100%',
+                                            }}>
                                             Report
                                             <span className="inner">
                                                 <span className="blobs">
@@ -323,17 +321,17 @@ function Navbar() {
                                         </button>
                                     </a>
                                 </li>
-                                <li 
-                                style={{
-                                    marginTop: '1.2rem',
-                                    marginBottom: '1.2rem',
-                                }}>
+                                <li
+                                    style={{
+                                        marginTop: '1.2rem',
+                                        marginBottom: '1.2rem',
+                                    }}>
                                     <a className="" href="#">
-                                        <button className="blobby-button sidenav-close" onClick={()=>{Logout()}}
-                                        style={{
-                                            fontSize: '1.3rem',
-                                            width: '100%',
-                                        }}>
+                                        <button className="blobby-button sidenav-close" onClick={() => { Logout() }}
+                                            style={{
+                                                fontSize: '1.3rem',
+                                                width: '100%',
+                                            }}>
                                             Logout
                                             <span className="inner">
                                                 <span className="blobs">
@@ -360,17 +358,16 @@ function Navbar() {
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <div className="brand-logo right" >
-                            <Link to="/home">
-                            <img src={Navbar_Logo} style={{
-                                width: '8rem',
-                                height: '20vh',
-                                borderRadius: '20%',
-                                marginTop: '1rem',
-                                overflow: 'hidden',
-                            }} 
-                            className="hide-on-med-and-down"></img></Link>
+                    <li style={{ height: '100%' }}>
+                        <div className="brand-logo right" style={{ margin: '1rem' }}>
+                            <Link to="/home" style={{ padding: '0', marginRight: '1rem' }}>
+                                <img src={Navbar_Logo} style={{
+                                    width: '8rem',
+                                    height: '8rem',
+                                    borderRadius: '20%',
+                                    overflow: 'hidden',
+                                }}
+                                    className="hide-on-med-and-down"></img></Link>
                         </div>
                     </li>
                 </ul>
