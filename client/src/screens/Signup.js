@@ -216,7 +216,7 @@ function Signup() {
                                         padding: '30px',
                                         //marginTop: '2rem'
                                     }}>
-                                        <button className="blobby-button" onclick={()=>{ verifyCode() }} style={{
+                                        <button className="blobby-button" onClick={()=>{ verifyCode() }} style={{
                                             fontSize: '1.2rem'
                                         }}>Verify <span className="inner">
                                                 <span className="blobs">

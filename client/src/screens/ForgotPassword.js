@@ -7,6 +7,7 @@ function ForgotPassword() {
     const [email, setEmail] = useState('');
 
     function ChangePassword() {
+        // console.log(email)
         fetch('/user/forgotPassword', {
             method: 'POST',
             headers: {

@@ -26,17 +26,21 @@ function Codeforces(){
         }
         setHandle(user.codeforces)
         
-        if(handle)
+        if(user.codeforces)
         trigger_after_page_loading()
+        else
+        {
+            history.push('/profile')
+        }
     },[handle]);
 
     function trigger_after_page_loading()
     {
-        if(handle.length == 0)
-        {
-            alert("Please set your codeforces handle");
-            history.push('/profile');
-        }
+        // if(handle.length == 0)
+        // {
+        //     alert("Please set your codeforces handle");
+        //     history.push('/profile');
+        // }
         
         let arr = [];
         var dtype = [];

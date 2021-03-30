@@ -84,7 +84,7 @@ function LandingScreen() {
                     <ul className="sidenav" id="slide-out" style={{backgroundImage:`url(${LandingPage})`, paddingTop:'100px', maxWidth:'fit-content'}}>
                         <li>
                             <Link to='/signin'>
-                                <button className="blobby-button" style={{height: '6vh'}}>
+                                <button className="blobby-button sidenav-close" style={{height: '6vh'}}>
                                     Signin
                                     <BlobbyButton/>
                                 </button>
@@ -92,7 +92,7 @@ function LandingScreen() {
                         </li>
                         <li>
                             <Link to='/signup'>
-                                <button className="blobby-button" style={{height: '6vh'}}>
+                                <button className="blobby-button sidenav-close" style={{height: '6vh'}}>
                                     Signup
                                     <BlobbyButton/>
                                 </button>
@@ -100,7 +100,7 @@ function LandingScreen() {
                         </li>
                         <li>
                             <Link to='/contactus'>
-                                <button className="blobby-button" style={{height: '6vh'}}>
+                                <button className="blobby-button sidenav-close" style={{height: '6vh'}}>
                                     Contact Us
                                     <BlobbyButton/>
                                 </button>

@@ -47,17 +47,20 @@ function Codechef()
         // console.log(`https://api.codechef.com/oauth/authorize?response_type=code&client_id=c6fea028e960e1096ba59b88e3532118&redirect_uri=${REDIRECT_URI_PRACTICE}&state=xyz`)
         setHandle(user.codechef)
         
-        if(handle)
+        if(user.codechef)
         trigger_after_page_loading()
+        else{
+            history.push('/profile')
+        }
     },[handle]);
 
     function trigger_after_page_loading()
     {
-        if(handle.length == 0)
-        {
-            alert("Please set your codeforces handle");
-            history.push('/profile');
-        }
+        // if(handle.length == 0)
+        // {
+        //     alert("Please set your codeforces handle");
+        //     history.push('/profile');
+        // }
 
         fetch(`/codechef/api/users/${handle}`,{
             headers:{
