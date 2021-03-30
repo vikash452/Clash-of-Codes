@@ -267,34 +267,33 @@ function Profile() {
         <div >
             {/* <div style={{ marginTop: '70px' }}> */}
 
-            <div style={{
-                position: 'relative',
-                display: 'flex',
-                width: '100%',
-                padding: '15px',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexwrap: 'wrap',
-                zindex: '1'
+            <div class="friend-div" style={{
+                // position: 'relative',
+                // display: 'flex',
+                // width: '100%',
+                // padding: '15px',
+                // justifyContent: 'center',
+                // alignItems: 'center',
+                // flexwrap: 'wrap',
+                // zindex: '1'
             }}>
-                <div className="card-container card" style={{
-                    position: 'relative',
-                    width: '50%',
-                    minWidth: '50%',
-                    //minWidth: '420px',
-                    margin: '30px',
-                    padding: '30px',
-                    boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
-                    borderRadius: '15px',
-                    background: 'rgba(230, 236, 233, 0.35)',
-                    overflow: 'hidden',
-                    color: '#e6ff02',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.5)',
-                    backdropFilter: 'blur(5px)'
+                <div className="card" style={{
+                    // position: 'relative',
+                    // width: '50%',
+                    // minWidth: '50%',
+                    // //minWidth: '420px',
+                    // margin: '30px',
+                    // padding: '30px',
+                    // boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
+                    // borderRadius: '15px',
+                    // background: 'rgba(230, 236, 233, 0.35)',
+                    // overflow: 'hidden',
+                    // color: '#e6ff02',
+                    // borderTop: '1px solid rgba(255, 255, 255, 0.5)',
+                    // backdropFilter: 'blur(5px)'
                 }}>
-                    <h2 stle={{ marginTop: '1.424rem' }}>Add a friend </h2>
+                    <h2 stle={{}}>Add a friend </h2>
                     <input type='text' placeholder='search for friend'
-                        style={{ maxWidth: '300px', margin: 'auto' }}
                         onChange={(e) => {
                             // console.log(e.target.value)
                             friendSearch(e.target.value)
@@ -326,33 +325,31 @@ function Profile() {
                 </div>
 
             </div>
-            <br></br>
-            <br></br>
-            <div style={{
-                position: 'relative',
-                display: 'flex',
-                //margin: '0 auto',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexwrap: 'wrap',
-                zindex: '1'
+            <div className="Profiles-div" style={{
+                // position: 'relative',
+                // display: 'flex',
+                // //margin: '0 auto',
+                // justifyContent: 'center',
+                // alignItems: 'center',
+                // flexwrap: 'wrap',
+                // zindex: '1'
             }}>
-                <div className="card-container card" style={{
-                    position: 'relative',
-                    width: 'clamp(320px, 65%, 65%)',
-                    //minWidth: '420px',
-                    padding: '30px',
-                    margin: '30px',
-                    height: '110vh',
-                    boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
-                    borderRadius: '15px',
-                    background: 'rgba(230, 236, 233, 0.35)',
-                    overflow: 'hidden',
-                    color: '#e6ff02',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.5)',
-                    backdropFilter: 'blur(5px)'
+                <div className="card" style={{
+                    // position: 'relative',
+                    // width: 'clamp(320px, 65%, 65%)',
+                    // //minWidth: '420px',
+                    // padding: '30px',
+                    // margin: '30px',
+                    // height: '110vh',
+                    // boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
+                    // borderRadius: '15px',
+                    // background: 'rgba(230, 236, 233, 0.35)',
+                    // overflow: 'hidden',
+                    // color: '#e6ff02',
+                    // borderTop: '1px solid rgba(255, 255, 255, 0.5)',
+                    // backdropFilter: 'blur(5px)'
                 }}>
-                    <h2 stle={{ marginTop: '1.424rem' }}>Your Codeforces Profile</h2>
+                    <h2>Your Codeforces Profile</h2>
                     <h4>Your current Codeforces handle is : {cf}</h4>
                     {
                         cf
@@ -441,20 +438,20 @@ function Profile() {
 
                 </div>
 
-                <div className="card-container card" style={{
-                    position: 'relative',
-                    width: 'clamp(320px, 65%, 65%)',
-                    //minWidth: '420px',
-                    margin: '30px',
-                    padding: '30px',
-                    height: '110vh',
-                    boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
-                    borderRadius: '15px',
-                    background: 'rgba(230, 236, 233, 0.35)',
-                    overflow: 'hidden',
-                    color: '#e6ff02',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.5)',
-                    backdropFilter: 'blur(5px)'
+                <div className="card" style={{
+                    // position: 'relative',
+                    // width: 'clamp(320px, 65%, 65%)',
+                    // //minWidth: '420px',
+                    // margin: '30px',
+                    // padding: '30px',
+                    // height: '110vh',
+                    // boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
+                    // borderRadius: '15px',
+                    // background: 'rgba(230, 236, 233, 0.35)',
+                    // overflow: 'hidden',
+                    // color: '#e6ff02',
+                    // borderTop: '1px solid rgba(255, 255, 255, 0.5)',
+                    // backdropFilter: 'blur(5px)'
                 }}>
                     <h2 stle={{ marginTop: '1.424rem' }}>Your CodeChef Profile</h2>
                     <h4>Your current Codechef handle is : {cc}</h4>
