@@ -126,12 +126,12 @@ Link .waves-effect.waves-light.btn-large {
 }
 
 .home-msg {
-    font-size: 3.5rem;
-    display: inline-block;
+    font-size: 3rem;
+    /* display: inline-block; */
 }
 
 .msg-content {
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .home-contests {
@@ -163,13 +163,16 @@ Link .waves-effect.waves-light.btn-large {
 
 .home-contests>h3 {
     margin: 0px;
+    font-size: 2.2rem;
 }
 
 .home-contests>h3>ul {
     margin: 0px;
     padding: 20px;
 }
-
+.home-contests >h4{
+    font-size: 1.6rem;
+}
 .flexbox {
     /* display: flex; */
     /* flew-wrap: wrap; */
@@ -279,18 +282,31 @@ Link .waves-effect.waves-light.btn-large {
         height: 5rem;
         font-size: 5rem;
     }
+    .Home-div{
+        margin-top: 3rem;
+    }
+    .msg-div{
+        margin-bottom: 10%;
+    }
+    .home-msg{
+        font-size: 2.5rem;
+        
+    }
+    .msg-content{
+        font-size: 1.5rem;
+    }
     .home-contests {
         width: 100%;
         border-radius: 3%;
-        height: 80vh;
+        /* height: 80vh; */
         overflow: hidden;
     }
     .home-contests>h3>ul {
         margin: 0px;
-        font-size: 2.5rem;
+        font-size: 1.8rem;
     }
     .home-contests>h4 {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
     }
 }
 
@@ -311,20 +327,34 @@ Link .waves-effect.waves-light.btn-large {
         height: 5rem;
         font-size: 3.5rem;
     }
+    .Home-div{
+        margin-top: 1rem;
+    }
+    .msg-div{
+        margin-bottom: 5%;
+    }
+    .home-msg{
+        font-size: 2rem;
+        margin-bottom: 5%;
+    }
+    .msg-content{
+        font-size: 1.2rem;
+    }
     .home-contests {
         width: 100%;
         border-radius: 3%;
-        height: 70vh;
+        /* height: 70vh; */
         overflow: hidden;
-        padding: 50px;
-        padding-bottom: 80px
+        /* padding: 30px; */
+        /* padding-bottom: 50px; */
+        padding: 10px 10px 20px;
     }
     .home-contests>h3>ul {
         margin: 0px;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
     .home-contests>h4 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }
 
