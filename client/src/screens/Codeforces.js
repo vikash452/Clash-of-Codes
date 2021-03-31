@@ -16,6 +16,7 @@ function Codeforces(){
     const [handle,setHandle]=useState()
     const [totalQuestions,setTotalQuestion]=useState(0);
     const [options2,setOptions2]=useState({})
+    const [options3,setOptions3]=useState({})
     const [unsolvedQuestion,setUnsolvedQuestion]=useState([])
     var user;
 
@@ -117,10 +118,12 @@ function Codeforces(){
             var temp_options_2={
                 animationEnabled: true,
 			        theme: "light2",
+                    backgroundColor:'rgba(0,0,0,0)',
+                    lineColor:'White',
 			        title:{
                         text: "Questions done per day",
                         fontSize :30,
-                        fontColor : "Green",
+                        fontColor : "White",
                         fontFamily: "Helvetica",
                         horizontalAlign : "center",
                         padding: 5,
@@ -130,16 +133,23 @@ function Codeforces(){
                         reversed: true,
                         labelAutoFit:true,
                         labelFontSize:15,
+                        labelFontColor:'White',
+                        titleFontColor:'White',
+                        lineColor:'White',
 			        },
 			        axisY: {
 			        	title: "Number of Questions successfully solved",
                         labelAutoFit:true,
                         labelFontSize:15,
+                        labelFontColor:'White',
+                        titleFontColor:'White',
+                        lineColor:'White',
                     },
                     height : 500,
 			        data: [{
 			        	type: "spline",
-                        dataPoints: questions_per_day_array
+                        dataPoints: questions_per_day_array,
+                        lineColor:'White'
 			        }]
             }
 
@@ -174,10 +184,12 @@ function Codeforces(){
             var temp_options_1 = {
                     animationEnabled: true,
 			        theme: "light2",
+                    backgroundColor:'rgba(0,0,0,0)',
+                    lineColor:'White',
 			        title:{
                         text: "Your Overall Codeforces performance",
                         fontSize :30,
-                        fontColor : "Purple",
+                        fontColor : "White",
                         fontFamily: "Helvetica",
                         horizontalAlign : "center",
                         padding: 5,
@@ -190,8 +202,9 @@ function Codeforces(){
                         // labelAutoFit:true,
                         labelFontSize:20,
                         interval:1,
-                        
+                        labelFontColor:'White',
                         tickLength: 1,
+                        titleFontColor:'White',
                         // labelMaxWidth: 70
 			        },
 			        axisY: {
@@ -200,8 +213,10 @@ function Codeforces(){
                         labelFontSize:20,
                         // interval:1,
                         labelAutoFit:true,
-                        tickLength: 1,
-                        labelMaxWidth: 70
+                        // tickLength: 1,
+                        labelMaxWidth: 70,
+                        labelFontColor:'White',
+                        titleFontColor:'White',
                     },
                     height : 700,
 			        data: [{
@@ -210,6 +225,63 @@ function Codeforces(){
 			        }]
              }
              setOptions(temp_options_1)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+        var rating_change_graph=[]
+        fetch(`https://codeforces.com/api/user.rating?handle=${handle}`)
+        .then(res=>res.json())
+        .then((data)=>{
+            data.result.reverse()
+            data.result.forEach((element)=>{
+                var temp_object={
+                    label:new Date(element.ratingUpdateTimeSeconds*1000).toLocaleDateString(),
+                    y:element.newRating
+                }
+                rating_change_graph.push(temp_object)
+            })
+            console.log(rating_change_graph)
+            var temp_options_3={
+                animationEnabled: true,
+			        theme: "light2",
+                    backgroundColor:'rgba(0,0,0,0)',
+                    lineColor:'White',
+			        title:{
+                        text: "Your rating change",
+                        fontSize :30,
+                        fontColor : "White",
+                        fontFamily: "Helvetica",
+                        horizontalAlign : "center",
+                        padding: 5,
+			        },
+			        axisX: {
+			        	title: "Date",
+                        reversed: true,
+                        labelAutoFit:true,
+                        labelFontSize:15,
+                        labelFontColor:'White',
+                        titleFontColor:'White',
+                        lineColor:'White',
+			        },
+			        axisY: {
+			        	title: "Rating",
+                        labelAutoFit:true,
+                        labelFontSize:15,
+                        labelFontColor:'White',
+                        titleFontColor:'White',
+                        lineColor:'White',
+                    },
+                    height : 500,
+			        data: [{
+			        	type: "spline",
+                        dataPoints: rating_change_graph,
+                        lineColor:'White'
+			        }]
+            }
+
+            setOptions3(temp_options_3)
         })
         .catch((err)=>{
             console.log(err)
@@ -227,6 +299,10 @@ function Codeforces(){
             
             <div style={{marginLeft:'25px', marginRight:'25px'}}>
                 <CanvasJSChart options = {options2}/>
+            </div>
+
+            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
+                <CanvasJSChart options = {options3}/>
             </div>
             
             <div style={{marginTop:'150px'}}>
