@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import M from 'materialize-css'
 import './design.css';
-import Notice from '../images/notice.jpg'
 import CF from '../images/cf.jpg'
 
 function Home() {

@@ -2,7 +2,6 @@ import fetch from 'node-fetch';
 import {useEffect,useState} from 'react'
 import {Link, Redirect, useHistory} from 'react-router-dom'
 import CanvasJSReact from '../assets/canvasjs.react'
-import Pre from '../images/pre.gif'
 import './design.css';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
