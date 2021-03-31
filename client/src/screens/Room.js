@@ -116,10 +116,9 @@ function Room() {
 
     }, [initialRating])
 
-    function scoreboard_sort_comparator(a,b)
-    {
-        console.log(a,b)
-        return a.score-b.score
+    function scoreboard_sort_comparator(a, b) {
+        console.log(a, b)
+        return a.score - b.score
     }
 
     function Scoreboard() {
@@ -136,7 +135,7 @@ function Room() {
         // console.log()
 
         var handles = [];
-        var rank_calculator=[]
+        var rank_calculator = []
 
         participants.forEach(part => {
             handles.push(part.codeforces)
@@ -149,34 +148,31 @@ function Room() {
         })
         // console.log(questions_map)
 
-        function Order_Scoreboard()
-        {
-            var sorter=[]
-            for(var i=0; i<total_participants; ++i)
-            {
-                var obj={
+        function Order_Scoreboard() {
+            var sorter = []
+            for (var i = 0; i < total_participants; ++i) {
+                var obj = {
                     // score:score_card[i][0]+score_card[i][1]+score_card[i][2]+score_card[i][3]+score_card[i][4],
-                    score:rank_calculator[i],
-                    participant_data:participants[i],
-                    score_line:score_card[i]
+                    score: rank_calculator[i],
+                    participant_data: participants[i],
+                    score_line: score_card[i]
                 }
                 sorter.push(obj)
             }
             // console.log(sorter)
             sorter.sort(scoreboard_sort_comparator)
-            var new_participants_list=[]
+            var new_participants_list = []
 
-            for(var i=0; i<total_participants; ++i)
-            {
+            for (var i = 0; i < total_participants; ++i) {
                 new_participants_list.push(sorter[i].participant_data)
-                score_card[i]=sorter[i].score_line
+                score_card[i] = sorter[i].score_line
             }
 
             setParticipants(new_participants_list)
 
             console.log(sorter)
         }
-        rank_calculator=[0,0,0,0,0];
+        rank_calculator = [0, 0, 0, 0, 0];
         FillHandles(0)
 
         function FillHandles(index) {
@@ -207,17 +203,15 @@ function Room() {
                                     var min = (Math.floor((y - x) / (60)));
                                     var hrs = Math.floor(min / 60)
                                     // score_card[index][questionIndex] = hrs + ':' + (min%60);
-                                    score_card[index][questionIndex] = y-x;
-                                    var diff=Math.floor((y-x)/60)
+                                    score_card[index][questionIndex] = y - x;
+                                    var diff = Math.floor((y - x) / 60)
                                     console.log(diff)
-                                    console.log(typeof(questionList[questionIndex].rating))
-                                    if(diff > 10)
-                                    {
-                                        rank_calculator[index]+=((questionList[questionIndex].rating) - diff*5)
+                                    console.log(typeof (questionList[questionIndex].rating))
+                                    if (diff > 10) {
+                                        rank_calculator[index] += ((questionList[questionIndex].rating) - diff * 5)
                                     }
-                                    else
-                                    {
-                                        rank_calculator[index]+=(questionList[questionIndex].rating)
+                                    else {
+                                        rank_calculator[index] += (questionList[questionIndex].rating)
                                     }
                                 }
                                 else {
@@ -519,8 +513,6 @@ function Room() {
                                 <div className='card' key={question.name}>
                                     <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`}
                                         target='_blank'
-
-
                                     >
                                         <div className='card-content card-panel hoverable yellow' style={{ height: '200px' }}>
                                             <span className='card-title'><span className="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
@@ -591,15 +583,15 @@ function Room() {
                                                     //     ?
                                                     //     return()
                                                     var toDisplay;
-                                                        scores==0
-                                                                ?
-                                                                    toDisplay=0
-                                                                    :
-                                                                    scores != -1
-                                                                    ?
-                                                                    toDisplay=(Math.floor(scores/3600)) + ':' + (Math.floor(scores/60)%60)
-                                                                    :
-                                                                    toDisplay=-1;
+                                                    scores == 0
+                                                        ?
+                                                        toDisplay = 0
+                                                        :
+                                                        scores != -1
+                                                            ?
+                                                            toDisplay = (Math.floor(scores / 3600)) + ':' + (Math.floor(scores / 60) % 60)
+                                                            :
+                                                            toDisplay = -1;
 
                                                     return (
                                                         <td key={index} style={{ backgroundColor: color_of_cell, color: 'black', textAlign: 'center' }}>
@@ -620,61 +612,63 @@ function Room() {
             </div>
 
             {/* if not in room */}
-            <div style=
+            <div className="room-card" style=
                 {{
-                    position: 'relative',
-                    marginTop: '4rem',
+                    // position: 'relative',
+                    // marginTop: '4rem',
                     display: inRoom ? 'none' : 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    // justifyContent: 'center',
+                    // alignItems: 'center',
                     //maxWidth: '1200px',
-                    flexwrap: 'wrap',
-                    zindex: '1'
+                    // flexwrap: 'wrap',
+                    // zindex: '1'
                 }}>
-                <div className="card-container card"
+                <div className="card"
                     style={{
-                        position: 'relative',
-                        width: '50%',
-                        //minWidth: '420px',
-                        minHeight: '400px',
-                        margin: '30px',
-                        boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
-                        borderRadius: '15px',
-                        background: 'rgba(230, 236, 233, 0.35)',
-                        overflow: 'hidden',
-                        color: '#e6ff02',
-                        borderTop: '1px solid rgba(255, 255, 255, 0.5)',
-                        backdropFilter: 'blur(5px)'
+                        // position: 'relative',
+                        // width: '50%',
+                        // //minWidth: '420px',
+                        // minHeight: '400px',
+                        // margin: '30px',
+                        // boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
+                        // borderRadius: '15px',
+                        // background: 'rgba(230, 236, 233, 0.35)',
+                        // overflow: 'hidden',
+                        // color: '#e6ff02',
+                        // borderTop: '1px solid rgba(255, 255, 255, 0.5)',
+                        // backdropFilter: 'blur(5px)'
                     }}>
                     <h2>{roomName}</h2>
                     <h4>Contest start timing : {time}</h4>
                     <h4>Initial Question Rating : {initialRating}</h4>
                 </div>
-                
-                <button className="blobby-button" onClick={() => { Entry_into_room() }} style={{
-                    fontSize: '1.6rem',
+                <div class="room-button">
+                    <button className="blobby-button" onClick={() => { Entry_into_room() }} style={{
+                        // fontSize: '1.6rem',
 
-                }}>Enter the room <span className="inner">
-                        <span className="blobs">
-                            <span className="blob"></span>
-                            <span className="blob"></span>
-                            <span className="blob"></span>
+                    }}>Enter the room <span className="inner">
+                            <span className="blobs">
+                                <span className="blob"></span>
+                                <span className="blob"></span>
+                                <span className="blob"></span>
 
-                            <span
-                                className="blob"></span>
+                                <span
+                                    className="blob"></span>
+                            </span>
                         </span>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                        <defs>
-                            <filter id="goo">
-                                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                    result="goo"></feColorMatrix>
-                                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                            </filter>
-                        </defs>
-                    </svg>
-                </button>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                            <defs>
+                                <filter id="goo">
+                                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
+                                        result="goo"></feColorMatrix>
+                                    <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+                                </filter>
+                            </defs>
+                        </svg>
+                    </button>
+                </div>
+
             </div>
         </div>
     )

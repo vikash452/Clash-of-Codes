@@ -92,52 +92,41 @@ function Contest() {
     }
 
     return (
-        <div style={{
-            position: 'relative',
-            // display: 'flex',
-            // justifyContent: 'center',
-            // alignItems: 'center',
-            // maxWidth: '1200px',
-            // flexwrap: 'wrap',
-            zindex: '1',
+        <div className="contest-div" style={{
+            position: 'relative'
         }}>
-            <div className="row" style={{
-                // margin: 'auto',
-                // display: 'flex',
-                // justifyContent: 'center',
-                // alignItems: 'center',
-            }}>
-                <div className="col s12 m12 l8">
-                    <div className="card-container card" style={{
-                        position: 'relative',
-                        width: 'clamp(400px, 65%, 65%)',
-                        padding: '30px',
-                        //minWidth: '420px',
-                        height: '100vh',
-                        margin: '15%',
-                        boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
-                        borderRadius: '15px',
-                        background: 'rgba(230, 236, 233, 0.35)',
-                        overflow: 'hidden',
-                        color: '#e6ff02',
-                        borderTop: '1px solid rgba(255, 255, 255, 0.5)',
-                        backdropFilter: 'blur(5px)'
-                    }}>
+            <div className="contest-div wrapper">
+                <div className="new-room">
+                    <div className="card" >
+                    {/* //     position: 'relative',
+                    //     width: 'clamp(400px, 65%, 65%)',
+                    //     padding: '30px',
+                    //     //minWidth: '420px',
+                    //     height: '100vh',
+                    //     margin: '15%',
+                    //     boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
+                    //     borderRadius: '15px',
+                    //     background: 'rgba(230, 236, 233, 0.35)',
+                    //     overflow: 'hidden',
+                    //     color: '#e6ff02',
+                    //     borderTop: '1px solid rgba(255, 255, 255, 0.5)',
+                    //     backdropFilter: 'blur(5px)'
+                    // }}> */}
                         {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Ez5s-PAoYK0CVTeJGFq2SZiFda20WS1n4w&usqp=CAU" style={{
                     width: '100%',
                     height: '35%'
                 }}></img> */}
                         <h2>Create  a room</h2>
-                        <p style={{ fontSize: '1.5rem' }}>Set the room name :
+                        <p>Set the room name :
                 <br></br>
-                            <input type='text' placeholder='Room name' style={{ maxWidth: '300px', marginLeft: '10px' }}
+                            <input type='text' placeholder='Room name' style={{ maxWidth: '300px'}}
                                 onChange={(e) => {
                                     setRoomName(e.target.value)
                                 }}
                             /></p>
-                        <p style={{ fontSize: '1.5rem' }}>Set the Contest start time :
+                        <p >Set the Contest start time :
                 <br></br>
-                            <input type='datetime-local' placeholder='Contest start time' style={{ maxWidth: '300px', marginLeft: '10px' }}
+                            <input type='datetime-local' placeholder='Contest start time' style={{ maxWidth: '300px'}}
                                 onChange={(e) => {
                                     setStartTime(new Date(e.target.value))
                                     var now = new Date(e.target.value)
@@ -149,7 +138,7 @@ function Contest() {
                                 }}
                             /></p>
 
-                        <p style={{ width: '400px', margin: 'auto', fontSize: '1.5rem' }}>
+                        <p>
                             Set the starting question rating
                     <select onChange={(e) => {
                                 setInitialRating(e.target.value)
@@ -165,11 +154,11 @@ function Contest() {
                                 <option value={1600}>1600</option>
                             </select>
                         </p>
-                        <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <div className="card-button" style={{ }}>
                             <button className="blobby-button" onClick={() => { CreateRoom() }} style={{
-                                margin: '0 auto',
-                                position: 'absolute',
-                                fontSize: '1.3rem',
+                                // margin: '0 auto',
+                                // position: 'absolute',
+                                // fontSize: '1.3rem',
 
                             }}>Create Room <span className="inner">
                                     <span className="blobs">
@@ -196,7 +185,7 @@ function Contest() {
 
                     </div>
                 </div>
-                <div className="col s12 m6 l4">
+                <div className="join-room">
                     {/* <div className="card-container"
                         style={{
                             position: 'relative',
@@ -207,33 +196,34 @@ function Contest() {
                             flexwrap: 'wrap',
                             zindex: '1'
                         }}> */}
-                        <div className="card-container card" style={{
-                            position: 'relative',
-                            width: 'clamp(300px, 65%, 65%)',
-                            //minWidth: '420px',
-                            padding: '30px',
-                            height: '65vh',
-                            margin: '55% 7% 55%',
-                            boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
-                            borderRadius: '15px',
-                            background: 'rgba(230, 236, 233, 0.35)',
-                            overflow: 'hidden',
-                            color: '#e6ff02',
-                            borderTop: '1px solid rgba(255, 255, 255, 0.5)',
-                            backdropFilter: 'blur(5px)'
-                        }}>
+                        <div className="card">
+                            {/* // position: 'relative',
+                            // width: 'clamp(300px, 65%, 65%)',
+                            // //minWidth: '420px',
+                            // padding: '30px',
+                            // height: '65vh',
+                            // margin: '55% 7% 55%',
+                            // boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
+                            // borderRadius: '15px',
+                            // background: 'rgba(230, 236, 233, 0.35)',
+                            // overflow: 'hidden',
+                            // color: '#e6ff02',
+                            // borderTop: '1px solid rgba(255, 255, 255, 0.5)',
+                            // backdropFilter: 'blur(5px)'
+                        }}> */}
                             <h2>Join a room</h2>
-                            <input type='text' placeholder='Room Id' style={{ width: '300px' }} value={joinRoom}
+                            <input type='text' placeholder='Room Id' style={{ }} value={joinRoom}
                                 onChange={(e) => {
                                     setJoinRoom(e.target.value)
                                 }}
                             />
                             <br></br>
-                            <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            {/* <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> */}
+                            <div className="card-button">
                                 <button className="blobby-button" onClick={() => { Join() }} style={{
-                                    margin: '0 auto',
-                                    position: 'absolute',
-                                    fontSize: '1.3rem',
+                                    // margin: '0 auto',
+                                    // position: 'absolute',
+                                    // fontSize: '1.3rem',
 
                                 }}>Join<span className="inner">
                                         <span className="blobs">

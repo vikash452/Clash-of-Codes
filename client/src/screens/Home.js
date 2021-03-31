@@ -53,6 +53,8 @@ function Home() {
             <div className="home-contests" style={{}}>
                 <h3><ul>Upcoming Contests on Codeforces</ul></h3>
                 {
+                    
+                    
                     upcomingCF.map(item => {
                         // console.log(item.startTimeSeconds)
                         var startDate = new Date(item.startTimeSeconds * 1000).toLocaleDateString()
@@ -60,7 +62,7 @@ function Home() {
                         var startTime = new Date(item.startTimeSeconds * 1000).toLocaleTimeString()
                         return (
                             <h4 key={item.id}>
-                                {item.name} {startDate} {startTime}
+                                {item.name}<br></br> {startDate} {startTime}
                             </h4>
                         )
                     })
