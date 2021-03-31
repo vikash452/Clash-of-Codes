@@ -318,4 +318,30 @@ router.get('/codechef/api/users/:handle',passport.authenticate('jwt',{session:fa
     
 })
 
+router.get('/codechef/upcomingContests',passport.authenticate('jwt'),(req,res)=>{
+  //THIS IS HARDCODED FROM CODECHEF API
+  var contestList=[
+    {
+      "code": "CAC22021",
+      "name": "Cook-a-code 2.0",
+      "startDate": "2021-04-02 20:00:00",
+      "endDate": "2021-04-03 00:00:00"
+    },
+    {
+      "code": "APRIL21",
+      "name": "April Challenge 2021",
+      "startDate": "2021-04-02 15:00:00",
+      "endDate": "2021-04-12 15:00:00"
+    },
+    {
+      "code": "PEAS2021",
+      "name": "Peas of Code",
+      "startDate": "2021-03-31 20:30:00",
+      "endDate": "2021-03-31 23:00:00"
+    }
+  ]
+  res.status(200).json(contestList);
+
+})
+
 module.exports=router;

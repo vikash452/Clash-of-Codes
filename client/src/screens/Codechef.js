@@ -40,15 +40,18 @@ function Codechef()
             history.push('/signin')
         }
 
-        if(user.codechefVerified == false)
-        {
-            window.location.href=`https://api.codechef.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID_CODECHEF}&redirect_uri=${REDIRECT_URI}&state=xyz`
-        }
+        
         // console.log(`https://api.codechef.com/oauth/authorize?response_type=code&client_id=c6fea028e960e1096ba59b88e3532118&redirect_uri=${REDIRECT_URI_PRACTICE}&state=xyz`)
         setHandle(user.codechef)
         
         if(user.codechef)
-        trigger_after_page_loading()
+        {
+            if(user.codechefVerified == false)
+            {
+                window.location.href=`https://api.codechef.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID_CODECHEF}&redirect_uri=${REDIRECT_URI}&state=xyz`
+            }
+            trigger_after_page_loading()
+        }
         else{
             history.push('/profile')
         }

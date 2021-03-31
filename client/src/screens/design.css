@@ -112,7 +112,9 @@ Link .waves-effect.waves-light.btn-large {
     justify-content: space-between;
     align-items: center;
     padding: 50px;
-    margin-top: 5rem;
+    margin-top: 0;
+    padding-top: 0;
+    flex-direction: column;
 }
 
 .msg-div {
@@ -159,6 +161,20 @@ Link .waves-effect.waves-light.btn-large {
     backdrop-filter: blur(5px);
     border-radius: 5%;
     padding: 30px;
+    width: fit-content;
+    margin: 10px;
+}
+
+.upcoming_contest_list_div{
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width:700px)
+{
+    .upcoming_contest_list_div{
+        flex-direction:column;
+    }
 }
 
 .home-contests>h3 {
@@ -168,7 +184,7 @@ Link .waves-effect.waves-light.btn-large {
 
 .home-contests>h3>ul {
     margin: 0px;
-    padding: 20px;
+    /* padding: 20px; */
 }
 .home-contests >h4{
     font-size: 1.6rem;
@@ -328,7 +344,7 @@ Link .waves-effect.waves-light.btn-large {
         font-size: 3.5rem;
     }
     .Home-div{
-        margin-top: 1rem;
+        /* margin-top: 1rem; */
     }
     .msg-div{
         margin-bottom: 5%;
