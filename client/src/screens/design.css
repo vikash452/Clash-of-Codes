@@ -843,9 +843,12 @@ input {
 
 .remove_user {
     cursor: pointer;
+    font-size: x-large;
+    margin-left: 5px;
+    color: darksalmon;
 }
 
-.remove_user :hover div {
+.remove_user :hover{
     cursor: pointer !important;
     font-size: 26px !important;
     color: red !important;

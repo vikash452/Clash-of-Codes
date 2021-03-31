@@ -221,11 +221,11 @@ function Codeforces(){
         <div>
             <h2>You have done {totalQuestions} questions</h2>
 
-    	    <div style={{height:'800px'}}  >
+    	    <div style={{height:'800px' , marginLeft:'25px', marginRight:'25px'}}>
                 <CanvasJSChart options = {options} />
             </div>
             
-            <div>
+            <div style={{marginLeft:'25px', marginRight:'25px'}}>
                 <CanvasJSChart options = {options2}/>
             </div>
             

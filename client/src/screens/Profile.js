@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-// import ing1 from '../images/parallax1.jpg'
-import passport, { use } from 'passport';
 import './design.css'
-
 import M from 'materialize-css'
-import './design.css';
-import fetch from 'node-fetch';
 
 //import Parallax from "./Parallax"
 // jQuery(document).ready(function(){
@@ -21,26 +16,30 @@ function Profile() {
     const [searchList, setSearchList] = useState([])
     const [friendList, setFriendList] = useState([])
 
-    var remove=document.querySelector('.remove_user');
+    // var remove=document.querySelector('.remove_user');
 
-    if(remove)
-    {
-        remove.addEventListener('mouseover',()=>{
-        // console.log('hey')
-        remove.style.color='red'
-        remove.style.fontSize='28px'
-        })
+    // if(remove)
+    // {
+    //     remove.addEventListener('mouseover',()=>{
+    //     // console.log('hey')
+    //     remove.style.color='red'
+    //     remove.style.fontSize='28px'
+    //     })
 
-        remove.addEventListener('mouseleave',()=>{
-        // console.log('hey')
-        remove.style.color='rgba(0,0,0,0.6)'
-        remove.style.fontSize='24px'
-        })
-    }
+    //     remove.addEventListener('mouseleave',()=>{
+    //     // console.log('hey')
+    //     remove.style.color='rgba(0,0,0,0.6)'
+    //     remove.style.fontSize='24px'
+    //     })
+    // }
     
 
     useEffect(() => {
         user = JSON.parse(localStorage.getItem('user'))
+
+        var tooltip_elem=document.querySelectorAll('.tooltipped')
+        M.Tooltip.init(tooltip_elem)
+
         if (user) {
             setCf(user.codeforces)
             // setFriendList(user.friends)
@@ -267,7 +266,7 @@ function Profile() {
         <div >
             {/* <div style={{ marginTop: '70px' }}> */}
 
-            <div class="friend-div" style={{
+            <div className="friend-div" style={{
                 // position: 'relative',
                 // display: 'flex',
                 // width: '100%',
@@ -316,7 +315,14 @@ function Profile() {
                             // console.log(friend._id)
                             return (
                                 <div  key={friend._id} className='chip' style={{display:'block' ,maxWidth:'fit-content', margin:'auto', marginBottom:'5px'}}> 
-                                    <span>{friend.name}  <i alt='Remove user' onClick={()=>{RemoveFriend(friend._id,friend.name)}}   className="material-icons remove_user">remove_circle_outline</i></span> 
+                                    <span>{friend.name }  
+                                        <i 
+                                        onClick={()=>{RemoveFriend(friend._id,friend.name)}}   
+                                        className="material-icons remove_user "
+                                        >
+                                            remove_circle_outline
+                                        </i>
+                                    </span> 
                                 </div >
                             )
 
