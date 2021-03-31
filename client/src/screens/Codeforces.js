@@ -13,9 +13,10 @@ function Codeforces(){
     // const handle = 'Marcos_0901';
     const [loaded,setLoaded]=useState(false)
     const [options,setOptions]=useState({})
-    const [handle,setHandle]=useState('')
+    const [handle,setHandle]=useState()
     const [totalQuestions,setTotalQuestion]=useState(0);
     const [options2,setOptions2]=useState({})
+    const [unsolvedQuestion,setUnsolvedQuestion]=useState([])
     var user;
 
     useEffect(()=>{
@@ -47,13 +48,16 @@ function Codeforces(){
         let i = 0;
         let nmap = new Map();
 
+        console.log(handle)
         fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
         .then(response => response.json())
-        .then(data =>{
+        .then((data) =>{
             
             var total_question=new Set()
             var questions_per_day_map=new Map()
             var questions_per_day_array=[];
+            // console.log(typeof(data.result))
+            // console.log(data.result)
             data.result.forEach((element)=>{
                 if(element.verdict === 'OK')
                 {
@@ -70,7 +74,32 @@ function Codeforces(){
                         questions_per_day_map.set( formattedDate , 1);
                     }
                 }
+                // else
+                // {
+                //     all_unsolved_question.add(element.problem.contestId.toString() + element.problem.index)
+                // }
             })
+
+            {/* FOR CALCULATING ALL UNSOLVED */}
+
+            var all_unsolved_question=new Set()
+            // console.log(total_question)
+            var us_ques_array=[]
+            data.result.forEach((element)=>{
+                var qID=element.problem.contestId.toString() + element.problem.index
+
+                if(!total_question.has(qID) && !all_unsolved_question.has(qID))
+                {
+                    all_unsolved_question.add(qID)
+                    us_ques_array.push(element)
+                }
+            })
+            // console.log(all_unsolved_question)
+            setUnsolvedQuestion(us_ques_array);
+            console.log(us_ques_array)
+            // console.log(unsolvedQuestion.length)
+
+            {/**/}
 
             const iterator1=questions_per_day_map[Symbol.iterator]();
             for(const item of iterator1)
@@ -158,9 +187,10 @@ function Codeforces(){
 			        axisX: {
 			        	title: "Problem tags",
                         reversed: true,
-                        labelAutoFit:true,
+                        // labelAutoFit:true,
                         labelFontSize:20,
                         interval:1,
+                        
                         tickLength: 1,
                         // labelMaxWidth: 70
 			        },
@@ -169,6 +199,7 @@ function Codeforces(){
 			        	includeZero: true,
                         labelFontSize:20,
                         // interval:1,
+                        labelAutoFit:true,
                         tickLength: 1,
                         labelMaxWidth: 70
                     },
@@ -190,9 +221,32 @@ function Codeforces(){
         <div>
             <h2>You have done {totalQuestions} questions</h2>
 
-            <CanvasJSChart options = {options}/>
-
-            <CanvasJSChart options = {options2}/>
+    	    <div style={{height:'800px'}}  >
+                <CanvasJSChart options = {options} />
+            </div>
+            
+            <div>
+                <CanvasJSChart options = {options2}/>
+            </div>
+            
+            <div style={{marginTop:'150px'}}>
+                <h1>Unsolved Questions</h1>
+                {
+                    unsolvedQuestion.map((item)=>{
+                        return (
+                            <div key={item.creationTimeSeconds} className='chip'>
+                                <span>
+                                    <a href={`https://codeforces.com/contest/${item.contestId}/problem/${item.problem.index}`} target='_blank'>{item.problem.name}</a> 
+                                        <span style={{fontSize:'12px', marginLeft:'3px'}}>
+                                            rating = {item.problem.rating}
+                                        </span>
+                                    </span>
+                            </div>
+                        )
+                    })
+                }
+                {/* {unsolvedQuestion.length} */}
+            </div>
 
         </div>
         
