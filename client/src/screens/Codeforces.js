@@ -237,7 +237,7 @@ function Codeforces(){
             data.result.reverse()
             data.result.forEach((element)=>{
                 var temp_object={
-                    label:new Date(element.ratingUpdateTimeSeconds*1000).toLocaleDateString(),
+                    label:new Date(element.ratingUpdateTimeSeconds*1000),
                     y:element.newRating
                 }
                 rating_change_graph.push(temp_object)
