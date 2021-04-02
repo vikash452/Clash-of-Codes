@@ -8,7 +8,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function Compare() {
     const [friendList, setFriendList] = useState([])
-    const [friendhandle, setFriendHandle] = useState('Marcos_0901');
+    const [friendhandle, setFriendHandle] = useState('DLN');
     const [userHandle, setUserhandle] = useState('Marcos_0901');
     const [content_1, setContent_1] = useState(null)
     const [content_2, setContent_2] = useState(null)
@@ -121,69 +121,15 @@ function Compare() {
                 subms.push({ label: "Memory Limit Exceeded", y: memory_limit });
                 subms.push({ label: "Runtime Error", y: runtime_error });
 
-                console.table(subms);
+                // console.table(subms);
                 if( handle_to_find === userHandle )
+                {
                     setUserSubms(subms);
+                }
                 else
+                {
                     setFrndSubms(subms);
-                // var submission_chart = {
-                //     exportEnabled: true,
-                //     animationEnabled: true,
-                //     title: {
-                //         text: "Car Parts Sold in Different States"
-                //     },
-                //     subtitles: [{
-                //         text: "Click Legend to Hide or Unhide Data Series"
-                //     }],
-                //     axisX: {
-                //         title: "States"
-                //     },
-                //     axisY: {
-                //         title: "Oil Filter - Units",
-                //         titleFontColor: "#4F81BC",
-                //         lineColor: "#4F81BC",
-                //         labelFontColor: "#4F81BC",
-                //         tickColor: "#4F81BC",
-                //         includeZero: true
-                //     },
-
-                //     toolTip: {
-                //         shared: true
-                //     },
-                //     legend: {
-                //         cursor: "pointer",
-                //         // itemclick: toggleDataSeries
-                //     },
-                //     data: [{
-                //         type: "column",
-                //         name: "Oil Filter",
-                //         showInLegend: true,
-                //         yValueFormatString: "#,##0.# Units",
-                //         dataPoints: [
-                //             { label: "New Jersey", y: 19034.5 },
-                //             { label: "Texas", y: 20015 },
-                //             { label: "Oregon", y: 25342 },
-                //             { label: "Montana", y: 20088 },
-                //             { label: "Massachusetts", y: 28234 }
-                //         ]
-                //     },
-                //     {
-                //         type: "column",
-                //         name: "Clutch",
-                //         axisYType: "secondary",
-                //         showInLegend: true,
-                //         yValueFormatString: "#,##0.# Units",
-                //         dataPoints: [
-                //             { label: "New Jersey", y: 210.5 },
-                //             { label: "Texas", y: 135 },
-                //             { label: "Oregon", y: 425 },
-                //             { label: "Montana", y: 130 },
-                //             { label: "Massachusetts", y: 528 }
-                //         ]
-                //     }]
-                // };
-                // setsubmissions(submission_chart);
-            
+                }
     })
 }
 
@@ -192,17 +138,42 @@ function Compare() {
     fetch(`https://codeforces.com/api/user.info?handles=${userHandle};${friendhandle}`)
         .then(res => res.json())
         .then((data) => {
-            console.log(data.result[0])
-            console.log(data.result[1])
+            // console.log(data.result[0])
+            // console.log(data.result[1])
             setContent_1(data.result[0])
             setContent_2(data.result[1])
         })
     getRatingChange_user()
     getRatingChange_friend()
     getSubmissionStats(userHandle)
+    // setContent_1({   
+    //     ...content_1,
+    //     accepted:stats.accepted,
+    // })
     getSubmissionStats(friendhandle)
+    // stats=getSubmissionStats(userHandle)
+    // setContent_2({
+    //     ...content_2,
+    //     stats
+    // })
     setVisible1(true)
+    
 }
+
+function TotalSubmissionsData()
+{
+    if(usrsubms.length >0 && frndsubms.length > 0){
+    // return (
+        console.log(usrsubms[0])
+        console.log(frndsubms[0])
+    // )
+    }
+}
+
+useEffect(()=>{
+    console.log(usrsubms)
+    console.log(frndsubms)
+},[usrsubms,frndsubms])
 
 return (
     <div style={{ marginTop: '20px' }}>
@@ -230,7 +201,6 @@ return (
             {
                 (content_1 && content_2)
                     ?
-
                     <table>
                         <thead>
                             <tr>
@@ -268,6 +238,20 @@ return (
                                     {content_2.rating1} {content_2.rank} (max rating : {content_2.maxRating} , {content_2.maxRank})
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    Total Questions: 
+                                    {
+                                        usrsubms.length ?  usrsubms[0].y : 0
+                                    }
+                                </td>
+                                <td>
+                                    Total Questions: 
+                                    {
+                                        frndsubms.length ?  frndsubms[0].y : 0
+                                    }
+                                </td>
+                            </tr>
                         </tbody>
 
                     </table>
@@ -277,7 +261,7 @@ return (
             }
         </div>
 
-        <div>
+        <div style={{marginLeft:'10px', marginRight:'10px'}}>
             {
                 visible1
                     ?
@@ -286,6 +270,7 @@ return (
                         {
                             animationEnabled: true,
                             theme: "light2",
+                            zoomEnabled:true,
                             backgroundColor: 'rgba(0,0,0,0)',
                             lineColor: 'White',
                             title: {
@@ -343,7 +328,7 @@ return (
                     <></>
             }
         </div>
-        <div style={{marginTop: '5rem'}}>
+        <div style={{marginTop: '5rem', marginRight:'15px', marginLeft:'15px'}}>
             {
                 (usrsubms.length > 0 && frndsubms.length >0 )
                 ?

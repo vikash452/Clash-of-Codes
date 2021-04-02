@@ -57,12 +57,15 @@ function Codeforces(){
             var total_question=new Set()
             var questions_per_day_map=new Map()
             var questions_per_day_array=[];
+            var questions_by_rating_map=new Map()
             // console.log(typeof(data.result))
-            // console.log(data.result)
+            console.log(data.result)
             data.result.forEach((element)=>{
                 if(element.verdict === 'OK')
                 {
-                    total_question.add(element.problem.contestId.toString() + element.problem.index)
+                    var unique=element.problem.contestId.toString() + element.problem.index
+                    total_question.add(unique)
+                    
                     var dateOfQues = new Date(element.creationTimeSeconds*1000);
                     var formattedDate = dateOfQues.getDate() + '/' + (dateOfQues.getMonth()+1) + '/' + dateOfQues.getFullYear();
 
@@ -74,7 +77,17 @@ function Codeforces(){
                     {
                         questions_per_day_map.set( formattedDate , 1);
                     }
+
+                    if(questions_by_rating_map.has(element.problem.rating))
+                    {
+                        questions_by_rating_map.set(element.problem.rating,questions_by_rating_map.get(element.problem.rating)+1)
+                    }
+                    else
+                    {
+                        questions_by_rating_map.set(element.problem.rating,1)
+                    }
                 }
+                console.log(questions_by_rating_map)
                 // else
                 // {
                 //     all_unsolved_question.add(element.problem.contestId.toString() + element.problem.index)
@@ -234,10 +247,10 @@ function Codeforces(){
         fetch(`https://codeforces.com/api/user.rating?handle=${handle}`)
         .then(res=>res.json())
         .then((data)=>{
-            data.result.reverse()
+            // data.result.reverse()
             data.result.forEach((element)=>{
                 var temp_object={
-                    label:new Date(element.ratingUpdateTimeSeconds*1000),
+                    x:new Date(element.ratingUpdateTimeSeconds*1000),
                     y:element.newRating
                 }
                 rating_change_graph.push(temp_object)
@@ -258,7 +271,7 @@ function Codeforces(){
 			        },
 			        axisX: {
 			        	title: "Date",
-                        reversed: true,
+                        // reversed: true,
                         labelAutoFit:true,
                         labelFontSize:15,
                         labelFontColor:'White',
