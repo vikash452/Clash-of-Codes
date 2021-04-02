@@ -291,7 +291,7 @@ function Codeforces(){
     return (
         
         <div>
-            <h2>You have done {totalQuestions} questions</h2>
+            <h2 style={{marginTop: '8rem'}}>You have done {totalQuestions} questions</h2>
 
     	    <div style={{height:'800px' , marginLeft:'25px', marginRight:'25px'}}>
                 <CanvasJSChart options = {options} />
