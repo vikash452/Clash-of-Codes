@@ -1159,3 +1159,7 @@ input {
         flex-direction: column;
     }
 }
+
+div.compareTable table tbody tr td{
+    text-align: center;
+}
