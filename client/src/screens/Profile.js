@@ -32,12 +32,12 @@ function Profile() {
     //     remove.style.fontSize='24px'
     //     })
     // }
-    
+
 
     useEffect(() => {
         user = JSON.parse(localStorage.getItem('user'))
 
-        var tooltip_elem=document.querySelectorAll('.tooltipped')
+        var tooltip_elem = document.querySelectorAll('.tooltipped')
         M.Tooltip.init(tooltip_elem)
 
         if (user) {
@@ -66,21 +66,21 @@ function Profile() {
                     console.log(err)
                 })
 
-            fetch('/user/getFriendList',{
-                method:'GET',
-                headers:{
+            fetch('/user/getFriendList', {
+                method: 'GET',
+                headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('jwt')
                 }
             })
-            .then(res=>res.json())
-            .then((data)=>{
-                // console.log(data)
-                setFriendList(data.friends)
-            })
-            .catch(err=>{
-                console.log(err)
-            })
+                .then(res => res.json())
+                .then((data) => {
+                    // console.log(data)
+                    setFriendList(data.friends)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         }
         else {
             history.push('/signin')
@@ -224,40 +224,39 @@ function Profile() {
         console.log(friendList);
     }
 
-    function RemoveFriend(friendID,friendName)
-    {
-        fetch(`/user/removeFriend/${friendID}`,{
-            method:'PUT',
-            headers:{
-                'Content-Type' : 'application/json',
-                'Authorization' : 'Bearer ' + localStorage.getItem('jwt')
+    function RemoveFriend(friendID, friendName) {
+        fetch(`/user/removeFriend/${friendID}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('jwt')
             }
         })
-        .then(res=>res.json())
-        .then((data)=>{
-            console.log(data)
-            if (data.error) {
-                // console.log(data.error)
-                M.toast({
-                    html: data.error,
-                    classes: "#ce93d8 purple",
-                    displayLength: 1000,
-                })
-            }
-            else {
-                M.toast({
-                    html:  `${friendName} removed successfully`,
-                    classes: "#ce93d8 purple",
-                    displayLength: 1000,
-                })
-                setFriendList(data.friends)
-                // user = JSON.parse(localStorage.setItem('user', JSON.stringify(data)))
-                localStorage.setItem('user', JSON.stringify(data));
-            }
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data)
+                if (data.error) {
+                    // console.log(data.error)
+                    M.toast({
+                        html: data.error,
+                        classes: "#ce93d8 purple",
+                        displayLength: 1000,
+                    })
+                }
+                else {
+                    M.toast({
+                        html: `${friendName} removed successfully`,
+                        classes: "#ce93d8 purple",
+                        displayLength: 1000,
+                    })
+                    setFriendList(data.friends)
+                    // user = JSON.parse(localStorage.setItem('user', JSON.stringify(data)))
+                    localStorage.setItem('user', JSON.stringify(data));
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
 
@@ -310,24 +309,29 @@ function Profile() {
                         }
                     </ul>
                     <h4>Your total friends are :  {friendList.length}</h4>
-                    {
-                        friendList.map((friend) => {
-                            // console.log(friend._id)
-                            return (
-                                <div  key={friend._id} className='chip' style={{display:'block' ,maxWidth:'fit-content', margin:'auto', marginBottom:'5px'}}> 
-                                    <span>{friend.name }  
-                                        <i 
-                                        onClick={()=>{RemoveFriend(friend._id,friend.name)}}   
-                                        className="material-icons remove_user "
-                                        >
-                                            remove_circle_outline
+                    <div className="friend-list">
+                        {
+                            friendList.map((friend) => {
+                                // console.log(friend._id)
+                                return (
+                                    <div key={friend._id} className='chip' >
+                                        {/* // style={{display:'block' ,maxWidth:'fit-content', margin:'auto', marginBottom:'5px'}}>  */}
+                                        <span>{friend.name}</span>
+                                        <span>
+                                            <i
+                                                onClick={() => { RemoveFriend(friend._id, friend.name) }}
+                                                className="material-icons remove_user "
+                                            >
+                                                remove_circle_outline
                                         </i>
-                                    </span> 
-                                </div >
-                            )
+                                        </span>
+                                    </div >
+                                )
 
-                        })
-                    }
+                            })
+                        }
+                    </div>
+
                 </div>
 
             </div>
@@ -372,8 +376,8 @@ function Profile() {
                         }}>
                             <Link to='/codeforces'>
                                 <button className="blobby-button" style={{
-                                    fontSize: '1.1rem',
-                                    marginTop: '1rem',
+                                    // fontSize: '1.1rem',
+                                    // marginTop: '1rem',
                                 }}>Click here to see your statistics<span className="inner">
                                         <span className="blobs">
                                             <span className="blob"></span>
@@ -418,7 +422,7 @@ function Profile() {
                         flexwrap: 'wrap',
                     }}>
                         <button className="blobby-button" onClick={() => { addCfHandle('codeforces') }} style={{
-                            fontSize: '1.1rem',
+                            // fontSize: '1.1rem',
                         }}>Set this as Codeforces handle <span className="inner">
                                 <span className="blobs">
                                     <span className="blob"></span>
@@ -477,8 +481,8 @@ function Profile() {
                         }}>
                             <Link to='/codechef'>
                                 <button className="blobby-button" style={{
-                                    fontSize: '1.1rem',
-                                    marginTop: '1rem',
+                                    // fontSize: '1.1rem',
+                                    // marginTop: '1rem',
                                 }}>Click here to see your statistics<span className="inner">
                                         <span className="blobs">
                                             <span className="blob"></span>
@@ -522,7 +526,7 @@ function Profile() {
                         flexwrap: 'wrap',
                     }}>
                         <button className="blobby-button" onClick={() => { addCcHandle('codechef') }} style={{
-                            fontSize: '1.1rem',
+                            // fontSize: '1.1rem',
                         }}>Set this as Codechef handle <span className="inner">
                                 <span className="blobs">
                                     <span className="blob"></span>
