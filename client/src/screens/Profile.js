@@ -572,7 +572,7 @@ function Profile() {
 
                 </div>
             </div> */}
-            <Link to='/compare'>Compare</Link>
+            {/* <Link to='/compare'>Compare</Link> */}
         </div>
     )
 }

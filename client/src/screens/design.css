@@ -48,10 +48,14 @@
     background: #000;
 }
 
+.sidenav{
+    width: 280px;
+}
 .sidenav.nav {
     align-items: center;
-    padding-top: 100px;
-    padding-bottom: 150px;
+    padding-top: 30px;
+    padding-bottom: 80px;
+    
     background-image: url('../images/amongus.jpg');
     opacity: 0.8;
     background-position: 10px -250px;
@@ -79,7 +83,11 @@
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
-
+@media only screen and (max-width: 500px){
+    .sidenav{
+        width: 240px;
+    }
+}
 /* .waves-effect.waves-light.btn-large {
     margin-left: 8px;
 }
@@ -346,9 +354,9 @@ Link .waves-effect.waves-light.btn-large {
         height: 5rem;
         font-size: 3.5rem;
     }
-    .Home-div{
+    /* .Home-div{
         /* margin-top: 1rem; */
-    }
+    /* } */ 
     .msg-div{
         margin-bottom: 5%;
     }
@@ -676,6 +684,94 @@ Link .waves-effect.waves-light.btn-large {
         height: auto;
         margin: 30px 15px 0px;
         padding: 50px;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .friend-div .card {
+        width: 60%;
+    }
+    .friend-div .card >h2{
+        font-size: 3rem;
+    }
+    .friend-div .card >h4{
+        font-size: 1.8rem;
+    }
+    .Profiles-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .Profiles-div .card {
+        width: 65%;
+        height: auto;
+        margin: 30px 15px 0px;
+        padding: 50px;
+    }
+    .Profiles-div .card >h2{
+        font-size: 3rem;
+    }
+    .Profiles-div .card >h4{
+        font-size: 1.8rem;
+    }
+}
+@media only screen and (max-width: 650px){
+    .friend-div .card >input{
+        width: auto;
+    }
+}
+@media only screen and (max-width: 550px) {
+    .friend-div .card {
+        width: 60%;
+    }
+    .friend-div .card >input{
+        width: auto;
+    }
+    .friend-div .card >h2{
+        font-size: 2rem;
+    }
+    .friend-div .card >h4{
+        font-size: 1.2rem;
+    }
+    .Profiles-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .Profiles-div .card {
+        width: 65%;
+        height: auto;
+        margin: 30px 15px 0px;
+        padding: 50px;
+    }
+    .Profiles-div .card >h2{
+        font-size: 2rem;
+    }
+    .Profiles-div .card >h4{
+        font-size: 1.2rem;
+    }
+}
+@media only screen and (max-width: 440px){
+    
+    .friend-div .card{
+        /* width: auto; */
+        width: 70%;
+        padding: 15px;
+        margin-top: 1rem;
+    }
+    .friend-div .card >h2{
+        margin: 2rem 0.5rem 1rem;
+    }
+    .friend-div .card >input{
+        width: 180px;
+    }
+    .friend-div .card >ul{
+        width: 180px;
+    }
+    .Profiles-div .card {
+        width: 80%;
+        padding: 20px;
     }
 }
 
