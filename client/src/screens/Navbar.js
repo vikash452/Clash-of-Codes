@@ -5,6 +5,7 @@ import { use } from 'passport';
 import './design.css';
 // import img1 from '../images/cf.jpg'
 import Navbar_Logo from '../images/logo.jpg'
+import BlobbyButton from './BlobbyButton'
 
 function Navbar() {
 
@@ -63,7 +64,7 @@ function Navbar() {
             .then((data) => {
                 // console.log(data)
                 localStorage.clear()
-                history.push('/signin')
+                history.push('/landing')
             })
             .catch((err) => {
                 console.log(err)
@@ -300,6 +301,25 @@ function Navbar() {
                                                     </filter>
                                                 </defs>
                                             </svg>
+                                        </button>
+                                    </Link>
+                                </li>
+
+                                <li style={{
+                                    marginTop: '1.2rem',
+                                    marginBottom: '1.2rem',
+                                }}>
+                                    <Link to="/compare">
+                                        <button className="blobby-button sidenav-close tooltipped"
+                                            data-position='right'
+                                            data-tooltip="Compare your codeforces performance with that of your friend"
+                                            style={{
+                                                fontSize: '1.3rem',
+                                                width: '100%',
+                                            }}>
+                                            Compare
+                                            
+                                            <BlobbyButton/>
                                         </button>
                                     </Link>
                                 </li>

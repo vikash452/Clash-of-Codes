@@ -8,6 +8,11 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function compare(a, b){
     return b.y - a.y;
 }
+
+function comparator(a,b)
+{
+    return a.x-b.x;
+}
 function Codeforces(){
     const history=useHistory()
     // const handle = 'Marcos_0901';
@@ -17,6 +22,7 @@ function Codeforces(){
     const [totalQuestions,setTotalQuestion]=useState(0);
     const [options2,setOptions2]=useState({})
     const [options3,setOptions3]=useState({})
+    const [options4,setOptions4]=useState({})
     const [unsolvedQuestion,setUnsolvedQuestion]=useState([])
     var user;
 
@@ -35,6 +41,60 @@ function Codeforces(){
             history.push('/profile')
         }
     },[handle]);
+
+    function FillQuestionByRating(questions_by_rating_map)
+    {
+        var list=[]
+        const iterator1=questions_by_rating_map[Symbol.iterator]();
+        for(const item of iterator1)
+        {
+            var temp_object={
+                x:item[0],
+                y:item[1]
+            }
+            list.push(temp_object)
+        }
+        list.sort(comparator)
+        console.log(list)
+        const temp_options_4={
+                    animationEnabled: true,
+			        theme: "light2",
+                    backgroundColor:'rgba(0,0,0,0)',
+                    lineColor:'White',
+			        title:{
+                        text: "Rating wise submissions",
+                        fontSize :30,
+                        fontColor : "White",
+                        fontFamily: "Helvetica",
+                        horizontalAlign : "center",
+                        padding: 5,
+			        },
+			        axisX: {
+			        	title: "Rating",
+                        // reversed: true,
+                        labelAutoFit:true,
+                        labelFontSize:15,
+                        labelFontColor:'White',
+                        titleFontColor:'White',
+                        lineColor:'White',
+			        },
+			        axisY: {
+			        	title: "Number of Questions successfully solved",
+                        labelAutoFit:true,
+                        labelFontSize:15,
+                        labelFontColor:'White',
+                        titleFontColor:'White',
+                        lineColor:'White',
+                    },
+                    height : 500,
+			        data: [{
+			        	type: "area",
+                        dataPoints: list,
+                        lineColor:'White'
+			        }]
+        }
+        setOptions4(temp_options_4)
+    }
 
     function trigger_after_page_loading()
     {
@@ -87,13 +147,14 @@ function Codeforces(){
                         questions_by_rating_map.set(element.problem.rating,1)
                     }
                 }
-                console.log(questions_by_rating_map)
+                
                 // else
                 // {
                 //     all_unsolved_question.add(element.problem.contestId.toString() + element.problem.index)
                 // }
             })
-
+            // console.log(questions_by_rating_map)
+            FillQuestionByRating(questions_by_rating_map)
             {/* FOR CALCULATING ALL UNSOLVED */}
 
             var all_unsolved_question=new Set()
@@ -306,26 +367,32 @@ function Codeforces(){
         <div>
             <h2 style={{marginTop: '8rem'}}>You have done {totalQuestions} questions</h2>
 
-    	    <div style={{height:'800px' , marginLeft:'25px', marginRight:'25px'}}>
-                <CanvasJSChart options = {options} />
-            </div>
-            
-            <div style={{marginLeft:'25px', marginRight:'25px'}}>
-                <CanvasJSChart options = {options2}/>
-            </div>
-
             <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
                 <CanvasJSChart options = {options3}/>
             </div>
+
+    	    <div style={{height:'800px' , marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
+                <CanvasJSChart options = {options} />
+            </div>
             
-            <div style={{marginTop:'150px'}}>
+            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
+                <CanvasJSChart options = {options2}/>
+            </div>
+
+            
+
+            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
+                <CanvasJSChart options = {options4}/>
+            </div>
+            
+            <div style={{marginTop:'150px', marginLeft:'50px', marginRight:'50px'}}>
                 <h1>Unsolved Questions</h1>
                 {
                     unsolvedQuestion.map((item)=>{
                         return (
                             <div key={item.creationTimeSeconds} className='chip'>
                                 <span>
-                                    <a href={`https://codeforces.com/contest/${item.contestId}/problem/${item.problem.index}`} target='_blank'>{item.problem.name}</a> 
+                                    <a href={`https://codeforces.com/contest/${item.contestId}/problem/${item.problem.index}`} target='_blank' style={{fontSize:'2vw'}}>{item.problem.name}</a> 
                                         <span style={{fontSize:'12px', marginLeft:'3px'}}>
                                             rating = {item.problem.rating}
                                         </span>

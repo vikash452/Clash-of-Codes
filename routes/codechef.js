@@ -322,22 +322,22 @@ router.get('/codechef/upcomingContests',passport.authenticate('jwt'),(req,res)=>
   //THIS IS HARDCODED FROM CODECHEF API
   var contestList=[
     {
-      "code": "CAC22021",
-      "name": "Cook-a-code 2.0",
-      "startDate": "2021-04-02 20:00:00",
-      "endDate": "2021-04-03 00:00:00"
+      "code": "CSK2021",
+      "name": "Code Shake 1.0",
+      "startDate": "2021-04-05 12:00:00",
+      "endDate": "2021-04-05 14:30:00"
     },
     {
-      "code": "APRIL21",
-      "name": "April Challenge 2021",
-      "startDate": "2021-04-02 15:00:00",
-      "endDate": "2021-04-12 15:00:00"
+      "code": "PNTR2021",
+      "name": "Codepentry",
+      "startDate": "2021-04-03 19:00:00",
+      "endDate": "2021-04-03 22:00:00"
     },
     {
-      "code": "PEAS2021",
-      "name": "Peas of Code",
-      "startDate": "2021-03-31 20:30:00",
-      "endDate": "2021-03-31 23:00:00"
+      "code": "CARB2021",
+      "name": "CODE-AARAMBH-2021",
+      "startDate": "2021-04-03 11:30:00",
+      "endDate": "2021-04-03 14:00:00"
     }
   ]
   res.status(200).json(contestList);

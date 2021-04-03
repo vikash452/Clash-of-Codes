@@ -97,13 +97,18 @@ function Compare() {
         //IS PAGE KI FORMATTING BHUT DHYAAN SE KRNI HOGI
         //CANVAS BHUT ERROR DE RHA THA
         //********HANDLE WITH CARE****************//
+        var acceptedSet=new Set()
         fetch(`https://codeforces.com/api/user.status?handle=${handle_to_find}&from=1`)
             .then(response => response.json())
             .then((data) => {
                 //console.log(data.result);
                 data.result.forEach((element) => {
-                    if (element.verdict === "OK")
-                        accepted += 1;
+                    var unique=element.problem.contestId.toString() + element.problem.index
+                    if (element.verdict === "OK" && !acceptedSet.has(unique))
+                    {
+                        ++accepted;
+                        acceptedSet.add(unique)
+                    }
                     if (element.verdict === "TIME_LIMIT_EXCEEDED")
                         tle += 1;
                     if (element.verdict === "WRONG_ANSWER")
@@ -176,7 +181,7 @@ useEffect(()=>{
 },[usrsubms,frndsubms])
 
 return (
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ marginTop: '20px', marginBottom:visible1?'100px':'285px' }}>
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
             Compare With
                 <select style={{ maxWidth: 'fit-content' }} className='browser-default' onChange={(e) => { setFriendHandle(e.target.value) }}>
