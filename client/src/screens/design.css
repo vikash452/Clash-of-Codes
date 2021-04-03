@@ -1141,13 +1141,13 @@ input {
     }
 }
 
-.swiperCard {
-    height: 150px;
+/* .swiperCard { */
+    /* height: 150px; */
     /* width: max-content;   */
-    font-size: 2rem;
-    background-color: aquamarine;
-    margin: auto;
-}
+    /* font-size: 2rem; */
+    /* background-color: aquamarine; */
+    /* margin: auto; */
+/* } */
 
 .material-tooltip {
     width: 300px !important;

@@ -7,14 +7,14 @@ import Navbar_Logo from '../images/logo.jpg'
 import BlobbyButton from './BlobbyButton'
 import CF from '../images/cf.jpg'
 import LandingPage from '../images/landingPage.png'
-import {Swiper,SwiperSlide} from 'swiper/react'
-import SwiperCore,{Navigation, Pagination, Autoplay, Scrollbar, A11y, EffectCoverflow} from 'swiper'
-import 'swiper/swiper.scss';
-import 'swiper/components/navigation/navigation.scss';
-import 'swiper/components/pagination/pagination.scss';
-import 'swiper/components/scrollbar/scrollbar.scss';
+// import {Swiper,SwiperSlide} from 'swiper/react'
+// import SwiperCore,{Navigation, Pagination, Autoplay, Scrollbar, A11y, EffectCoverflow} from 'swiper'
+// import 'swiper/swiper.scss';
+// import 'swiper/components/navigation/navigation.scss';
+// import 'swiper/components/pagination/pagination.scss';
+// import 'swiper/components/scrollbar/scrollbar.scss';
 
-SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar, EffectCoverflow])
+// SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar, EffectCoverflow])
 function LandingScreen() {
     
     useEffect(()=>{
@@ -22,7 +22,7 @@ function LandingScreen() {
         // console.log(b.style)
         // b.style.backgroundImage=`url(${CF})`
         // b.style.backgroundColor='blue !important'
-        SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar])
+        // SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar])
         // document.body.style.backgroundImage=`url('${LandingPage}')`
 
         document.addEventListener('DOMContentLoaded', function () {
