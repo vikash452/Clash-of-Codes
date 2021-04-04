@@ -21,6 +21,9 @@ function Navbar() {
         var tooltip_elem=document.querySelectorAll('.tooltipped')
         M.Tooltip.init(tooltip_elem)
 
+        var collapsible_elem=document.querySelectorAll('.collapsible')
+        M.Collapsible.init(collapsible_elem)
+
     }, [])
 
     function SubmitQuery() {
@@ -309,16 +312,41 @@ function Navbar() {
                                     marginTop: '1.2rem',
                                     marginBottom: '1.2rem',
                                 }}>
-                                    <Link to="/compare">
-                                        <button className="blobby-button sidenav-close tooltipped"
+                                    <Link to="/compareCodeforces">
+                                    {/* <ul className='collapsible'> */}
+                                        <button className="blobby-button sidenav-close tooltipped "
                                             data-position='right'
                                             data-tooltip="Compare your codeforces performance with that of your friend"
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
                                             }}>
-                                            Compare
-                                            
+                                            Compare on Codeforces
+                                            <BlobbyButton/>
+                                        </button>
+
+                                        {/* <li>
+                                        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
+                                        <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                                        </li> */}
+                                        {/* </ul> */}
+                                    </Link>
+                                </li>
+
+                                <li style={{
+                                    marginTop: '1.2rem',
+                                    marginBottom: '1.2rem',
+                                }}>
+                                    <Link to="/compareCodechef">
+                                    {/* <ul className='collapsible'> */}
+                                        <button className="blobby-button sidenav-close tooltipped "
+                                            data-position='right'
+                                            data-tooltip="Compare your codechef performance with that of your friend"
+                                            style={{
+                                                fontSize: '1.3rem',
+                                                width: '100%',
+                                            }}>
+                                            Compare on Codechef
                                             <BlobbyButton/>
                                         </button>
                                     </Link>

@@ -47,7 +47,7 @@ function Codechef()
         {
             if(user.codechefVerified == false)
             {
-                window.location.href=`https://api.codechef.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID_CODECHEF}&redirect_uri=${REDIRECT_URI}&state=xyz`
+                window.location.href=`https://api.codechef.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID_CODECHEF_PRACTICE}&redirect_uri=${REDIRECT_URI_PRACTICE}&state=xyz`
             }
             trigger_after_page_loading()
         }

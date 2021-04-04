@@ -17,6 +17,7 @@ import Codechef from './screens/Codechef'
 import CodechefAuthorization from './screens/ChefAuthorization'
 import DSA from './screens/DSA'
 import Compare from './screens/Compare'
+import CompareCodechef from './screens/CompareCodechef'
 import DSA_stats from './screens/DSA_stats'
 import ContactUs from './screens/ContactUs'
 import './screens/design.css'
@@ -166,9 +167,14 @@ function AllRouting() {
         <Contest />
         <Footer/>
       </Route>
-      <Route exact path='/compare'>
+      <Route exact path='/compareCodeforces'>
         <Navbar />
         <Compare />
+        <Footer/>
+      </Route>
+      <Route exact path='/compareCodechef'>
+        <Navbar />
+        <CompareCodechef />
         <Footer/>
       </Route>
       <Route exact path='/dsa'>

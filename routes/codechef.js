@@ -37,9 +37,9 @@ function codechefMiddleware(req,res,next)
             body:JSON.stringify({
                 grant_type:'authorization_code',
                 code: code,
-                client_id:process.env.CLIENT_ID_CODECHEF,
-                client_secret:process.env.CLIENT_SECRET_CODECHEF,
-                redirect_uri:process.env.REDIRECT_URI
+                client_id:process.env.CLIENT_ID_CODECHEF_PRACTICE,
+                client_secret:process.env.CLIENT_SECRET_CODECHEF_PRACTICE,
+                redirect_uri:process.env.REDIRECT_URI_PRACTICE
             })
             })
             .then(res=>res.json())
@@ -82,8 +82,8 @@ function codechefMiddleware(req,res,next)
                     body:JSON.stringify({
                         grant_type:'refresh_token',
                         refresh_token: foundUser.refreshToken,
-                        client_id:process.env.CLIENT_ID_CODECHEF,
-                        client_secret:process.env.CLIENT_SECRET_CODECHEF,
+                        client_id:process.env.CLIENT_ID_CODECHEF_PRACTICE,
+                        client_secret:process.env.CLIENT_SECRET_CODECHEF_PRACTICE,
                     })
                 })
                 .then(res=>res.json())

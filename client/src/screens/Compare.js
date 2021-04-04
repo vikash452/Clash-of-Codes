@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import M from 'materialize-css'
 import CanvasJSReact from '../assets/canvasjs.react'
 import './design.css';
+import BlobbyButton from './BlobbyButton'
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -140,8 +141,8 @@ function Compare() {
         fetch(`https://codeforces.com/api/user.info?handles=${userHandle};${friendhandle}`)
             .then(res => res.json())
             .then((data) => {
-                // console.log(data.result[0])
-                // console.log(data.result[1])
+                console.log(data.result[0])
+                console.log(data.result[1])
                 setContent_1(data.result[0])
                 setContent_2(data.result[1])
             })
@@ -203,26 +204,7 @@ function Compare() {
                     // console.log(friendhandle)
                     Compare()
                 }}>Compare
-                    <span className="inner">
-                        <span className="blobs">
-                            <span className="blob"></span>
-                            <span className="blob"></span>
-                            <span className="blob"></span>
-
-                            <span
-                                className="blob"></span>
-                        </span>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                        <defs>
-                            <filter id="goo">
-                                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                    result="goo"></feColorMatrix>
-                                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                            </filter>
-                        </defs>
-                    </svg>
+                    <BlobbyButton/>
                 </button>
             </div>
             <div className='compareTable'>
@@ -252,18 +234,18 @@ function Compare() {
                                 </tr>
                                 <tr>
                                     <td>
-                                        {content_1.rank}
+                                        {content_1.rank} {content_1.rating}
                                     </td>
                                     <td>
-                                        {content_2.rank}
+                                        {content_2.rank} {content_2.rating}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        {content_1.rating1} {content_1.rank} (max rating : {content_1.maxRating} , {content_1.maxRank})
+                                        max rating : {content_1.maxRating} , {content_1.maxRank}
                                 </td>
                                     <td>
-                                        {content_2.rating1} {content_2.rank} (max rating : {content_2.maxRating} , {content_2.maxRank})
+                                        max rating : {content_2.maxRating} , {content_2.maxRank}
                                 </td>
                                 </tr>
                                 <tr>
