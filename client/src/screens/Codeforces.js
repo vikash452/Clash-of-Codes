@@ -24,6 +24,9 @@ function Codeforces(){
     const [options3,setOptions3]=useState({})
     const [options4,setOptions4]=useState({})
     const [unsolvedQuestion,setUnsolvedQuestion]=useState([])
+    const [weakTopics, setWeakTopics]=useState([])
+    const [intermediateTopics, setIntermediateTopics] = useState([])
+    const [strongTopics, setStrongTopics] = useState([])
     var user;
 
     useEffect(()=>{
@@ -299,6 +302,34 @@ function Codeforces(){
 			        }]
              }
              setOptions(temp_options_1)
+
+            /* STRONG WEAK TOPICS */
+
+            var forStrong=(total_question.size)*(0.20);
+            var forIntermediate=(total_question.size)*(0.07);
+
+            var strong_topics_temp=[]
+            var intermediate_topics_temp=[]
+            var weak_topics_temp=[]
+
+            dtype.forEach((element)=>{
+                if(element.y >= forStrong)
+                strong_topics_temp.push(element)
+                else if(element.y >= forIntermediate)
+                intermediate_topics_temp.push(element)
+                else
+                weak_topics_temp.push(element)
+            })
+
+            // console.log(strong_topics_temp)
+            // console.log(intermediate_topics_temp)
+            // console.log(weak_topics_temp)
+            setStrongTopics(strong_topics_temp)
+            setIntermediateTopics(intermediate_topics_temp)
+            setWeakTopics(weak_topics_temp)
+
+            /*....................*/
+
         })
         .catch((err)=>{
             console.log(err)
@@ -385,6 +416,51 @@ function Codeforces(){
                 <CanvasJSChart options = {options4}/>
             </div>
             
+            <h4 style={{marginTop:'175px'}}>&#223;</h4>
+            <h4>We are writing logics to improve the selection of strong, weak, intermediate topics &#128515;</h4>
+            <h4>Till then, let us know how correct are we &#128521;</h4>
+
+            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly'}}>
+                <div>
+                    <h4>Strong Topics</h4>
+                    {
+                        strongTopics.map((item)=>{
+                            return (
+                                <div key={item}>
+                                    {item.label}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
+                <div>
+                    <h4>Intermediate Topics</h4>
+                    {
+                        intermediateTopics.map((item)=>{
+                            return (
+                                <div key={item}>
+                                    {item.label}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
+                <div>
+                    <h4>Weak Topics</h4>
+                    {
+                        weakTopics.map((item)=>{
+                            return (
+                                <div key={item}>
+                                    {item.label}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
             <div style={{marginTop:'150px', marginLeft:'50px', marginRight:'50px'}}>
                 <h1>Unsolved Questions</h1>
                 {
@@ -401,7 +477,6 @@ function Codeforces(){
                         )
                     })
                 }
-                {/* {unsolvedQuestion.length} */}
             </div>
 
         </div>
