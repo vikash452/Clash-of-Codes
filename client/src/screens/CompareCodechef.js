@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import BlobbyButton from "./BlobbyButton";
 import './design.css'
+import CanvasJSReact from '../assets/canvasjs.react'
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function CompareCodechef()
 {
@@ -10,6 +13,8 @@ function CompareCodechef()
     const [friendList, setFriendList]=useState([])
     const [content_1,setContent_1]=useState(null)
     const [content_2,setContent_2]=useState(null)
+    const [submission_stats_array_user, setSubmission_stats_array_user]=useState([])
+    const [submission_stats_array_friend, setSubmission_stats_array_friend]=useState([])
     const history=useHistory()
     var user;
     useEffect(()=>{
@@ -39,6 +44,8 @@ function CompareCodechef()
 
     },[])
 
+    // function 
+
     function FillFriendDetails()
     {
         fetch(`/codechef/api/users/${friendhandle}`,{
@@ -51,6 +58,18 @@ function CompareCodechef()
         .then((data)=>{
             console.log(data)
             setContent_2(data.result.data.content)
+
+            var list=[]
+            for(let [key,value] of Object.entries(data.result.data.content.submissionStats))
+            {
+                var temp_object={
+                    label:key,
+                    y:value
+                }
+                list.push(temp_object)
+            }
+            setSubmission_stats_array_friend(list)
+            console.log(list)
         })
         .catch((err)=>{
             console.log(err)
@@ -69,6 +88,18 @@ function CompareCodechef()
         .then((data)=>{
             console.log(data)
             setContent_1(data.result.data.content)
+
+            var list=[]
+            for(let [key,value] of Object.entries(data.result.data.content.submissionStats))
+            {
+                var temp_object={
+                    label:key,
+                    y:value
+                }
+                list.push(temp_object)
+            }
+            setSubmission_stats_array_user(list)
+            console.log(list)
             FillFriendDetails()
         })
         .catch((err)=>{
@@ -82,7 +113,7 @@ function CompareCodechef()
     }
 
     return (
-        <div className='compare-div'>
+        <div className='compare-div' style={{marginBottom:(content_1 && content_2) ? '50px': '180px'}}>
             <div className="content">
                 {/* style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}> */}
                 <span><h4>Compare Yourself With</h4></span>
@@ -175,10 +206,10 @@ function CompareCodechef()
                 }
             </div>   
 
-            {/* 
+            
             <div style={{ marginLeft: '10px', marginRight: '10px' }}>
                 {
-                    visible1
+                    (content_1 && content_2)
                         ?
                         <CanvasJSChart options={
 
@@ -189,7 +220,7 @@ function CompareCodechef()
                                 backgroundColor: 'rgba(0,0,0,0)',
                                 lineColor: 'White',
                                 title: {
-                                    text: "Your rating change",
+                                    text: "Submission Statistics",
                                     fontSize: 30,
                                     fontColor: "White",
                                     fontFamily: "Helvetica",
@@ -197,7 +228,7 @@ function CompareCodechef()
                                     padding: 5,
                                 },
                                 axisX: {
-                                    title: "Date",
+                                    title: "Verdict",
                                     // reversed: true,
                                     labelAutoFit: true,
                                     labelFontSize: 15,
@@ -206,7 +237,7 @@ function CompareCodechef()
                                     lineColor: 'White',
                                 },
                                 axisY: {
-                                    title: "Rating",
+                                    title: "Number",
                                     labelAutoFit: true,
                                     labelFontSize: 15,
                                     labelFontColor: 'White',
@@ -220,19 +251,19 @@ function CompareCodechef()
                                 },
                                 data: [
                                     {
-                                        type: "spline",
+                                        type: "bar",
                                         // markerSize:0,
                                         showInLegend: true,
                                         legendText: `${userHandle}`,
-                                        dataPoints: rating1,
+                                        dataPoints: submission_stats_array_user,
                                         // lineColor:'White'
                                     },
                                     {
-                                        type: "spline",
+                                        type: "bar",
                                         // markerSize:0,
                                         showInLegend: true,
                                         legendText: `${friendhandle}`,
-                                        dataPoints: rating2,
+                                        dataPoints: submission_stats_array_friend,
                                         // lineColor:'White'
                                     }
                                 ]
@@ -243,7 +274,7 @@ function CompareCodechef()
                         <></>
                 }
             </div>
-            */}
+            
 
         </div>
     )

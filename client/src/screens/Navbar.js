@@ -124,24 +124,8 @@ function Navbar() {
                                             style={{
                                                 fontSize: '1.3rem',
                                                 width: '100%',
-                                            }}>Home<span className="inner">
-                                                <span className="blobs">
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                </span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                <defs>
-                                                    <filter id="goo">
-                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                            result="goo"></feColorMatrix>
-                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                    </filter>
-                                                </defs>
-                                            </svg>
+                                            }}>Home
+                                            <BlobbyButton/>
                                         </button>
                                     </Link>
                                 </li>
@@ -154,24 +138,11 @@ function Navbar() {
                                 style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
-                                    }}>Contest<span className="inner">
-                                        <span className="blobs">
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                        </span>
-                                    </span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                        <defs>
-                                            <filter id="goo">
-                                                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                    result="goo"></feColorMatrix>
-                                                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                            </filter>
-                                        </defs>
-                                    </svg>
+                                    }}>
+                                        Contest
+
+                                    <BlobbyButton/>
+
                                 </button>
                                     </Link>
                                 </li>
@@ -184,24 +155,11 @@ function Navbar() {
                                     style={{
                                         fontSize: '1.3rem',
                                         width: '100%',
-                                    }}>Profile<span className="inner">
-                                        <span className="blobs">
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                            <span className="blob"></span>
-                                        </span>
-                                    </span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                        <defs>
-                                            <filter id="goo">
-                                                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                    result="goo"></feColorMatrix>
-                                                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                            </filter>
-                                        </defs>
-                                    </svg>
+                                    }}>
+                                        Profile
+
+                                    <BlobbyButton/>
+
                                 </button>
                                     </Link>
                                 </li>
@@ -218,24 +176,7 @@ function Navbar() {
                                                 width: '100%',
                                             }}>
                                             DSA
-                                            <span className="inner">
-                                                <span className="blobs">
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                </span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                <defs>
-                                                    <filter id="goo">
-                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                            result="goo"></feColorMatrix>
-                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                    </filter>
-                                                </defs>
-                                            </svg>
+                                            <BlobbyButton/>
                                         </button>
                                     </Link>
                                 </li>
@@ -252,24 +193,7 @@ function Navbar() {
                                                 width: '100%',
                                             }}>
                                             Codeforces
-                                            <span className="inner">
-                                                <span className="blobs">
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                </span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                <defs>
-                                                    <filter id="goo">
-                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                            result="goo"></feColorMatrix>
-                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                    </filter>
-                                                </defs>
-                                            </svg>
+                                            <BlobbyButton/>
                                         </button>
                                     </Link>
                                 </li>
@@ -286,34 +210,16 @@ function Navbar() {
                                                 width: '100%',
                                             }}>
                                             Codechef
-                                            <span className="inner">
-                                                <span className="blobs">
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                </span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                <defs>
-                                                    <filter id="goo">
-                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                            result="goo"></feColorMatrix>
-                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                    </filter>
-                                                </defs>
-                                            </svg>
+                                            <BlobbyButton/>
                                         </button>
                                     </Link>
                                 </li>
 
                                 <li style={{
                                     marginTop: '1.2rem',
-                                    marginBottom: '1.2rem',
+                                    marginBottom: '3.2rem',
                                 }}>
                                     <Link to="/compareCodeforces">
-                                    {/* <ul className='collapsible'> */}
                                         <button className="blobby-button sidenav-close tooltipped "
                                             data-position='right'
                                             data-tooltip="Compare your codeforces performance with that of your friend"
@@ -321,24 +227,19 @@ function Navbar() {
                                                 fontSize: '1.3rem',
                                                 width: '100%',
                                             }}>
-                                            Compare on Codeforces
+                                            Compare 
+                                            <br/>
+                                            Codeforces
                                             <BlobbyButton/>
                                         </button>
-
-                                        {/* <li>
-                                        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
-                                        <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                        </li> */}
-                                        {/* </ul> */}
                                     </Link>
                                 </li>
 
                                 <li style={{
                                     marginTop: '1.2rem',
-                                    marginBottom: '1.2rem',
+                                    marginBottom: '3.2rem',
                                 }}>
                                     <Link to="/compareCodechef">
-                                    {/* <ul className='collapsible'> */}
                                         <button className="blobby-button sidenav-close tooltipped "
                                             data-position='right'
                                             data-tooltip="Compare your codechef performance with that of your friend"
@@ -346,7 +247,9 @@ function Navbar() {
                                                 fontSize: '1.3rem',
                                                 width: '100%',
                                             }}>
-                                            Compare on Codechef
+                                            Compare
+                                            <br/>
+                                            Codechef
                                             <BlobbyButton/>
                                         </button>
                                     </Link>
@@ -366,24 +269,7 @@ function Navbar() {
                                                 width: '100%',
                                             }}>
                                             Report
-                                            <span className="inner">
-                                                <span className="blobs">
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                </span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                <defs>
-                                                    <filter id="goo">
-                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                            result="goo"></feColorMatrix>
-                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                    </filter>
-                                                </defs>
-                                            </svg>
+                                            <BlobbyButton/>
                                         </button>
                                     </a>
                                 </li>
@@ -401,24 +287,7 @@ function Navbar() {
                                                 width: '100%',
                                             }}>
                                             Logout
-                                            <span className="inner">
-                                                <span className="blobs">
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                    <span className="blob"></span>
-                                                </span>
-                                            </span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                                <defs>
-                                                    <filter id="goo">
-                                                        <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
-                                                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7"
-                                                            result="goo"></feColorMatrix>
-                                                        <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
-                                                    </filter>
-                                                </defs>
-                                            </svg>
+                                            <BlobbyButton/>
                                         </button>
                                     </a>
                                 </li>
