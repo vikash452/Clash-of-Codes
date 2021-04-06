@@ -37,9 +37,9 @@ function codechefMiddleware(req,res,next)
             body:JSON.stringify({
                 grant_type:'authorization_code',
                 code: code,
-                client_id:process.env.CLIENT_ID_CODECHEF_PRACTICE,
-                client_secret:process.env.CLIENT_SECRET_CODECHEF_PRACTICE,
-                redirect_uri:process.env.REDIRECT_URI_PRACTICE
+                client_id:process.env.CLIENT_ID_CODECHEF,
+                client_secret:process.env.CLIENT_SECRET_CODECHEF,
+                redirect_uri:process.env.REDIRECT_URI
             })
             })
             .then(res=>res.json())
@@ -82,8 +82,8 @@ function codechefMiddleware(req,res,next)
                     body:JSON.stringify({
                         grant_type:'refresh_token',
                         refresh_token: foundUser.refreshToken,
-                        client_id:process.env.CLIENT_ID_CODECHEF_PRACTICE,
-                        client_secret:process.env.CLIENT_SECRET_CODECHEF_PRACTICE,
+                        client_id:process.env.CLIENT_ID_CODECHEF,
+                        client_secret:process.env.CLIENT_SECRET_CODECHEF,
                     })
                 })
                 .then(res=>res.json())
@@ -322,22 +322,34 @@ router.get('/codechef/upcomingContests',passport.authenticate('jwt'),(req,res)=>
   //THIS IS HARDCODED FROM CODECHEF API
   var contestList=[
     {
-      "code": "CSK2021",
-      "name": "Code Shake 1.0",
-      "startDate": "2021-04-05 12:00:00",
-      "endDate": "2021-04-05 14:30:00"
+      "code": "ICM2021C",
+      "name": "International Coding Marathon 2021 Division 3 (Rated)",
+      "startDate": "2021-04-06 20:00:00",
+      "endDate": "2021-04-06 22:30:00"
     },
     {
-      "code": "PNTR2021",
-      "name": "Codepentry",
-      "startDate": "2021-04-03 19:00:00",
-      "endDate": "2021-04-03 22:00:00"
+      "code": "ICM2021B",
+      "name": "International Coding Marathon 2021 Division 2 (Rated)",
+      "startDate": "2021-04-06 20:00:00",
+      "endDate": "2021-04-06 22:30:00"
     },
     {
-      "code": "CARB2021",
-      "name": "CODE-AARAMBH-2021",
-      "startDate": "2021-04-03 11:30:00",
-      "endDate": "2021-04-03 14:00:00"
+      "code": "ICM2021A",
+      "name": "International Coding Marathon 2021 Division 1 (Unrated)",
+      "startDate": "2021-04-06 20:00:00",
+      "endDate": "2021-04-06 22:30:00"
+    },
+    {
+      "code": "ICM2021",
+      "name": "International Coding Marathon 2021 (Rated for Div 2 &amp; Div 3)",
+      "startDate": "2021-04-06 20:00:00",
+      "endDate": "2021-04-06 22:30:00"
+    },
+    {
+      "code": "CRTN2021",
+      "name": "Cryptothon",
+      "startDate": "2021-04-06 18:00:00",
+      "endDate": "2021-04-07 18:00:00"
     }
   ]
   res.status(200).json(contestList);

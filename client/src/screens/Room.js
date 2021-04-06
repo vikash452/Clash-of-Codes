@@ -446,7 +446,7 @@ function Room() {
 
     var time = new Date(start_timings).toLocaleString()
     return (
-        <div>
+        <div style={{marginTop:'100px'}}>
             {/* if in room */}
             <div className="container" style={{ display: inRoom ? '' : 'none' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>

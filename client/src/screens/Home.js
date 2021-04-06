@@ -58,13 +58,23 @@ function Home() {
         })
 
     }, [])
+
+    useEffect(()=>{
+        console.log(upcomingCF)
+    },[upcomingCF])
+
     // console.log(process.env)
     return (
         <div className="Home-div">
-            <div className="msg-div" style={{marginTop:'60px'}}>
+            <div className="msg-div" style={{marginTop:'80px'}}>
                 <span className="home-msg">Hi {name},</span>
                 <p className="msg-content">Let us help you reach the pinnacle of competitive coding. </p>
             </div>
+
+            {/* <div>
+                Upcoming contest on codeforces??
+                Warm up here
+            </div> */}
 
             <div className='upcoming_contest_list_div'>
                 <div className="home-contests" style={{}}>

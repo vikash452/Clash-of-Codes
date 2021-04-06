@@ -321,10 +321,10 @@ function Navbar() {
                 <Link to='/codechef'>Codechef</Link>
                 <Link to='/dsa'>DSA</Link>
                 <Link to='/contest'>Contest</Link>
-                <span class='dropdown-trigger' href='#' data-target='dropdown1'>
-                {/* <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> */}
+                <span className='dropdown-trigger' href='#' data-target='dropdown1'>
+                {/* <a className='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> */}
                     Compare
-                    <ul id='dropdown1' class='dropdown-content' style={{width:'fit-content'}}>
+                    <ul id='dropdown1' className='dropdown-content' style={{width:'fit-content'}}>
                         <li><Link to='/compareCodeforces'>Codeforces</Link></li>
                         <li><Link to='/compareCodechef'>Codechef</Link></li>
                     </ul>

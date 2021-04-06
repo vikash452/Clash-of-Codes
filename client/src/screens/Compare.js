@@ -9,8 +9,8 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function Compare() {
     const [friendList, setFriendList] = useState([])
-    const [friendhandle, setFriendHandle] = useState('DLN');
-    const [userHandle, setUserhandle] = useState('Marcos_0901');
+    const [friendhandle, setFriendHandle] = useState('');
+    const [userHandle, setUserhandle] = useState('');
     const [content_1, setContent_1] = useState(null)
     const [content_2, setContent_2] = useState(null)
     const [visible1, setVisible1] = useState(false)

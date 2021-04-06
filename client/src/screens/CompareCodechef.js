@@ -9,7 +9,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function CompareCodechef()
 {
     const [userHandle,setUserhandle]=useState('')
-    const [friendhandle,setFriendhandle]=useState('vikashp0901')
+    const [friendhandle,setFriendhandle]=useState('')
     const [friendList, setFriendList]=useState([])
     const [content_1,setContent_1]=useState(null)
     const [content_2,setContent_2]=useState(null)
