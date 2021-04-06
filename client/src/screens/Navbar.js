@@ -21,8 +21,11 @@ function Navbar() {
         var tooltip_elem=document.querySelectorAll('.tooltipped')
         M.Tooltip.init(tooltip_elem)
 
-        var collapsible_elem=document.querySelectorAll('.collapsible')
-        M.Collapsible.init(collapsible_elem)
+        // var collapsible_elem=document.querySelectorAll('.collapsible')
+        // M.Collapsible.init(collapsible_elem)
+
+        var drop_elems = document.querySelectorAll('.dropdown-trigger');
+        M.Dropdown.init(drop_elems);
 
     }, [])
 
@@ -310,6 +313,26 @@ function Navbar() {
                 </ul>
 
             </nav>
+            
+            <nav className='smallNavbar' style={{marginBottom:'100px', backgroundColor:'rgba(0,0,0,0)', display:'flex', flexDirection:'row', justifyContent:'space-evenly'}}>
+                <Link to='/home'>Home</Link>
+                <Link to='/profile'>Profile</Link>
+                <Link to='/codeforces'>Codeforces</Link>
+                <Link to='/codechef'>Codechef</Link>
+                <Link to='/dsa'>DSA</Link>
+                <Link to='/contest'>Contest</Link>
+                <span class='dropdown-trigger' href='#' data-target='dropdown1'>
+                {/* <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> */}
+                    Compare
+                    <ul id='dropdown1' class='dropdown-content' style={{width:'fit-content'}}>
+                        <li><Link to='/compareCodeforces'>Codeforces</Link></li>
+                        <li><Link to='/compareCodechef'>Codechef</Link></li>
+                    </ul>
+                </span>
+                <span style={{cursor:'pointer'}} onClick={()=>{Logout()}}>Logout</span>
+            </nav>
+
+
             <div id="modal1" className="modal" >
                 <div className="modal-content" style={{ backgroundColor: 'darkcyan' }}>
                     <h4>Report us your queries/suggestions</h4>

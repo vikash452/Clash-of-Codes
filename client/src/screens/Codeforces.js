@@ -424,22 +424,23 @@ function Codeforces(){
                 <div>
                     <h4>Strong Topics</h4>
                     {
-                        strongTopics.map((item)=>{
+                        strongTopics.map(item=>{
+                            // console.log(item.label)
                             return (
-                                <div key={item}>
+                                <div key={item.label}>
                                     {item.label}
                                 </div>
                             )
                         })
                     }
                 </div>
-
+                
                 <div>
                     <h4>Intermediate Topics</h4>
                     {
                         intermediateTopics.map((item)=>{
                             return (
-                                <div key={item}>
+                                <div key={item.label}>
                                     {item.label}
                                 </div>
                             )
@@ -452,7 +453,7 @@ function Codeforces(){
                     {
                         weakTopics.map((item)=>{
                             return (
-                                <div key={item}>
+                                <div key={item.label}>
                                     {item.label}
                                 </div>
                             )

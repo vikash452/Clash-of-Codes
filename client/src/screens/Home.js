@@ -61,7 +61,7 @@ function Home() {
     // console.log(process.env)
     return (
         <div className="Home-div">
-            <div className="msg-div">
+            <div className="msg-div" style={{marginTop:'60px'}}>
                 <span className="home-msg">Hi {name},</span>
                 <p className="msg-content">Let us help you reach the pinnacle of competitive coding. </p>
             </div>
@@ -76,9 +76,9 @@ function Home() {
                             // var startDate=d.getDate() + ' ' + d.getMonth()+1 + ' ' + d.getFullYear()
                             var startTime = new Date(item.startTimeSeconds * 1000).toLocaleTimeString()
                             return (
-                                <h4 key={item.id}>
+                                <h6 key={item.id}>
                                     {item.name}<br></br> {startDate} {startTime}
-                                </h4>
+                                </h6>
                             )
                         })
                     }
@@ -94,11 +94,11 @@ function Home() {
                             var endDate=new Date(item.endDate)
                             console.log(startDate === endDate)
                             return (
-                                <h4 key={item.code}>
+                                <h6 key={item.code}>
                                     {item.code} {item.name}
                                     <br/>
                                     {startDate.toDateString()} {startDate.toLocaleTimeString()} to {endDate.toDateString()} {endDate.toLocaleTimeString()}
-                                </h4>
+                                </h6>
                             )
                         })
                     }

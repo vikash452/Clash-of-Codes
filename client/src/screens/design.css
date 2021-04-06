@@ -393,6 +393,7 @@ Link .waves-effect.waves-light.btn-large {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
+    margin-top: 40px;
 }
 
 .contest-div .wrapper .new-room {
@@ -627,6 +628,7 @@ Link .waves-effect.waves-light.btn-large {
     align-items: center;
     flex-wrap: wrap;
     z-index: 1;
+    margin-top: 40px;
 }
 
 .friend-div .card {
@@ -1352,4 +1354,15 @@ input {
 
 div.compareTable table tbody tr td {
     text-align: center;
+}
+
+
+@media  (max-width:700px) {
+    .smallNavbar{
+        display:none !important;
+    }
+}
+
+.dropdown-content{
+    width:fit-content !important;
 }

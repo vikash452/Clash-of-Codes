@@ -131,7 +131,7 @@ function DSA()
     }
 
     return (
-        <div>
+        <div style={{marginTop:'100px'}}>
             <h2>You will be able to practice DSA questions here</h2>
             {/* <div style={{display:'flex' , justifyContent:'space-evenly'}}> */}
                 {/* <div style={{width:'600px'}}> */}

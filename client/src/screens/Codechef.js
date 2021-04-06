@@ -96,7 +96,7 @@ function Codechef()
     if(content)
     {
         return (
-            <div className='row codechefParent'>
+            <div className='row codechefParent' style={{marginTop:'40px'}}>
                 <div className='codechefCard initialDetailsCard col s12 m12 l12 xl12 '>
                     <span>{content.fullname}</span>
                     <br/>
@@ -167,7 +167,7 @@ function Codechef()
     else
     {
         return (
-            <div>
+            <div style={{marginTop:'40px'}}>
             {/* <div style={{backgroundImage:`url(${Pre})`, height:'700px' , width:'800px', margin:'auto'}}></div> */}
                 <div className="preloader-wrapper big active" style={{marginBottom:'400px'}}>
                     <div className="spinner-layer spinner-blue-only">
