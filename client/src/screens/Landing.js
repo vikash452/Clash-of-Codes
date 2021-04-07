@@ -142,7 +142,8 @@ function LandingScreen() {
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li>
                             <Link to='/signin'>
-                                <button className="blobby-button" style={{height:'6vh'}}>
+                                <button className="blobby-button">
+                                 {/* style={{height:'6vh'}}> */}
                                     Log In
                                     <BlobbyButton/>
                                 </button>
@@ -150,7 +151,8 @@ function LandingScreen() {
                         </li>
                         <li>
                             <Link to='/signup'>
-                                <button className="blobby-button" style={{height:'6vh'}}>
+                                <button className="blobby-button">
+                                     {/* style={{height:'6vh'}}> */}
                                     Sign Up
                                     <BlobbyButton/>
                                 </button>

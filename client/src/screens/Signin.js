@@ -85,8 +85,8 @@ function Signin() {
                     // backdropFilter: 'blur(5px)'
                 }}>
                     <img src="https://codelearn.com/wp-content/uploads/sites/5/2021/01/clash_of_codes.jpg" style={{
-                        width: '100%',
-                        height: '35%'
+                        // width: '100%',
+                        // height: '35%'
                     }}></img>
                     <div className="content" style={{
                         // position: 'relative',
@@ -124,7 +124,10 @@ function Signin() {
                             // marginTop: '2rem'
                         }}>
 
-                            <button className="blobby-button" onClick={() => { Login() }} style={{fontSize: '1.2rem', marginBottom:'10px'}}>
+                            <button className="blobby-button" onClick={() => { Login() }} 
+                            style={{
+                                // fontSize: '1.2rem', marginBottom:'10px'
+                                }}>
                                 Sign In 
                                 <BlobbyButton/>
                             </button>
@@ -139,8 +142,8 @@ function Signin() {
 
                             <Link to='/forgotPassword'>
                                 <button className="blobby-button" style={{
-                                    marginLeft: '2rem',
-                                    fontSize: '1.2rem'
+                                    // marginLeft: '2rem',
+                                    // fontSize: '1.2rem'
                                 }}>
                                     Forgot Password 
                                     <BlobbyButton/>
@@ -153,15 +156,15 @@ function Signin() {
                             // display:'flex', marginTop:'2rem', justifyContent:'center'
                             }}>
                             <span style={{
-                                color: '#e6ff02',
-                                fontFamily: '"Nova Round", cursive',
-                                fontWeight: 'bold',
-                                fontSize: '1.9rem'
+                                // color: '#e6ff02',
+                                // fontFamily: '"Nova Round", cursive',
+                                // fontWeight: 'bold',
+                                // fontSize: '1.9rem'
                             }}>
                                 Or connect with us through 
                             </span>
                                 <a href='http://clashofcodes.herokuapp.com/auth/google' style={{marginBottom:'auto', marginTop:'auto'}}>
-                                    <img src={GoogleLogo} style={{width:'50px', height:'50px', marginLeft:'0.5rem'}}></img>
+                                    <img src={GoogleLogo} style={{width:'45px', height:'45px', marginLeft:'1rem'}}></img>
                                 </a>
                             
                         </div>
@@ -173,18 +176,18 @@ function Signin() {
                             // marginTop: '2rem'
                         }}>
                             <h5 style={{
-                                color: '#e6ff02',
-                                fontFamily: '"Nova Round", cursive',
-                                fontWeight: 'bold',
-                                fontSize: '1.8rem'
+                                // color: '#e6ff02',
+                                // fontFamily: '"Nova Round", cursive',
+                                // fontWeight: 'bold',
+                                // fontSize: '1.8rem'
                             }}>
                                 Don't have an account?
                             </h5>
                             <span>
                                 <Link to='/signup'>
                                     <button className="blobby-button" style={{
-                                        marginLeft: '0.5rem',
-                                        fontSize: '1.2rem'
+                                        // marginLeft: '0.5rem',
+                                        // fontSize: '1.2rem'
                                     }}>Sign Up 
                                     <BlobbyButton/>
                                     </button>
