@@ -58,41 +58,41 @@ function Signin() {
 
     return (
         <div>
-            <div className="container" style={{
-                position: 'relative',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                maxWidth: '1200px',
-                flexwrap: 'wrap',
-                zindex: '1'
+            <div className="sign-in-container" style={{
+                // position: 'relative',
+                // display: 'flex',
+                // justifyContent: 'center',
+                // alignItems: 'center',
+                // maxWidth: '1200px',
+                // flexwrap: 'wrap',
+                // zindex: '1'
             }}>
                 <div className="card" style={{
-                    position: 'relative',
-                    width: '600px',
-                    //minWidth: '420px',
-                    // height: '630px',
-                    height: 'fit-content',
-                    margin: '30px',
-                    boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
-                    borderRadius: '15px',
-                    background: 'rgba(230, 236, 233, 0.35)',
-                    overflow: 'hidden',
-                    display: 'box',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.5)',
-                    backdropFilter: 'blur(5px)'
+                    // position: 'relative',
+                    // width: '600px',
+                    // //minWidth: '420px',
+                    // // height: '630px',
+                    // height: 'fit-content',
+                    // margin: '30px',
+                    // boxShadow: '20px 20px 50px rgba(0, 0, 0, 0.667)',
+                    // borderRadius: '15px',
+                    // background: 'rgba(230, 236, 233, 0.35)',
+                    // overflow: 'hidden',
+                    // display: 'box',
+                    // justifyContent: 'center',
+                    // alignItems: 'center',
+                    // borderTop: '1px solid rgba(255, 255, 255, 0.5)',
+                    // backdropFilter: 'blur(5px)'
                 }}>
                     <img src="https://codelearn.com/wp-content/uploads/sites/5/2021/01/clash_of_codes.jpg" style={{
                         width: '100%',
                         height: '35%'
                     }}></img>
                     <div className="content" style={{
-                        position: 'relative',
-                        padding: '20px',
-                        textAlign: 'center',
-                        transition: '0.5s'
+                        // position: 'relative',
+                        // padding: '20px',
+                        // textAlign: 'center',
+                        // transition: '0.5s'
                     }}>
 
 
@@ -118,10 +118,10 @@ function Signin() {
                             }}
                         />
                         <div className='signin_forgot_button_parent' style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginTop: '2rem'
+                            // display: 'flex',
+                            // justifyContent: 'center',
+                            // alignItems: 'center',
+                            // marginTop: '2rem'
                         }}>
 
                             <button className="blobby-button" onClick={() => { Login() }} style={{fontSize: '1.2rem', marginBottom:'10px'}}>
@@ -148,7 +148,10 @@ function Signin() {
                             </Link>
                         </div>
 
-                        <div style={{display:'flex', marginTop:'2rem', justifyContent:'center'}}>
+                        <div className="Google-login" 
+                        style={{
+                            // display:'flex', marginTop:'2rem', justifyContent:'center'
+                            }}>
                             <span style={{
                                 color: '#e6ff02',
                                 fontFamily: '"Nova Round", cursive',
@@ -163,11 +166,11 @@ function Signin() {
                             
                         </div>
 
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginTop: '2rem'
+                        <div className="new-user" style={{
+                            // display: 'flex',
+                            // justifyContent: 'center',
+                            // alignItems: 'center',
+                            // marginTop: '2rem'
                         }}>
                             <h5 style={{
                                 color: '#e6ff02',

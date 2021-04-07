@@ -66,7 +66,7 @@ function Home() {
     // console.log(process.env)
     return (
         <div className="Home-div">
-            <div className="msg-div" style={{marginTop:'80px'}}>
+            <div className="msg-div" style={{}}>
                 <span className="home-msg">Hi {name},</span>
                 <p className="msg-content">Let us help you reach the pinnacle of competitive coding. </p>
             </div>

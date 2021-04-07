@@ -82,6 +82,10 @@
 .sidenav li>a {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    /* width: 100%; */
+}
+.sidenav li>a .blobby-button{
+    width: 100%;
 }
 
 @media only screen and (max-width: 500px) {
@@ -89,6 +93,7 @@
         width: 240px;
     }
 }
+
 
 /* .waves-effect.waves-light.btn-large {
     margin-left: 8px;
@@ -135,6 +140,7 @@ Link .waves-effect.waves-light.btn-large {
     width: 50%;
     margin-left: 30px;
     margin-right: 30px;
+    margin-top: 100px;
 }
 
 .home-msg {
@@ -258,7 +264,7 @@ Link .waves-effect.waves-light.btn-large {
         font-size: 5rem;
     }
     .msg-div {
-        margin-top: 5rem;
+        margin-top: 7rem;
     }
 }
 
@@ -356,10 +362,17 @@ Link .waves-effect.waves-light.btn-large {
         height: 5rem;
         font-size: 3.5rem;
     }
+    .Home-div{
+        margin-top: 1rem;
+    }
     /* .Home-div{
         /* margin-top: 1rem; */
-    /* } */
+    /* } */ 
+    .upcoming_contest_list_div{
+        width: 100%;
+    }
     .msg-div {
+        margin-top: 40px;
         margin-bottom: 5%;
     }
     .home-msg {
@@ -377,6 +390,7 @@ Link .waves-effect.waves-light.btn-large {
         /* padding: 30px; */
         /* padding-bottom: 50px; */
         padding: 10px 10px 20px;
+        margin: 0 0 20px;
     }
     .home-contests>h3>ul {
         margin: 0px;
@@ -1166,7 +1180,7 @@ input {
     /* backdrop-filter: blur(5px);    */
     position: relative;
     overflow: hidden;
-    height: 12vh;
+    height: 20vh;
 }
 
 .landing-nav .nav-wrapper {
@@ -1249,6 +1263,7 @@ input {
     position: relative;
     width: auto;
     margin: 30px;
+    padding: 20px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
     border-radius: 15px;
     background: rgba(230, 236, 233, 0.212);
@@ -1263,13 +1278,13 @@ input {
 .landing-container .content-card>h2 {
     font-size: 2.5rem;
     font-family: 'Lobster Two', cursive;
-    ;
+    
 }
 
 .landing-container .content-card>h3 {
     font-size: 1.5rem;
     font-family: 'Lobster Two', cursive;
-    ;
+    margin-left: 10px;
 }
 
 @media only screen and (max-width: 944px) {
@@ -1285,7 +1300,7 @@ input {
 
 @media only screen and (max-width: 500px) {
     .landing-nav {
-        height: 12vh;
+        height: 16vh;
     }
     nav .nav-wrapper #nav-mobile {
         position: absolute;
@@ -1301,6 +1316,13 @@ input {
     }
     nav ul a {
         padding: 0px;
+    }
+    .landing-container .content-card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
     }
 }
 
@@ -1365,4 +1387,51 @@ div.compareTable table tbody tr td {
 
 .dropdown-content{
     width:fit-content !important;
+}
+.sign-in-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    z-index: 1;
+}
+.sign-in-container .card{
+    position: relative;
+    width: 600px;
+    height: fit-content;
+    margin: 30px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
+    border-radius: 15px;
+    background: rgba(230, 236, 233, 0.35);
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+}
+.sign-in-container .card .content{
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    /* transition: '0.5s' */
+}
+sign-in-container .card .content .signin_forgot_button_parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+sign-in-container .card .content .Google-login{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin-top:2rem; 
+}
+sign-in-container .card .content .new-user{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    margin-top:2rem; 
 }

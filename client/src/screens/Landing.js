@@ -73,7 +73,8 @@ function LandingScreen() {
                     <ul className="contact hide-on-med-and-down">
                         <li>
                             <Link to='/contactus'>
-                                <button className="blobby-button" style={{height: '6vh'}}>
+                                <button className="blobby-button">
+                                 {/* style={{height: '6vh'}}> */}
                                     Contact Us
                                     <BlobbyButton/>
                                 </button>
@@ -81,10 +82,12 @@ function LandingScreen() {
                         </li>
                     </ul>
 
-                    <ul className="sidenav" id="slide-out" style={{backgroundImage:`url(${LandingPage})`, paddingTop:'100px', maxWidth:'fit-content'}}>
+                    <ul className="sidenav" id="slide-out" 
+                    style={{backgroundImage:`url(${LandingPage})`, paddingTop:'100px', maxWidth:'fit-content'}}>
                         <li>
                             <Link to='/signin'>
-                                <button className="blobby-button sidenav-close" style={{height: '6vh'}}>
+                                <button className="blobby-button sidenav-close" >
+                                {/* // style={{height: '8vh'}}> */}
                                     Signin
                                     <BlobbyButton/>
                                 </button>
@@ -92,7 +95,8 @@ function LandingScreen() {
                         </li>
                         <li>
                             <Link to='/signup'>
-                                <button className="blobby-button sidenav-close" style={{height: '6vh'}}>
+                                <button className="blobby-button sidenav-close" >
+                                {/* style={{height: '8vh'}}> */}
                                     Signup
                                     <BlobbyButton/>
                                 </button>
@@ -100,7 +104,8 @@ function LandingScreen() {
                         </li>
                         <li>
                             <Link to='/contactus'>
-                                <button className="blobby-button sidenav-close" style={{height: '6vh'}}>
+                                <button className="blobby-button sidenav-close" >
+                                {/* style={{height: '8vh'}}> */}
                                     Contact Us
                                     <BlobbyButton/>
                                 </button>
@@ -117,10 +122,10 @@ function LandingScreen() {
 
                     }}>
 
-                        <Link to="/home" style={{ marginTop: '1.4rem' }}>
+                        <Link to="/home" style={{ padding: '20px 10px 10px'}}>
                                 <img src={Navbar_Logo} style={{
                                     width: '120px',
-                                    height: '12vh',
+                                    height: '100%',
                                     borderRadius: '20%',
                                     background: 'rgba(230, 236, 233, 0.014)',
                                     boxShadow: '50px 50px 100px rgba(0, 0, 0, 0.667)',
