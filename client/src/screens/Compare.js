@@ -7,6 +7,11 @@ import BlobbyButton from './BlobbyButton'
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
+function comparator(a,b)
+{
+    return a.x-b.x;
+}
+
 function Compare() {
     const [friendList, setFriendList] = useState([])
     const [friendhandle, setFriendHandle] = useState('');
@@ -18,6 +23,8 @@ function Compare() {
     const [rating2, setRating2] = useState([])
     const [usrsubms, setUserSubms] = useState([])
     const [frndsubms, setFrndSubms] = useState([])
+    const [userQuestionRating , setUserQuestionRating]=useState([])
+    const [friendQuestionRating , setFriendQuestionRating]=useState([])
 
     const history = useHistory()
 
@@ -99,6 +106,7 @@ function Compare() {
         //CANVAS BHUT ERROR DE RHA THA
         //********HANDLE WITH CARE****************//
         var acceptedSet = new Set()
+        var rating_wise_submissions=new Map()
         fetch(`https://codeforces.com/api/user.status?handle=${handle_to_find}&from=1`)
             .then(response => response.json())
             .then((data) => {
@@ -107,7 +115,18 @@ function Compare() {
                     var unique = element.problem.contestId.toString() + element.problem.index
                     if (element.verdict === "OK" && !acceptedSet.has(unique)) {
                         ++accepted;
+                        // console.log(element)
                         acceptedSet.add(unique)
+                        var questionRating=element.problem.rating;
+                        if(rating_wise_submissions.has(questionRating))
+                        {
+                            rating_wise_submissions.set(questionRating , rating_wise_submissions.get(questionRating) + 1)
+                        }
+                        else
+                        {
+                            rating_wise_submissions.set(questionRating,1);
+                        }
+
                     }
                     if (element.verdict === "TIME_LIMIT_EXCEEDED")
                         tle += 1;
@@ -127,12 +146,34 @@ function Compare() {
                 subms.push({ label: "Runtime Error", y: runtime_error });
 
                 // console.table(subms);
+
+                var list_rating_wise_submissions=[]
+                const iterator=rating_wise_submissions[Symbol.iterator]();
+                for(const item of iterator)
+                {
+                    if(item[0] != undefined && item[1] != undefined)
+                    {
+                        var temp_object={
+                            x:item[0],
+                            y:item[1]
+                        }
+                        list_rating_wise_submissions.push(temp_object)
+                    }
+                    
+                }
+                
+                list_rating_wise_submissions.sort(comparator)
+                console.log(list_rating_wise_submissions)
                 if (handle_to_find === userHandle) {
                     setUserSubms(subms);
+                    setUserQuestionRating(list_rating_wise_submissions)
                 }
                 else {
                     setFrndSubms(subms);
+                    setFriendQuestionRating(list_rating_wise_submissions)
                 }
+                // console.log(rating_wise_submissions)
+                
             })
     }
 
@@ -394,6 +435,75 @@ function Compare() {
                                         showInLegend: true,
                                         legendText: `${friendhandle}`,
                                         dataPoints: frndsubms,
+                                        // lineColor:'White'
+                                    }
+                                ]
+                            }
+                        }
+                        />
+                        :
+                        <>
+                        </>
+
+
+                }
+            </div>
+            <div style={{ marginTop: '5rem', marginRight: '15px', marginLeft: '15px' }}>
+                {
+                    (userQuestionRating.length > 0 && friendQuestionRating.length > 0)
+                        ?
+                        <CanvasJSChart options={
+
+                            {
+                                animationEnabled: true,
+                                theme: "light2",
+                                backgroundColor: 'rgba(0,0,0,0)',
+                                lineColor: 'White',
+                                title: {
+                                    text: "Rating wise question submissions",
+                                    fontSize: 30,
+                                    fontColor: "White",
+                                    fontFamily: "Helvetica",
+                                    horizontalAlign: "center",
+                                    padding: 5,
+                                },
+                                axisX: {
+                                    title: "Date",
+                                    // reversed: true,
+                                    labelAutoFit: true,
+                                    labelFontSize: 15,
+                                    labelFontColor: 'White',
+                                    titleFontColor: 'White',
+                                    lineColor: 'White',
+                                },
+                                axisY: {
+                                    title: "Number of questions",
+                                    labelAutoFit: true,
+                                    labelFontSize: 15,
+                                    labelFontColor: 'White',
+                                    titleFontColor: 'White',
+                                    lineColor: 'White',
+                                },
+                                height: 500,
+                                // width:1000,
+                                legend: {
+                                    fontColor: 'White'
+                                },
+                                data: [
+                                    {
+                                        type: "column",
+                                        // markerSize:0,
+                                        showInLegend: true,
+                                        legendText: `${userHandle}`,
+                                        dataPoints: userQuestionRating,
+                                        // lineColor:'White'
+                                    },
+                                    {
+                                        type: "column",
+                                        // markerSize:0,
+                                        showInLegend: true,
+                                        legendText: `${friendhandle}`,
+                                        dataPoints: friendQuestionRating,
                                         // lineColor:'White'
                                     }
                                 ]
