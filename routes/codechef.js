@@ -322,30 +322,6 @@ router.get('/codechef/upcomingContests',passport.authenticate('jwt'),(req,res)=>
   //THIS IS HARDCODED FROM CODECHEF API
   var contestList=[
     {
-      "code": "ICM2021C",
-      "name": "International Coding Marathon 2021 Division 3 (Rated)",
-      "startDate": "2021-04-06 20:00:00",
-      "endDate": "2021-04-06 22:30:00"
-    },
-    {
-      "code": "ICM2021B",
-      "name": "International Coding Marathon 2021 Division 2 (Rated)",
-      "startDate": "2021-04-06 20:00:00",
-      "endDate": "2021-04-06 22:30:00"
-    },
-    {
-      "code": "ICM2021A",
-      "name": "International Coding Marathon 2021 Division 1 (Unrated)",
-      "startDate": "2021-04-06 20:00:00",
-      "endDate": "2021-04-06 22:30:00"
-    },
-    {
-      "code": "ICM2021",
-      "name": "International Coding Marathon 2021 (Rated for Div 2 &amp; Div 3)",
-      "startDate": "2021-04-06 20:00:00",
-      "endDate": "2021-04-06 22:30:00"
-    },
-    {
       "code": "CRTN2021",
       "name": "Cryptothon",
       "startDate": "2021-04-06 18:00:00",

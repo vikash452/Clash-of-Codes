@@ -416,11 +416,11 @@ function Codeforces(){
                 <CanvasJSChart options = {options4}/>
             </div>
             
-            <h4 style={{marginTop:'175px'}}>&#223;</h4>
+            {/* <h4 style={{marginTop:'175px'}}>&#223;</h4>
             <h4>We are writing logics to improve the selection of strong, weak, intermediate topics &#128515;</h4>
-            <h4>Till then, let us know how correct are we &#128521;</h4>
+            <h4>Till then, let us know how correct are we &#128521;</h4> */}
 
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly'}}>
+            <div className='strong-weak-topics' style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly'}}>
                 <div>
                     <h4>Strong Topics</h4>
                     {

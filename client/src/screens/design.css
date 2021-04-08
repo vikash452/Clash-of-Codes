@@ -1493,3 +1493,15 @@ div.compareTable table tbody tr td {
         font-size: 1rem;
     }
 }
+
+.strong-weak-topics{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 175px;
+    margin-left: 15px;
+    margin-right: 15px;
+    background-color: darkslategray;
+    border: 10px black solid;
+    opacity: 0.8;
+}

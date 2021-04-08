@@ -96,7 +96,8 @@ function Home() {
                 
                 <div className='home-contests'>
                     <h3><ul>Upcoming Contests on codechef</ul></h3>
-                    {
+                    <h6>No upcoming contests</h6>
+                    {/* {
                         upcomingCC.map((item)=>{
                             // console.log(new Date(item.startDate).toDateString())
                             // console.log(item.startDate == item.endDate)
@@ -111,7 +112,7 @@ function Home() {
                                 </h6>
                             )
                         })
-                    }
+                    } */}
                 </div>
             </div>
         </div>

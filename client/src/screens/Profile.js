@@ -360,7 +360,7 @@ function Profile() {
                     // backdropFilter: 'blur(5px)'
                 }}>
                     <h2>Your Codeforces Profile</h2>
-                    <h4>Your current Codeforces handle is : {cf}</h4>
+                    <h4>Handle : {cf}</h4>
                     {
                         cf
                         &&
@@ -464,7 +464,7 @@ function Profile() {
                     // backdropFilter: 'blur(5px)'
                 }}>
                     <h2 stle={{ marginTop: '1.424rem' }}>Your CodeChef Profile</h2>
-                    <h4>Your current Codechef handle is : {cc}</h4>
+                    <h4>Handle : {cc}</h4>
 
                     {
                         cc
