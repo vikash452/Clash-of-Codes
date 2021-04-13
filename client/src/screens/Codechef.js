@@ -167,7 +167,7 @@ function Codechef()
     else
     {
         return (
-            <div style={{marginTop:'40px'}}>
+            <div style={{marginTop:'100px'}}>
             {/* <div style={{backgroundImage:`url(${Pre})`, height:'700px' , width:'800px', margin:'auto'}}></div> */}
                 <div className="preloader-wrapper big active" style={{marginBottom:'400px'}}>
                     <div className="spinner-layer spinner-blue-only">
