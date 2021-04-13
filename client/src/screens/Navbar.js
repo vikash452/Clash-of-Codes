@@ -322,11 +322,16 @@ function Navbar() {
                 <Link to='/dsa'>DSA</Link>
                 <Link to='/contest'>Contest</Link>
                 <span className='dropdown-trigger' href='#' data-target='dropdown1'>
-                {/* <a className='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> */}
                     Compare
                     <ul id='dropdown1' className='dropdown-content' style={{width:'fit-content'}}>
                         <li><Link to='/compareCodeforces'>Codeforces</Link></li>
                         <li><Link to='/compareCodechef'>Codechef</Link></li>
+                    </ul>
+                </span>
+                <span className='dropdown-trigger' href='#' data-target='dropdown2'>
+                    Practice
+                    <ul id='dropdown2' className='dropdown-content' style={{width:'fit-content'}}>
+                        <li><Link to='/codeforcesPractice'>Codeforces</Link></li>
                     </ul>
                 </span>
                 <span style={{cursor:'pointer'}} onClick={()=>{Logout()}}>Logout</span>
