@@ -1505,3 +1505,59 @@ div.compareTable table tbody tr td {
     border: 10px black solid;
     opacity: 0.8;
 }
+
+.DSA-div{
+    margin: 7rem 2rem 0rem;
+    padding: 20px;
+}
+.DSA-div .msg{
+    font-size: 2.2rem;
+    position: relative;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.DSA-div .content >h3{
+    font-size: 1.8rem;
+}
+
+.DSA-div .content .options{
+    padding: 30px;
+    /* width: 400px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.DSA-div .content .options .select-wrapper{
+    width: 350px;
+}
+.DSA-div .content .button-class{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 0 5rem;
+}
+.DSA-div .content .button-class .blobby-button{
+    font-size: 1.1rem;
+}
+.DSA-div .content .performance{
+    
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
+    border-radius: 15px;
+    background: rgba(230, 236, 233, 0.349);
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+}
+.DSA-div .content .performance .table-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6rem;
+}
