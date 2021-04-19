@@ -1561,3 +1561,24 @@ div.compareTable table tbody tr td {
     align-items: center;
     height: 6rem;
 }
+
+.practiceCard{
+    background-image: url('../images/cf.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+    height: 200px;
+    /* width: 200px; */
+    /* backdrop-filter: ; */
+}
+
+.card-text{
+    transform: translateY(-100px);
+    max-width: 300px;
+    font-size: 2.3vw;
+    font-family: 'Nova Round';
+    color:dimgray;
+    font-weight: bolder;
+}

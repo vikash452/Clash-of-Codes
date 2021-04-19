@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import BlobbyButton from './BlobbyButton'
 import UniqueSubmissions from './user_uniq_subms_cf'
+import './design.css';
 
 function CodeforcesPractice()
 {
@@ -13,7 +14,17 @@ function CodeforcesPractice()
     var [questions,setQuestions]=useState([])
 
     useEffect(()=>{
-        var temp=['greedy','dp','dfs','brute force','implementation', 'remainder theorem', 'constructive algorithms']
+        var temp=['greedy',
+        'dp',
+        'dfs',
+        'brute force',
+        'implementation', 
+        'remainder theorem', 
+        'constructive algorithms',
+        '2-sat',
+        'binary search',
+        'bitmasks',
+    ]
         setAvailableTopics(temp)
         var user=JSON.parse(localStorage.getItem('user'))
         if(user.codeforces === null || user.codeforces === null)
@@ -134,13 +145,18 @@ function CodeforcesPractice()
                     }
                 }
             })
-            console.log(rating_wise_map)
-            console.log(initialRating)
-            console.log(rating_wise_map.has(initialRating))
+            // console.log(rating_wise_map)
+            // console.log(typeof(parseInt(initialRating)))
+            // console.log(rating_wise_map.has(initialRating))
+            var rat=(parseInt(initialRating))
+            rating_wise_map.forEach((value,key)=>{
+                console.log(typeof(key))
+            })
+
             var temp_questions=[];
             for(var i=0; i<6; ++i)
             {
-                temp_questions.push(rating_wise_map.get(initialRating)[i])
+                temp_questions.push(rating_wise_map.get(rat)[i])
             }
             console.log(temp_questions)
             setQuestions(temp_questions)
@@ -188,7 +204,7 @@ function CodeforcesPractice()
                 {/* FOR TOPIC WISE */}
                 
                 
-                <div style={{width:'400px', border:'7px solid black'}}>
+                <div style={{width:'400px', border:'7px solid black', maxHeight:'300px', overflowY:'scroll'}}>
                         <h4>Available topics</h4>
                         {
                             availableTopics.map((top)=>{
@@ -207,7 +223,7 @@ function CodeforcesPractice()
                         
                     </div>
 
-                <div style={{width:'400px', border:'7px solid black'}}>
+                <div style={{width:'400px', border:'7px solid black', maxHeight:'300px', overflowY:'scroll'}}>
                     <h4>Selected topics</h4>
                         {
                             selectedTopics.map((top)=>{
@@ -230,7 +246,7 @@ function CodeforcesPractice()
             </div>
             
             <div>
-                <div className='row' >
+                <div className='row' style={{justifyContent:'center'}}>
                     {
 
                         questions.map(ques => {
@@ -238,10 +254,12 @@ function CodeforcesPractice()
                                 <div className='card' key={ques.name}>
                                     <a className='col s4 m4' href={`https://codeforces.com/contest/${ques.contestId}/problem/${ques.index}`}
                                         target='_blank'
-                                    >
-                                        <div className='card-content card-panel hoverable yellow' style={{ height: '200px' }}>
-                                            <span className='card-title'><span className="card-text"><strong>{ques.name}</strong></span></span>
+                                    >   
+                                        <div className='practiceCard'>
+
                                         </div>
+                                        <div className='card-text'><span>{ques.name} </span></div>
+                                        
                                     </a>
                                 </div>
                             )
