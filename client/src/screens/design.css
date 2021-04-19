@@ -1563,22 +1563,27 @@ div.compareTable table tbody tr td {
 }
 
 .practiceCard{
+    /* background-image: url('../images/cf.jpg'); */
     background-image: url('../images/cf.jpg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    filter: blur(2px);
-    -webkit-filter: blur(2px);
     height: 200px;
-    /* width: 200px; */
-    /* backdrop-filter: ; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
 }
 
 .card-text{
-    transform: translateY(-100px);
-    max-width: 300px;
+    max-width:fit-content;
     font-size: 2.3vw;
     font-family: 'Nova Round';
     color:dimgray;
     font-weight: bolder;
+    /* margin-left: 40px; */
+    background-color:#ffffff;
+    opacity: 0.6;
+    border: 1px solid black;
 }

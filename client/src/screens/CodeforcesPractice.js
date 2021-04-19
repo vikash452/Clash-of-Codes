@@ -256,9 +256,15 @@ function CodeforcesPractice()
                                         target='_blank'
                                     >   
                                         <div className='practiceCard'>
-
+                                            <span className='card-text'>{ques.name}
+                                            <br/>
+                                            {
+                                                ques.tags.map((tag)=>{
+                                                    return <span style={{fontSize:'15px', fontWeight:'lighter'}} key={ques.name+tag}>{tag}, </span>
+                                                })
+                                            }
+                                            </span>
                                         </div>
-                                        <div className='card-text'><span>{ques.name} </span></div>
                                         
                                     </a>
                                 </div>
