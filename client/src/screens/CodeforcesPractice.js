@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import BlobbyButton from './BlobbyButton'
 import UniqueSubmissions from './user_uniq_subms_cf'
 import './design.css';
+import M from 'materialize-css'
 
 function CodeforcesPractice()
 {
@@ -12,6 +13,7 @@ function CodeforcesPractice()
     var [selectedTopics , setSelectedTopics]=useState([]);
     var [handle,setHandle]=useState('')
     var [questions,setQuestions]=useState([])
+    var [increasing,setIncreasing]=useState(false)
 
     useEffect(()=>{
         var temp=['greedy',
@@ -171,9 +173,52 @@ function CodeforcesPractice()
     //     // console.log(selectedTopics)
     // },[availableTopics,selectedTopics])
     return (
-        <div>
-            <div style={{marginTop:'100px', display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center'}}>
+        <div style={{display:'flex', flexDirection:'row', marginTop:'100px'}}>
+
+            <div style={{borderRight:'5px solid white', width:'70vw'}}>
+                <div>
+                    {
+                        questions.map((ques)=>{
+                            return (
+                                <a 
+                                key={ques.contestId + ques.index} 
+                                href={`https://codeforces.com/contest/${ques.contestId}/problem/${ques.index}`} 
+                                target='_blank'
+                                >
+                                    <div className='card-text' style={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginTop:'20px'}}>
+                                        <div>
+                                            {ques.name}
+                                        </div>
+                                        <div style={{fontSize:'15px'}}>
+                                            Rating : {ques.rating}
+                                        </div>
+                                        <div>
+                                        {
+                                        ques.tags.map((tag)=>{
+                                            return (
+                                                <h6 key={ques.contestId + ques.index + tag}>
+                                                    {tag}, 
+                                                </h6>
+                                            )
+                                            })
+                                        }
+                                        </div>
+                                    </div>
+                                </a>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+            <div style={{marginTop:'', display:'flex', flexDirection:'column', justifyContent:'space-evenly', alignItems:'center'}}>
                 
+                <div>
+                    <button>
+                        Get daily mix   
+                    </button>
+                </div>
+
                 <div style={{maxWidth:'fit-content', display:'flex', flexDirection:'column', alignItems:'center'}}>
                     <h6>
                         Select rating of questions
@@ -193,7 +238,17 @@ function CodeforcesPractice()
                             <option value={1600}>1600</option>
                         </select>
                     </h6>
-                    <div style={{marginTop:'20px'}}>
+                    
+                    <label>
+                        <input type='checkbox' checked={!increasing} 
+                        onChange={()=>{
+                            setIncreasing(!increasing)
+                        }}
+                        />
+                        <span style={{fontSize:'20px', color:'white'}}>increasing</span>
+                    </label>
+
+                    <div style={{marginTop:'20px', marginBottom:'20px'}}>
                     <button className='blobby-button' onClick={()=>{getQuestions_custom()}}>
                     Get Questions
                     <BlobbyButton/>
@@ -204,7 +259,7 @@ function CodeforcesPractice()
                 {/* FOR TOPIC WISE */}
                 
                 
-                <div style={{width:'400px', border:'7px solid black', maxHeight:'300px', overflowY:'scroll'}}>
+                <div style={{width:'370px', border:'7px solid black', maxHeight:'250px', overflowY:'scroll'}}>
                         <h4>Available topics</h4>
                         {
                             availableTopics.map((top)=>{
@@ -223,7 +278,7 @@ function CodeforcesPractice()
                         
                     </div>
 
-                <div style={{width:'400px', border:'7px solid black', maxHeight:'300px', overflowY:'scroll'}}>
+                <div style={{width:'370px', border:'7px solid black', maxHeight:'250px', overflowY:'scroll'}}>
                     <h4>Selected topics</h4>
                         {
                             selectedTopics.map((top)=>{
@@ -245,6 +300,8 @@ function CodeforcesPractice()
                   
             </div>
             
+            
+            {/* 
             <div>
                 <div className='row' style={{justifyContent:'center'}}>
                     {
@@ -273,7 +330,7 @@ function CodeforcesPractice()
                     }
                 </div>
             </div>
-
+            */}
         </div>
     )
 }
