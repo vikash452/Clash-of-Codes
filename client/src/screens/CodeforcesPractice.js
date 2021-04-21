@@ -14,6 +14,7 @@ function CodeforcesPractice()
     var [handle,setHandle]=useState('')
     var [questions,setQuestions]=useState([])
     var [increasing,setIncreasing]=useState(false)
+    var [pre, setPre]=useState(false)
 
     useEffect(()=>{
         var temp=['greedy',
@@ -27,6 +28,9 @@ function CodeforcesPractice()
         'binary search',
         'bitmasks',
     ]
+
+        var tooltip_elem=document.querySelectorAll('.tooltipped')
+        M.Tooltip.init(tooltip_elem)
         setAvailableTopics(temp)
         var user=JSON.parse(localStorage.getItem('user'))
         if(user.codeforces === null || user.codeforces === null)
@@ -36,6 +40,7 @@ function CodeforcesPractice()
         else
         {
             setHandle(user.codeforces)
+            getQuestions_dailyMix(user.codeforces)
         }
         
     },[])
@@ -102,11 +107,14 @@ function CodeforcesPractice()
         setSelectedTopics(temp2)
     }
 
-    function URLmaker()
+    function URLmaker(checker)
     {
         var url='https://codeforces.com/api/problemset.problems'
         if(selectedTopics.length == 0)
             return url;
+
+        if(checker == 0)
+        return url    
 
         url += '?tags='
         selectedTopics.forEach((top)=>{
@@ -119,11 +127,12 @@ function CodeforcesPractice()
 
     async function getQuestions_custom()
     {
+        setPre(true)
         var t=await UniqueSubmissions(handle)
         // console.log(t)
         var rating_wise_map=new Map();
         var questions=[];
-        var url=URLmaker();
+        var url=URLmaker(1);
         fetch(url)
         .then(res=>res.json())
         .then((data)=>{
@@ -147,7 +156,7 @@ function CodeforcesPractice()
                     }
                 }
             })
-            // console.log(rating_wise_map)
+            console.log(rating_wise_map)
             // console.log(typeof(parseInt(initialRating)))
             // console.log(rating_wise_map.has(initialRating))
             var rat=(parseInt(initialRating))
@@ -156,16 +165,73 @@ function CodeforcesPractice()
             })
 
             var temp_questions=[];
-            for(var i=0; i<6; ++i)
+            for(var i=0; i<8; ++i)
             {
+                if(rating_wise_map.has(rat)[i])
                 temp_questions.push(rating_wise_map.get(rat)[i])
+                if(increasing && rat < 3400)
+                rat+=100
             }
             console.log(temp_questions)
             setQuestions(temp_questions)
+            setPre(false)
         })
         .catch((err)=>{
             console.log(err)
         })
+    }
+
+    async function getQuestions_dailyMix(handle)
+    {
+        setPre(true)
+        var t=await UniqueSubmissions(handle)
+        // console.log(t)
+        var rating_wise_map=new Map();
+        var questions=[];
+
+        var url=URLmaker(0);
+        // console.log(url)
+        var fetch_var = await fetch(url)
+        var data = await fetch_var.json()
+        
+        data.result.problems.forEach((ques)=>{
+            var unique=ques.contestId.toString() + ques.index;
+            if(!t.has(unique))
+            {
+                var quesRating=ques.rating;
+                if(rating_wise_map.has(quesRating))
+                {
+                    var newArr=rating_wise_map.get(quesRating)
+                    newArr.push(ques)
+                    rating_wise_map.set(quesRating,newArr)
+                }
+                else
+                {
+                    var newArr=new Array()
+                    newArr.push(ques)
+                    rating_wise_map.set(quesRating,newArr)
+                }
+            }
+        })
+
+        var fetch_var2 = await fetch(`https://codeforces.com/api/user.info?handles=${handle}`)
+        var user_cf_data = await fetch_var2.json()
+        console.log(user_cf_data)
+        var rat=(Math.floor(user_cf_data.result[0].rating / 100))*100 - 100;
+        rat = Math.max(rat,800)
+
+        console.log(rat)
+        var temp_questions=[];
+        for(var i=0; i<8; ++i)
+        {
+            temp_questions.push(rating_wise_map.get(rat)[i])
+            if(rat < 3400 && i%2 == 0)
+            rat+=100
+        }
+
+        setQuestions(temp_questions)
+        setPre(false)
+
     }
 
     // useEffect(()=>{
@@ -176,47 +242,82 @@ function CodeforcesPractice()
         <div style={{display:'flex', flexDirection:'row', marginTop:'100px'}}>
 
             <div style={{borderRight:'5px solid white', width:'70vw'}}>
-                <div>
-                    {
-                        questions.map((ques)=>{
-                            return (
-                                <a 
-                                key={ques.contestId + ques.index} 
-                                href={`https://codeforces.com/contest/${ques.contestId}/problem/${ques.index}`} 
-                                target='_blank'
-                                >
-                                    <div className='card-text' style={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginTop:'20px'}}>
-                                        <div>
-                                            {ques.name}
+                
+                {
+                    pre
+                    ?
+                    <div style={{marginTop:'100px'}}>
+                        <div className="preloader-wrapper big active" style={{marginBottom:''}}>
+                            <div className="spinner-layer spinner-blue-only">
+                                <div className="circle-clipper left">
+                                    <div className="circle"></div>
+                                </div>
+                                <div className="gap-patch">
+                                    <div className="circle"></div>
+                                </div>
+                                <div className="circle-clipper right">
+                                    <div className="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>...We are cooking something for you...</h3>
+                        <h4>...Till then you can sanitize your hands...</h4>
+                        <h4>...Let's give &#128520; a compilation error...</h4>
+                    </div>
+                    :     
+                    <div>
+                        {
+                            questions.map((ques)=>{
+                                return (
+                                    <a 
+                                    key={ques.contestId + ques.index} 
+                                    href={`https://codeforces.com/contest/${ques.contestId}/problem/${ques.index}`} 
+                                    target='_blank'
+                                    >
+                                        <div className='card-text' style={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginTop:'20px'}}>
+                                            <div>
+                                                {ques.name}
+                                            </div>
+                                            <div style={{fontSize:'15px'}}>
+                                                Rating : {ques.rating}
+                                            </div>
+                                            <div>
+                                            {
+                                            ques.tags.map((tag)=>{
+                                                return (
+                                                    <h6 key={ques.contestId + ques.index + tag}>
+                                                        {tag}, 
+                                                    </h6>
+                                                )
+                                                })
+                                            }
+                                            </div>
                                         </div>
-                                        <div style={{fontSize:'15px'}}>
-                                            Rating : {ques.rating}
-                                        </div>
-                                        <div>
-                                        {
-                                        ques.tags.map((tag)=>{
-                                            return (
-                                                <h6 key={ques.contestId + ques.index + tag}>
-                                                    {tag}, 
-                                                </h6>
-                                            )
-                                            })
-                                        }
-                                        </div>
-                                    </div>
-                                </a>
-                            )
-                        })
-                    }
-                </div>
+                                    </a>
+                                )
+                            })
+                        }
+                    </div>
+                }
             </div>
 
             <div style={{marginTop:'', display:'flex', flexDirection:'column', justifyContent:'space-evenly', alignItems:'center'}}>
                 
-                <div>
-                    <button>
+                <div style={{display:'flex' , flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+                    <button className='blobby-button' onClick={()=>{getQuestions_dailyMix(handle)}}>
                         Get daily mix   
+                        <BlobbyButton/>
                     </button>
+                    <i 
+                    className='material-icons small tooltipped'
+                    style={{cursor:'pointer', marginLeft:'10px'}}
+                    data-position='top'
+                    data-tooltip="
+                    This will select the questions around and slightly above your rating
+                    "
+                    >
+                        help_outline
+                    </i>
                 </div>
 
                 <div style={{maxWidth:'fit-content', display:'flex', flexDirection:'column', alignItems:'center'}}>
@@ -240,12 +341,23 @@ function CodeforcesPractice()
                     </h6>
                     
                     <label>
-                        <input type='checkbox' checked={!increasing} 
+                        <input type='checkbox' checked={increasing} 
                         onChange={()=>{
                             setIncreasing(!increasing)
                         }}
                         />
-                        <span style={{fontSize:'20px', color:'white'}}>increasing</span>
+                        <span style={{fontSize:'20px', color:'white'}}>
+                            increasing 
+                            <i className='material-icons small tooltipped'
+                            data-position='top'
+                            data-tooltip="When selected the questions will be in increasing order. Suppose 
+                            if 1st question is selected to be of 1000 rating then 2nd will be of 1100,
+                            3rd will be of 1100 and so on
+                            "
+                            >
+                                help_outline
+                            </i>
+                        </span>
                     </label>
 
                     <div style={{marginTop:'20px', marginBottom:'20px'}}>

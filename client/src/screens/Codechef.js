@@ -96,7 +96,7 @@ function Codechef()
     if(content)
     {
         return (
-            <div className='row codechefParent' style={{marginTop:'40px'}}>
+            <div className='row codechefParent' style={{marginTop:'100px'}}>
                 <div className='codechefCard initialDetailsCard col s12 m12 l12 xl12 '>
                     <span>{content.fullname}</span>
                     <br/>
@@ -168,8 +168,7 @@ function Codechef()
     {
         return (
             <div style={{marginTop:'100px'}}>
-            {/* <div style={{backgroundImage:`url(${Pre})`, height:'700px' , width:'800px', margin:'auto'}}></div> */}
-                <div className="preloader-wrapper big active" style={{marginBottom:'400px'}}>
+                <div className="preloader-wrapper big active" style={{marginBottom:''}}>
                     <div className="spinner-layer spinner-blue-only">
                         <div className="circle-clipper left">
                             <div className="circle"></div>
@@ -182,6 +181,9 @@ function Codechef()
                         </div>
                     </div>
                 </div>
+                <h3>...We are cooking something for you...</h3>
+                <h4>...Till then you can sanitize your hands...</h4>
+                <h4>...Let's give &#128520; a compilation error...</h4>
             </div>
         )
     }

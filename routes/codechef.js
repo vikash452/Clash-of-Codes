@@ -322,10 +322,16 @@ router.get('/codechef/upcomingContests',passport.authenticate('jwt'),(req,res)=>
   //THIS IS HARDCODED FROM CODECHEF API
   var contestList=[
     {
-      "code": "CRTN2021",
-      "name": "Cryptothon",
-      "startDate": "2021-04-06 18:00:00",
-      "endDate": "2021-04-07 18:00:00"
+      "code": "START3",
+      "name": "April CodeChef Starters 2021 (Rated for Div 3)",
+      "startDate": "2021-04-25 16:00:00",
+      "endDate": "2021-04-25 19:00:00"
+    },
+    {
+      "code": "LTIME95",
+      "name": "April Lunchtime 2021",
+      "startDate": "2021-04-24 19:30:00",
+      "endDate": "2021-04-24 22:30:00"
     }
   ]
   res.status(200).json(contestList);
