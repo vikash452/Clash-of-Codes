@@ -274,7 +274,7 @@ function CodeforcesPractice()
                                     href={`https://codeforces.com/contest/${ques.contestId}/problem/${ques.index}`} 
                                     target='_blank'
                                     >
-                                        <div className='card-text' style={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginTop:'20px'}}>
+                                        <div className='card-text' style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center', marginTop:'20px'}}>
                                             <div>
                                                 {ques.name}
                                             </div>

@@ -168,42 +168,76 @@ function DSA() {
                     </button>
                 </div>
 
-                    <h3> Your past performance </h3>
-                <div className="performance" style={{ 
+                <h3> Your past performance </h3>
+                <div className="performance" style={{
                     // backgroundColor: 'whitesmoke',
                     //  color: 'blueviolet', 
                     //  marginLeft: '10%', 
                     //  marginRight: '10%', 
                     //  opacity: '0.8', 
                     //  boxShadow: '5px 5px 15px black'
-                      }}>
-                    <table>
+                }}>
+                    <table className="questions">
                         <thead>
                             <tr className="table-header">
-                                <td style={{ width: '20%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><h4>S.No</h4></td>
-                                <td style={{ width: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><h4>Question</h4></td>
-                                <td style={{ width: '30%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><h4>Status</h4></td>
+                                <td className="col1" ><h4>S.No</h4></td>
+                                <td className="col1" ><h4>Question</h4></td>
+                                <td className="col1" ><h4>Status</h4></td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="data">
                             {
                                 questions.map((item, index) => {
                                     var questionID = item._id
                                     return (
                                         <tr key={questionID}>
-                                            <td style={{ width: '20%' }}><h5>{index + 1}</h5></td>
-                                            <td style={{ width: '50%' }}><h5><a href={item.url} target='_blank'>{item.questionName}</a></h5></td>
-                                            <td style={{ width: '30%' }}>
+                                            <td style={{}}><h5>{index + 1}</h5></td>
+                                            <td style={{}}><h5><a href={item.url} target='_blank' style={{
+                                                color: '#000'
+                                            }}>{item.questionName}</a></h5></td>
+                                            <td style={{ textAlign: 'center' }}>
                                                 {
                                                     alreadySolved.includes(item._id)
                                                         ?
-                                                        <h5><span><i className='material-icons'>done</i>Already Done <button onClick={() => {
+                                                        <h5 style={{
+                                                            fontFamily: '"Nova Round", cursive',
+                                                            textAlign: 'center',
+                                                            display: 'flex',
+                                                            justifyContent: 'center',
+                                                            alignItems: 'center'
+                                                        }}><span style={{ 
+                                                            borderRadius: '5px',
+                                                            display: 'flex',
+                                                            justifyContent: 'center',
+                                                            alignItems: 'center',
+                                                            flexDirection: 'row'
+                                                    }}><i className='material-icons small' style={{background: '#67ff02',}}>done</i><h5 style={{margin: '0', padding: '1px 6px'}}>Already Done</h5>  </span><button onClick={() => {
                                                             Undone(questionID)
-                                                        }}>Undone</button> </span></h5>
+                                                        }}
+                                                        style={{
+                                                            cursor: 'pointer',
+                                                            border: 'none',
+                                                            borderRadius: '5px',
+                                                            background: 'rgba(230, 236, 233, 0.8)',
+                                                            color: '#000'
+                                                        }}>Undone</button> </h5>
                                                         :
                                                         <button onClick={() => {
                                                             MarkAsDone(questionID)
-                                                        }} ><h5><i className='material-icons medium'>edit</i>Mark as Done</h5> </button>
+                                                        }}
+                                                        style={{
+                                                            cursor: 'pointer',
+                                                            border: 'none',
+                                                            borderRadius: '5px',
+                                                            background: 'rgba(230, 236, 233, 0.5)',
+                                                            color: '#000'
+                                                        }}><h5 style={{
+                                                            fontFamily: '"Nova Round", cursive',
+                                                            textAlign: 'center',
+                                                            display: 'flex',
+                                                            justifyContent: 'center',
+                                                            alignItems: 'center'
+                                                        }}><i className='material-icons small'>edit</i>Mark as Done</h5> </button>
 
                                                 }
                                             </td>

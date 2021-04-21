@@ -1121,6 +1121,7 @@ input {
     margin-left: 0px !important;
     font-size: 30px;
     background: rgba(230, 236, 233, 0.35);
+    
     color: #e6ff02;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 15px !important;
@@ -1555,13 +1556,28 @@ div.compareTable table tbody tr td {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
 }
-.DSA-div .content .performance .table-header{
-    display: flex;
+.DSA-div .content .performace .questions{
+    width: 90%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.DSA-div .content .performance .questions .table-header{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    height: 6rem;
+    text-align: center;
+}
+td{
+    text-align: center;
+}
+.DSA-div .content .performance .questions .table-header .col1{
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    height: 6rem;
+    flex-direction: row; */
+    padding: 10px 70px;
 }
-
 .practiceCard{
     /* background-image: url('../images/cf.jpg'); */
     background-image: url('../images/cf.jpg');
@@ -1579,7 +1595,7 @@ div.compareTable table tbody tr td {
 .card-text{
     /* max-width:fit-content; */
     font-size: 2.3vw;
-    font-family: 'Nova Round';
+    font-family: 'Nova Round', cursive;
     color:dimgray;
     font-weight: bolder;
     /* margin-left: 40px; */
