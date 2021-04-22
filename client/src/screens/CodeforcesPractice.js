@@ -133,6 +133,7 @@ function CodeforcesPractice()
         var rating_wise_map=new Map();
         var questions=[];
         var url=URLmaker(1);
+        console.log(url)
         fetch(url)
         .then(res=>res.json())
         .then((data)=>{
@@ -167,8 +168,13 @@ function CodeforcesPractice()
             var temp_questions=[];
             for(var i=0; i<8; ++i)
             {
-                if(rating_wise_map.has(rat)[i])
-                temp_questions.push(rating_wise_map.get(rat)[i])
+                if(rating_wise_map.has(rat))
+                {
+                    var qArray=rating_wise_map.get(rat)
+                    if(qArray.length > 0 && qArray[i] != undefined && qArray[i]!=null)
+                        temp_questions.push(qArray[i])
+                }
+                // temp_questions.push(rating_wise_map.get(rat)[i])
                 if(increasing && rat < 3400)
                 rat+=100
             }
