@@ -55,7 +55,19 @@ function(accessToken, refreshToken, profile, done) {
     .then((foundUser)=>{
         if(foundUser)
         {
-            return done(null,foundUser)
+            if(foundUser.verified == false)
+            {
+                foundUser.googleId=profile.id;
+                foundUser.email=emailID;
+                foundUser.name=profile.displayName;
+                foundUser.verified=true;
+                foundUser.save()
+                .then((savedUser)=>{
+                    return done(null,savedUser)
+                })
+            }
+            else
+                return done(null,foundUser)
         }
         else
         {

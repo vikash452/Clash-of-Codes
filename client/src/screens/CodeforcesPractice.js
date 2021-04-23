@@ -19,7 +19,7 @@ function CodeforcesPractice()
     useEffect(()=>{
         var temp=['greedy',
         'dp',
-        'dfs',
+        'dfs and similar',
         'brute force',
         'implementation', 
         'remainder theorem', 
@@ -27,6 +27,17 @@ function CodeforcesPractice()
         '2-sat',
         'binary search',
         'bitmasks',
+        'data structures',
+        'divide and conquer',
+        'geometry',
+        'graphs',
+        'number theory',
+        'probabilities',
+        'sortings',
+        'strings',
+        'ternary search',
+        'trees',
+        'two pointers'
     ]
 
         var tooltip_elem=document.querySelectorAll('.tooltipped')
@@ -382,11 +393,11 @@ function CodeforcesPractice()
                         {
                             availableTopics.map((top)=>{
                             return (
-                                    <div key={top} className='chip' style={{cursor:'pointer'}}>
-                                        <span style={{fontSize:'17px'}} onClick={()=>{
+                                    <div key={top} className='chip' style={{cursor:'pointer'}} onClick={()=>{
                                         console.log(top)
                                         Change1(top)
                                         }}>
+                                        <span style={{fontSize:'17px'}} >
                                         {top}
                                         </span>
                                     </div>
@@ -403,11 +414,11 @@ function CodeforcesPractice()
                                 // console.log(top) 
                                 // console.log(availableTopics.length)
                             return (
-                                    <div key={top} className='chip' style={{cursor:'pointer'}} >
-                                        <span style={{fontSize:'17px' }} onClick={()=>{
+                                    <div key={top} className='chip' style={{cursor:'pointer'}} onClick={()=>{
                                         console.log(top)
                                         Change2(top)
-                                        }}>
+                                        }} >
+                                        <span style={{fontSize:'17px' }} >
                                         {top}
                                         </span>
                                     </div>
@@ -418,37 +429,6 @@ function CodeforcesPractice()
                   
             </div>
             
-            
-            {/* 
-            <div>
-                <div className='row' style={{justifyContent:'center'}}>
-                    {
-
-                        questions.map(ques => {
-                            return (
-                                <div className='card' key={ques.name}>
-                                    <a className='col s4 m4' href={`https://codeforces.com/contest/${ques.contestId}/problem/${ques.index}`}
-                                        target='_blank'
-                                    >   
-                                        <div className='practiceCard'>
-                                            <span className='card-text'>{ques.name}
-                                            <br/>
-                                            {
-                                                ques.tags.map((tag)=>{
-                                                    return <span style={{fontSize:'15px', fontWeight:'lighter'}} key={ques.name+tag}>{tag}, </span>
-                                                })
-                                            }
-                                            </span>
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-            */}
         </div>
     )
 }
