@@ -110,7 +110,7 @@ function Navbar() {
                         </a>
                     </li>
                     
-                    <li className="Heading-navbar" style={{position: 'absolute'}}>
+                    <li className="Heading-navbar" style={{width: '100%',position: 'absolute', alignItems: 'center'}}>
                         <div className="heading">
                             {/* <Link to="/home" style={{ fontSize: '4.7vw', margin: 'auto' }}>CLASH OF CODES</Link> */}
                             <Link to="/home" className="heading-content">CLASH OF CODES</Link>

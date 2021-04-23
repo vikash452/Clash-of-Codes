@@ -28,7 +28,7 @@ function Codeforces(){
     const [intermediateTopics, setIntermediateTopics] = useState([])
     const [strongTopics, setStrongTopics] = useState([])
     var user;
-
+    const [username, setusername] = useState();
     useEffect(()=>{
         user=JSON.parse(localStorage.getItem('user'))
         if(!user)
@@ -36,13 +36,15 @@ function Codeforces(){
             history.push('/signin')
         }
         setHandle(user.codeforces)
-        
+        // username = user.name;
+        setusername(user.name);
         if(user.codeforces)
         trigger_after_page_loading()
         else
         {
             history.push('/profile')
         }
+        console.log(username);
     },[handle]);
 
     function FillQuestionByRating(questions_by_rating_map)
@@ -68,7 +70,7 @@ function Codeforces(){
                         text: "Rating wise submissions",
                         fontSize :30,
                         fontColor : "White",
-                        fontFamily: "Helvetica",
+                        fontFamily: "'Nova Round', cursive",
                         horizontalAlign : "center",
                         padding: 5,
 			        },
@@ -78,7 +80,9 @@ function Codeforces(){
                         labelAutoFit:true,
                         labelFontSize:15,
                         labelFontColor:'White',
+                        labelFontFamily: "'Nova Round', cursive",
                         titleFontColor:'White',
+                        titleFontFamily: "'Nova Round', cursive",
                         lineColor:'White',
 			        },
 			        axisY: {
@@ -86,7 +90,9 @@ function Codeforces(){
                         labelAutoFit:true,
                         labelFontSize:15,
                         labelFontColor:'White',
+                        labelFontFamily: "'Nova Round', cursive",
                         titleFontColor:'White',
+                        titleFontFamily: "'Nova Round', cursive",
                         lineColor:'White',
                     },
                     height : 500,
@@ -201,7 +207,7 @@ function Codeforces(){
                         text: "Questions done per day",
                         fontSize :30,
                         fontColor : "White",
-                        fontFamily: "Helvetica",
+                        fontFamily: "'Nova Round', cursive",
                         horizontalAlign : "center",
                         padding: 5,
 			        },
@@ -211,7 +217,9 @@ function Codeforces(){
                         labelAutoFit:true,
                         labelFontSize:15,
                         labelFontColor:'White',
+                        labelFontFamily: "'Nova Round', cursive",
                         titleFontColor:'White',
+                        titleFontFamily: "'Nova Round', cursive",
                         lineColor:'White',
 			        },
 			        axisY: {
@@ -219,7 +227,9 @@ function Codeforces(){
                         labelAutoFit:true,
                         labelFontSize:15,
                         labelFontColor:'White',
+                        labelFontFamily: "'Nova Round', cursive",
                         titleFontColor:'White',
+                        titleFontFamily: "'Nova Round', cursive",
                         lineColor:'White',
                     },
                     height : 500,
@@ -264,10 +274,10 @@ function Codeforces(){
                     backgroundColor:'rgba(0,0,0,0)',
                     lineColor:'White',
 			        title:{
-                        text: "Your Overall Codeforces performance",
+                        text: "Your Question wise performance",
                         fontSize :30,
                         fontColor : "White",
-                        fontFamily: "Helvetica",
+                        fontFamily: "'Nova Round', cursive",
                         horizontalAlign : "center",
                         padding: 5,
                         //borderThickness: 2,
@@ -280,12 +290,17 @@ function Codeforces(){
                         labelFontSize:20,
                         interval:1,
                         labelFontColor:'White',
+                        labelFontFamily: "'Nova Round', cursive",
+
                         tickLength: 1,
                         titleFontColor:'White',
+                        titleFontFamily: "'Nova Round', cursive",
+
                         // labelMaxWidth: 70
 			        },
 			        axisY: {
 			        	title: "Number of Questions successfully solved",
+                        titleFontFamily: "'Nova Round', cursive",
 			        	includeZero: true,
                         labelFontSize:20,
                         // interval:1,
@@ -293,6 +308,8 @@ function Codeforces(){
                         // tickLength: 1,
                         labelMaxWidth: 70,
                         labelFontColor:'White',
+                        labelFontFamily: "'Nova Round', cursive",
+
                         titleFontColor:'White',
                     },
                     height : 700,
@@ -357,7 +374,7 @@ function Codeforces(){
                         text: "Your rating change",
                         fontSize :30,
                         fontColor : "White",
-                        fontFamily: "Helvetica",
+                        fontFamily: "'Nova Round', cursive",
                         horizontalAlign : "center",
                         padding: 5,
 			        },
@@ -395,52 +412,53 @@ function Codeforces(){
 
     return (
         
-        <div>
-            <h2 style={{marginTop: '8rem'}}>You have done {totalQuestions} questions</h2>
+        <div className="Codeforces-div">
+            <h2 style={{marginTop: '8rem', fontSize: '2.7rem'}}>Hi {username},<br></br> You have done {totalQuestions} questions on Codeforces</h2>
 
-            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
+            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'100px'}}>
                 <CanvasJSChart options = {options3}/>
             </div>
 
-    	    <div style={{height:'800px' , marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
+    	    <div style={{height:'800px' , marginLeft:'25px', marginRight:'25px', marginTop:'175px'}}>
                 <CanvasJSChart options = {options} />
             </div>
             
-            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
+            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'0px'}}>
                 <CanvasJSChart options = {options2}/>
             </div>
 
             
 
-            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'200px'}}>
+            <div style={{marginLeft:'25px', marginRight:'25px', marginTop:'175px'}}>
                 <CanvasJSChart options = {options4}/>
             </div>
             
             {/* <h4 style={{marginTop:'175px'}}>&#223;</h4>
             <h4>We are writing logics to improve the selection of strong, weak, intermediate topics &#128515;</h4>
             <h4>Till then, let us know how correct are we &#128521;</h4> */}
-
+            <div className="topics-container">
             <div className='strong-weak-topics' style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly'}}>
                 <div>
-                    <h4>Strong Topics</h4>
+                    <h4 className="div-heading">Strong Topics</h4>
                     {
                         strongTopics.map(item=>{
                             // console.log(item.label)
                             return (
-                                <div key={item.label}>
+                                <div key={item.label} className="item" style={{fontSize: '1.5rem'}}>
                                     {item.label}
                                 </div>
                             )
                         })
                     }
                 </div>
+
                 
                 <div>
-                    <h4>Intermediate Topics</h4>
+                    <h4 className="div-heading">Intermediate Topics</h4>
                     {
                         intermediateTopics.map((item)=>{
                             return (
-                                <div key={item.label}>
+                                <div key={item.label} className="item" style={{fontSize: '1.5rem'}}>
                                     {item.label}
                                 </div>
                             )
@@ -449,11 +467,11 @@ function Codeforces(){
                 </div>
 
                 <div>
-                    <h4>Weak Topics</h4>
+                    <h4 className="div-heading">Weak Topics</h4>
                     {
                         weakTopics.map((item)=>{
                             return (
-                                <div key={item.label}>
+                                <div key={item.label} className="item" style={{fontSize: '1.5rem'}}>
                                     {item.label}
                                 </div>
                             )
@@ -461,7 +479,7 @@ function Codeforces(){
                     }
                 </div>
             </div>
-
+            </div>
             <div style={{marginTop:'150px', marginLeft:'50px', marginRight:'50px'}}>
                 <h1>Unsolved Questions</h1>
                 {

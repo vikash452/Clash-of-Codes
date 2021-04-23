@@ -236,9 +236,9 @@ Link .waves-effect.waves-light.btn-large {
     align-items: center;
 }
 
-.Heading-navbar {
-    left: 23%;
-}
+/* .Heading-navbar {
+    /* left: 23%; */
+/* } */ 
 
 .heading .heading-content {
     font-size: 5rem;
@@ -1494,17 +1494,37 @@ div.compareTable table tbody tr td {
         font-size: 1rem;
     }
 }
-
+.Codeforces-div .topics-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Codeforces-div .topics-container .strong-weak-topics .div-heading{
+    font-size: 2.6rem;
+}
+.Codeforces-div .topics-container .strong-weak-topics .div-heading .item{
+    font-size: 5rem !important;
+}
 .strong-weak-topics{
+    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-top: 175px;
+    /* align-items: center; */
+    margin: 15rem 0 0;
+    /* margin-top: 175px;
     margin-left: 15px;
-    margin-right: 15px;
-    background-color: darkslategray;
+    margin-right: 15px; */
+    /* background-color: darkslategray;
     border: 10px black solid;
-    opacity: 0.8;
+    opacity: 0.8; */
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
+    border-radius: 15px;
+    background: rgba(230, 236, 233, 0.349);
+    overflow: hidden;
+    padding: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 .DSA-div{
