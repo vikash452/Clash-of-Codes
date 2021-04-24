@@ -256,9 +256,11 @@ function CodeforcesPractice()
     //     // console.log(selectedTopics)
     // },[availableTopics,selectedTopics])
     return (
-        <div style={{display:'flex', flexDirection:'row', marginTop:'100px'}}>
+        <div className="cfpractice-div">
+             {/* style={{display:'flex', flexDirection:'row', marginTop:'100px'}}> */}
 
-            <div style={{borderRight:'5px solid white', width:'70vw'}}>
+            <div className="cards-container">
+                {/* style={{borderRight:'5px solid white', width:'70vw'}}> */}
                 
                 {
                     pre
@@ -282,7 +284,7 @@ function CodeforcesPractice()
                         <h4>...Let's give &#128520; a compilation error...</h4>
                     </div>
                     :     
-                    <div>
+                    <div className="question-cards">
                         {
                             questions.map((ques)=>{
                                 return (
@@ -291,14 +293,17 @@ function CodeforcesPractice()
                                     href={`https://codeforces.com/contest/${ques.contestId}/problem/${ques.index}`} 
                                     target='_blank'
                                     >
-                                        <div className='card-text' style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center', marginTop:'20px'}}>
-                                            <div>
+                                        <div className='card-text'>
+                                             {/* style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignItems:'center', marginTop:'20px'}}> */}
+                                            <div className="ques-title">
                                                 {ques.name}
                                             </div>
-                                            <div style={{fontSize:'15px'}}>
+                                            <div className="ques-info"> 
+                                            {/* style={{fontSize:'15px'}}> */}
                                                 Rating : {ques.rating}
                                             </div>
-                                            <div>
+                                            <div className="ques-info" >
+                                                {/* <span>Tags: </span> */}
                                             {
                                             ques.tags.map((tag)=>{
                                                 return (

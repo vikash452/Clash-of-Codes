@@ -65,28 +65,28 @@ function Division()
     return (
         <div style={{marginTop:'100px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <div>
-                <h3>Select a contest type</h3>
-                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div1'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('div1')}}>Division 1</span>
-                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div2'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('div2')}}>Division 2</span>
-                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div3'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('div3')}}>Division 3</span>
-                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='ed'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('ed')}}>Educational Round</span>
-                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='global'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('global')}}>Global Round</span>
+                <h3 style={{fontWeight: '1.2rem'}}>Select a contest type</h3>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div1'?'lightgreen':'#e4e4e4', textAlign:'center'}} onClick={()=>{setContestType('div1')}}>Division 1</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div2'?'lightgreen':'#e4e4e4', textAlign:'center'}} onClick={()=>{setContestType('div2')}}>Division 2</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div3'?'lightgreen':'#e4e4e4', textAlign:'center'}} onClick={()=>{setContestType('div3')}}>Division 3</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='ed'?'lightgreen':'#e4e4e4', textAlign:'center'}} onClick={()=>{setContestType('ed')}}>Educational Round</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='global'?'lightgreen':'#e4e4e4', textAlign:'center'}} onClick={()=>{setContestType('global')}}>Global Round</span>
             </div>
 
-            <div style={{marginTop:'20px'}}>
-                <button className='blobby-button' onClick={()=>{GetAllContests()}}>
+            <div style={{marginTop:'5rem'}}>
+                <button className='blobby-button' onClick={()=>{GetAllContests()}} style={{fontSize:'1.2rem'}}>
                     Get Contests
                     <BlobbyButton/>
                 </button>
             </div>
 
-            <div style={{marginTop:'50px'}}>
+            <div style={{marginTop:'5rem'}}>
                 <div className='custom_row_of_table'>
-                    <div style={{display:'flex', flexDirection:'row'}}>
-                        <div className='cell_left'>
+                    <div style={{fontWeight: 'bold', width: '100%', display:'flex', flexDirection:'row', background:'rgba(230, 236, 233, 0.349)'}}>
+                        <div className='cell_left' style={{color: '#e6ff02', width: '70%'}}>
                             Contest
                         </div>
-                        <div className='cell_right'>
+                        <div className='cell_right' style={{color: '#e6ff02', width: '30%'}}>
                             Date
                         </div>
                     </div>
@@ -96,16 +96,16 @@ function Division()
                         toDisplay.map((cont)=>{
                             var d=new Date(cont.startTimeSeconds*1000).toDateString()
                             return (
-                                <div key={cont.id} style={{display:'flex', flexDirection:'row'}}>
+                                <div key={cont.id} style={{width: '100%',display:'flex', flexDirection:'row'}}>
 
-                                    <div className='cell_left'>
+                                    <div className='cell_left' style={{width: '70%'}}>
                                         <a style={{color:'white'}} href={`https://codeforces.com/contest/${cont.id}`} target='_blank'>
                                             {cont.name}
                                         </a>
                                         
                                     </div>
 
-                                    <div className='cell_right'>
+                                    <div className='cell_right'style={{width: '30%'}}>
                                         {d}
                                     </div>
                                          
