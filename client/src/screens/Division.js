@@ -66,11 +66,11 @@ function Division()
         <div style={{marginTop:'100px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <div>
                 <h3>Select a contest type</h3>
-                <span className='chip' style={{cursor:'pointer'}} onClick={()=>{setContestType('div1')}}>Division 1</span>
-                <span className='chip' style={{cursor:'pointer'}} onClick={()=>{setContestType('div2')}}>Division 2</span>
-                <span className='chip' style={{cursor:'pointer'}} onClick={()=>{setContestType('div3')}}>Division 3</span>
-                <span className='chip' style={{cursor:'pointer'}} onClick={()=>{setContestType('ed')}}>Educational Round</span>
-                <span className='chip' style={{cursor:'pointer'}} onClick={()=>{setContestType('global')}}>Global Round</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div1'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('div1')}}>Division 1</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div2'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('div2')}}>Division 2</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div3'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('div3')}}>Division 3</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='ed'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('ed')}}>Educational Round</span>
+                <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='global'?'lightgreen':'#e4e4e4'}} onClick={()=>{setContestType('global')}}>Global Round</span>
             </div>
 
             <div style={{marginTop:'20px'}}>
@@ -81,7 +81,42 @@ function Division()
             </div>
 
             <div style={{marginTop:'50px'}}>
-                <table>
+                <div className='custom_row_of_table'>
+                    <div style={{display:'flex', flexDirection:'row'}}>
+                        <div className='cell_left'>
+                            Contest
+                        </div>
+                        <div className='cell_right'>
+                            Date
+                        </div>
+                    </div>
+                    
+
+                    {
+                        toDisplay.map((cont)=>{
+                            var d=new Date(cont.startTimeSeconds*1000).toDateString()
+                            return (
+                                <div key={cont.id} style={{display:'flex', flexDirection:'row'}}>
+
+                                    <div className='cell_left'>
+                                        <a style={{color:'white'}} href={`https://codeforces.com/contest/${cont.id}`} target='_blank'>
+                                            {cont.name}
+                                        </a>
+                                        
+                                    </div>
+
+                                    <div className='cell_right'>
+                                        {d}
+                                    </div>
+                                         
+                                </div>
+                            )
+                        })
+                    }
+
+                </div>
+                {/* 
+                <table className='centered'>
                     <thead>
                         <tr>
                             <th style={{marginRight:'20px'}}>
@@ -110,7 +145,8 @@ function Division()
                     }
                     </tbody>
                 </table>
-            </div>
+                */}
+                </div>
 
             
 

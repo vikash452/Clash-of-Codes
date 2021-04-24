@@ -1623,3 +1623,32 @@ td{
     opacity: 0.6;
     border: 1px solid black;
 }
+
+.custom_row_of_table
+{
+    border: 1px solid gray;
+    width: 90vw;
+    font-size: 20px;
+    /* padding-left: 50px;
+    padding-right: 50px; */
+    /* display: flex;
+    flex-direction: row; */
+}
+
+.cell_left
+{
+    width: 70%;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 15px;
+    padding-bottom: 15px;
+    color: white;
+}
+
+.cell_right
+{
+    width: 30%;
+    border-bottom: 1px solid gray;
+    padding: 15px;
+    padding-bottom: 15px;
+}
