@@ -140,19 +140,23 @@ function Contest() {
 
                         <p>
                             Set the starting question rating
-                    <select onChange={(e) => {
-                                setInitialRating(e.target.value)
-                            }} >
-                                <option value={800}>800</option>
-                                <option value={900}>900</option>
-                                <option value={1000}>1000</option>
-                                <option value={1100}>1100</option>
-                                <option value={1200}>1200</option>
-                                <option value={1300}>1300</option>
-                                <option value={1400}>1400</option>
-                                <option value={1500}>1500</option>
-                                <option value={1600}>1600</option>
-                            </select>
+                            <div  style={{maxWidth:'fit-content', margin:'auto'}}>
+                                <select 
+                                onChange={(e) => {
+                                        setInitialRating(e.target.value)
+                                    }} >
+                                        <option value={800}>800</option>
+                                        <option value={900}>900</option>
+                                        <option value={1000}>1000</option>
+                                        <option value={1100}>1100</option>
+                                        <option value={1200}>1200</option>
+                                        <option value={1300}>1300</option>
+                                        <option value={1400}>1400</option>
+                                        <option value={1500}>1500</option>
+                                        <option value={1600}>1600</option>
+                                </select>
+                            </div>
+                        
                         </p>
                         <div className="card-button" style={{ }}>
                             <button className="blobby-button" onClick={() => { CreateRoom() }} style={{

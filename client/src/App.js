@@ -21,6 +21,7 @@ import CompareCodechef from './screens/CompareCodechef'
 import DSA_stats from './screens/DSA_stats'
 import ContactUs from './screens/ContactUs'
 import CodeforcesPractice from './screens/CodeforcesPractice'
+import Division from './screens/Division'
 import './screens/design.css'
 import LandingScreen from './screens/Landing'
 import Header from './screens/Header'
@@ -186,6 +187,11 @@ function AllRouting() {
       <Route exact path='/codeforcesPractice'>
         <Navbar />
         <CodeforcesPractice />
+        <Footer/>
+      </Route>
+      <Route exact path='/division'>
+        <Navbar />
+        <Division />
         <Footer/>
       </Route>
       <Route exact path='/dsa_stats'>

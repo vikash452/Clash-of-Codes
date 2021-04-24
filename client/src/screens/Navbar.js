@@ -258,6 +258,27 @@ function Navbar() {
                                     </Link>
                                 </li>
 
+                                <li style={{
+                                    marginTop: '1.2rem',
+                                    marginBottom: '3.2rem',
+                                }}>
+                                    <Link to="/codeforcesPractice">
+                                        <button className="blobby-button sidenav-close tooltipped "
+                                            data-position='right'
+                                            data-tooltip="Practice questions from codeforces. Apply filters to practice
+                                            specific questions of your choice"
+                                            style={{
+                                                fontSize: '1.3rem',
+                                                width: '100%',
+                                            }}>
+                                            Practice
+                                            <br/>
+                                            Codeforces
+                                            <BlobbyButton/>
+                                        </button>
+                                    </Link>
+                                </li>
+
                                 <li
                                     style={{
                                         marginTop: '1.2rem',
@@ -334,6 +355,7 @@ function Navbar() {
                         <li><Link to='/codeforcesPractice'>Codeforces</Link></li>
                     </ul>
                 </span>
+                <Link to='/division'>Division</Link>
                 <span style={{cursor:'pointer'}} onClick={()=>{Logout()}}>Logout</span>
             </nav>
 
