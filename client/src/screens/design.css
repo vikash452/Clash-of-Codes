@@ -1628,7 +1628,7 @@ td{
 {
     /* border: 2px solid rgb(87, 85, 85); */
     border: 1px solid rgba(255, 255, 255, 0.5);
-    width: 70vw;
+    width: 75vw;
     font-size: 1.6rem;
     border-radius: 15px;
     /* background: rgba(230, 236, 233, 0.349); */
@@ -1641,7 +1641,7 @@ td{
 
 .cell_left
 {
-    width: 70%;
+    /* width: 70%; */
     border-right: 1px solid gray;
     border-bottom: 1px solid gray;
     padding: 15px;
@@ -1651,7 +1651,7 @@ td{
 
 .cell_right
 {
-    width: 30%;
+    /* width: 30%; */
     border-bottom: 1px solid gray;
     padding: 15px;
     padding-bottom: 15px;

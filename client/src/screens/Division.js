@@ -84,29 +84,36 @@ function Division()
         console.log('un=',unattempted)
         if(unattempted)
         {
-            console.log(handle)
+            // console.log(handle)
             var user_accepted_submissions=await user_uniq_subms_cf(handle)
             var user_attempted_contests=new Set()
-
+            // console.log(user_accepted_submissions.size)
             user_accepted_submissions.forEach((value,key)=>{
                 user_attempted_contests.add(value.contestId)
             })
             console.log(user_attempted_contests)
-            var temp2=[]
-            display_temp.forEach((item,index)=>{
-                console.log(item.id)
-                if(!user_attempted_contests.has(item.id))
-                {
-                    
-                    temp2.push(item)
-                    // console.log(index)
-                    // display_temp.splice(index,1);
-                }
-            })
 
-            setDisplay(temp2)
+            for(var i=0; i<display_temp.length; ++i)
+            {
+                if(user_attempted_contests.has(display_temp[i].id))
+                {
+                    console.log('found=',display_temp[i].id)
+                    display_temp.splice(i,1);
+                    --i;
+                    // console.log(display_temp.length)
+                }
+            }
+
+            // display_temp.forEach((item,index)=>{
+            //     console.log(item.id)
+            //     // console.log(index)
+                
+            // })
+
+            setDisplay(display_temp)
 
         }
+        
         setDisplay(display_temp)
     }
 
@@ -133,9 +140,10 @@ function Division()
                         Unattempted 
                         <i className='material-icons small tooltipped'
                         data-position='top'
-                        data-tooltip="When selected the questions will be in increasing order. Suppose 
-                        if 1st question is selected to be of 1000 rating then 2nd will be of 1100,
-                        3rd will be of 1100 and so on
+                        data-tooltip="
+                        If selected, then only those contests will be displayed whose questions
+                        you have never solved successfully. This will help you in giving virtual
+                        contests with a completely new set of questions
                         "
                         style={{fontSize:'20px', marginLeft:'20px'}}
                         >
@@ -155,11 +163,14 @@ function Division()
             <div style={{marginTop:'5rem'}}>
                 <div className='custom_row_of_table'>
                     <div style={{fontWeight: 'bold', width: '100%', display:'flex', flexDirection:'row', background:'rgba(230, 236, 233, 0.349)'}}>
-                        <div className='cell_left' style={{color: '#e6ff02', width: '70%'}}>
+                        <div className='cell_left' style={{color: '#e6ff02', width: '60%'}}>
                             Contest
                         </div>
-                        <div className='cell_right' style={{color: '#e6ff02', width: '30%'}}>
+                        <div className='cell_left' style={{color: '#e6ff02', width: '20%'}}>
                             Date
+                        </div>
+                        <div className='cell_right' style={{color: '#e6ff02', width: '20%'}}>
+                            Participate
                         </div>
                     </div>
                     
@@ -170,15 +181,25 @@ function Division()
                             return (
                                 <div key={cont.id} style={{width: '100%',display:'flex', flexDirection:'row'}}>
 
-                                    <div className='cell_left' style={{width: '70%'}}>
+                                    <div className='cell_left' style={{width: '60%'}}>
                                         <a style={{color:'white'}} href={`https://codeforces.com/contest/${cont.id}`} target='_blank'>
                                             {cont.name}
                                         </a>
                                         
                                     </div>
 
-                                    <div className='cell_right'style={{width: '30%'}}>
+                                    <div className='cell_left'style={{width: '20%'}}>
                                         {d}
+                                    </div>
+
+                                    <div className='cell_right'style={{width: '20%'}}>
+                                        <a 
+                                        style={{color:'white'}}
+                                        href={`https://codeforces.com/contestRegistration/${cont.id}/virtual/true`}
+                                        target='_blank'
+                                        >
+                                            Virtual Participation
+                                        </a>
                                     </div>
                                          
                                 </div>
