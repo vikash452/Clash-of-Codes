@@ -81,13 +81,18 @@ function Home() {
                     <h3><ul>Upcoming Contests on Codeforces</ul></h3>
                     {
                         upcomingCF.map(item => {
+                            console.log(item)
                             // console.log(item.startTimeSeconds)
                             var startDate = new Date(item.startTimeSeconds * 1000).toLocaleDateString()
                             // var startDate=d.getDate() + ' ' + d.getMonth()+1 + ' ' + d.getFullYear()
                             var startTime = new Date(item.startTimeSeconds * 1000).toLocaleTimeString()
                             return (
                                 <h6 key={item.id}>
-                                    {item.name}<br></br> {startDate} {startTime}
+                                    <a href={`https://codeforces.com/contests/${item.id}`} target='_blank' style={{color:'white'}}>
+                                        {item.name}
+                                    </a>
+                                    
+                                    <br></br> {startDate} {startTime}
                                 </h6>
                             )
                         })

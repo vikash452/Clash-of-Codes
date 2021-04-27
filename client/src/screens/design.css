@@ -1719,5 +1719,11 @@ td{
     color:rgb(245, 238, 238);
 }
 
+.developerCard{
+    background: rgba(119, 136, 153, 0.7);
+    margin-right: 180px;
+    margin-left: 180px;
+    border-radius: 70px;
+}
 
 
