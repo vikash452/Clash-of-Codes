@@ -6,6 +6,8 @@ import img from '../images/clash_of_codes.jpg'
 import fetch from 'node-fetch'
 import BlobbyButton from './BlobbyButton'
 import GoogleLogo from '../images/google logo.png'
+import LandingPage from '../images/landingPage.png'
+import Navbar_Logo from '../images/logo.jpg'
 
 function Signin() {
     var [email, setEmail] = useState('')

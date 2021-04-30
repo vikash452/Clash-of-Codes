@@ -10,6 +10,7 @@ import Profile from './screens/Profile'
 import Contest from './screens/Contest'
 import Room from './screens/Room'
 import Navbar from './screens/Navbar'
+import LandingNavbar from './assets/LandingNavbar'
 import ForgotPassword from './screens/ForgotPassword'
 import UpdatePassword from './screens/UpdatePassword'
 import Codeforces from './screens/Codeforces'
@@ -22,6 +23,7 @@ import DSA_stats from './screens/DSA_stats'
 import ContactUs from './screens/ContactUs'
 import CodeforcesPractice from './screens/CodeforcesPractice'
 import Division from './screens/Division'
+import GetContests from './screens/GetContests'
 import './screens/design.css'
 import LandingScreen from './screens/Landing'
 import Header from './screens/Header'
@@ -45,6 +47,8 @@ function AllRouting() {
       else if (history.location.pathname.startsWith('/updatePassword'))
         history.push(history.location.pathname)
       else if (history.location.pathname.startsWith('/signup'))
+        history.push(history.location.pathname)
+      else if (history.location.pathname.startsWith('/getContests'))
         history.push(history.location.pathname)
       else if (history.location.pathname.startsWith('/contactus'))
         history.push('/contactus')
@@ -135,13 +139,20 @@ function AllRouting() {
       <Route exact path='/landing' >
         <LandingScreen/>
       </Route>
+      <Route exact path='/getContests' >
+        <LandingNavbar/>
+        <GetContests/>
+      </Route>
       <Route exact path='/contactus' >
+        <LandingNavbar/>
         <ContactUs/>
       </Route>
       <Route exact path='/signin'>
+        <LandingNavbar/>
         <Signin />
       </Route>
       <Route exact path='/signup'>
+        <LandingNavbar/>
         <SignUp />
       </Route>
       <Route exact path='/profile'>

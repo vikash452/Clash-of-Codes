@@ -503,22 +503,28 @@ function Room() {
                         <></>
                 }
 
-                <div className='row' >
+                <div className='row question-cards' >
                     {
 
                         questionList.map(question => {
                             let ID = "ABCDEF";
                             i += 1;
                             return (
-                                <div className='card' key={question.name}>
-                                    <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`}
-                                        target='_blank'
-                                    >
-                                        <div className='card-content card-panel hoverable yellow' style={{ height: '200px' }}>
+                                <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`}
+                                    target='_blank'
+                                >
+                                    <div className='card-text' key={question.name}>
+
+                                        {/* <div className="ques-title">
+                                            {question.name}
+                                        </div> */}
+
+                                        <div className='ques-title' style={{ height: '200px' }}>
                                             <span className='card-title'><span className="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
                                         </div>
-                                    </a>
-                                </div>
+                                    
+                                    </div>
+                                </a>
                             )
                         })
                     }

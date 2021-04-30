@@ -2,10 +2,12 @@ import {useState,useEffect} from 'react'
 import BlobbyButton from './BlobbyButton'
 import M from 'materialize-css'
 import user_uniq_subms_cf from './user_uniq_subms_cf'
+import { Link } from 'react-router-dom'
+import LandingPage from '../images/landingPage.png'
+import Navbar_Logo from '../images/logo.jpg'
 
-function Division()
+function GetContests()
 {
-
     var [div1,setDiv1]=useState([])
     var [div2,setDiv2]=useState([])
     var [div3,setDiv3]=useState([])
@@ -20,12 +22,13 @@ function Division()
     useEffect(()=>{
         var tooltip_elem=document.querySelectorAll('.tooltipped')
         M.Tooltip.init(tooltip_elem)
-        var user=JSON.parse(localStorage.getItem('user'))
-        setHandle(user.codeforces)
+        // var user=JSON.parse(localStorage.getItem('user'))
+        // setHandle()
     },[])
 
     async function GetAllContests()
     {
+        try{
         var allContestPromise=await fetch('https://codeforces.com/api/contest.list')
         var allContests=await allContestPromise.json()
         var div1_temp=[]
@@ -81,9 +84,19 @@ function Division()
         display_temp=[...ed_temp]
         // setDisplay(ed_temp)
         console.log(display_temp)
-        console.log('un=',unattempted)
+        // console.log('un=',unattempted)
         if(unattempted)
         {
+            if(handle===null || handle.length==0)
+            {
+                M.toast({
+                    html: 'Enter handle',
+                    classes: "#ce93d8 purple",
+                    displayLength: 2000,
+                })
+                return 
+            }
+            console.log(handle)
             // console.log(handle)
             var user_accepted_submissions=await user_uniq_subms_cf(handle)
             var user_attempted_contests=new Set()
@@ -115,10 +128,30 @@ function Division()
         }
         
         setDisplay(display_temp)
+        M.toast({
+            html: 'Success!!',
+            classes: "#ce93d8 purple",
+            displayLength: 2000,
+        })
+        }
+        catch{
+            // console.log('check ypur handle')
+            M.toast({
+                html: 'Check your handle or try again after some time',
+                classes: "#ce93d8 purple",
+                displayLength: 4000,
+            })
+        }
     }
 
     return (
-        <div style={{marginTop:'100px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+        <div style={{marginTop:'', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+            
+            {/* <div style={{marginRight:'85%', cursor:'pointer'}}>
+                <Link to='/landing'>
+                    <i class="material-icons">home</i>
+                </Link>
+            </div> */}
             <div>
                 <h3 style={{fontWeight: '1.2rem'}}>Select a contest type</h3>
                 <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='div1'?'lightgreen':'#e4e4e4', textAlign:'center'}} onClick={()=>{setContestType('div1')}}>Division 1</span>
@@ -129,7 +162,7 @@ function Division()
                 <span className='chip' style={{cursor:'pointer', backgroundColor:contestType==='global'?'lightgreen':'#e4e4e4', textAlign:'center'}} onClick={()=>{setContestType('global')}}>Global Round</span>
             </div>
 
-            <div style={{marginTop:'5rem'}}>
+            <div style={{marginTop:'5rem', display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
                 <label>
                     <input type='checkbox' checked={unattempted} 
                     onChange={()=>{
@@ -151,10 +184,53 @@ function Division()
                         </i>
                     </span>
                 </label>
+
+                {
+                    unattempted
+                    ?
+                    <div style={{marginLeft:'70px', display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+                        <input 
+                            type='text' 
+                            placeholder='Enter your handle' 
+                            onChange={(e)=>{setHandle(e.target.value)}}
+                        />
+                        {/* <button 
+                            className='blobby-button' 
+                            style={{width:'270px', marginLeft:'30px'}}
+                            // onClick={(e)=>{
+                            //     console.log(e.target.value)
+                            //     setHandle(e.target.value)
+                            // }}
+                        >
+                            Set handle
+                            <BlobbyButton/>
+                        </button> */}
+                    </div>
+                    :
+                    <></>
+                }
+                
             </div>
 
             <div style={{marginTop:'5rem'}}>
-                <button className='blobby-button' onClick={()=>{GetAllContests()}} style={{fontSize:'1.2rem'}}>
+                <button 
+                    className='blobby-button' 
+                    onClick={()=>{
+                        if(contestType==='notselected')
+                        {
+                            M.toast({
+                                html: 'Select a contest type',
+                                classes: "#ce93d8 purple",
+                                displayLength: 2000,
+                            })
+                        }
+                        else
+                        {
+                            GetAllContests()
+                        }
+                        
+                    }} 
+                    style={{fontSize:'1.2rem'}}>
                     Get Contests
                     <BlobbyButton/>
                 </button>
@@ -162,7 +238,7 @@ function Division()
 
             <div style={{marginTop:'5rem'}}>
                 <div className='custom_row_of_table'>
-                    <div style={{fontWeight: 'bold', width: '100%', display:'flex', flexDirection:'row', background:'rgba(230, 236, 233, 0.349)'}}>
+                    <div style={{fontWeight: 'bold', width: '100%', display:'flex', flexDirection:'row', background:'rgba(64, 64, 64, 0.6)'}}>
                         <div className='cell_left' style={{color: '#e6ff02', width: '60%'}}>
                             Contest
                         </div>
@@ -179,7 +255,7 @@ function Division()
                         toDisplay.map((cont)=>{
                             var d=new Date(cont.startTimeSeconds*1000).toDateString()
                             return (
-                                <div key={cont.id} style={{width: '100%',display:'flex', flexDirection:'row'}}>
+                                <div key={cont.id} style={{width: '100%',display:'flex', flexDirection:'row', background:'rgba(64, 64, 64, 0.6)'}}>
 
                                     <div className='cell_left' style={{width: '60%'}}>
                                         <a style={{color:'white'}} href={`https://codeforces.com/contest/${cont.id}`} target='_blank'>
@@ -213,4 +289,4 @@ function Division()
     )
 }
 
-export default Division;
+export default GetContests;
