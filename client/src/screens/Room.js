@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import './design.css'
 import M from 'materialize-css'
+import BlobbyButton from './BlobbyButton';
 // import Background from '../images/img2.png'
 
 
@@ -446,7 +447,7 @@ function Room() {
 
     var time = new Date(start_timings).toLocaleString()
     return (
-        <div style={{marginTop:'100px'}}>
+        <div style={{ marginTop: '100px' }}>
             {/* if in room */}
             <div className="container" style={{ display: inRoom ? '' : 'none' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -457,11 +458,11 @@ function Room() {
                         {
                             contestStarted && hours >= 0 && minutes >= 0 && seconds >= 0
                                 ?
-                                <h3>Time Remaining : {hours}h {minutes}min {seconds}sec</h3>
+                                <h4>Time Remaining : {hours}h {minutes}min {seconds}sec</h4>
                                 :
-                                <h3>Before start : {hours}h {minutes}min {seconds}sec</h3>
+                                <h4>Before start : {hours}h {minutes}min {seconds}sec</h4>
                         }
-                        <h3>Total participants: {participants.length}</h3>
+                        <h4>Total participants: {participants.length}</h4>
                     </div>
 
                     <div style={{ width: '40%' }}>
@@ -479,8 +480,22 @@ function Room() {
                         </div>
 
                         <div style={{ display: 'flex' }}>
-                            <button className='waves-effect waves-light btn-large' onClick={() => { Refresh(false) }} style={{ margin: '30px', minWidth: 'fit-content' }}>Refresh</button>
-                            <button className='waves-effect waves-light btn-large' onClick={() => LeaveRoom()} style={{ margin: '30px', minWidth: 'fit-content' }}>Leave Room</button>
+                            <button className='blobby-button' onClick={() => { Refresh(false) }}
+                                style={{
+                                    margin: '30px',
+                                    minWidth: 'fit-content'
+                                }}>
+                                Refresh
+                                <BlobbyButton />
+                            </button>
+                            <button className='blobby-button' onClick={() => LeaveRoom()}
+                                style={{
+                                    margin: '30px',
+                                    minWidth: 'fit-content'
+                                }}>
+                                Leave Room
+                                     <BlobbyButton />
+                            </button>
                         </div>
 
 
@@ -488,7 +503,7 @@ function Room() {
 
                 </div>
 
-                <h2> Problems </h2>
+                <h3> Problems </h3>
                 <br></br>
 
                 {
@@ -496,14 +511,30 @@ function Room() {
                         ?
                         questionList.length == 0
                             ?
-                            <h1>Loading questions {questions_loaded_percentage} %</h1>
+                            <h2>Loading questions {questions_loaded_percentage} %</h2>
                             :
                             <></>
                         :
                         <></>
                 }
 
-                <div className='row question-cards' >
+                <div className='row question-cards'
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexWrap: 'wrap'
+                        // padding: '1rem 2rem 1rem',
+                        // /* box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667); */
+                        // borderRadius: '15px',
+                        // background: 'rgba(230, 236, 233, 0.349)',
+                        // overflow: 'hidden',
+                        // bordertop: '1px solid rgba(255, 255, 255, 0.5)',
+                        // backdropFilter: 'blur(5px)'
+                    }} >
+
+
+
                     {
 
                         questionList.map(question => {
@@ -511,9 +542,21 @@ function Room() {
                             i += 1;
                             return (
                                 <a className='col s4 m4' href={`https://codeforces.com/problemset/problem/${question.contestId}/${question.index}`}
-                                    target='_blank'
+                                    target='_blank' style={{}}
                                 >
-                                    <div className='card-text' key={question.name}>
+                                    <div id="Question" className='card-text question-card-hover' key={question.name} style={{
+                                        height: '250px',
+                                        width: '250px',
+                                        padding: '1rem 1rem 1rem',
+                                        margin: '2rem',
+                                        /* box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667); */
+                                        borderRadius: '15px',
+                                        background: 'rgba(230, 236, 233, 0.349)',
+                                        overflow: 'hidden',
+                                        borderTop: '1px solid rgba(255, 255, 255, 0.5)',
+                                        backdropFilter: 'blur(5px)',
+                                        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.667)'
+                                    }}>
 
                                         {/* <div className="ques-title">
                                             {question.name}
@@ -522,7 +565,7 @@ function Room() {
                                         <div className='ques-title' style={{ height: '200px' }}>
                                             <span className='card-title'><span className="card-text"><strong>{ID[i]}. </strong><strong>{question.name}</strong></span></span>
                                         </div>
-                                    
+
                                     </div>
                                 </a>
                             )
@@ -531,9 +574,9 @@ function Room() {
                 </div>
 
                 {/* Scoreboard */}
-                <div style={{ backgroundColor: 'white', color: 'violet', textAlign: 'center', boxShadow: '5px 10px 10px black' }}>
+                <div style={{ background: 'rgba(230, 236, 233, 0.349)', backdropFilter: 'blur(5px)', borderRadius: '15px', color: '#e6ff02', textAlign: 'center', fontSize: '1.2rem',boxShadow: '5px 5px 10px black' }}>
                     <table>
-                        <thead>
+                        <thead style={{fontWeight: 'bold'}}>
                             <tr>
                                 {
                                     contestStarted
@@ -601,7 +644,10 @@ function Room() {
                         </tbody>
 
                     </table>
-                    <button className='btn btn-large toggle' onClick={() => { Scoreboard() }}>Update Scoreboard</button>
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <button className='blobby-button' onClick={() => { Scoreboard() }}>Update Scoreboard<BlobbyButton /></button>
+                    </div>
+
                 </div>
             </div>
 
@@ -664,7 +710,7 @@ function Room() {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 
