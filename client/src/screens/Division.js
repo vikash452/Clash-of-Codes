@@ -26,6 +26,9 @@ function Division()
 
     async function GetAllContests()
     {
+        try{
+
+        
         var allContestPromise=await fetch('https://codeforces.com/api/contest.list')
         var allContests=await allContestPromise.json()
         var div1_temp=[]
@@ -84,6 +87,14 @@ function Division()
         console.log('un=',unattempted)
         if(unattempted)
         {
+            if(handle===null || handle.length==0)
+            {
+                M.toast({
+                    html: 'Enter handle',
+                    classes: "#ce93d8 purple",
+                    displayLength: 4000,
+                })
+            }
             // console.log(handle)
             var user_accepted_submissions=await user_uniq_subms_cf(handle)
             var user_attempted_contests=new Set()
@@ -104,17 +115,23 @@ function Division()
                 }
             }
 
-            // display_temp.forEach((item,index)=>{
-            //     console.log(item.id)
-            //     // console.log(index)
-                
-            // })
-
+            
             setDisplay(display_temp)
 
         }
-        
+        M.toast({
+            html: 'Success!!',
+            classes: "#ce93d8 purple",
+            displayLength: 4000,
+        })
         setDisplay(display_temp)
+        }catch{
+            M.toast({
+                html: 'Check your handle or try again after some time',
+                classes: "#ce93d8 purple",
+                displayLength: 4000,
+            })
+        }
     }
 
     return (
@@ -154,7 +171,20 @@ function Division()
             </div>
 
             <div style={{marginTop:'5rem'}}>
-                <button className='blobby-button' onClick={()=>{GetAllContests()}} style={{fontSize:'1.2rem'}}>
+                <button className='blobby-button' 
+                onClick={()=>{
+                    if(contestType==='notselected')
+                    {
+                        M.toast({
+                            html: 'Select a contest!!',
+                            classes: "#ce93d8 purple",
+                            displayLength: 4000,
+                        })
+                    }
+                    else
+                    GetAllContests()
+                }} 
+                    style={{fontSize:'1.2rem'}}>
                     Get Contests
                     <BlobbyButton/>
                 </button>
@@ -162,7 +192,7 @@ function Division()
 
             <div style={{marginTop:'5rem'}}>
                 <div className='custom_row_of_table'>
-                    <div style={{fontWeight: 'bold', width: '100%', display:'flex', flexDirection:'row', background:'rgba(230, 236, 233, 0.349)'}}>
+                    <div style={{fontWeight: 'bold', width: '100%', display:'flex', flexDirection:'row', background:'rgba(64, 64, 64, 0.6)'}}>
                         <div className='cell_left' style={{color: '#e6ff02', width: '60%'}}>
                             Contest
                         </div>
@@ -179,7 +209,7 @@ function Division()
                         toDisplay.map((cont)=>{
                             var d=new Date(cont.startTimeSeconds*1000).toDateString()
                             return (
-                                <div key={cont.id} style={{width: '100%',display:'flex', flexDirection:'row'}}>
+                                <div key={cont.id} style={{width: '100%',display:'flex', flexDirection:'row', background:'rgba(64, 64, 64, 0.6)'}}>
 
                                     <div className='cell_left' style={{width: '60%'}}>
                                         <a style={{color:'white'}} href={`https://codeforces.com/contest/${cont.id}`} target='_blank'>
