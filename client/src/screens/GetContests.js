@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react'
 import BlobbyButton from './BlobbyButton'
 import M from 'materialize-css'
-import user_uniq_subms_cf from './user_uniq_subms_cf'
+import UniqueSubmissions,{AllSubmissions} from './user_uniq_subms_cf'
 import { Link } from 'react-router-dom'
 import LandingPage from '../images/landingPage.png'
 import Navbar_Logo from '../images/logo.jpg'
@@ -17,6 +17,7 @@ function GetContests()
     var [toDisplay,setDisplay]=useState([])
     var [contestType,setContestType]=useState('notselected')
     var [unattempted,setUnattempted]=useState(false)
+    var [unsolved,setUnsolved]=useState(false)
     var [handle,setHandle]=useState(null)
 
     useEffect(()=>{
@@ -64,7 +65,7 @@ function GetContests()
         // console.log(ed_temp);
         // console.log(global_temp);
         var display_temp=[]
-        console.log(contestType)
+        // console.log(contestType)
         if(contestType === 'div1')
         display_temp=[...div1_temp]
         // setDisplay(div1_temp)
@@ -83,8 +84,11 @@ function GetContests()
         if(contestType === 'ed')
         display_temp=[...ed_temp]
         // setDisplay(ed_temp)
-        console.log(display_temp)
+        // console.log(display_temp)
         // console.log('un=',unattempted)
+
+        
+
         if(unattempted)
         {
             if(handle===null || handle.length==0)
@@ -96,35 +100,53 @@ function GetContests()
                 })
                 return 
             }
-            console.log(handle)
-            // console.log(handle)
-            var user_accepted_submissions=await user_uniq_subms_cf(handle)
+
+            var user_all_submissions=await AllSubmissions(handle)
             var user_attempted_contests=new Set()
-            // console.log(user_accepted_submissions.size)
-            user_accepted_submissions.forEach((value,key)=>{
+
+            user_all_submissions.forEach((value,key)=>{
                 user_attempted_contests.add(value.contestId)
             })
-            console.log(user_attempted_contests)
 
             for(var i=0; i<display_temp.length; ++i)
             {
                 if(user_attempted_contests.has(display_temp[i].id))
                 {
-                    console.log('found=',display_temp[i].id)
                     display_temp.splice(i,1);
                     --i;
-                    // console.log(display_temp.length)
                 }
             }
-
-            // display_temp.forEach((item,index)=>{
-            //     console.log(item.id)
-            //     // console.log(index)
-                
-            // })
-
             setDisplay(display_temp)
+        }
 
+        if(unsolved)
+        {
+            if(handle===null || handle.length==0)
+            {
+                M.toast({
+                    html: 'Enter handle',
+                    classes: "#ce93d8 purple",
+                    displayLength: 2000,
+                })
+                return 
+            }
+
+            var user_accepted_submissions=await UniqueSubmissions(handle)
+            var user_attempted_contests=new Set()
+
+            user_accepted_submissions.forEach((value,key)=>{
+                user_attempted_contests.add(value.contestId)
+            })
+
+            for(var i=0; i<display_temp.length; ++i)
+            {
+                if(user_attempted_contests.has(display_temp[i].id))
+                {
+                    display_temp.splice(i,1);
+                    --i;
+                }
+            }
+            setDisplay(display_temp)
         }
         
         setDisplay(display_temp)
@@ -175,7 +197,7 @@ function GetContests()
                         data-position='top'
                         data-tooltip="
                         If selected, then only those contests will be displayed whose questions
-                        you have never solved successfully. This will help you in giving virtual
+                        you have never <b><span style={{fontSize:'23px'}}>attempted</span></b> before. This will help you in giving virtual
                         contests with a completely new set of questions
                         "
                         style={{fontSize:'20px', marginLeft:'20px'}}
@@ -185,8 +207,29 @@ function GetContests()
                     </span>
                 </label>
 
+                <label style={{marginLeft:'50px'}}>
+                    <input type='checkbox' checked={unsolved} 
+                    onChange={()=>{
+                        setUnsolved(!unsolved)
+                    }}
+                    />
+                    <span style={{fontSize:'20px', color:'white'}}>
+                        Unsolved 
+                        <i className='material-icons small tooltipped'
+                        data-position='top'
+                        data-tooltip="
+                        If selected, then only those contests will be displayed in which
+                        you have never made any <b><span style={{fontSize:'23px'}}>successful</span></b> submissions.
+                        "
+                        style={{fontSize:'20px', marginLeft:'20px'}}
+                        >
+                            help_outline
+                        </i>
+                    </span>
+                </label>
+
                 {
-                    unattempted
+                    unattempted || unsolved
                     ?
                     <div style={{marginLeft:'70px', display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
                         <input 

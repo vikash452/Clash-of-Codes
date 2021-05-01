@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react'
 import BlobbyButton from './BlobbyButton'
 import M from 'materialize-css'
-import user_uniq_subms_cf from './user_uniq_subms_cf'
+import UniqueSubmissions,{AllSubmissions} from './user_uniq_subms_cf'
 
 function Division()
 {
@@ -15,6 +15,7 @@ function Division()
     var [toDisplay,setDisplay]=useState([])
     var [contestType,setContestType]=useState('notselected')
     var [unattempted,setUnattempted]=useState(false)
+    var [unsolved,setUnsolved]=useState(false)
     var [handle,setHandle]=useState(null)
 
     useEffect(()=>{
@@ -95,11 +96,9 @@ function Division()
                     displayLength: 4000,
                 })
             }
-            // console.log(handle)
-            var user_accepted_submissions=await user_uniq_subms_cf(handle)
+            var user_all_submissions=await AllSubmissions(handle)
             var user_attempted_contests=new Set()
-            // console.log(user_accepted_submissions.size)
-            user_accepted_submissions.forEach((value,key)=>{
+            user_all_submissions.forEach((value,key)=>{
                 user_attempted_contests.add(value.contestId)
             })
             console.log(user_attempted_contests)
@@ -111,14 +110,41 @@ function Division()
                     console.log('found=',display_temp[i].id)
                     display_temp.splice(i,1);
                     --i;
-                    // console.log(display_temp.length)
                 }
             }
-
-            
             setDisplay(display_temp)
-
         }
+
+        if(unsolved)
+        {
+            if(handle===null || handle.length==0)
+            {
+                M.toast({
+                    html: 'Enter handle',
+                    classes: "#ce93d8 purple",
+                    displayLength: 2000,
+                })
+                return 
+            }
+
+            var user_accepted_submissions=await UniqueSubmissions(handle)
+            var user_attempted_contests=new Set()
+
+            user_accepted_submissions.forEach((value,key)=>{
+                user_attempted_contests.add(value.contestId)
+            })
+
+            for(var i=0; i<display_temp.length; ++i)
+            {
+                if(user_attempted_contests.has(display_temp[i].id))
+                {
+                    display_temp.splice(i,1);
+                    --i;
+                }
+            }
+            setDisplay(display_temp)
+        }
+
         M.toast({
             html: 'Success!!',
             classes: "#ce93d8 purple",
@@ -159,7 +185,7 @@ function Division()
                         data-position='top'
                         data-tooltip="
                         If selected, then only those contests will be displayed whose questions
-                        you have never solved successfully. This will help you in giving virtual
+                        you have never <b><span style={{fontSize:'23px'}}>attempted</span></b> before. This will help you in giving virtual
                         contests with a completely new set of questions
                         "
                         style={{fontSize:'20px', marginLeft:'20px'}}
@@ -168,6 +194,28 @@ function Division()
                         </i>
                     </span>
                 </label>
+
+                <label style={{marginLeft:'50px'}}>
+                    <input type='checkbox' checked={unsolved} 
+                    onChange={()=>{
+                        setUnsolved(!unsolved)
+                    }}
+                    />
+                    <span style={{fontSize:'20px', color:'white'}}>
+                        Unsolved 
+                        <i className='material-icons small tooltipped'
+                        data-position='top'
+                        data-tooltip="
+                        If selected, then only those contests will be displayed in which
+                        you have never made any <b><span style={{fontSize:'23px'}}>successful</span></b> submissions.
+                        "
+                        style={{fontSize:'20px', marginLeft:'20px'}}
+                        >
+                            help_outline
+                        </i>
+                    </span>
+                </label>
+
             </div>
 
             <div style={{marginTop:'5rem'}}>
