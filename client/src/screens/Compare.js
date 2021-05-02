@@ -46,7 +46,7 @@ function Compare() {
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data)
+                // console.log(data)
                 setFriendList(data.friends)
             })
             .catch(err => {
@@ -163,7 +163,7 @@ function Compare() {
                 }
                 
                 list_rating_wise_submissions.sort(comparator)
-                console.log(list_rating_wise_submissions)
+                // console.log(list_rating_wise_submissions)
                 if (handle_to_find === userHandle) {
                     setUserSubms(subms);
                     setUserQuestionRating(list_rating_wise_submissions)
@@ -182,8 +182,8 @@ function Compare() {
         fetch(`https://codeforces.com/api/user.info?handles=${userHandle};${friendhandle}`)
             .then(res => res.json())
             .then((data) => {
-                console.log(data.result[0])
-                console.log(data.result[1])
+                // console.log(data.result[0])
+                // console.log(data.result[1])
                 setContent_1(data.result[0])
                 setContent_2(data.result[1])
             })
@@ -207,25 +207,35 @@ function Compare() {
     function TotalSubmissionsData() {
         if (usrsubms.length > 0 && frndsubms.length > 0) {
             // return (
-            console.log(usrsubms[0])
-            console.log(frndsubms[0])
+            // console.log(usrsubms[0])
+            // console.log(frndsubms[0])
             // )
         }
     }
 
-    useEffect(() => {
-        console.log(usrsubms)
-        console.log(frndsubms)
-    }, [usrsubms, frndsubms])
+    // useEffect(() => {
+    //     console.log(friendList)
+    // }, [friendList])
 
     return (
         <div className="compare-div" style={{ marginBottom: visible1 ? '100px' : '285px' }}>
+            
             <div className="content">
                 {/* style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}> */}
                 <span><h4>Compare Yourself With</h4></span>
                 <select
                     // style={{ maxWidth: 'fit-content' }}
-                    className='browser-default' onChange={(e) => { setFriendHandle(e.target.value) }}>
+                    className='browser-default' onChange={(e) => { 
+                         
+                        // console.log(e.target.text)
+                    }}
+
+                    onClick={(e)=>{
+                        setFriendHandle(e.target.value)
+                        // console.log(e.target.value)
+                    }}
+
+                    >
 
                     {
                         friendList.map((item) => {    //MATERIALIZE SELECT NOT WORKING
@@ -248,6 +258,7 @@ function Compare() {
                     <BlobbyButton/>
                 </button>
             </div>
+            
             <div className='compareTable'>
                 {
                     (content_1 && content_2)

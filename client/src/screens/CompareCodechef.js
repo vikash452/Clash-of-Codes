@@ -119,7 +119,9 @@ function CompareCodechef()
                 <span><h4>Compare Yourself With</h4></span>
                 <select
                     // style={{ maxWidth: 'fit-content' }}
-                    className='browser-default' onChange={(e) => { setFriendhandle(e.target.value) }}>
+                    className='browser-default' onChange={(e) => { setFriendhandle(e.target.value) }}
+                    onClick={(e)=>{setFriendhandle(e.target.value)}}
+                    >
 
                     {
                         friendList.map((item) => {    //MATERIALIZE SELECT NOT WORKING
