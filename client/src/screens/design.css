@@ -84,7 +84,8 @@
     margin-bottom: 1.5rem;
     /* width: 100%; */
 }
-.sidenav li>a .blobby-button{
+
+.sidenav li>a .blobby-button {
     width: 100%;
 }
 
@@ -93,7 +94,6 @@
         width: 240px;
     }
 }
-
 
 /* .waves-effect.waves-light.btn-large {
     margin-left: 8px;
@@ -236,9 +236,11 @@ Link .waves-effect.waves-light.btn-large {
     align-items: center;
 }
 
-/* .Heading-navbar {
-    /* left: 23%; */
-/* } */ 
+.Heading-navbar {
+    width: 100%;
+    position: absolute;
+    align-items: center;
+}
 
 .heading .heading-content {
     font-size: 5rem;
@@ -275,9 +277,12 @@ Link .waves-effect.waves-light.btn-large {
     .navbar-setter {
         height: 100%;
     }
-    .Heading-navbar {
-        left: 50%;
-        right: 0px;
+    .heading {
+        /* left: 50%; */
+        /* right: 0px; */
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
     }
     .heading .heading-content {
         font-size: 3.5rem;
@@ -362,13 +367,13 @@ Link .waves-effect.waves-light.btn-large {
         height: 5rem;
         font-size: 3.5rem;
     }
-    .Home-div{
+    .Home-div {
         margin-top: 1rem;
     }
     /* .Home-div{
         /* margin-top: 1rem; */
-    /* } */ 
-    .upcoming_contest_list_div{
+    /* } */
+    .upcoming_contest_list_div {
         width: 100%;
     }
     .msg-div {
@@ -647,7 +652,7 @@ Link .waves-effect.waves-light.btn-large {
 
 .friend-div .card {
     position: relative;
-    width: 45%;
+    width: 35%;
     margin-top: 5rem;
     padding: 30px 30px 60px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
@@ -663,12 +668,14 @@ Link .waves-effect.waves-light.btn-large {
     margin: auto;
     width: 300px;
 }
-.friend-div .card .friend-list{
+
+.friend-div .card .friend-list {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 .Profiles-div {
     position: relative;
     display: flex;
@@ -680,8 +687,8 @@ Link .waves-effect.waves-light.btn-large {
     /* position: relative; */
     width: 50%;
     padding: 50px;
-    margin: 30px;
-    height: 110vh;
+    margin: 50px;
+    height: 650px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
     border-radius: 15px;
     background: rgba(230, 236, 233, 0.35);
@@ -692,6 +699,9 @@ Link .waves-effect.waves-light.btn-large {
 }
 
 @media only screen and (max-width: 900px) {
+    .friend-div {
+        width: 100%;
+    }
     .friend-div .card {
         width: 60%;
     }
@@ -758,6 +768,16 @@ Link .waves-effect.waves-light.btn-large {
     .friend-div .card>h4 {
         font-size: 1.2rem;
     }
+    .friend-div .card .chip {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        height: 30px;
+        width: fit-content;
+        padding: 0 15px 0;
+        font-size: 1rem;
+    }
     .Profiles-div {
         display: flex;
         justify-content: center;
@@ -785,7 +805,7 @@ Link .waves-effect.waves-light.btn-large {
         padding: 15px;
         margin-top: 1rem;
     }
-    .friend-div .card .chip{
+    .friend-div .card .chip {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -795,9 +815,13 @@ Link .waves-effect.waves-light.btn-large {
         padding: 0 15px 0;
         font-size: 1rem;
     }
-    .friend-div .card .chip >span >i{
-        margin-top: 9px;
+    .friend-div .card .chip>span{
+        font-size: 1rem;
     }
+    .friend-div .card .chip>span>i {
+        margin-top: 1rem;
+    }
+    
     .friend-div .card>h2 {
         margin: 2rem 0.5rem 1rem;
     }
@@ -936,7 +960,7 @@ input {
 .chip {
     display: inline-block;
     height: 50px;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.6);
     line-height: 32px;
@@ -1121,7 +1145,6 @@ input {
     margin-left: 0px !important;
     font-size: 30px;
     background: rgba(230, 236, 233, 0.35);
-    
     color: #e6ff02;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 15px !important;
@@ -1279,7 +1302,6 @@ input {
 .landing-container .content-card>h2 {
     font-size: 2.5rem;
     font-family: 'Lobster Two', cursive;
-    
 }
 
 .landing-container .content-card>h3 {
@@ -1318,7 +1340,7 @@ input {
     nav ul a {
         padding: 0px;
     }
-    .landing-container .content-card{
+    .landing-container .content-card {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1379,17 +1401,17 @@ div.compareTable table tbody tr td {
     text-align: center;
 }
 
-
-@media  (max-width:700px) {
-    .smallNavbar{
-        display:none !important;
+@media (max-width:700px) {
+    .smallNavbar {
+        display: none !important;
     }
 }
 
-.dropdown-content{
-    width:fit-content !important;
+.dropdown-content {
+    width: fit-content !important;
 }
-.sign-in-container{
+
+.sign-in-container {
     position: relative;
     display: flex;
     justify-content: center;
@@ -1398,7 +1420,8 @@ div.compareTable table tbody tr td {
     flex-wrap: wrap;
     z-index: 1;
 }
-.sign-in-container .card{
+
+.sign-in-container .card {
     position: relative;
     width: 600px;
     height: fit-content;
@@ -1412,100 +1435,113 @@ div.compareTable table tbody tr td {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
 }
-.sign-in-container .card >img{
+
+.sign-in-container .card>img {
     width: 100%;
     height: 35%;
 }
-.sign-in-container .card .content{
+
+.sign-in-container .card .content {
     position: relative;
-    
     padding: 20px;
-    
     /* text-align: center; */
     /* transition: '0.5s' */
 }
-.sign-in-container .card .content .signin_forgot_button_parent{
+
+.sign-in-container .card .content .signin_forgot_button_parent {
     display: flex;
     justify-content: center;
     /* align-items: center; */
     flex-direction: row;
     margin-top: 2rem;
 }
-.sign-in-container .card .content .signin_forgot_button_parent .blobby-button{
+
+.sign-in-container .card .content .signin_forgot_button_parent .blobby-button {
     font-size: 1.2rem;
 }
-.sign-in-container .card .content .signin_forgot_button_parent >a .blobby-button{
+
+.sign-in-container .card .content .signin_forgot_button_parent>a .blobby-button {
     margin-left: 3rem;
     font-size: 1.2rem;
 }
-.sign-in-container .card .content .Google-login{
-    display:flex;
-    justify-content:center;
+
+.sign-in-container .card .content .Google-login {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-top:2rem; 
+    margin-top: 2rem;
     padding: 0 10px 0 0;
 }
-.sign-in-container .card .content .Google-login >span{
+
+.sign-in-container .card .content .Google-login>span {
     color: #e6ff02;
     font-family: 'Nova Round', cursive;
     font-weight: bold;
     font-size: 1.8rem;
 }
-.sign-in-container .card .content .new-user{
-    display:flex;
-    justify-content:center;
+
+.sign-in-container .card .content .new-user {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    margin-top:2rem; 
+    margin-top: 2rem;
 }
-.sign-in-container .card .content .new-user >h5{
+
+.sign-in-container .card .content .new-user>h5 {
     color: #e6ff02;
     font-family: 'Nova Round', cursive;
     font-weight: bold;
     font-size: 1.8rem;
 }
-.sign-in-container .card .content .new-user >span >a .blobby-button{
+
+.sign-in-container .card .content .new-user>span>a .blobby-button {
     margin-left: 1rem;
     font-size: 1.2rem;
 }
-@media only screen and (max-width: 500px){
-    .sign-in-container .card .content >input{
+
+@media only screen and (max-width: 500px) {
+    .sign-in-container .card .content>input {
         width: 70%;
     }
-    .sign-in-container .card >img{
+    .sign-in-container .card>img {
         height: 220px;
     }
-    .sign-in-container .card .content .signin_forgot_button_parent .blobby-button{
+    .sign-in-container .card .content .signin_forgot_button_parent .blobby-button {
         font-size: 1rem;
     }
-    .sign-in-container .card .content .signin_forgot_button_parent >a .blobby-button{
+    .sign-in-container .card .content .signin_forgot_button_parent>a .blobby-button {
         font-size: 1rem;
         margin-left: 1rem;
     }
-    .sign-in-container .card .content .Google-login >span{
+    .sign-in-container .card .content .Google-login>span {
         font-size: 1.4rem;
     }
-    .sign-in-container .card .content .new-user{
+    .sign-in-container .card .content .new-user {
         margin-bottom: 2rem;
     }
-    .sign-in-container .card .content .new-user >h5{
+    .sign-in-container .card .content .new-user>h5 {
         font-size: 1.4rem;
     }
-    .sign-in-container .card .content .new-user >span >a .blobby-button{
+    .sign-in-container .card .content .new-user>span>a .blobby-button {
         font-size: 1rem;
     }
 }
-.Codeforces-div .topics-container{
+
+.Codeforces-div .topics-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.Codeforces-div .topics-container .strong-weak-topics .div-heading{
+
+.Codeforces-div .topics-container .strong-weak-topics .div-heading {
     font-size: 2.6rem;
 }
-.Codeforces-div .topics-container .strong-weak-topics .div-heading .item{
+
+.Codeforces-div .topics-container .strong-weak-topics .div-heading .item {
     font-size: 5rem !important;
 }
-.strong-weak-topics{
+
+.strong-weak-topics {
     width: 80%;
     display: flex;
     flex-direction: row;
@@ -1527,11 +1563,12 @@ div.compareTable table tbody tr td {
     backdrop-filter: blur(5px);
 }
 
-.DSA-div{
+.DSA-div {
     margin: 7rem 2rem 0rem;
     padding: 20px;
 }
-.DSA-div .msg{
+
+.DSA-div .msg {
     font-size: 2.2rem;
     position: relative;
     padding: 10px;
@@ -1540,11 +1577,11 @@ div.compareTable table tbody tr td {
     align-items: center;
 }
 
-.DSA-div .content >h3{
+.DSA-div .content>h3 {
     font-size: 1.8rem;
 }
 
-.DSA-div .content .options{
+.DSA-div .content .options {
     padding: 30px;
     /* width: 400px; */
     display: flex;
@@ -1552,21 +1589,24 @@ div.compareTable table tbody tr td {
     align-items: center;
     flex-direction: column;
 }
-.DSA-div .content .options .select-wrapper{
+
+.DSA-div .content .options .select-wrapper {
     width: 350px;
 }
-.DSA-div .content .button-class{
+
+.DSA-div .content .button-class {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 0 0 5rem;
 }
-.DSA-div .content .button-class .blobby-button{
+
+.DSA-div .content .button-class .blobby-button {
     font-size: 1.1rem;
 }
-.DSA-div .content .performance{
-    
+
+.DSA-div .content .performance {
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.667);
     border-radius: 15px;
     background: rgba(230, 236, 233, 0.349);
@@ -1576,29 +1616,34 @@ div.compareTable table tbody tr td {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
 }
-.DSA-div .content .performace .questions{
+
+.DSA-div .content .performace .questions {
     width: 90%;
     display: grid;
     grid-template-columns: auto auto auto;
 }
-.DSA-div .content .performance .questions .table-header{
+
+.DSA-div .content .performance .questions .table-header {
     /* display: flex;
     justify-content: center;
     align-items: center; */
     height: 6rem;
     text-align: center;
 }
-td{
+
+td {
     text-align: center;
 }
-.DSA-div .content .performance .questions .table-header .col1{
+
+.DSA-div .content .performance .questions .table-header .col1 {
     /* display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row; */
     padding: 10px 70px;
 }
-.practiceCard{
+
+.practiceCard {
     /* background-image: url('../images/cf.jpg'); */
     background-image: url('../images/cf.jpg');
     background-position: center;
@@ -1612,11 +1657,11 @@ td{
     margin-top: 15px;
 }
 
-.card-text{
+.card-text {
     /* max-width:fit-content; */
     font-size: 2.3rem;
     font-family: 'Nova Round', cursive;
-    color:#e6ff02;
+    color: #e6ff02;
     font-weight: bolder;
     /* margin-left: 40px; */
     /* background-color:#ffffff; */
@@ -1624,8 +1669,7 @@ td{
     /* border: 1px solid black; */
 }
 
-.custom_row_of_table
-{
+.custom_row_of_table {
     /* border: 2px solid rgb(87, 85, 85); */
     border: 1px solid rgba(255, 255, 255, 0.5);
     width: 75vw;
@@ -1639,8 +1683,7 @@ td{
     flex-direction: row; */
 }
 
-.cell_left
-{
+.cell_left {
     /* width: 70%; */
     border-right: 1px solid gray;
     border-bottom: 1px solid gray;
@@ -1649,25 +1692,25 @@ td{
     color: white;
 }
 
-.cell_right
-{
+.cell_right {
     /* width: 30%; */
     border-bottom: 1px solid gray;
     padding: 15px;
     padding-bottom: 15px;
 }
 
-
-.cfpractice-div{
+.cfpractice-div {
     display: flex;
     flex-direction: row;
     margin-top: 100px;
 }
-.cfpractice-div .cards-container{
+
+.cfpractice-div .cards-container {
     border-right: 5px solid white;
     width: 70vw;
     /* margin: 0px; */
 }
+
 .cfpractice-div .cards-container .question-cards {
     display: flex;
     justify-content: center;
@@ -1677,7 +1720,7 @@ td{
     overflow: hidden;
 }
 
-.cfpractice-div .cards-container .question-cards .card-text{
+.cfpractice-div .cards-container .question-cards .card-text {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1693,43 +1736,46 @@ td{
     overflow: hidden;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
-    
 }
-#Question:hover{
+
+#Question:hover {
     background: rgba(41, 43, 35, 0.986);
 }
-.card-text .question-card-hover:hover{
+
+.card-text .question-card-hover:hover {
     background: rgba(41, 43, 35, 0.986);
 }
-.cfpractice-div .cards-container .question-cards .card-text:hover{
+
+.cfpractice-div .cards-container .question-cards .card-text:hover {
     /* animation-name: thing;
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-direction: reverse; */
     background: rgba(41, 43, 35, 0.986);
 }
+
 /* @keyframes thing{
     from { background:rgba(230, 236, 233, 0.349)}
     to { background: rgba(41, 43, 35, 0.986);}
 } */
-.cfpractice-div .cards-container .question-cards .card-text .ques-title{
+
+.cfpractice-div .cards-container .question-cards .card-text .ques-title {
     font-size: 2rem;
 }
-.cfpractice-div .cards-container .question-cards .card-text .ques-info{
+
+.cfpractice-div .cards-container .question-cards .card-text .ques-info {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     font-size: 1.2rem;
     font-weight: normal;
-    color:rgb(245, 238, 238);
+    color: rgb(245, 238, 238);
 }
 
-.developerCard{
+.developerCard {
     background: rgba(119, 136, 153, 0.7);
     margin-right: 180px;
     margin-left: 180px;
     border-radius: 70px;
 }
-
-
