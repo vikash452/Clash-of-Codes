@@ -16,8 +16,8 @@ function ContactUs()
                  
                 <div>
                     <h3>
-                        <a href='mailto:ClashOfCodes1729@gmail.com' target='_blank'>
-                            ClashOfCodes
+                        <a href='mailto:ClashOfCodes1729@gmail.com' target='_blank' style={{color:'yellow'}}>
+                        ClashOfCodes1729@gmail.com
                         </a>
                     </h3>
                 </div>

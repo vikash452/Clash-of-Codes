@@ -322,6 +322,18 @@ router.get('/codechef/upcomingContests',passport.authenticate('jwt'),(req,res)=>
   //THIS IS HARDCODED FROM CODECHEF API
   var contestList=[
     {
+      "code": "START4",
+      "name": "May CodeChef Starters 2021 (Rated for Div 3)",
+      "startDate": "2021-05-30 16:00:00",
+      "endDate": "2021-05-30 19:00:00"
+    },
+    {
+      "code": "LTIME96",
+      "name": "May Lunchtime 2021",
+      "startDate": "2021-05-29 19:30:00",
+      "endDate": "2021-05-29 22:30:00"
+    },
+    {
       "code": "COOK129",
       "name": "May Cook-Off 2021",
       "startDate": "2021-05-23 21:30:00",

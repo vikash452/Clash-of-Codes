@@ -1134,13 +1134,11 @@ input {
     }
 }
 
-/* .codechefCard
-{ */
 
 .codechefCard {
     max-width: max-content;
     min-width: 40%;
-    /* background-color: rgba(245, 230, 83, 0.5); */
+    background-color: rgba(64, 64, 64, 0.6) !important;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 2);
     margin-left: 0px !important;
     font-size: 30px;
@@ -1774,7 +1772,7 @@ td {
 }
 
 .developerCard {
-    background: rgba(119, 136, 153, 0.7);
+    background: rgba(64, 64, 64, 0.7);
     margin-right: 180px;
     margin-left: 180px;
     border-radius: 70px;

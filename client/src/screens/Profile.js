@@ -276,6 +276,7 @@ function Profile() {
                 // zindex: '1'
             }}>
                 <div className="card" style={{
+                    backgroundColor:'rgba(64,64,64,0.6)'
                     // position: 'relative',
                     // width: '50%',
                     // minWidth: '50%',
@@ -345,6 +346,7 @@ function Profile() {
                 // zindex: '1'
             }}>
                 <div className="card" style={{
+                    backgroundColor:'rgba(64,64,64,0.6)'
                     // position: 'relative',
                     // width: 'clamp(320px, 65%, 65%)',
                     // //minWidth: '420px',
@@ -449,6 +451,7 @@ function Profile() {
                 </div>
 
                 <div className="card" style={{
+                    backgroundColor:'rgba(64,64,64,0.6)'
                     // position: 'relative',
                     // width: 'clamp(320px, 65%, 65%)',
                     // //minWidth: '420px',

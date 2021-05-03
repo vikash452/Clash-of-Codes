@@ -138,19 +138,24 @@ function Codechef()
                 </div>
 
                 <div className='codechefCard attemptedProblemsCard col s12 m12 l12 xl12  '>
+                <h4>Your solved problems</h4>
                 {
                     Object.entries(content.problemStats.solved).map((submission)=>{
                         return(
                             <div key={submission[0]}>
-                                <span style={{fontSize:'40px'}}>{submission[0]} : </span>
+                                <span style={{fontSize:'35px'}}>{submission[0]} : </span>
                                 {
                                     submission[1].map((problemName)=>{
                                         return (
-                                            // <div key={problemName}>
-                                                <span key={problemName} style={{fontSize:'20px'}}>{problemName} </span>
-                                                // <br/>
-                                            // </div>
-                                            
+                                            <a 
+                                                key={problemName} 
+                                                href={`https://www.codechef.com/problems/${problemName}`} 
+                                                target='_blank'
+                                                style={{color:'#e6ff02'}}
+                                            >
+                                                <span  style={{fontSize:'20px'}}>{problemName} </span>
+                                            </a>
+                                                
                                         )
                                     })
                                 }
@@ -161,6 +166,39 @@ function Codechef()
                 }
             </div>
                 
+                <div className='codechefCard partiallySolvedProblemsCard col s12 m12 l12 xl12'>
+                    <h4>Your Unsolved Problems</h4>
+                    {
+                        Object.entries(content.problemStats.partiallySolved).map((partSol)=>{
+                            return(
+                                <div key={partSol[0]}>
+                                    <span style={{fontSize:'35px'}}>{partSol[0]} : </span>
+                                    {
+                                        partSol[1].map((problemName)=>{
+                                            return (
+                                                // <div key={problemName}>
+                                                <a 
+                                                key={problemName} 
+                                                href={`https://www.codechef.com/problems/${problemName}`} 
+                                                target='_blank'
+                                                style={{color:'#e6ff02'}}
+                                                >
+                                                    <span  style={{fontSize:'20px'}}>{problemName} </span>
+                                                </a>
+                                                    
+                                                    // <br/>
+                                                // </div>
+                                                
+                                            )
+                                        })
+                                    }
+                                    <br/>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
             </div>
         )
     }
