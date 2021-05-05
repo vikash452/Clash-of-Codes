@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import BlobbyButton from './BlobbyButton'
+import BlobbyButton from '../assets/BlobbyButton'
 import UniqueSubmissions from './user_uniq_subms_cf'
 import './design.css';
 import M from 'materialize-css'

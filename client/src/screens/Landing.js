@@ -4,7 +4,7 @@ import M, { Slider } from 'materialize-css'
 import { use } from 'passport';
 import './design.css'
 import Navbar_Logo from '../images/logo.jpg'
-import BlobbyButton from './BlobbyButton'
+import BlobbyButton from '../assets/BlobbyButton'
 import CF from '../images/cf.jpg'
 import LandingPage from '../images/landingPage.png'
 // import {Swiper,SwiperSlide} from 'swiper/react'

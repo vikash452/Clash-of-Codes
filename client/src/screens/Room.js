@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import './design.css'
 import M from 'materialize-css'
-import BlobbyButton from './BlobbyButton';
+import BlobbyButton from '../assets/BlobbyButton';
 // import Background from '../images/img2.png'
 
 

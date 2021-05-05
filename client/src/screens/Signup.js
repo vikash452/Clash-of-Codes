@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import M from 'materialize-css'
 import './design.css'
-import BlobbyButton from './BlobbyButton'
+import BlobbyButton from '../assets/BlobbyButton'
 
 function Signup() {
     var [email, setEmail] = useState('')

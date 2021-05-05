@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import M from 'materialize-css'
 import './design.css'
-import BlobbyButton from './BlobbyButton'
+import BlobbyButton from '../assets/BlobbyButton'
 
 function DSA() {
 

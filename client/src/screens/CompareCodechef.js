@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import BlobbyButton from "./BlobbyButton";
+import BlobbyButton from "../assets/BlobbyButton";
 import './design.css'
 import CanvasJSReact from '../assets/canvasjs.react'
 var CanvasJS = CanvasJSReact.CanvasJS;

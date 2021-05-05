@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import M from 'materialize-css'
 import CanvasJSReact from '../assets/canvasjs.react'
 import './design.css';
-import BlobbyButton from './BlobbyButton'
+import BlobbyButton from '../assets/BlobbyButton'
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 

@@ -5,7 +5,7 @@ import { use } from 'passport';
 import './design.css';
 // import img1 from '../images/cf.jpg'
 import Navbar_Logo from '../images/logo.jpg'
-import BlobbyButton from './BlobbyButton'
+import BlobbyButton from '../assets/BlobbyButton'
 
 function Navbar() {
 

@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react'
-import BlobbyButton from './BlobbyButton'
+import BlobbyButton from '../assets/BlobbyButton'
 import M from 'materialize-css'
 import UniqueSubmissions,{AllSubmissions} from './user_uniq_subms_cf'
 

@@ -1,4 +1,4 @@
-import BlobbyButton from '../screens/BlobbyButton'
+import BlobbyButton from './BlobbyButton'
 import M from 'materialize-css'
 import LandingPage from '../images/landingPage.png'
 import Navbar_Logo from '../images/logo.jpg'
