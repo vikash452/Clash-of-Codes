@@ -682,7 +682,7 @@ function Room() {
                     <h4>Contest start timing : {time}</h4>
                     <h4>Initial Question Rating : {initialRating}</h4>
                 </div>
-                <div class="room-button">
+                <div className="room-button">
                     <button className="blobby-button" onClick={() => { Entry_into_room() }} style={{
                         // fontSize: '1.6rem',
 

@@ -195,6 +195,11 @@ function AllRouting() {
         <DSA />
         <Footer/>
       </Route>
+      <Route exact path='/codeforcesPractice/:topicToPractice'>
+        <Navbar />
+        <CodeforcesPractice />
+        <Footer/>
+      </Route>
       <Route exact path='/codeforcesPractice'>
         <Navbar />
         <CodeforcesPractice />
@@ -228,7 +233,7 @@ function AllRouting() {
 function App() {
 
   return (
-  <div className="App" style={{display:'flex', flexDirection:'column'}}>
+  <div className="App" style={{display:'flex', flexDirection:'column', backgroundImage:`url(${AmongUsBackground})`, backgroundRepeat:'no-repeat', backgroundPosition:'0px -170px', backgroundAttachment:'fixed'}}>
       <BrowserRouter>
         <AllRouting />
       </BrowserRouter>

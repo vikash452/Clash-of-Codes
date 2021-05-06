@@ -445,7 +445,10 @@ function Codeforces(){
                             // console.log(item.label)
                             return (
                                 <div key={item.label} className="item" style={{fontSize: '1.5rem'}}>
-                                    {item.label}
+                                    <Link to={`/codeforcesPractice/${item.label}`} style={{color:'burlywood'}}>
+                                        {item.label}
+                                    </Link>
+                                    
                                 </div>
                             )
                         })
@@ -459,7 +462,9 @@ function Codeforces(){
                         intermediateTopics.map((item)=>{
                             return (
                                 <div key={item.label} className="item" style={{fontSize: '1.5rem'}}>
-                                    {item.label}
+                                    <Link to={`/codeforcesPractice/${item.label}`} style={{color:'burlywood'}}>
+                                        {item.label}
+                                    </Link>
                                 </div>
                             )
                         })
@@ -472,7 +477,9 @@ function Codeforces(){
                         weakTopics.map((item)=>{
                             return (
                                 <div key={item.label} className="item" style={{fontSize: '1.5rem'}}>
-                                    {item.label}
+                                    <Link to={`/codeforcesPractice/${item.label}`} style={{color:'burlywood'}}>
+                                        {item.label}
+                                    </Link>
                                 </div>
                             )
                         })

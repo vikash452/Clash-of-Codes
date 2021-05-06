@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import BlobbyButton from '../assets/BlobbyButton'
 import UniqueSubmissions from './user_uniq_subms_cf'
 import './design.css';
@@ -7,17 +7,8 @@ import M from 'materialize-css'
 
 function CodeforcesPractice()
 {
-    const history=useHistory()
-    var [initialRating, setInitialRating] = useState(800);
-    var [availableTopics , setAvailableTopics]=useState([]);
-    var [selectedTopics , setSelectedTopics]=useState([]);
-    var [handle,setHandle]=useState('')
-    var [questions,setQuestions]=useState([])
-    var [increasing,setIncreasing]=useState(false)
-    var [pre, setPre]=useState(false)
 
-    useEffect(()=>{
-        var temp=['greedy',
+    var temp=['greedy',
         'dp',
         'dfs and similar',
         'brute force',
@@ -40,6 +31,19 @@ function CodeforcesPractice()
         'two pointers'
     ]
 
+    const history=useHistory()
+    const {topicToPractice}=useParams()
+    var [initialRating, setInitialRating] = useState(800);
+    var [availableTopics , setAvailableTopics]=useState(temp);
+    var [selectedTopics , setSelectedTopics]=useState([]);
+    var [handle,setHandle]=useState('')
+    var [questions,setQuestions]=useState([])
+    var [increasing,setIncreasing]=useState(false)
+    var [pre, setPre]=useState(false)
+
+    useEffect(()=>{
+        console.log(topicToPractice)
+        
         var tooltip_elem=document.querySelectorAll('.tooltipped')
         M.Tooltip.init(tooltip_elem)
         setAvailableTopics(temp)
@@ -51,7 +55,14 @@ function CodeforcesPractice()
         else
         {
             setHandle(user.codeforces)
+            if(topicToPractice===undefined || topicToPractice==null)
             getQuestions_dailyMix(user.codeforces)
+            else
+            {
+                Change1(topicToPractice)
+                setIncreasing(true)
+                getQuestions_paramaters(user.codeforces,topicToPractice)
+            }
         }
         
     },[])
@@ -66,7 +77,7 @@ function CodeforcesPractice()
 
         // console.log(temp1)
         temp1.push(topicName);
-        // console.log(temp1)
+        console.log(temp1)
         setSelectedTopics(temp1)
         var index;
         var temp2=[];
@@ -121,6 +132,7 @@ function CodeforcesPractice()
     function URLmaker(checker)
     {
         var url='https://codeforces.com/api/problemset.problems'
+        console.log(selectedTopics)
         if(selectedTopics.length == 0)
             return url;
 
@@ -136,13 +148,74 @@ function CodeforcesPractice()
 
     }
 
-    async function getQuestions_custom()
+    async function getQuestions_paramaters(handle,topicToPractice)
+    {
+        setPre(true)
+        var t=await UniqueSubmissions(handle)
+        // console.log(t)
+        var rating_wise_map=new Map();
+        var url=`https://codeforces.com/api/problemset.problems?tags=${topicToPractice}`
+        fetch(url)
+        .then(res=>res.json())
+        .then((data)=>{
+            console.log(data)
+            data.result.problems.forEach((ques)=>{
+                var unique=ques.contestId.toString() + ques.index;
+                if(!t.has(unique))
+                {
+                    var quesRating=ques.rating;
+                    if(rating_wise_map.has(quesRating))
+                    {
+                        var newArr=rating_wise_map.get(quesRating)
+                        newArr.push(ques)
+                        rating_wise_map.set(quesRating,newArr)
+                    }
+                    else
+                    {
+                        var newArr=new Array()
+                        newArr.push(ques)
+                        rating_wise_map.set(quesRating,newArr)
+                    }
+                }
+            })
+            console.log(rating_wise_map)
+            // console.log(typeof(parseInt(initialRating)))
+            // console.log(rating_wise_map.has(initialRating))
+            var rat=(parseInt(initialRating))
+            rating_wise_map.forEach((value,key)=>{
+                console.log(typeof(key))
+            })
+
+            var temp_questions=[];
+            for(var i=0; i<8; ++i)
+            {
+                if(rating_wise_map.has(rat))
+                {
+                    var qArray=rating_wise_map.get(rat)
+                    if(qArray.length > 0 && qArray[i] != undefined && qArray[i]!=null)
+                        temp_questions.push(qArray[i])
+                }
+                // temp_questions.push(rating_wise_map.get(rat)[i])
+                if(rat < 3400)
+                rat+=100
+            }
+            console.log(temp_questions)
+            setQuestions(temp_questions)
+            setPre(false)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    async function getQuestions_custom(handle)
     {
         setPre(true)
         var t=await UniqueSubmissions(handle)
         // console.log(t)
         var rating_wise_map=new Map();
         var questions=[];
+        console.log(selectedTopics)
         var url=URLmaker(1);
         console.log(url)
         fetch(url)
@@ -251,10 +324,10 @@ function CodeforcesPractice()
 
     }
 
-    // useEffect(()=>{
-    //     // console.log(availableTopics)
-    //     // console.log(selectedTopics)
-    // },[availableTopics,selectedTopics])
+    useEffect(()=>{
+        // console.log(availableTopics)
+        console.log(selectedTopics)
+    },[availableTopics,selectedTopics])
     return (
         <div className="cfpractice-div">
              {/* style={{display:'flex', flexDirection:'row', marginTop:'100px'}}> */}
@@ -383,7 +456,7 @@ function CodeforcesPractice()
                     </label>
 
                     <div style={{marginTop:'20px', marginBottom:'20px'}}>
-                    <button className='blobby-button' onClick={()=>{getQuestions_custom()}}>
+                    <button className='blobby-button' onClick={()=>{getQuestions_custom(handle)}}>
                     Get Questions
                     <BlobbyButton/>
                     </button>

@@ -1,29 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import M, { Slider } from 'materialize-css'
-import { use } from 'passport';
 import './design.css'
 import Navbar_Logo from '../images/logo.jpg'
 import BlobbyButton from '../assets/BlobbyButton'
 import CF from '../images/cf.jpg'
 import LandingPage from '../images/landingPage.png'
-// import {Swiper,SwiperSlide} from 'swiper/react'
-// import SwiperCore,{Navigation, Pagination, Autoplay, Scrollbar, A11y, EffectCoverflow} from 'swiper'
-// import 'swiper/swiper.scss';
-// import 'swiper/components/navigation/navigation.scss';
-// import 'swiper/components/pagination/pagination.scss';
-// import 'swiper/components/scrollbar/scrollbar.scss';
 
-// SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar, EffectCoverflow])
 function LandingScreen() {
     
     useEffect(()=>{
-        // var b=document.querySelector('body')
-        // console.log(b.style)
-        // b.style.backgroundImage=`url(${CF})`
-        // b.style.backgroundColor='blue !important'
-        // SwiperCore.use([Autoplay,Navigation,Pagination,A11y,Scrollbar])
-        // document.body.style.backgroundImage=`url('${LandingPage}')`
 
         document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.carousel');
@@ -45,18 +31,14 @@ function LandingScreen() {
         if(bigDiv)
         {
             setInterval(() => {
-                // console.log(bigDiv.style)
-                // if(bigDiv)
-                // {
+                
                     bigDiv.style.transform = `translateY(${diff_height}px)`;
                     diff_height -= (150 + diff_const);
                     if (diff_height < -500) {
                         diff_height = 0;
                         diff_const = 0;
                     }
-                // }
-            
-            
+                    
             }, 3000);
         }
         
@@ -177,13 +159,6 @@ function LandingScreen() {
                             </Link>
                         </li>
                     </ul>
-                    {/* <ul>
-                        <li>
-                        <a href="#" data-target="slide-out" className="sidenav-trigger right">
-                            <i className="material-icons">menu</i>
-                        </a>
-                        </li>
-                    </ul> */}
                 </div>
             </nav>
 
