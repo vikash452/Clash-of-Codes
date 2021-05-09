@@ -262,8 +262,8 @@ function Profile() {
 
     // var url=new URL('/compare?ab=a&bc=b')
     return (
-        <div >
-            {/* <div style={{ marginTop: '70px' }}> */}
+        <div style={{ marginTop: '100px' }}>
+            {/* <div  */}
 
             <div className="friend-div" style={{
                 // position: 'relative',
@@ -276,7 +276,7 @@ function Profile() {
                 // zindex: '1'
             }}>
                 <div className="card" style={{
-                    backgroundColor:'rgba(64,64,64,0.6)'
+                    // backgroundColor:'rgba(64,64,64,0.6)'
                     // position: 'relative',
                     // width: '50%',
                     // minWidth: '50%',
@@ -346,7 +346,7 @@ function Profile() {
                 // zindex: '1'
             }}>
                 <div className="card" style={{
-                    backgroundColor:'rgba(64,64,64,0.6)'
+                    // backgroundColor:'rgba(64,64,64,0.6)'
                     // position: 'relative',
                     // width: 'clamp(320px, 65%, 65%)',
                     // //minWidth: '420px',
@@ -380,6 +380,8 @@ function Profile() {
                                 <button className="blobby-button" style={{
                                     // fontSize: '1.1rem',
                                     // marginTop: '1rem',
+                                    color: '#000'
+
                                 }}>Click here to see your statistics<span className="inner">
                                         <span className="blobs">
                                             <span className="blob"></span>
@@ -425,6 +427,8 @@ function Profile() {
                     }}>
                         <button className="blobby-button" onClick={() => { addCfHandle('codeforces') }} style={{
                             // fontSize: '1.1rem',
+                            color: '#000'
+
                         }}>Set this as Codeforces handle <span className="inner">
                                 <span className="blobs">
                                     <span className="blob"></span>
@@ -451,7 +455,7 @@ function Profile() {
                 </div>
 
                 <div className="card" style={{
-                    backgroundColor:'rgba(64,64,64,0.6)'
+                    // backgroundColor:'rgba(64,64,64,0.6)'
                     // position: 'relative',
                     // width: 'clamp(320px, 65%, 65%)',
                     // //minWidth: '420px',
@@ -466,7 +470,7 @@ function Profile() {
                     // borderTop: '1px solid rgba(255, 255, 255, 0.5)',
                     // backdropFilter: 'blur(5px)'
                 }}>
-                    <h2 stle={{ marginTop: '1.424rem' }}>Your CodeChef Profile</h2>
+                    <h2>Your CodeChef Profile</h2>
                     <h4>Handle : {cc}</h4>
 
                     {
@@ -486,6 +490,7 @@ function Profile() {
                                 <button className="blobby-button" style={{
                                     // fontSize: '1.1rem',
                                     // marginTop: '1rem',
+                                    color: '#000'
                                 }}>Click here to see your statistics<span className="inner">
                                         <span className="blobs">
                                             <span className="blob"></span>
@@ -530,6 +535,7 @@ function Profile() {
                     }}>
                         <button className="blobby-button" onClick={() => { addCcHandle('codechef') }} style={{
                             // fontSize: '1.1rem',
+                            color: '#000'
                         }}>Set this as Codechef handle <span className="inner">
                                 <span className="blobs">
                                     <span className="blob"></span>
