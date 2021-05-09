@@ -118,14 +118,14 @@ function Contest() {
                 }}></img> */}
                         <h2>Create  a room</h2>
                         <p>Set the room name :
-                <br></br>
+                            <br></br>
                             <input type='text' placeholder='Room name' style={{ maxWidth: '300px'}}
                                 onChange={(e) => {
                                     setRoomName(e.target.value)
                                 }}
                             /></p>
                         <p >Set the Contest start time :
-                <br></br>
+                            <br></br>
                             <input type='datetime-local' placeholder='Contest start time' style={{ maxWidth: '300px'}}
                                 onChange={(e) => {
                                     setStartTime(new Date(e.target.value))
@@ -138,7 +138,7 @@ function Contest() {
                                 }}
                             /></p>
 
-                        <p>
+                        <div>
                             Set the starting question rating
                             <div  style={{maxWidth:'fit-content', margin:'auto'}}>
                                 <select 
@@ -157,7 +157,7 @@ function Contest() {
                                 </select>
                             </div>
                         
-                        </p>
+                        </div>
                         <div className="card-button" style={{ }}>
                             <button className="blobby-button" onClick={() => { CreateRoom() }} style={{
                                 // margin: '0 auto',

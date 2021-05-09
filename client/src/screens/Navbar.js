@@ -400,7 +400,7 @@ function Navbar() {
         className="smallNavbar"
         style={{
           marginBottom: "100px",
-          backgroundColor: "rgba(230, 236, 233, 0)",
+          backgroundColor: "rgba(0, 0, 0, 0)",
         }}
       >
         <ul
@@ -474,13 +474,13 @@ function Navbar() {
           </li>
 
           <li className="dropdown-trigger" href="#" data-target="dropdown1">
-            <Link
+            <a
               style={{
                 fontSize: "1.2rem",
               }}
             >
               Compare
-            </Link>
+            </a>
             <ul
               id="dropdown1"
               className="dropdown-content"
@@ -488,7 +488,7 @@ function Navbar() {
                 width: "fit-content",
                 fontSize: "1.2rem",
                 borderRadius: "15px",
-                background: "rgba(230, 236, 233, 0.349)",
+                // background: "rgba(230, 236, 233, 0.349)",
                 backdropFilter: "blur(10px)",
               }}
             >
@@ -497,7 +497,7 @@ function Navbar() {
                   to="/compareCodeforces"
                   style={{
                     fontSize: "1.2rem",
-                    color: "#e6ff02",
+                    // color: "#e6ff02",
                   }}
                 >
                   Codeforces
@@ -508,7 +508,7 @@ function Navbar() {
                   to="/compareCodechef"
                   style={{
                     fontSize: "1.2rem",
-                    color: "#e6ff02",
+                    // color: "#e6ff02",
                   }}
                 >
                   Codechef
@@ -517,13 +517,13 @@ function Navbar() {
             </ul>
           </li>
           <li className="dropdown-trigger" href="#" data-target="dropdown2">
-            <Link
+            <a
               style={{
                 fontSize: "1.2rem",
               }}
             >
               Practice
-            </Link>
+            </a>
 
             <ul
               id="dropdown2"
@@ -531,7 +531,7 @@ function Navbar() {
               style={{
                 width: "fit-content",
                 borderRadius: "15px",
-                background: "rgba(230, 236, 233, 0.349)",
+                // background: "rgba(230, 236, )",
                 backdropFilter: "blur(10px)",
               }}
             >
@@ -540,7 +540,7 @@ function Navbar() {
                   to="/codeforcesPractice"
                   style={{
                     fontSize: "1.2rem",
-                    color: "#e6ff02",
+                    // color: "#e6ff02",
                   }}
                 >
                   Codeforces
@@ -564,13 +564,13 @@ function Navbar() {
               Logout();
             }}
           >
-            <Link
+            <a
               style={{
                 fontSize: "1.2rem",
               }}
             >
               Logout
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>
