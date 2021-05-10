@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import M from 'materialize-css'
 import './design.css'
@@ -8,8 +8,11 @@ import BlobbyButton from '../assets/BlobbyButton'
 import GoogleLogo from '../images/google logo.png'
 import LandingPage from '../images/landingPage.png'
 import Navbar_Logo from '../images/logo.jpg'
+import {UserContext} from '../App'
 
 function Signin() {
+
+    const {state,dispatch}=useContext(UserContext)
     var [email, setEmail] = useState('')
     var [password, setPassword] = useState('')
     const history = useHistory();
@@ -50,6 +53,7 @@ function Signin() {
                     })
                     localStorage.setItem('jwt', data.token)
                     localStorage.setItem('user', JSON.stringify(data.foundUser))
+                    dispatch({type:'USER',payload:data.foundUser})
                     history.push('/home')
                 }
             })

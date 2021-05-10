@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect , createContext, useReducer} from 'react';
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, useHistory } from 'react-router-dom'
 import './App.css';
@@ -30,7 +30,9 @@ import Header from './screens/Header'
 import Footer from './screens/Footer'
 import LandingPageBackground from './images/landingPage.png'
 import AmongUsBackground from './images/amongus.jpg'
+import {reducer,initialState} from './screens/Reducers/userReducer'
 
+export const UserContext=createContext()
 
 function AllRouting() {
   const history = useHistory();
@@ -231,12 +233,22 @@ function AllRouting() {
 }
 
 function App() {
-
+  const [state,dispatch]=useReducer(reducer,initialState)
   return (
-  <div className="App" style={{display:'flex', flexDirection:'column', backgroundImage:`url(${AmongUsBackground})`, backgroundRepeat:'no-repeat', backgroundPosition:'0px -170px', backgroundAttachment:'fixed'}}>
+  <div className="App" 
+  style={{
+    display:'flex', 
+    flexDirection:'column', 
+    backgroundImage:`url(${AmongUsBackground})`, 
+    backgroundRepeat:'no-repeat', 
+    backgroundPosition:'0px -170px', 
+    backgroundAttachment:'fixed'
+  }}>
+    <UserContext.Provider value={{state,dispatch}}>
       <BrowserRouter>
         <AllRouting />
       </BrowserRouter>
+    </UserContext.Provider>
     </div>
   );
 }
