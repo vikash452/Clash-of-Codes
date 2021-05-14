@@ -70,6 +70,7 @@ function Home() {
     }, [])
 
     useEffect(async ()=>{
+        console.log('gotuser = ',gotusercf)
         console.log(user)
         if(user && user.codeforces)
         {
@@ -96,12 +97,8 @@ function Home() {
 
             <div>
                 {
-                    console.log(userCFData),
-                    (gotusercf && (userCFData != null))
+                    (gotusercf && userCFData!=null && userCFData!=undefined )
                     ?
-                    <>
-                    </>
-                    :
                     <div
                     style={{
                         fontSize:'3rem',
@@ -116,8 +113,10 @@ function Home() {
                         </h2>
                         {user.codeforces}
                         <br/>
-                        {/* {userCFData.total} on Codeforces */}
-                    </div>    
+                        Total questions : {userCFData.total}
+                    </div>   
+                    :
+                    <></> 
                 }
             </div>
 
@@ -126,7 +125,7 @@ function Home() {
                     <h3><ul>Upcoming Contests on Codeforces</ul></h3>
                     {
                         upcomingCF.map(item => {
-                            console.log(item)
+                            // console.log(item)
                             // console.log(item.startTimeSeconds)
                             var startDate = new Date(item.startTimeSeconds * 1000).toLocaleDateString()
                             // var startDate=d.getDate() + ' ' + d.getMonth()+1 + ' ' + d.getFullYear()
