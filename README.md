@@ -1,6 +1,6 @@
-### Clash-of-Codes ###
+# Clash-of-Codes #
 
-A website to view your competitive coding performance and stastics for multiple competitive coding websites. 
+## > A website to view your competitive coding performance and stastics for multiple competitive coding websites. ##
 
 **To run this project**
 1) Clone the project on your local machine
