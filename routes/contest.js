@@ -142,4 +142,27 @@ router.put('/contest/leaveRoom/:roomId',passport.authenticate('jwt',{session:fal
     })
 })
 
+router.post('/contest/postQuestions/:roomId',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    var questionsArray=req.body.questions;
+    console.log(questionsArray)
+    var roomId=req.params.roomId
+    Contest.findOne({roomId:roomId})
+    .then((foundRoom)=>{
+        if(!foundRoom){
+            return res.status(401).json({error:'Room not found'})
+        }
+
+        foundRoom.questions=questionsArray;
+
+        foundRoom.save()
+        .then((savedRoom)=>{
+            return res.status(200).json(savedRoom)
+        })
+
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
+
 module.exports=router;

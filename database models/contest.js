@@ -14,6 +14,11 @@ const contestSchema=new mongoose.Schema({
             ref:"User"
         }
     ],
+    questions:[
+        {
+            type:Object     
+        }
+    ],
     admin:{
         type:ObjectId,
         ref:"User"
