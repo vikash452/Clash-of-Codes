@@ -10,7 +10,7 @@
    npm i
 4. Run the server using:
    node server.js
-5. Check if node server is running on port 5000 by going typing :
+5. Check if node server is running on port 5000 by typing :
    localhost:5000
    in your browser
 6. Open a new terminal (or command line)
