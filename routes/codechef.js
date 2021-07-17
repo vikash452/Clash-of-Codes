@@ -322,16 +322,40 @@ router.get('/codechef/upcomingContests',passport.authenticate('jwt'),(req,res)=>
   //THIS IS HARDCODED FROM CODECHEF API
   var contestList=[
     {
+      "code": "AUG21",
+      "name": "August Challenge 2021 (Rated for Div 3)",
+      "startDate": "2021-08-06 15:00:00",
+      "endDate": "2021-08-16 15:00:00"
+    },
+    {
+      "code": "LTIME98",
+      "name": "July Lunchtime 2021",
+      "startDate": "2021-07-31 19:30:00",
+      "endDate": "2021-07-31 22:30:00"
+    },
+    {
+      "code": "COOK131",
+      "name": "July Cook-Off 2021",
+      "startDate": "2021-07-28 20:00:00",
+      "endDate": "2021-07-28 22:30:00"
+    },
+    {
+      "code": "START7",
+      "name": "CodeChef Starters 7 (Rated for Div 3)",
+      "startDate": "2021-07-25 16:00:00",
+      "endDate": "2021-07-25 19:00:00"
+    },
+    {
       "code": "IEM92021",
       "name": "IEM Coding Olympiad (IEMCO9)",
       "startDate": "2021-07-23 20:00:00",
       "endDate": "2021-07-23 23:00:00"
     },
     {
-      "code": "JULY21",
-      "name": "July Challenge 2021 (Rated for Div 3)",
-      "startDate": "2021-07-02 15:00:00",
-      "endDate": "2021-07-12 15:00:00"
+      "code": "PLGR2021",
+      "name": "Plagiarism -275",
+      "startDate": "2021-07-20 19:00:00",
+      "endDate": "2021-07-20 21:30:00"
     }
   ]
   res.status(200).json(contestList);
